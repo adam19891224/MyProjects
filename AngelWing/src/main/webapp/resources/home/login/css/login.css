@@ -1,0 +1,127 @@
+@CHARSET "UTF-8";
+
+body{
+	background-color: #ECFFFF;
+}
+input{
+	width: 220px;
+	height: 26px;
+}
+.main{
+	width: 1000px;
+	height: auto;
+	margin: 0 auto;
+	font-family: Microsoft YaHei;
+}
+
+.main-login{
+	width: 60%;
+	height: 300px;
+	margin: 0 auto;
+	-webkit-box-shadow: -3px 3px 3px #aaaaaa;  
+    -moz-box-shadow: -3px 3px 3px #aaaaaa;  
+    box-shadow: -3px 3px 3px #aaaaaa;
+    -moz-border-radius: 10px;      /* Gecko browsers */
+    -webkit-border-radius: 10px;   /* Webkit browsers */
+    border-radius: 10px;
+    background-color: white;
+    border: 1px solid #97CBFF;
+}
+
+.login-left{
+	width: 40%;
+	height: 100%;
+	float: left;
+}
+
+.login-left .left-img{
+	margin-left: 10px;
+	width: 220px;
+	height: auto;
+	margin-top: 40px;
+}
+
+.left-img img{
+	margin-top: 20px;
+}
+
+.login-right{
+	width: 60%;
+	height: auto;
+	float: left;
+	padding: 65px 0;
+}
+
+.login-right .right-name{
+	width: 100%;
+	line-height: 40px;
+	float: left;
+	text-align: left;
+	margin-left: 20px;
+}
+
+.login-right .right-password{
+	width: 100%;
+	line-height: 40px;
+	float: left;
+	margin-top: 15px;
+	text-align: left;
+	margin-left: 20px;
+}
+
+.login-right .right-checkcode{
+	width: 100%;
+	line-height: 40px;
+	float: left;
+	margin-top: 15px;
+	text-align: left;
+	margin-left: 20px;
+}
+
+.login-right .right-checkcode img{
+	width: 100px;
+	height: 40px;
+	float: left;
+}
+
+.right-checkcode .checkcode-div{
+	width: 160px;
+	height: 40px;
+	float: right;
+	margin-right: 20px;
+}
+
+.right-checkcode .checkcode-div .checkcode-div-right{
+	width: 40px;
+	height: 40px;
+	float: left;
+	margin-left: 5px;
+}
+
+.checkcode-div-right img{
+	max-width: 100%;
+	display: none;
+}
+
+.login-right .right-button{
+	width: 100%;
+	line-height: 40px;
+	float: left;
+	margin-top: 25px;
+	text-align: center;
+}
+
+.right-button .button-div{
+	width: 120px;
+	line-height: 30px;
+	background-color: #66B3FF;
+	-moz-border-radius: 5px;      /* Gecko browsers */
+    -webkit-border-radius: 5px;   /* Webkit browsers */
+    border-radius: 5px;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+.right-button .button-div:HOVER{
+	background-color: #0080FF;
+}

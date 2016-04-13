@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"    
+	    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   
+	    xmlns:aop="http://www.springframework.org/schema/aop"
+	    xmlns:context="http://www.springframework.org/schema/context"  
+	    xmlns:tx="http://www.springframework.org/schema/tx"
+	    xsi:schemaLocation="    
+	        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd  
+	        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd  
+	        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd  
+	        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+	
+	<!-- 开启注解配置 -->  
+    <context:annotation-config />  
+	<!-- 自动扫描 -->
+	<context:component-scan base-package="com.web">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+		<context:exclude-filter type="annotation" expression="com.system.annotation.ControllerLogs" />
+	</context:component-scan>
+	
+	<!-- 引入配置文件 -->
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="classpath:jdbc/jdbc.properties" />
+	</bean>
+
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">   
+	    <property name="url" value="${url}" />
+		<property name="username" value="${username}" />
+		<property name="password" value="${password}" />  
+	       
+	    <property name="filters" value="stat" />
+	    <property name="maxActive" value="${maxActive}" />
+	    <property name="initialSize" value="${initialSize}" />  
+	    <property name="maxWait" value="${maxWait}" />  
+	    <property name="minIdle" value="${minIdle}" />  
+	   
+	    <property name="timeBetweenEvictionRunsMillis" value="60000" />  
+	    <property name="minEvictableIdleTimeMillis" value="300000" />  
+	   
+	    <property name="validationQuery" value="SELECT 'x'" />  
+	    <property name="testWhileIdle" value="true" />  
+	    <property name="testOnBorrow" value="false" />  
+	    <property name="testOnReturn" value="false" />  
+	       
+	    <property name="poolPreparedStatements" value="true" />  
+	    <property name="maxPoolPreparedStatementPerConnectionSize" value="50" />
+		<!--配置log4j拦截过滤器-->
+		<property name="proxyFilters">
+			<list>
+				<ref bean="logfilter"/>
+			</list>
+		</property>
+	</bean>
+	<!--定义log4j过滤器，作用是能在控制台打印sql语句-->
+	<bean id="logfilter" class="com.alibaba.druid.filter.logging.Log4jFilter">
+		<property name="resultSetLogEnabled" value="false" />
+	</bean>
+
+	<!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<!-- 自动扫描mapping.xml文件 -->
+		<property name="mapperLocations" value="classpath:configs/com/web/**/mapping/*.xml" />
+	</bean>
+
+	<!-- DAO接口所在包名，Spring会自动查找其下的类 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.**.dao" />
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+	</bean>
+
+	<!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	
+	
+	<!-- 配置druid监控spring jdbc -->
+	<bean id="druid-stat-interceptor" class="com.alibaba.druid.support.spring.stat.DruidStatInterceptor"/>
+
+	<bean id="druid-stat-pointcut" class="org.springframework.aop.support.JdkRegexpMethodPointcut"
+		scope="prototype">
+		<property name="patterns">
+			<list>
+				<value>com.*.*.*.service.*</value>
+			</list>
+		</property>
+	</bean>
+	<aop:config>
+		<aop:advisor advice-ref="druid-stat-interceptor" pointcut-ref="druid-stat-pointcut" />
+	</aop:config>
+
+</beans>

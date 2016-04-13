@@ -1,0 +1,27 @@
+@CHARSET "UTF-8";
+
+html,body{
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+.text-table{
+	width: 100%;
+	font-family: 微软雅黑;
+}
+.text-table tr{
+	height: 30px;
+	width: 100%;
+	background-color: #ebebeb;
+}
+.text-table .tr-double{
+	background-color: white;
+}
+.text-table tr td{
+	width: 50%;
+	padding: 5px;
+	text-align: center;
+}

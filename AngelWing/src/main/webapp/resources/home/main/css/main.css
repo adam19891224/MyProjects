@@ -1,0 +1,57 @@
+@CHARSET "UTF-8";
+
+html,body{
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+.west-ul{
+	padding: 0px;
+	margin: 0px;
+	text-align: center;
+	line-height: 20px;
+}
+
+.west-ul li a{
+	text-decoration: none;
+	color: black;
+}
+
+#north-left{
+	width: 70%;
+	height: 100%;
+	float: left;
+	background-image: url("../images/index-milan.jpg");
+	background-repeat: no-repeat;
+}
+
+#north-right{
+	width: 30%;
+	height: 20px;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
+
+#right-left{
+	width: 60%;
+	height: 100%;
+	float: left;
+	text-align: center;
+}
+
+#right-right{
+	width: 40%;
+	line-height: 20px;
+	float: left;
+	text-align: center;
+}
+
+#right-right a{
+	color: blue;
+	text-decoration: none;
+	margin-left: 20px;
+}

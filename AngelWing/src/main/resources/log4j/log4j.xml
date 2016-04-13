@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<!-- 输出日志到控制台 ConsoleAppender -->
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss} %-5p] - %m%n" />
+                <!-- value="[%d{dd HH:mm:ss,SSS\} %-5p] [%t] %c{2\} - %m%n" />  -->
+        </layout>
+        <!--过滤器设置输出的级别-->
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="levelMin" value="info" />
+            <param name="levelMax" value="error" />
+            <param name="AcceptOnMatch" value="true" />
+        </filter>
+	</appender>
+	<!-- 设置系统全局输出文件的指定路径 -->
+
+	<!--按照日期每天生产一个日志文件 DailyRollingFileAppender-->
+	<appender name="sysAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="${webapp.root}/WEB-INF/log/system/log.log" />
+		<param name="Append" value="true" />
+		<param name="MaxBackupIndex" value="2" />
+		<param name="datePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss} %-5p] - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMax" value="ERROR" />
+			<param name="LevelMin" value="INFO" />
+		</filter>
+	</appender>
+
+	<!-- 设置controller输出文件的指定路径 -->
+	<!--按照日期每天生产一个日志文件 DailyRollingFileAppender-->
+	<appender name="controllerAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="${webapp.root}/WEB-INF/log/controller/log.log" />
+		<param name="Append" value="true" />
+		<param name="MaxBackupIndex" value="2" />
+		<param name="datePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss} %-5p] - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMax" value="ERROR" />
+			<param name="LevelMin" value="INFO" />
+		</filter>
+	</appender>
+
+	<!-- 设置service输出文件的指定路径 -->
+	<!--按照日期每天生产一个日志文件 DailyRollingFileAppender-->
+	<appender name="ServiceAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="${webapp.root}/WEB-INF/log/service/log.log" />
+		<param name="Append" value="true" />
+		<param name="MaxBackupIndex" value="2" />
+		<param name="datePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss} %-5p] - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMax" value="ERROR" />
+			<param name="LevelMin" value="INFO" />
+		</filter>
+	</appender>
+
+	<!-- 设置拦截器输出文件的指定路径 -->
+	<!--按照日期每天生产一个日志文件 DailyRollingFileAppender-->
+	<appender name="InterceptorAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="${webapp.root}/WEB-INF/log/interceptor/log.log" />
+		<param name="Append" value="true" />
+		<param name="MaxBackupIndex" value="2" />
+		<param name="datePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss} %-5p] - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMax" value="ERROR" />
+			<param name="LevelMin" value="INFO" />
+		</filter>
+	</appender>
+
+
+	<!-- 
+		全局输出
+		这里就只需要设置一个系统的console即可，而其他的日志输出就根据自己的Logger来生成
+		如果这里设置了其他的日志生成器，就会导致某一些特定的日志也会出现在下面的日志生成器中
+		例如此时设置controller和service两个不同的日志生成器，如果下面设置了其中的一个，比如
+		设置了controller的日志器，那么service的日志就会同时输出在controller的日志文件中，显然
+		我们原先并不希望这样，所以这里就不设置任何一个，除了系统日志
+	-->
+	<root>
+		<appender-ref ref="console" />
+		<appender-ref ref="sysAppender" />
+	</root>
+
+	<!-- 接下来就设置统一的自定义日志输入器
+		additivity=false表示该日志输出器只会在该日志ref对应的设置文件中做记录
+		显然，我们希望把controller的日志也同步到系统日志中，则可设置true
+	-->
+	<!-- 这是controller日志器 -->
+	<logger name="ControllerLogger" additivity="true">
+		<appender-ref ref="controllerAppender" />
+	</logger>
+	<!-- 这是service日志器 -->
+	<logger name="ServiceLogger" additivity="false">
+		<appender-ref ref="ServiceAppender" />
+	</logger>
+	<!-- 这是interceptor日志器 -->
+	<logger name="InterceptorLogger" additivity="false">
+		<appender-ref ref="InterceptorAppender" />
+	</logger>
+
+</log4j:configuration>	

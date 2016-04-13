@@ -1,0 +1,298 @@
+body{
+    font-family: 楷体, serif;
+    font-size: 14px;
+    background-color: #fdfff2;
+}
+
+a{
+    outline: none;
+    color: black;
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: none;
+    color: black;
+}
+a:visited{
+    text-decoration: none;
+    color: black;
+}
+a:link{
+    text-decoration: none;
+    color: black;
+}
+
+ul{
+    list-style-type: none;
+}
+
+h1, h2, h3, h4{
+    margin: 0;
+    padding: 0;
+}
+
+#header-intro{
+    width: 1200px;
+    height: 75px;
+    margin: 0 auto;
+    overflow: hidden;
+    margin-top: 30px;
+    +margin-top: 15px;
+    background: url("../image/yuhong-logo.png") no-repeat;
+    background-color: #fdfff2;
+    _background-color: #F0F0F0;
+}
+
+#header-info{
+    width: 1200px;
+    height: 100px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+#header-info .info-left{
+    width: 50%;
+    height: 100%;
+    float: left;
+    text-align: center;
+}
+
+#header-info ul{
+    padding: 0;
+    width: 100%;
+    height: 70px;
+    margin: 0;
+    margin-top: 10px;
+}
+
+#header-info ul li{
+    width: 25%;
+    text-align: center;
+    float: left;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+#header-info .nav-title{
+    width: 100%;
+    text-align: center;
+    line-height: 67px;
+    font-size: 18px;
+    font-weight: bolder;
+}
+
+#header-info ul li:hover{
+    /*cursor: url("../icon/pointer.ico"), auto;*/
+    cursor: pointer;
+}
+
+#header-info .nav-underline{
+    width: 100%;
+    height: 70px;
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    top: 67px;
+}
+
+.index-color{
+    background-color: #87cefa;
+}
+
+.series-color{
+    background-color: #ffb6c1;
+}
+
+.site-color{
+    background-color: #FFA500;
+}
+
+.about-color{
+    background-color: #98FB98;
+}
+
+#header-info .info-right{
+    width: 50%;
+    height: 100%;
+    float: left;
+    text-align: center;
+    _width: 48%;
+}
+
+#header-info .search-div{
+    width: 100%;
+    height: 30px;
+    margin-top: 29px;
+    +margin-top: 36px;
+    _margin-top: 36px;
+    margin-left: 10px;
+}
+
+.search-div .search-div-input{
+    width: 50%;
+    height: 100%;
+    float: left;
+    margin-left: 10%;
+    _width: 50%;
+    _margin-left: 5%;
+    +margin-left: 5%;
+}
+
+#search-input{
+    width: 100%;
+    height: 100%;
+}
+
+#search-button{
+    width: 20%;
+    height: 100%;
+    float: left;
+    margin-left: 2%;
+    +margin-left: 5%;
+    _margin-left: 2%;
+    height: 35px \9;
+    _height: 23px;
+    +height: 23px;
+    background-color: #1E90FF;
+    -moz-border-radius: 5px;      /* Gecko browsers */
+    -webkit-border-radius: 5px;   /* Webkit browsers */
+    border-radius: 5px;
+    line-height: 30px;
+    line-height: 33px \9;
+    _line-height: 23px;
+    +line-height: 23px;
+    cursor: pointer;
+    background:-moz-linear-gradient(top, #87CEFA, #1E90FF);
+    background:-webkit-gradient(linear, 0 0, 0 100%, from(#87CEFA), to(#1E90FF));
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#87CEFA,endColorstr=#1E90FF,grandientType=1);
+}
+
+
+#main-body{
+    width: 1200px;
+    margin: 0 auto;
+}
+
+/*底部*/
+/*尾部*/
+#footer-info{
+    margin-top: 50px;
+    width: 100%;
+    float: left;
+    line-height: 30px;
+    text-align: center;
+}
+
+
+#fixed-div{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    background-color: #696969;
+    _position: absolute;
+    _left: 0;
+    _bottom: auto;
+    _top: expression(eval(document.documentElement.scrollTop));
+    filter: alpha(opacity=50);
+    -moz-opacity: 0.5;
+    -khtml-opacity: 0.5;
+    opacity: 0.5;
+}
+
+#fixed-div-middle{
+    width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+    text-align: left;
+    color: lightseagreen;
+}
+
+*html{
+    background-image: url(about:blank);
+    background-attachment: fixed;
+}
+
+
+/*右边浮动*/
+#right-bar{
+    position: fixed;
+    width: auto;
+    bottom: 20px;
+    right: 20px;
+    list-style-type: none;
+    box-sizing: border-box;
+    _display: none;
+    display: none;
+    z-index: 999;
+}
+
+#right-bar li{
+    width: 40px;
+    height: 40px;
+    margin-bottom: 10px;
+}
+
+#go-to-top{
+    background: url("../image/go-to-top.png");
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+
+@media screen and (max-width: 1200px) {
+
+    #header-intro{
+        width: 100%;
+    }
+
+    #header-info{
+        width: 100%;
+    }
+
+    #main-body{
+        width: 100%;
+    }
+
+    #fixed-div-middle{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 840px) {
+
+    #header-intro{
+        width: 90%;
+        margin-left: 5%;
+    }
+
+    #header-info .info-left{
+        width: 90%;
+        margin-left: 5%;
+    }
+
+    #header-info .info-right{
+        display: none;
+    }
+
+    #main-body{
+        width: 90%;
+        margin-left: 5%;
+    }
+}
+
+@media screen and (max-width: 410px) {
+
+    #header-info{
+        display: none;
+    }
+
+    #fixed-div{
+        display: none;
+    }
+
+}

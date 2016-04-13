@@ -1,0 +1,37 @@
+#loading-page-bar{
+    width: 80%;
+    height: 30px;
+    -moz-border-radius: 5px;      /* Gecko browsers */
+    -webkit-border-radius: 5px;   /* Webkit browsers */
+    border-radius: 5px;
+    border: 1px solid #696969;
+    text-align: center;
+    line-height: 30px;
+    margin: 0 auto;
+    cursor: pointer;
+    margin-top: 40px;
+}
+
+#loading-page-bar span{
+    display: inline-block;
+}
+
+#loading-page-bar i{
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    vertical-align: -2px;
+    +vertical-align: 11px;
+    _vertical-align: -2px;
+    margin-left: -5px;
+}
+
+#loading-page-bar i img{
+    max-width: 100%;
+    _width: 16px;
+    _height: 16px;
+}
+
+#loading-page-bar:hover{
+    border: 1px solid #000000;
+}

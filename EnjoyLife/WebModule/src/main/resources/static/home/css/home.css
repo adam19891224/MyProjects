@@ -1,0 +1,133 @@
+@import "/common/css/page.css";
+
+.context{
+    width: 100%;
+    height: auto;
+    -webkit-box-shadow:0 0 10px #696969;
+    -moz-box-shadow:0 0 10px #696969;
+    box-shadow:0 0 10px #696969;
+    overflow: hidden;
+    +border: 1px solid #696969;
+    border: 1px solid #696969\9;
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=100, Color='#696969');
+    padding-bottom: 30px;
+}
+
+.context .context-left{
+    width: 70%;
+    height: auto;
+    float: left;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.context-left ul{
+    margin: 0;
+    padding: 0;
+    +margin-bottom: 20px;
+}
+
+.context-left ul li{
+    width: 96%;
+    height: 200px;
+    margin: 0 auto;
+    margin-top: 25px;
+    -moz-box-shadow: 2px 2px 15px #696969; /* 老的 Firefox */
+    box-shadow: 2px 2px 15px #696969;
+    +border: 1px solid #696969;
+    border: 1px solid #696969\9;
+    padding: 1%;
+    text-align: left;
+}
+
+.context-left ul li h2{
+    text-align: center;
+    line-height: 40px;
+    font-weight: normal;
+    color: #696969;
+    cursor: pointer;
+}
+
+.context-left .li-a{
+    display: block;
+    float: left;
+    overflow: hidden;
+    width: 100px;
+    height: 100px;
+    border: none;
+    margin: 0 10px;
+    text-align: center;
+}
+
+.context-left ul li img{
+    max-width: 100%;
+    border: none;
+}
+
+.context-left ul li span{
+    word-break: break-all;
+    font-weight: normal;
+}
+
+.context .context-right{
+    width: 30%;
+    height: auto;
+    float: left;
+}
+
+.context-right ul{
+    margin: 0;
+    padding: 0;
+}
+
+.context-right ul li{
+    width: 96%;
+    height: 200px;
+    border: 1px solid #c6c6c6;
+    margin-left: 2%;
+    margin-top: 25px;
+    text-align: center;
+}
+
+
+.dislpay-none{
+    display: none;
+}
+
+#play-music-li{
+    padding-top: 40px;
+    box-sizing: border-box;
+}
+
+@media screen and (max-width: 1200px){
+    .context-left ul li{
+        height: auto;
+        min-height: 155px;
+    }
+}
+
+@media screen and (max-width: 980px){
+
+    #play-music-li{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 840px){
+
+    .context .context-left{
+        width: 100%;
+    }
+
+    .context .context-right{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 410px) {
+
+    .context{
+        margin-top: 10px;
+    }
+
+}

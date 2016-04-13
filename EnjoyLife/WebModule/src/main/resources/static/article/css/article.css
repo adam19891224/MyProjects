@@ -1,0 +1,257 @@
+@import "/common/css/page.css";
+
+body{
+    font-weight: normal;
+}
+
+ul{
+    list-style-type: none;
+}
+
+h1{
+    text-align: center;
+    line-height: 80px;
+}
+
+.context{
+    width: 100%;
+    height: auto;
+    -webkit-box-shadow:0 0 10px #696969;
+    -moz-box-shadow:0 0 10px #696969;
+    box-shadow:0 0 10px #696969;
+    overflow: hidden;
+    +border: 1px solid #696969;
+    border: 1px solid #696969\9;
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=100, Color='#696969');
+    padding-bottom: 30px;
+}
+
+.context .context-left{
+    width: 70%;
+    height: auto;
+    float: left;
+    font-size: 18px;
+    font-weight: normal;
+    padding: 5px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.context-left h4{
+    text-align: right;
+}
+
+#article-main{
+    width: 100%;
+    word-break: break-all;
+}
+
+#article-main img{
+    max-width: 100%;
+    height: auto;
+}
+
+#article-comment{
+    width: 100%;
+    height: auto;
+    border-top: 2px dashed midnightblue;
+    padding-bottom: 10px;
+}
+
+#article-comment h4{
+    text-align: left;
+    line-height: 60px;
+}
+
+#article-comment-ul{
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid #c6c6c6;
+}
+
+#article-comment-ul li{
+    width: 100%;
+    margin-top: 5px;
+    border-bottom: 1px solid #c6c6c6;
+    height: auto;
+}
+
+#article-comment-ul .comment-title{
+    width: 100%;
+    background-color: #fdfff2;
+    overflow: hidden;
+}
+
+#article-comment-ul .title-left{
+    width: 80%;
+    height: 40px;
+    line-height: 40px;
+    float: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#article-comment-ul .title-left span{
+    font-weight: bolder;
+    margin-left: 10px;
+    width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#article-comment-ul .title-right{
+    width: 20%;
+    height: 40px;
+    line-height: 40px;
+    float: left;
+    text-align: center;
+}
+
+#article-comment-ul .title-right a{
+    font-size: 14px;
+    color: #0000ee;
+}
+
+#article-comment-ul .title-right a:hover{
+    cursor: pointer;
+}
+
+#article-comment-ul .comment-body{
+    width: 100%;
+    padding: 20px 40px;
+    +padding: 20px 0;
+    box-sizing: border-box;
+    word-break: break-all;
+}
+
+blockquote{
+    background-color: #ebebeb;
+}
+
+.comment-body h5{
+    line-height: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.dislpay-none{
+    display: none;
+}
+
+#article-comment .comment-page{
+    width: 100%;
+    margin-top: 20px;
+    height: auto;
+}
+
+
+#article-comment-editor{
+    width: 100%;
+    margin-top: 50px;
+    overflow: hidden;
+}
+
+#article-comment-editor h3{
+    margin: 0;
+    padding: 0;
+    line-height: 40px;
+}
+
+#article-comment-editor-text{
+    width: 100%;
+    min-height: 50px;
+    word-wrap: break-word;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border: 1px solid #4b8b8b;
+    float: left;
+    resize: none;
+    line-height: 20px;
+    outline: 0 none;
+}
+
+#article-comment-editor .editor-div{
+    width: 100%;
+    float: left;
+    padding: 0;
+    margin: 0;
+    margin-top: 10px;
+}
+
+#article-comment-editor .editor-div li{
+    height: 30px;
+    line-height: 30px;
+    width: 100%;
+}
+
+#article-comment-editor input{
+    width: 40%;
+}
+
+#editor-submit{
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    margin-top: 10px;
+    background-color: #87CEFA;
+    border-radius: 5px;
+    float: left;
+}
+
+#editor-submit:hover{
+    cursor: pointer;
+    background-color: #B0E0E6;
+}
+
+.context .context-right{
+    width: 30%;
+    height: 300px;
+    float: left;
+    +width: 28%;
+}
+
+.editor-div-color-red{
+    color: red;
+}
+
+#other-thinking-div{
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    height: auto;
+    border: 1px solid orange;
+    padding: 5px;
+    box-sizing: border-box;
+    display: none;
+}
+
+#other-thinking-div strong{
+    float: right;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 840px){
+
+    .context .context-left{
+        width: 100%;
+    }
+
+    .context .context-right{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 410px) {
+
+    .context{
+        margin-top: 10px;
+    }
+
+    .context-left h4{
+        text-align: center;
+    }
+
+}
