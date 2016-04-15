@@ -82,4 +82,5 @@ public class LoginController extends BaseController {
 		String trueCode = (String) super.getSession().getAttribute("code");
 		return String.valueOf(StringUtils.isEqual(code, trueCode));
 	}
+
 }

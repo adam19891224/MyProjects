@@ -21,10 +21,10 @@
 		<div id="login-div" class="main-login">
 			<div class="login-left">
 				<div class="left-img">
-					<img src="<%=path%>/resources/home/login/images/login-left.jpg" />
+					<img src="<%=path%>/resources/home/login/images/login-left.jpg"  alt="欢迎访问"/>
 				</div>
 			</div>
-			<div class="login-right">
+			<div id="input-div" class="login-right">
 				<form id="login-form" action="">
 					<div class="right-name">
 						用&nbsp;&nbsp;&nbsp;户:&nbsp;&nbsp;<input type="text" id="userName" placeholder="请填写用户名" />
@@ -35,18 +35,25 @@
 					<div class="right-checkcode">
 						验证码:&nbsp;&nbsp;<input style="width: 100px;" type="text" id="userCheckcode" placeholder="请填写验证码" />
 						<div class="checkcode-div">
-							<img src="<%=path%>/validate/getImage.html" onclick="changeValidateCode(this)" title="点击图片刷新验证码"/>
+							<img src="<%=path%>/validate/getImage.html" onclick="changeValidateCode(this)" title="点击图片刷新验证码" alt="验证码"/>
 							<div class="checkcode-div-right">
-								<img src="" id="checkCodeImg" />
+								<img alt="是否正确" src="" id="checkCodeImg" />
 							</div>
 						</div>
 					</div>
 					<div class="right-button">
 						<div id="login-button" class="button-div" data-url="<%=path%>/dologin.html">登&nbsp;&nbsp;录</div>
-						<!-- <div class="button-div" data-url="<%=path%>/toRegister.html"></div> -->
 					</div>
 				</form>
 			</div>
+			<div id="code-div" class="login-right login-right-hidden">
+				<div class="code-main">
+					<img src="<%=path%>/resources/home/login/images/test-login.png" alt="">
+				</div>
+			</div>
+			<%--<div id="change-div" class="login-change-div" change="true">--%>
+				<%--<img src="<%=path%>/resources/home/login/images/change-code.png" alt="切换二维码登录" title="切换二维码登录">--%>
+			<%--</div>--%>
 		</div>
 	</div>
 <!-- 引入loading的div -->
@@ -55,11 +62,15 @@
 <script type="text/javascript" src="<%=path%>/easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="<%=path%>/easyui/locale/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript">
+
+	var checkTimer = null;
+
 	$().ready(function(){
 		$("#login-div").css({ 
 			"margin-top" : ($(window).height() - $("#login-div").outerHeight())/2 + $(document).scrollTop() + "px" 
 		});
-		
+
+
 		$("#login-button").click(function(){
 			var $this = $(this);
 			var userName = $("#userName").val();
@@ -99,7 +110,24 @@
 					alert(data);
 				}
 			});
-			
+		});
+
+		$("#change-div").click(function(){
+			var obj = $(this);
+			var type = obj.attr("change");
+			if(type == "true"){
+				$("#input-div").addClass("login-right-hidden");
+				$("#code-div").fadeIn("2000");
+				obj.attr("change", "false");
+				//开启监听方法
+				checkTimer = setInterval(checkMobile, 1000);
+			}else{
+				$("#input-div").removeClass("login-right-hidden");
+				$("#code-div").fadeOut("100");
+				obj.attr("change", "true");
+				//关闭监听方法
+				clearInterval(checkTimer);
+			}
 		});
 	});
 	
@@ -143,6 +171,26 @@
 					$("#checkCodeImg").attr("src", "<%=path%>/resources/home/login/images/login-no.png");
 				}
 				$("#checkCodeImg").css("display", "block");
+			}
+		});
+	}
+
+	function checkMobile(){
+		$.ajax({
+			url : "<%=path%>/testCheck.html",
+			type : "post",
+			success : function(data){
+				if(data == "ok"){
+					//关闭监听方法
+					clearInterval(checkTimer);
+					window.location = "<%=path%>/testLogin.html";
+				}else{
+					return;
+				}
+			},
+			error : function(data){
+				$("#loading-div").css("display", "none");
+				$("#loading-screen").css("display", "none");
 			}
 		});
 	}
