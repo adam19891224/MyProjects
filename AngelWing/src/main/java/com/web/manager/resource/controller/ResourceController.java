@@ -37,6 +37,7 @@ public class ResourceController extends BaseController {
 	@RequestMapping("/main")
 	@ControllerLogs(description = "资源主页")
 	public String main(){
+		logger.info("进入资源主页方法   访问者： " + super.getCurrentUser().getUserName());
 		return "manager/resource/main";
 	}
 	

@@ -55,7 +55,7 @@ public class BaseController {
      * 得到当前用户
      * @return
      */
-    public User getCurrentUser() {
+    protected User getCurrentUser() {
         return (User) this.getSession().getAttribute("user");
     }
 }
