@@ -12,19 +12,19 @@
     <body>
         <ul class="cb-slideshow">
             <li>
-                <span>Image 01</span>
+                <span></span>
             </li>
             <li>
-                <span>Image 02</span>
+                <span></span>
             </li>
             <li>
-                <span>Image 03</span>
+                <span></span>
             </li>
             <li>
-                <span>Image 04</span>
+                <span></span>
             </li>
             <li>
-                <span>Image 05</span>
+                <span></span>
             </li>
         </ul>
         <div class="show-div">
