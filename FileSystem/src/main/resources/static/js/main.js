@@ -1,3 +1,8 @@
+/**
+ *  by adam    273961736@qq.com
+ *  2016.4.20
+ */
+
 function AudioHelper(audioName, mp3){
 
     var audio = document.querySelector("#" + audioName);
