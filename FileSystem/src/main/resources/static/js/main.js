@@ -4,6 +4,7 @@ function AudioHelper(audioName, mp3){
     var mp3Arrays = mp3;
     var status = 0;
     var type = 1;
+    var count = mp3Arrays.length;
 
     this.init = function(){
         ah.play();
@@ -15,7 +16,7 @@ function AudioHelper(audioName, mp3){
     this.play = function(){
         audio.src = mp3Arrays[status];
         audio.play();
-        status = type++ % 2;
+        status = type++ % count;
     }
 
 }
