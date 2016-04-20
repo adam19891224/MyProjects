@@ -36,5 +36,6 @@
             <audio id="myAudio"></audio>
         </div>
     </body>
+    <script src="/js/audio.js?t=<@time />"></script>
     <script src="/js/main.js?t=<@time />"></script>
 </html>
