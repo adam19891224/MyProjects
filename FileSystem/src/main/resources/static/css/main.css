@@ -264,3 +264,7 @@ body{
 	font-size: 64px;
 	color: #9d9d9d;
 }
+
+.hidden-div{
+	display: none;
+}
