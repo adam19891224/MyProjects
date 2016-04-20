@@ -2,7 +2,6 @@ package com.file.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Created by IntelliJ IDEA
@@ -13,9 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class IndexController {
 
     @RequestMapping("/index.html")
-    @ResponseBody
     public String index(){
-        return "你好!";
+        return "main";
     }
 
 }
