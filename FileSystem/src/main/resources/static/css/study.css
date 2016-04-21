@@ -1,0 +1,275 @@
+/*
+	by adam   ---   273961736@qq.com
+	2016.4.20
+*/
+
+body{
+	width: 100%;
+	height: 100%;
+	background-color: #ebebeb;
+}
+
+.cb-slideshow, .cb-slideshow:after {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+.cb-slideshow li span {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: transparent;
+    background-size: cover;
+	background: none no-repeat 50% 50%;
+	opacity: 0;
+    z-index: 0;
+	-webkit-backface-visibility: hidden;
+
+
+	/*
+		animation: css3动画标签，其参数总共有几个
+			animation-name					规定需要绑定到选择器的 keyframe 名称。。 下面的@keyframes定义
+			animation-duration				规定完成动画所花费的时间，以秒或毫秒计。
+			animation-timing-function		规定动画的速度曲线。
+			animation-delay					规定在动画开始之前的延迟。
+			animation-iteration-count		规定动画应该播放的次数。
+			animation-direction				规定是否应该轮流反向播放动画。
+
+		注：请始终规定 animation-duration 属性，否则时长为 0，就不会播放动画了。
+
+		根据上面的参数：
+		imageAnimation				动画名称
+		30s							动画时间，下面定义了5个6秒的动画，故一共30秒
+		linear						动画速度，这里即线性速度，全程一致
+		infinite					动画播放次数，这里表示重复播放
+		0s							动画开始的延迟，这里是0
+	*/
+    -webkit-animation: imageAnimation 30s linear infinite 0s;
+    -moz-animation: imageAnimation 30s linear infinite 0s;
+    -o-animation: imageAnimation 30s linear infinite 0s;
+    -ms-animation: imageAnimation 30s linear infinite 0s;
+    animation: imageAnimation 30s linear infinite 0s;
+}
+
+/*
+	第一个span 即背景图片1
+	li:nth-child(1) css3的选择器 即满足.cb-slideshow这个样式的元素内部的所有li中的第一个 li:nth-child(2)依次内推
+
+	第一个元素，设置背景图片，然后根据上面的动画进行运动即可 具体动画内容看下面的imageAnimation
+*/
+.cb-slideshow li:nth-child(1) span {
+	background-image: url(../images/1.jpg);
+ }
+
+/*
+	第二个span 即背景图片2
+	此时背景图片需要设置animation-delay 上面介绍过，这是延迟时间，由于animation 设置了30s的动画时间，同时页面又有5个span
+	所以这里我们希望每一个span动画时间为6秒，那么第二个span就要延迟6秒，等第一个span动画完毕后才开始动画
+*/
+.cb-slideshow li:nth-child(2) span {
+    background-image: url(../images/2.jpg);
+    -webkit-animation-delay: 6s;
+    -moz-animation-delay: 6s;
+    -o-animation-delay: 6s;
+    -ms-animation-delay: 6s;
+    animation-delay: 6s;
+}
+
+/*
+	第三个span 即背景图片3
+	由于要等span1 span2的动画时间完毕，所以它要等待12秒
+*/
+.cb-slideshow li:nth-child(3) span {
+    background-image: url(../images/3.jpg);
+    -webkit-animation-delay: 12s;
+    -moz-animation-delay: 12s;
+    -o-animation-delay: 12s;
+    -ms-animation-delay: 12s;
+    animation-delay: 12s;
+}
+
+/*
+	第四个span 即背景图片4
+	由于要等span1 span2 span3的动画时间完毕，所以它要等待18秒
+*/
+.cb-slideshow li:nth-child(4) span {
+    background-image: url(../images/4.jpg);
+    -webkit-animation-delay: 18s;
+    -moz-animation-delay: 18s;
+    -o-animation-delay: 18s;
+    -ms-animation-delay: 18s;
+    animation-delay: 18s;
+}
+
+/*
+	第五个span 延迟时间以此内推
+*/
+.cb-slideshow li:nth-child(5) span {
+    background-image: url(../images/5.jpg);
+    -webkit-animation-delay: 24s;
+    -moz-animation-delay: 24s;
+    -o-animation-delay: 24s;
+    -ms-animation-delay: 24s;
+    animation-delay: 24s;
+}
+
+
+/*
+	定义动画 它的参数：
+	animationname			必需。定义动画的名称。
+	keyframes-selector		必需。动画时长的百分比。合法的值：
+													0-100%
+													from（与 0% 相同）to（与 100% 相同）
+	css-styles				必需。一个或多个合法的 CSS 样式属性。
+
+	从这里可以看出，动画时长可以用百分比，或者from to两种，百分比更灵活，因为可以随时改变动画轨迹，而from to就只能设置一个起始和结束的状态
+*/
+@-webkit-keyframes imageAnimation {
+	/*
+		0% 即开始的时候，设置图片透明度为0， 即全透明
+		设置动画速度 ease-in 表示以低速度开始
+	*/
+	0% {
+	    opacity: 0;
+	    -webkit-animation-timing-function: ease-in;
+	}
+	/*
+		8% 即动画时间播放到全程的8%时，即6秒的8%时，此时设置透明度为1，即不透明
+		transform 元素转换（2D和3D）
+		scale(1.05) 即缩放，值大于1时，表示放大
+		rotate(3deg) 2D旋转
+	*/
+	8% {
+	    opacity: 1;
+	    -webkit-transform: scale(1.05);
+	    -webkit-animation-timing-function: ease-out;
+	}
+	17% {
+	    opacity: 1;
+	    -webkit-transform: scale(1.1) rotate(3deg);
+	}
+	25% {
+	    opacity: 0;
+	    -webkit-transform: scale(1.1) rotate(3deg);
+	}
+	100% { opacity: 0 }
+}
+@-moz-keyframes imageAnimation { 
+	0% {
+	    opacity: 0;
+	    -moz-animation-timing-function: ease-in;
+	}
+	8% {
+	    opacity: 1;
+	    -moz-transform: scale(1.05);
+	    -moz-animation-timing-function: ease-out;
+	}
+	17% {
+	    opacity: 1;
+	    -moz-transform: scale(1.1) rotate(3deg);
+	}
+	25% {
+	    opacity: 0;
+	    -moz-transform: scale(1.1) rotate(3deg);
+	}
+	100% { opacity: 0 }
+}
+@-o-keyframes imageAnimation { 
+	0% {
+	    opacity: 0;
+	    -o-animation-timing-function: ease-in;
+	}
+	8% {
+	    opacity: 1;
+	    -o-transform: scale(1.05);
+	    -o-animation-timing-function: ease-out;
+	}
+	17% {
+	    opacity: 1;
+	    -o-transform: scale(1.1) rotate(3deg);
+	}
+	25% {
+	    opacity: 0;
+	    -o-transform: scale(1.1) rotate(3deg);
+	}
+	100% { opacity: 0 }
+}
+@-ms-keyframes imageAnimation { 
+	0% {
+	    opacity: 0;
+	    -ms-animation-timing-function: ease-in;
+	}
+	8% {
+	    opacity: 1;
+	    -ms-transform: scale(1.05);
+	    -ms-animation-timing-function: ease-out;
+	}
+	17% {
+	    opacity: 1;
+	    -ms-transform: scale(1.1) rotate(3deg);
+	}
+	25% {
+	    opacity: 0;
+	    -ms-transform: scale(1.1) rotate(3deg);
+	}
+	100% { opacity: 0 }
+}
+
+@keyframes imageAnimation {
+	0% {
+	    opacity: 0;
+	    animation-timing-function: ease-in;
+	}
+	8% {
+	    opacity: 1;
+	    transform: scale(1.05);
+	    animation-timing-function: ease-out;
+	}
+	17% {
+	    opacity: 1;
+	    transform: scale(1.1) rotate(3deg);
+	}
+	25% {
+	    opacity: 0;
+	    transform: scale(1.1) rotate(3deg);
+	}
+	100% { opacity: 0 }
+}
+
+.show-div{
+	width: 600px;
+	height: 300px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -300px;
+	margin-top: -150px;
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	border-radius: 15px;
+	-webkit-box-shadow: 3px 3px 15px;
+	-moz-box-shadow: 3px 3px 15px;
+	box-shadow: 3px 3px 15px;
+	text-align: center;
+	line-height: 300px;
+	cursor: default;
+}
+.show-div h1{
+	margin: 0;
+	padding: 0;
+	font-family: 微软雅黑, serif;
+	font-size: 64px;
+	color: #9d9d9d;
+}
+
+.hidden-div{
+	display: none;
+}
