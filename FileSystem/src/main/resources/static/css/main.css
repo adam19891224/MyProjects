@@ -1,7 +1,9 @@
 /*
 	by adam   ---   273961736@qq.com
-	2016.4.20
+	2016.4.21
 */
+
+
 @import url("animation.css");
 
 body{
@@ -117,4 +119,10 @@ body{
 
 .hidden-div{
 	display: none;
+}
+
+@media screen and (max-width: 980px) {
+	.show-div{
+		display: none;
+	}
 }
