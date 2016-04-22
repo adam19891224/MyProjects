@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
  */
 public class BaseController {
 
-    protected Logger logger = Logger.getLogger(this.getClass());
+    Logger logger = Logger.getLogger(this.getClass());
 
     @Resource
     protected IEnjoyService iEnjoyService;
@@ -25,7 +25,7 @@ public class BaseController {
     /**
      * 把参数转换为json
      */
-    protected String parseObjectToJson(Object o){
+    String parseObjectToJson(Object o){
         String res = null;
         try {
             res = JSONObject.toJSONString(o);
@@ -43,7 +43,7 @@ public class BaseController {
         page.setKw(StringEscapeUtils.escapeJavaScript(page.getKw()));
     }
 
-    protected HttpSession getSession(HttpServletRequest request){
+    HttpSession getSession(HttpServletRequest request){
         return request.getSession();
     }
 

@@ -2,10 +2,10 @@
 <html>
     <head>
         <title>相信自己，一定能行</title>
-        <link rel="stylesheet" type="text/css" href="/deploy/cropper/css/cropper.min.css">
-        <link rel="stylesheet" type="text/css" href="/deploy/zTree/css/zTreeStyle/zTreeStyle.css">
-        <script type="text/javascript" src="/common/js/require.js" defer async="true" data-main="/deploy/js/main.js"></script>
-        <link rel="icon" href="/common/icon/favourite-icon_32X32.ico" mce_href="/resources/common/icon/favourite-icon_32X32.ico" type="image/x-icon">
+        <link rel="stylesheet" type="text/css" href="../deploy/cropper/css/cropper.min.css">
+        <link rel="stylesheet" type="text/css" href="../deploy/zTree/css/zTreeStyle/zTreeStyle.css">
+        <script type="text/javascript" src="../base/js/require.js" defer async="true" data-main="../deploy/js/main.js"></script>
+        <link rel="icon" href="../base/images/ico.ico" type="image/x-icon">
     </head>
     <body>
         <div style="width: 100%">

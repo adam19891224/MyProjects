@@ -1,0 +1,193 @@
+@import "../../base/css/common.css";
+
+/*
+    中间
+*/
+.main{
+    width: 100%;
+    float: left;
+}
+
+.main .main-div{
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.div-left{
+    width: 900px;
+    float: left;
+}
+
+.div-right{
+    width: 290px;
+    float: right;
+}
+
+.left-top{
+    width: 100%;
+    height: 300px;
+    float: left;
+    overflow: hidden;
+    text-align: center;
+    padding: 30px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    background-color: #ebebeb;
+    line-height: 300px;
+}
+
+.left-top span{
+    font-size: 64px;
+}
+
+.left-main{
+    width: 100%;
+    float: left;
+    background-color: #ebebeb;
+    padding: 30px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    margin-top: 15px;
+}
+.left-main h3{
+    text-align: left;
+    font-weight: normal;
+    line-height: 30px;
+}
+
+.left-main h3 i{
+    width: 30px;
+    height: 30px;
+    float: left;
+    margin-right: 10px;
+    background: url("../images/tips.png") no-repeat;
+}
+
+.left-main .line{
+    width: 100%;
+    height: 2px;
+    float: left;
+    background-color: lightblue;
+    margin-top: 10px;
+}
+
+.left-main ul{
+    margin: 0;
+    padding: 0;
+}
+
+.left-main ul li{
+    width: 100%;
+    min-height: 200px;
+    padding: 30px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.left-main ul li h2{
+    text-align: center;
+    line-height: 40px;
+    font-weight: normal;
+    color: #696969;
+    cursor: pointer;
+}
+
+.left-main ul li .li-a{
+    display: block;
+    float: left;
+    overflow: hidden;
+    width: 100px;
+    height: 100px;
+    border: none;
+    margin: 0 10px 0 0;
+    text-align: center;
+}
+
+.left-main ul li .li-a img{
+    max-width: 100%;
+}
+
+.left-main ul li span{
+    word-break: break-all;
+    font-weight: normal;
+}
+
+
+.div-right .hot-div{
+    width: 100%;
+    height: 300px;
+    float: left;
+    background-color: #ebebeb;
+    padding: 10px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.hot-div h3{
+    text-align: left;
+    font-weight: normal;
+    line-height: 30px;
+    padding: 0 0 10px 0;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.hot-div h3 i{
+    width: 30px;
+    height: 30px;
+    float: left;
+    margin-right: 10px;
+    background: url("../images/tips.png") no-repeat;
+}
+
+.hot-div .line{
+    width: 100%;
+    height: 2px;
+    float: left;
+    background-color: lightblue;
+}
+
+.hot-div ul{
+    margin: 0;
+    padding: 0;
+
+}
+
+.hot-div ul li{
+    line-height: 30px;
+    width: 100%;
+    text-align: center;
+}
+
+.hot-div ul li:hover{
+    text-decoration: underline;
+}
+
+
+
+
+@media screen and (max-width: 1200px) {
+
+    .main .main-div{
+        width: 100%;
+    }
+
+    .div-left{
+        width: 70%;
+        float: left;
+    }
+
+    .div-right{
+        width: 29%;
+        float: right;
+    }
+}
+
+@media screen and (max-width: 950px){
+    .div-right{
+        display: none;
+    }
+    .div-left{
+        width: 100%;
+    }
+}
