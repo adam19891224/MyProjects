@@ -8,6 +8,8 @@ import com.foundation.utils.IPUtils;
 import com.foundation.utils.MD5Utils;
 import com.foundation.utils.StringUtils;
 import com.foundation.view.Tree;
+import com.service.IBlogsService;
+import com.service.IEnjoyService;
 import org.apache.http.HttpEntity;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.List;
@@ -30,6 +33,11 @@ import java.util.List;
 @Controller
 @RequestMapping("/deploy")
 public class DeployController extends BaseController {
+
+    @Resource
+    protected IEnjoyService iEnjoyService;
+    @Resource
+    private IBlogsService blogsService;
 
     @RequestMapping("/login.html")
     public String login() {
@@ -81,7 +89,7 @@ public class DeployController extends BaseController {
         if(form.getTypeId().equals("111") || !StringUtils.isNotNull(form.getTypeId()))
             return "err";
         try {
-            iEnjoyService.saveArticle(form);
+            blogsService.saveArticle(form);
             logger.info("保存文章成功");
             return "success";
         }catch (Exception e){

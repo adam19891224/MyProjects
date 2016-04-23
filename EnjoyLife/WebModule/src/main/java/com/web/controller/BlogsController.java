@@ -4,11 +4,15 @@ import com.article.vo.ArticleWithBLOBs;
 import com.article.vo.Comment;
 import com.foundation.form.CommentForm;
 import com.foundation.view.Page;
+import com.service.IBlogsService;
+import com.service.IEnjoyService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.annotation.Resource;
 
 /**
  * Created by IntelliJ IDEA
@@ -16,20 +20,25 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * Date: 2016/1/15
  */
 @Controller
-@RequestMapping("/articles")
-public class ArticleController extends BaseController {
+@RequestMapping("/blogs")
+public class BlogsController extends BaseController {
 
-    @RequestMapping("/list.html")
+    @Resource
+    private IBlogsService blogsService;
+    @Resource
+    protected IEnjoyService iEnjoyService;
+
+    @RequestMapping("/getBlogs.html")
     @ResponseBody
     public String list(Page<ArticleWithBLOBs> page){
-        page = iEnjoyService.selectArticlesByPage(page);
+        page = blogsService.selectArticlesByPage(page);
         return super.parseObjectToJson(page);
     }
 
     @RequestMapping("/{sid}.html")
     public String getArticle(@PathVariable Integer sid, ModelMap map){
 
-        ArticleWithBLOBs article = iEnjoyService.selectArticleBySID(sid);
+        ArticleWithBLOBs article = blogsService.selectArticleBySID(sid);
         if(article == null){
             return "redirect:/error";
         }

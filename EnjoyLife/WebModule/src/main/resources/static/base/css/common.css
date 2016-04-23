@@ -105,7 +105,9 @@
     line-height: 30px;
 }
 
-
+.loading-hidden{
+    display: none;
+}
 
 @media screen and (max-width: 1200px) {
     .header-div .about{

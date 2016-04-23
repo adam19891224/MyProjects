@@ -16,13 +16,7 @@ import java.util.List;
  */
 public interface IEnjoyService {
 
-    Page<ArticleWithBLOBs> selectArticlesByPage(Page<ArticleWithBLOBs> page);
-
-    ArticleWithBLOBs selectArticleBySID(Integer sid);
-
     List<Tree> selectTypeToTree();
-
-    void saveArticle(ArticleForm form);
 
     Page<Comment> selectCommentByPage(Page<Comment> page);
 

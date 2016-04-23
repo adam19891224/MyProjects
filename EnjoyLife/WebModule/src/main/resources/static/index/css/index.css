@@ -79,9 +79,23 @@
 .left-main ul li{
     width: 100%;
     min-height: 200px;
-    padding: 30px;
+    padding: 50px;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
+    position: relative;
+}
+
+.left-main ul li .blog-tips{
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    top: 15px;
+    left: -30px;
+    background: url("../images/blogs-tips.png") no-repeat;
+    background-size: cover;
+    line-height: 80px;
+    font-size: 14px;
+    text-align: center;
 }
 
 .left-main ul li h2{
@@ -110,6 +124,15 @@
 .left-main ul li span{
     word-break: break-all;
     font-weight: normal;
+}
+
+.left-main .loading-div{
+    width: 150px;
+    float: right;
+}
+
+.left-main .loading-div img{
+    max-height: 100%;
 }
 
 

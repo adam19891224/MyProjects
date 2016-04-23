@@ -30,25 +30,9 @@ public class EnjoyServiceImpl implements IEnjoyService {
     @Autowired
     private CommentDomain commentDomain;
 
-
-    @Override
-    public Page<ArticleWithBLOBs> selectArticlesByPage(Page<ArticleWithBLOBs> page) {
-        return articleDomain.selectByPage(page);
-    }
-
-    @Override
-    public ArticleWithBLOBs selectArticleBySID(Integer sid) {
-        return articleDomain.selectBySID(sid);
-    }
-
     @Override
     public List<Tree> selectTypeToTree() {
         return typeDomain.selectToTree();
-    }
-
-    @Override
-    public void saveArticle(ArticleForm form) {
-        articleDomain.save(form);
     }
 
     @Override

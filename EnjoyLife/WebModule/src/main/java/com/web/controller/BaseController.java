@@ -19,9 +19,6 @@ public class BaseController {
 
     Logger logger = Logger.getLogger(this.getClass());
 
-    @Resource
-    protected IEnjoyService iEnjoyService;
-
     /**
      * 把参数转换为json
      */
