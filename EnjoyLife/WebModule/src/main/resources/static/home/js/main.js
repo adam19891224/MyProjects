@@ -1,6 +1,6 @@
 require.config({
     paths: {
-        "jquery": "/common/js/jquery-1.12.0.min",
+        "jquery": "/common/js/jquery-1.12.3.min",
         "cookie": "/common/js/jquery.cookie",
         "lazyload": "/common/js/jquery.lazyload.min",
         "common": "/common/js/common",

@@ -1,6 +1,6 @@
 require.config({
     paths: {
-        "jquery": "/common/js/jquery-1.12.0.min"
+        "jquery": "/common/js/jquery-1.12.3.min"
     },
     //require.js添加统一的url后缀参数方法，这里添加一个后缀时间戳，防止缓存
     urlArgs: "t=" + (new Date()).getTime()
