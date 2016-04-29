@@ -1,4 +1,5 @@
 @import "../../base/css/common.css";
+@import "animation.css";
 
 /*
     中间
@@ -23,18 +24,147 @@
     float: right;
 }
 
-.left-top{
+.main-top{
     width: 100%;
-    height: 300px;
+    height: 400px;
     float: left;
     overflow: hidden;
     text-align: center;
-    padding: 30px;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
-    background-color: #ebebeb;
     line-height: 300px;
+    margin-bottom: 15px;
 }
+
+.main-top ul{
+    width: 1200px;
+    height: 100%;
+    padding: 0;
+    position: relative;
+    margin: 0 auto;
+}
+
+.main-top ul li{
+    float: left;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    position: absolute;
+}
+
+.main-top ul li:nth-child(1){
+    background-image: url("../images/line-1.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    -webkit-animation: image1 21s linear infinite 0s;
+    -moz-animation: image1 21s linear infinite 0s;
+    animation: image1 21s linear infinite 0s;
+}
+
+.main-top ul li:nth-child(1) span{
+    display: block;
+    position: absolute;
+    left: 900px;
+    top: 60px;
+    font-size: 20px;
+    color: white;
+    width: 260px;
+    height: 50px;
+    line-height: 50px;
+    text-align: left;
+    text-shadow: 0 0 20px red;
+    animation: span51 21s linear infinite 0s;
+    -webkit-animation: span51 21s linear infinite 0s;
+    -moz-animation: span51 21s linear infinite 0s;
+    overflow: hidden;
+}
+
+.main-top ul li:nth-child(2){
+    background: url("../images/line-2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    -webkit-animation: image2 21s linear infinite 7s;
+    -moz-animation: image2 21s linear infinite 7s;
+    animation: image2 21s linear infinite 7s;
+}
+
+.main-top ul li:nth-child(2) span:nth-child(1){
+    display: block;
+    position: absolute;
+    left: 60px;
+    top: 60px;
+    font-size: 20px;
+    color: white;
+    width: 260px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    -moz-animation: span2 21s linear infinite 7s;
+    -webkit-animation: span2 21s linear infinite 7s;
+    animation: span2 21s linear infinite 7s;
+    overflow: hidden;
+}
+
+.main-top ul li:nth-child(2) span:nth-child(2){
+    display: block;
+    position: absolute;
+    left: 80px;
+    top: 110px;
+    font-size: 20px;
+    color: white;
+    width: 260px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    -moz-animation: span3 21s linear infinite 7s;
+    -webkit-animation: span3 21s linear infinite 7s;
+    animation: span3 21s linear infinite 7s;
+    overflow: hidden;
+}
+
+.main-top ul li:nth-child(2) span:nth-child(3){
+    display: block;
+    position: absolute;
+    left: 100px;
+    top: 160px;
+    font-size: 20px;
+    color: white;
+    width: 260px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    -moz-animation: span4 21s linear infinite 7s;
+    -webkit-animation: span4 21s linear infinite 7s;
+    animation: span4 21s linear infinite 7s;
+    overflow: hidden;
+}
+
+.main-top ul li:nth-child(3){
+    background: url("../images/line-3.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    -webkit-animation: image3 21s linear infinite 14s;
+    -moz-animation: image3 21s linear infinite 14s;
+    animation: image3 21s linear infinite 14s;
+}
+
+.main-top ul li:nth-child(3) span{
+    display: block;
+    position: absolute;
+    left: 50%;
+    margin-left: -190px;
+    top: 50px;
+    font-size: 20px;
+    color: white;
+    width: 380px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    -moz-animation: span5 21s linear infinite 14s;
+    -webkit-animation: span5 21s linear infinite 14s;
+    animation: span5 21s linear infinite 14s;
+}
+
 
 .left-top span{
     font-size: 64px;
@@ -47,7 +177,6 @@
     padding: 30px;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
-    margin-top: 15px;
 }
 .left-main h3{
     text-align: left;
@@ -187,7 +316,11 @@
 }
 
 
-
+@media screen and (max-width: 1250px){
+    .main-top{
+        display: none;
+    }
+}
 
 @media screen and (max-width: 1200px) {
 

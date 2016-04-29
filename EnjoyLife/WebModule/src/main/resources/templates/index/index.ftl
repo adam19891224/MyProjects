@@ -5,8 +5,8 @@
         <meta name="keywords" content="Web技术，Web开发，Web交流，月下竹影，竹影，箫竹影，周禹宏" />
         <meta name="description" content="月下竹影，是一个作为Web技术交流平台的个人原创技术博客。期待大家的光临。" />
         [#include "../layout/head-setting.ftl"]
-        <link rel="stylesheet" href="../index/css/index.css">
-        <script src="../index/js/index.js"></script>
+        <link rel="stylesheet" href="../index/css/index.css?t=[@time /]">
+        <script src="../index/js/index.js?t=[@time /]"></script>
     </head>
     <body>
         [#--顶部--]
@@ -14,11 +14,29 @@
 
         [#--中间--]
         <main id="main" class="main">
+            <div class="main-top">
+                <ul>
+                    <li>
+                        <span>用最多的梦想面对未来！</span>
+                    </li>
+                    <li>
+                        <span>
+                            当你能飞的时候不要放弃飞！
+                        </span>
+                        <span>
+                            当你能梦的时候不要放弃梦！
+                        </span>
+                        <span>
+                            当你能爱的时候不要放弃爱！
+                        </span>
+                    </li>
+                    <li>
+                        <span>你不能左右天气，但你能转变你的心情！</span>
+                    </li>
+                </ul>
+            </div>
             <div class="main-div">
                 <div class="div-left">
-                    <div class="left-top">
-                        <span>敬请期待</span>
-                    </div>
                     <div class="left-main">
                         <h3>
                             <i class="tips"></i>
