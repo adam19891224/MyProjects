@@ -1,6 +1,10 @@
 require.config({
     paths: {
+<<<<<<< HEAD
         "jquery": "/common/js/jquery-1.12.3.min",
+=======
+        "jquery": "/base/js/jquery-2.2.3.min",
+>>>>>>> 7b98fd8eb4f328b18d1d88d04237fa086ca40a4a
         "copper": "/deploy/cropper/js/cropper.min",
         "ckeditor": "/deploy/ckeditor/ckeditor",
         "ztree" : "/deploy/zTree/js/jquery.ztree.core-3.5.min"

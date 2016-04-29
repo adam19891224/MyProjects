@@ -16,7 +16,7 @@ public class Page<T> implements Serializable {
 
     private Integer pageNum = 0;
 
-    private Integer pageSize = 15;
+    private Integer pageSize = 10;
 
     private String articleId;
 
@@ -87,7 +87,7 @@ public class Page<T> implements Serializable {
         return pageNum;
     }
 
-    public void setPageNum(Integer pageNum) {
+    private void setPageNum(Integer pageNum) {
         this.pageNum = pageNum > 1 ? (pageNum - 1) * pageSize : 0;
     }
 }
