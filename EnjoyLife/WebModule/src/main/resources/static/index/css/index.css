@@ -143,6 +143,7 @@
     background: url("../images/line-3.jpg");
     background-repeat: no-repeat;
     background-size: cover;
+    perspective: 800px;
     -webkit-animation: image3 21s linear infinite 14s;
     -moz-animation: image3 21s linear infinite 14s;
     animation: image3 21s linear infinite 14s;
@@ -150,15 +151,10 @@
 
 .main-top ul li:nth-child(3) span{
     display: block;
-    position: absolute;
-    left: 50%;
-    margin-left: -190px;
-    top: 50px;
-    font-size: 20px;
     color: white;
-    width: 380px;
-    height: 50px;
+    margin-top: 30px;
     line-height: 50px;
+    font-size: 200%;
     text-align: center;
     -moz-animation: span5 21s linear infinite 14s;
     -webkit-animation: span5 21s linear infinite 14s;
