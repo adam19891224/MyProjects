@@ -90,4 +90,9 @@ public class Page<T> implements Serializable {
     private void setPageNum(Integer pageNum) {
         this.pageNum = pageNum > 1 ? (pageNum - 1) * pageSize : 0;
     }
+
+    @Override
+    public String toString() {
+        return "page对象信息： page: " + this.page + ", pageNum: " + this.pageNum + ", pageSize: " + pageSize + ", listSize: " + this.resultList.size();
+    }
 }

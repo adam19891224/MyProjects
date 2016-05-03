@@ -31,7 +31,9 @@ public class BlogsController extends BaseController {
     @RequestMapping("/getBlogs.html")
     @ResponseBody
     public String list(Page<ArticleWithBLOBs> page){
+        logger.info("进入获取文章列表方法");
         page = blogsService.selectArticlesByPage(page);
+        logger.info("退出获取文章列表方法，返回参数：" + page);
         return super.parseObjectToJson(page);
     }
 

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml" />
+
+
+    <!--
+        设置控制台日志
+    -->
+    <appender name="consoleLog" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <Pattern>.%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg %n</Pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+    </appender>
+
+    <!--
+        设置全局日志
+    -->
+    <appender name="webappLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>/logs/app/day.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--
+                设置日志输出形式，%d{yyyy-MM-dd} 表示这个日志文件每天会生成一个
+             -->
+            <FileNamePattern>day.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <!--
+                保留时间，这里设置30表示系统只会保留最后30天的日志记录
+             -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{35} - %msg %n</Pattern>
+        </encoder>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="consoleLog"/>
+        <appender-ref ref="webappLog"/>
+    </root>
+
+    <!--
+        设置controller日志
+    -->
+    <appender name="controllerLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>/logs/controller/day.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--
+                设置日志输出形式，%d{yyyy-MM-dd} 表示这个日志文件每天会生成一个
+             -->
+            <FileNamePattern>day.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <!--
+                保留时间，这里设置30表示系统只会保留最后30天的日志记录
+             -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{35} - %msg %n</Pattern>
+        </encoder>
+    </appender>
+
+    <!--
+        设置service日志
+    -->
+    <appender name="serviceLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>/logs/service/day.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--
+                设置日志输出形式，%d{yyyy-MM-dd} 表示这个日志文件每天会生成一个
+             -->
+            <FileNamePattern>day.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <!--
+                保留时间，这里设置30表示系统只会保留最后30天的日志记录
+             -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{35} - %msg %n</Pattern>
+        </encoder>
+    </appender>
+
+
+    <!-- 这是controller日志器 -->
+    <logger name="controllerLog" additivity="true">
+        <appender-ref ref="controllerLog" />
+    </logger>
+    <!-- 这是service日志器 -->
+    <logger name="serviceLog" additivity="true">
+        <appender-ref ref="serviceLog" />
+    </logger>
+
+</configuration>

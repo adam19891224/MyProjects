@@ -9,16 +9,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * Created by adam on 2016/4/23.
+ * Created by IntelliJ IDEA
+ * User: Adam
+ * Date: 2016/4/23
  */
 @Service
-public class BolgsServiceImpl implements IBlogsService {
+public class BolgsServiceImpl extends BaseServiceImpl implements IBlogsService {
 
     @Autowired
     private ArticleDomain articleDomain;
 
     @Override
     public Page<ArticleWithBLOBs> selectArticlesByPage(Page<ArticleWithBLOBs> page) {
+        logger.info("进入查询文章分页方法");
         return articleDomain.selectByPage(page);
     }
 

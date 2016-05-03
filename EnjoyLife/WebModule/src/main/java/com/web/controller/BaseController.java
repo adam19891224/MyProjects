@@ -2,11 +2,9 @@ package com.web.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.foundation.view.Page;
-import com.service.IEnjoyService;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.log4j.Logger;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -17,7 +15,7 @@ import javax.servlet.http.HttpSession;
  */
 public class BaseController {
 
-    Logger logger = Logger.getLogger(this.getClass());
+    Logger logger = Logger.getLogger("controllerLog");
 
     /**
      * 把参数转换为json
