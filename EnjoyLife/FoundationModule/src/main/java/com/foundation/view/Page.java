@@ -1,5 +1,7 @@
 package com.foundation.view;
 
+import org.apache.log4j.Logger;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -9,6 +11,8 @@ import java.util.List;
  * Date: 2015/12/22
  */
 public class Page<T> implements Serializable {
+
+    Logger logger = Logger.getLogger("controllerLog");
 
     private String kw;
 
@@ -93,6 +97,12 @@ public class Page<T> implements Serializable {
 
     @Override
     public String toString() {
-        return "page对象信息： page: " + this.page + ", pageNum: " + this.pageNum + ", pageSize: " + pageSize + ", listSize: " + this.resultList.size();
+        return "【page】对象信息: " +
+                "当前页: " + (this.page - 1) +
+                "  下一页: " + this.page +
+                "  下一页记录起始位置: " + this.pageNum +
+                "  每一页显示记录数: " + pageSize +
+                "  当前分页结果数: " + this.resultList.size();
     }
+
 }
