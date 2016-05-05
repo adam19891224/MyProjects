@@ -45,9 +45,9 @@ public class ValidateController extends BaseController {
 
 			logger.info("当前的SessionID = " + session.getId() + "，  验证码 = " + token);
 
-
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error("获取图片验证码发生异常");
+			logger.error(e);
 		}
 	}
 

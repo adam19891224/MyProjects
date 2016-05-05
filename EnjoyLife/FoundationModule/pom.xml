@@ -112,6 +112,13 @@
             <version>0.0.1</version>
         </dependency>
 
+        <!-- solrJ -->
+        <dependency>
+            <groupId>org.apache.solr</groupId>
+            <artifactId>solr-solrj</artifactId>
+            <version>5.5.0</version>
+        </dependency>
+
     </dependencies>
 
 </project>

@@ -1,17 +1,12 @@
 package com.service.impl;
 
-import com.article.domain.ArticleDomain;
 import com.article.domain.CommentDomain;
-import com.article.domain.TypeDomain;
 import com.article.vo.Comment;
 import com.foundation.form.CommentForm;
 import com.foundation.view.Page;
-import com.foundation.view.Tree;
-import com.service.IEnjoyService;
+import com.service.ICommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * Created by IntelliJ IDEA
@@ -19,22 +14,14 @@ import java.util.List;
  * Date: 2016/1/18
  */
 @Service
-public class EnjoyServiceImpl implements IEnjoyService {
+public class CommentServiceImpl extends BaseServiceImpl implements ICommentService {
 
-    @Autowired
-    private ArticleDomain articleDomain;
-    @Autowired
-    private TypeDomain typeDomain;
     @Autowired
     private CommentDomain commentDomain;
 
     @Override
-    public List<Tree> selectTypeToTree() {
-        return typeDomain.selectToTree();
-    }
-
-    @Override
     public Page<Comment> selectCommentByPage(Page<Comment> page) {
+        logger.info("进入查询评论分页方法");
         return commentDomain.selectByPage(page);
     }
 
@@ -45,6 +32,7 @@ public class EnjoyServiceImpl implements IEnjoyService {
 
     @Override
     public void saveComment(CommentForm form) {
+        logger.info("进入保存评论方法");
         commentDomain.saveComment(form);
     }
 }

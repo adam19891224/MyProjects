@@ -70,7 +70,7 @@ public class FreemarkerConfiguration {
         }
     }
 
-    protected static class FreeMarkerConfiguration {
+    static class FreeMarkerConfiguration {
 
         @Autowired
         protected FreeMarkerProperties properties;
@@ -78,7 +78,7 @@ public class FreemarkerConfiguration {
         @Autowired
         private FreemarkerTime freemarkerTime;
 
-        protected void applyProperties(FreeMarkerConfigurationFactory factory) {
+        void applyProperties(FreeMarkerConfigurationFactory factory) {
             factory.setTemplateLoaderPaths(this.properties.getTemplateLoaderPath());
             factory.setPreferFileSystemAccess(this.properties.isPreferFileSystemAccess());
             factory.setDefaultEncoding(this.properties.getCharsetName());

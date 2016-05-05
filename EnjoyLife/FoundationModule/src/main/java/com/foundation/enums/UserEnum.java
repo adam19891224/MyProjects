@@ -7,6 +7,9 @@ package com.foundation.enums;
  */
 public enum UserEnum {
 
+    /**
+     * zyh  z9090960
+     */
     LoginUser("zyh", "5F292F114300FBC3EB73E280463408FA");
 
     private String name;

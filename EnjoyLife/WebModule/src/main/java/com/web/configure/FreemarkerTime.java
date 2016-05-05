@@ -17,7 +17,7 @@ import java.util.Random;
  * Date: 2016/1/14
  */
 @Component
-public class FreemarkerTime implements TemplateDirectiveModel {
+class FreemarkerTime implements TemplateDirectiveModel {
 
     @Override
     public void execute(Environment env, Map params, TemplateModel[] loopVars, TemplateDirectiveBody body)

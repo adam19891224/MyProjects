@@ -24,7 +24,7 @@
             <!--
                 设置日志输出形式，%d{yyyy-MM-dd} 表示这个日志文件每天会生成一个
              -->
-            <FileNamePattern>day.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <FileNamePattern>/logs/app/day.%d{yyyy-MM-dd}.log</FileNamePattern>
             <!--
                 保留时间，这里设置30表示系统只会保留最后30天的日志记录
              -->
@@ -48,7 +48,7 @@
             <!--
                 设置日志输出形式，%d{yyyy-MM-dd} 表示这个日志文件每天会生成一个
              -->
-            <FileNamePattern>day.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <FileNamePattern>/logs/controller/day.%d{yyyy-MM-dd}.log</FileNamePattern>
             <!--
                 保留时间，这里设置30表示系统只会保留最后30天的日志记录
              -->
@@ -68,7 +68,7 @@
             <!--
                 设置日志输出形式，%d{yyyy-MM-dd} 表示这个日志文件每天会生成一个
              -->
-            <FileNamePattern>day.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <FileNamePattern>/logs/service/day.%d{yyyy-MM-dd}.log</FileNamePattern>
             <!--
                 保留时间，这里设置30表示系统只会保留最后30天的日志记录
              -->

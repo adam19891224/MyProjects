@@ -4,12 +4,10 @@ import com.alibaba.fastjson.JSON;
 import com.foundation.enums.UserEnum;
 import com.foundation.form.ArticleForm;
 import com.foundation.utils.FileUploadUtils;
-import com.foundation.utils.IPUtils;
 import com.foundation.utils.MD5Utils;
 import com.foundation.utils.StringUtils;
 import com.foundation.view.Tree;
 import com.service.IBlogsService;
-import com.service.IEnjoyService;
 import org.apache.http.HttpEntity;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
@@ -34,8 +32,6 @@ import java.util.List;
 @RequestMapping("/deploy")
 public class DeployController extends BaseController {
 
-    @Resource
-    protected IEnjoyService iEnjoyService;
     @Resource
     private IBlogsService blogsService;
 
@@ -71,7 +67,7 @@ public class DeployController extends BaseController {
     @ResponseBody
     public String getType(HttpServletRequest request){
         if(super.getSession(request).getAttribute("isLogin") != null && (Boolean) super.getSession(request).getAttribute("isLogin")){
-            List<Tree> list = iEnjoyService.selectTypeToTree();
+            List<Tree> list = blogsService.selectTypeToTree();
             Tree root = Tree.getRoot();
             list.stream().filter(t -> !StringUtils.isNotNull(t.getParentId())).forEach(t -> {
                 t.setParentId(root.getId());
@@ -85,9 +81,11 @@ public class DeployController extends BaseController {
     @RequestMapping("/save.html")
     @ResponseBody
     public String save(ArticleForm form, HttpServletRequest request){
-        logger.info(IPUtils.getClientIp(request) + "  发起保存文章请求。");
-        if(form.getTypeId().equals("111") || !StringUtils.isNotNull(form.getTypeId()))
+        logger.info(super.getIP(request) + "  发起保存文章请求。");
+        if(form.getTypeId().equals("111") || !StringUtils.isNotNull(form.getTypeId())){
+            logger.error("该文章选择的类别为根类别，或者该文章没有选择类别");
             return "err";
+        }
         try {
             blogsService.saveArticle(form);
             logger.info("保存文章成功");
@@ -101,10 +99,10 @@ public class DeployController extends BaseController {
 
     @RequestMapping("/upload.html")
     @ResponseBody
-    public String upload(String topx, String topy, String imgW, String imgH, MultipartFile upload, String CKEditorFuncNum) {
+    public String upload(String topx, String topy, String imgW, String imgH, MultipartFile upload, String CKEditorFuncNum, HttpServletRequest request) {
 
         boolean isEditor = false;
-
+        logger.info(super.getIP(request) + " 开启发送图片请求");
         try {
             HttpEntity reqEntity = null;
 
@@ -126,6 +124,7 @@ public class DeployController extends BaseController {
                 isEditor = true;
             }
             String res = FileUploadUtils.WEB_URL + FileUploadUtils.getResponseString(FileUploadUtils.uploadFile(FileUploadUtils.WEB_URL + "image/upload.html", reqEntity));
+            logger.info("成功发送图片，返回结果为：" + res);
             res = res.replaceAll("\\\\", "/");
             if(isEditor){
                 return "<script type=\"text/javascript\">" +
@@ -134,7 +133,8 @@ public class DeployController extends BaseController {
             }
             return res;
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(super.getIP(request) + " 发送图片请求失败，异常原因：");
+            logger.error(e);
         }
         return "err";
     }

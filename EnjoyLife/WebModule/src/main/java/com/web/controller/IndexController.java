@@ -1,6 +1,5 @@
 package com.web.controller;
 
-import com.foundation.utils.IPUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -16,8 +15,7 @@ public class IndexController extends BaseController {
 
     @RequestMapping("/index.html")
     public String index(HttpServletRequest request){
-        String ip = IPUtils.getClientIp(request);
-        logger.info("来自： " + ip + "  的朋友访问本站！         ------》");
+        logger.info("来自： " + super.getIP(request) + "  的朋友访问本站！         ------》");
         return "index/index";
     }
 

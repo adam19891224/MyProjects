@@ -5,7 +5,7 @@ import com.article.vo.Comment;
 import com.foundation.form.CommentForm;
 import com.foundation.view.Page;
 import com.service.IBlogsService;
-import com.service.IEnjoyService;
+import com.service.ICommentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,7 +26,7 @@ public class BlogsController extends BaseController {
     @Resource
     private IBlogsService blogsService;
     @Resource
-    protected IEnjoyService iEnjoyService;
+    protected ICommentService iCommentService;
 
     @RequestMapping("/getBlogs.html")
     @ResponseBody
@@ -51,7 +51,8 @@ public class BlogsController extends BaseController {
     @RequestMapping("/getComment.html")
     @ResponseBody
     public String getComment(Page<Comment> page){
-        page = iEnjoyService.selectCommentByPage(page);
+        logger.info("进入获取评论方法");
+        page = iCommentService.selectCommentByPage(page);
         return super.parseObjectToJson(page);
     }
 
@@ -59,10 +60,10 @@ public class BlogsController extends BaseController {
     @ResponseBody
     public String saveComment(CommentForm form){
         try {
-            iEnjoyService.saveComment(form);
+            iCommentService.saveComment(form);
             return "success";
         } catch (Exception e){
-            logger.error("评论文章Id为： " + form.getArticleId() + "  的文章时发生异常");
+            logger.error("评论文章Id为： " + form.getArticleId() + "  的文章时发生异常，导致该评论无法添加");
             logger.error(e);
         }
         return "err";
