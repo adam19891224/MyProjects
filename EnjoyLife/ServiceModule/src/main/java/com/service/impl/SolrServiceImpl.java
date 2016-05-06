@@ -2,6 +2,7 @@ package com.service.impl;
 
 import com.article.show.NewArticle;
 import com.foundation.utils.ConUtils;
+import com.foundation.utils.StringUtils;
 import com.foundation.view.Page;
 import com.service.ISolrService;
 import org.apache.solr.client.solrj.SolrQuery;
@@ -28,18 +29,18 @@ public class SolrServiceImpl extends BaseServiceImpl implements ISolrService {
 
     @Override
     public Page<NewArticle> selectArticlesByPage(Page<NewArticle> page) {
+
         logger.info("进入通过solr引擎查询文章列表方法");
+        boolean isHighlight = false;
         QueryResponse response = null;
-        SolrQuery query = new SolrQuery();
-        query.setHighlight(true);                //开启高亮
-        query.setHighlightSimplePre("<font color = \"red\">");    //前缀
-        query.setHighlightSimplePost("</font>");    //后缀
-        query.setParam("hl.fl", "articleTitle");    //高亮的字段
-        query.set("q", "articleTitle:(测试)");
-        query.addFilterQuery("articleDescription:(完整)");
-        query.addSort(new SolrQuery.SortClause("createDate", SolrQuery.ORDER.desc));
-        query.set("start", page.getPageNum());
-        query.set("rows", page.getPageSize());
+
+        //获取solrquery查询对象
+        SolrQuery query = this.getSolrQueryByPage(page);
+
+        //如果是搜索查询，则把highlight设置为true
+        if(StringUtils.isNotNull(page.getKw())){
+            isHighlight = true;
+        }
         try {
             response = client.query(query);
             Map<String, Map<String, List<String>>>  map = response.getHighlighting();
@@ -55,7 +56,9 @@ public class SolrServiceImpl extends BaseServiceImpl implements ISolrService {
                 newArticle.setArticleId((String) document.get("articleId"));
                 newArticle.setArticleImg((String) document.get("articleImg"));
                 newArticle.setArticleTitle((String) document.get("articleTitle"));
-                newArticle.setHighLightTitle(map.get(document.get("articleSid").toString()).get("articleTitle").get(0));
+                if(isHighlight){
+                    newArticle.setHighLightTitle(map.get(document.get("articleSid").toString()).get("articleTitle").get(0));
+                }
                 newArticle.setArticleDescription((String) document.get("articleDescription"));
                 newArticle.setCreateDate((Date) document.get("createDate"));
                 newArticle.setUpdateDate((Date) document.get("updateDate"));
@@ -68,4 +71,25 @@ public class SolrServiceImpl extends BaseServiceImpl implements ISolrService {
         }
         return page;
     }
+
+    private <T> SolrQuery getSolrQueryByPage(Page<T> page){
+
+        SolrQuery query = new SolrQuery();
+        query.addSort(new SolrQuery.SortClause("createDate", SolrQuery.ORDER.desc));
+        query.set("start", page.getPageNum());
+        query.set("rows", page.getPageSize());
+        //如果是搜索查询，则创建高亮，搜索范围
+        if(StringUtils.isNotNull(page.getKw())){
+            query.set("q", "articleTitle:(" + page.getKw() + ")");
+            query.addFilterQuery("articleDescription:(" + page.getKw() + ")");
+            query.setHighlight(true);                //开启高亮
+            query.setHighlightSimplePre("<font color = \"red\">");    //前缀
+            query.setHighlightSimplePost("</font>");    //后缀
+            query.setParam("hl.fl", "articleTitle");    //高亮的字段
+        }else{
+            query.set("q", "*:*");
+        }
+        return query;
+    }
+
 }
