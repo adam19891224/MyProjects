@@ -1,11 +1,13 @@
 package com.web.controller;
 
+import com.article.show.NewArticle;
 import com.article.vo.ArticleWithBLOBs;
 import com.article.vo.Comment;
 import com.foundation.form.CommentForm;
 import com.foundation.view.Page;
 import com.service.IBlogsService;
 import com.service.ICommentService;
+import com.service.ISolrService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,13 +28,15 @@ public class BlogsController extends BaseController {
     @Resource
     private IBlogsService blogsService;
     @Resource
-    protected ICommentService iCommentService;
+    private ICommentService iCommentService;
+    @Resource
+    private ISolrService iSolrService;
 
     @RequestMapping("/getBlogs.html")
     @ResponseBody
-    public String list(Page<ArticleWithBLOBs> page){
+    public String list(Page<NewArticle> page){
         logger.info("进入获取文章列表方法");
-        page = blogsService.selectArticlesByPage(page);
+        page = iSolrService.selectArticlesByPage(page);
         logger.info("退出获取文章列表方法，返回参数：" + page);
         return super.parseObjectToJson(page);
     }

@@ -3,20 +3,23 @@ require.config({
 <<<<<<< HEAD
         "jquery": "/common/js/jquery-1.12.3.min",
 =======
-        "jquery": "/base/js/jquery-2.2.3.min",
->>>>>>> 7b98fd8eb4f328b18d1d88d04237fa086ca40a4a
+        "jquery": "/base/js/jquery-2.2.3.min",;
+>>>>>>> 7b98fd8eb4f328b18d1d88d04237fa086ca40a4a;;
         "copper": "/deploy/cropper/js/cropper.min",
         "ckeditor": "/deploy/ckeditor/ckeditor",
-        "ztree" : "/deploy/zTree/js/jquery.ztree.core-3.5.min"
+        "ztree"; : "/deploy/zTree/js/jquery.ztree.core-3.5.min";
     },
-    shim: {
-        "copper" : ["jquery"],
-        "ztree" : ["jquery"]
+    {
+        "copper";
+    :
+        ["jquery"],
+            "ztree";
+    :
+        ["jquery"]
     },
     //require.js添加统一的url后缀参数方法，这里添加一个后缀时间戳，防止缓存
-    urlArgs: "t=" + (new Date()).getTime()
-});
-
+    "t=" + (new Date()).getTime();
+})
 require([
     "jquery",
     "copper",

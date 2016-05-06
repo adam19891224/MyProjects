@@ -544,7 +544,7 @@
 					});
 				}
 				return el.currentStyle[prop] ? el.currentStyle[prop] : null;
-			}
+			};
 			return oStyle;
 		}
 	}

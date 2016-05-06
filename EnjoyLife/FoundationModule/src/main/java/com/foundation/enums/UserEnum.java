@@ -16,7 +16,7 @@ public enum UserEnum {
 
     private String password;
 
-    private UserEnum(String name, String password){
+    UserEnum(String name, String password){
         this.name = name;
         this.password = password;
     }
