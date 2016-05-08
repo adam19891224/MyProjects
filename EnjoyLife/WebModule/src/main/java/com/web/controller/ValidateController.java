@@ -5,7 +5,7 @@ import com.github.bingoohuang.patchca.custom.ConfigurableCaptchaService;
 import com.github.bingoohuang.patchca.filter.FilterFactory;
 import com.github.bingoohuang.patchca.filter.predefined.*;
 import com.github.bingoohuang.patchca.utils.encoder.EncoderHelper;
-import com.web.factory.CaptchaFactory;
+import com.foundation.captcha.CaptchaFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 

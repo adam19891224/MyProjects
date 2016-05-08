@@ -7,7 +7,7 @@ import com.foundation.utils.FileUploadUtils;
 import com.foundation.utils.MD5Utils;
 import com.foundation.utils.StringUtils;
 import com.foundation.view.Tree;
-import com.service.IBlogsService;
+import com.service.blogs.IBlogsService;
 import org.apache.http.HttpEntity;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -67,7 +68,7 @@ public class DeployController extends BaseController {
     @ResponseBody
     public String getType(HttpServletRequest request){
         if(super.getSession(request).getAttribute("isLogin") != null && (Boolean) super.getSession(request).getAttribute("isLogin")){
-            List<Tree> list = blogsService.selectTypeToTree();
+            List<Tree> list = new ArrayList<>();
             Tree root = Tree.getRoot();
             list.stream().filter(t -> !StringUtils.isNotNull(t.getParentId())).forEach(t -> {
                 t.setParentId(root.getId());
@@ -87,7 +88,7 @@ public class DeployController extends BaseController {
             return "err";
         }
         try {
-            blogsService.saveArticle(form);
+//            blogsService.saveArticle(form);
             logger.info("保存文章成功");
             return "success";
         }catch (Exception e){

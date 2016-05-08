@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan({"com.service, com.*.domain"})
+@ComponentScan({"com.service, com.article.search"})
 @MapperScan(basePackages = "com.*.dao")
 public class MybatisConfiguration {
 

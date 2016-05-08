@@ -34,7 +34,7 @@ CKEDITOR.dialog.add('insertcode', function(editor){
             var lang = this.getValueOf('cb', 'lang');
             html = '' + escape(code) + '';
             //注意这里的代码，网上很多教程都是因为这里组合的时候出错而不能运行
-            var text = "<pre><code class='lang-"+ lang +"' >"+ html +"</code></pre>";
+            var text = "<pre><code class='lang-"+ lang +"' >"+ html +"</code></pre><br/>";
             editor.insertHtml(text);
         },
         onLoad: function(){

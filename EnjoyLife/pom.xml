@@ -12,7 +12,7 @@
         <module>WebModule</module>
         <module>ServiceModule</module>
         <module>FoundationModule</module>
-        <module>ArticleModule</module>
+        <module>DaoModule</module>
     </modules>
 
     <!--spring boot 版本-->
