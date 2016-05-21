@@ -20,7 +20,7 @@ public class Page<T> implements Serializable {
 
     private Integer pageNum = 0;
 
-    private Integer pageSize = 10;
+    private Integer pageSize = 20;
 
     private String articleId;
 
@@ -29,6 +29,16 @@ public class Page<T> implements Serializable {
     private T resultObject;
 
     private Integer totalCounts;
+
+    private Integer totalPages;
+
+    public Integer getTotalPages() {
+        return totalPages;
+    }
+
+    public void setTotalPages(Integer totalPages) {
+        this.totalPages = totalPages;
+    }
 
     public Integer getTotalCounts() {
         return totalCounts;
@@ -101,8 +111,7 @@ public class Page<T> implements Serializable {
                 "当前页: " + (this.page - 1) +
                 "  下一页: " + this.page +
                 "  下一页记录起始位置: " + this.pageNum +
-                "  每一页显示记录数: " + pageSize +
-                "  当前分页结果数: " + this.resultList.size();
+                "  每一页显示记录数: " + pageSize;
     }
 
 }

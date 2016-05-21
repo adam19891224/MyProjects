@@ -53,8 +53,7 @@
 }
 
 .main-top ul li:nth-child(1){
-    background-image: url("../images/line-1.jpg");
-    background-repeat: no-repeat;
+    background: url("../images/line-1.jpg") no-repeat;
     background-size: cover;
     -webkit-animation: image1 21s linear infinite 0s;
     -moz-animation: image1 21s linear infinite 0s;
@@ -80,8 +79,7 @@
 }
 
 .main-top ul li:nth-child(2){
-    background: url("../images/line-2.jpg");
-    background-repeat: no-repeat;
+    background: url("../images/line-2.jpg") no-repeat;
     background-size: cover;
     -webkit-animation: image2 21s linear infinite 7s;
     -moz-animation: image2 21s linear infinite 7s;
@@ -140,8 +138,7 @@
 }
 
 .main-top ul li:nth-child(3){
-    background: url("../images/line-3.jpg");
-    background-repeat: no-repeat;
+    background: url("../images/line-3.jpg") no-repeat;
     background-size: cover;
     perspective: 800px;
     -webkit-animation: image3 21s linear infinite 14s;
@@ -252,14 +249,48 @@
 }
 
 .left-main .loading-div{
+    width: 100%;
+    float: left;
+}
+
+.loading-div .loading-bar{
     width: 150px;
     float: right;
 }
 
-.left-main .loading-div img{
+.loading-div img{
     max-height: 100%;
 }
 
+.left-main .pagination-div{
+    width: 40%;
+    margin-left: 30%;
+    float: left;
+    margin-top: 10px;
+}
+
+.pagination-div a{
+    display: inline-block;
+    width: 100px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background-color: lightblue;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.pagination-div .none{
+    background-color: #c6c6c6;
+}
+
+.pagination-div a:nth-child(1){
+    float: left;
+}
+
+.pagination-div a:nth-child(2){
+    float: right;
+}
 
 .div-right .hot-div{
     width: 100%;
@@ -312,12 +343,11 @@
 }
 
 
-@media screen and (max-width: 1250px){
-    .main-top{
+@media screen and (max-width: 1250px) {
+    .main-top {
         display: none;
     }
 }
-
 @media screen and (max-width: 1200px) {
 
     .main .main-div{
@@ -343,3 +373,18 @@
         width: 100%;
     }
 }
+
+@media screen and (max-width: 650px){
+    .left-main .pagination-div{
+        width: 60%;
+        margin-left: 20%;
+    }
+}
+
+@media screen and (max-width: 470px){
+    .left-main .pagination-div{
+        width: 80%;
+        margin-left: 10%;
+    }
+}
+

@@ -16,6 +16,8 @@
     <result column="ARTICLE_BODY" property="articleBody" jdbcType="LONGVARCHAR" />
     <result column="ARTICLE_DESCRIPTION" property="articleDescription" jdbcType="LONGVARCHAR" />
   </resultMap>
+  <resultMap id="NewArticleBody" type="com.article.vo.NewArticle" extends="ResultMapWithBLOBs" >
+  </resultMap>
   <sql id="Base_Column_List" >
     ARTICLE_SID, ARTICLE_ID, CREATE_DATE, UPDATE_DATE, ARTICLE_TITLE, ARTICLE_BACKUP1, 
     ARTICLE_BACKUP2, ARTICLE_BACKUP3, ARTICLE_IMG
@@ -183,7 +185,7 @@
     where ARTICLE_SID = #{articleSid,jdbcType=INTEGER}
   </update>
 
-  <select id="selectByPage" resultMap="ResultMapWithBLOBs" parameterType="com.foundation.view.Page">
+  <select id="selectByPage" resultMap="NewArticleBody" parameterType="com.foundation.view.Page">
     SELECT
       ta.*
     FROM
@@ -197,4 +199,15 @@
     limit #{pageNum}, #{pageSize}
   </select>
 
+  <select id="selectCountsByPage" resultType="java.lang.Integer" parameterType="com.foundation.view.Page">
+    SELECT
+      COUNT(1)
+    FROM
+    tb_article ta
+    <where>
+      <if test="kw != null and kw != '' ">
+        ta.ARTICLE_TITLE LIKE CONCAT('%', #{kw}, '%')
+      </if>
+    </where>
+  </select>
 </mapper>

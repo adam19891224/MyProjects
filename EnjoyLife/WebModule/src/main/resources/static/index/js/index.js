@@ -23,19 +23,19 @@ require([
     common.searchButtonMouseListener();
     var indexUtils = new IndexUtils();
     indexUtils.init();
-    indexUtils.getBlogsByPage();
+    indexUtils.paginationClickListener();
 
-    var win;
-    var scrollTop, scrollHeight, windowHeight;
-    $(window).scroll(function(){
-        win = $(this);
-        scrollTop = win.scrollTop();
-        scrollHeight = $(document).height();
-        windowHeight = win.height();
-        if(scrollTop + windowHeight == scrollHeight){
-            indexUtils.getBlogsByPage();
-        }
-    });
+    // var win;
+    // var scrollTop, scrollHeight, windowHeight;
+    // $(window).scroll(function(){
+    //     win = $(this);
+    //     scrollTop = win.scrollTop();
+    //     scrollHeight = $(document).height();
+    //     windowHeight = win.height();
+    //     if(scrollTop + windowHeight == scrollHeight){
+    //         indexUtils.getBlogsByPage();
+    //     }
+    // });
 
 });
 
@@ -45,30 +45,64 @@ function IndexUtils(){
         //初始化数据
         $("#main").data("page", 1);
         $("#main").data("isPage", true);
+        getBlogsByPage();
     };
 
-    this.getBlogsByPage = function(){
+    this.paginationClickListener = function(){
+        $("#pagination-div").on("click", "a", function(){
+            var obj = $(this);
+            if(obj.hasClass("none")){
+                return false;
+            }
+            var page = $("#main").data("page");
+            if(obj.attr("forward") == "p"){
+                getBlogsByPage(page - 1);
+            }else if(obj.attr("forward") == "n"){
+                getBlogsByPage(page + 1);
+            }
+        })
+    };
+
+    var getBlogsByPage = function(page){
         //判断加载数据的开关
         if($("#main").data("isPage")){
             showLoading();
             //如果允许加载，则让该开关进入关闭状态，避免重复加载
             $("#main").data("isPage", false);
             //正式获取数据
-            loading();
+            loading(page);
         }
     };
 
-    var loading = function(){
-        var data = createData();
+    var loading = function(page){
+        var data = createData(page);
         $.ajax({
             url : "/blogs/getBlogs.html",
             type : "post",
+            timeout : 5000,
             data : data,
             success : function(res){
                 res = eval("(" + res + ")");
                 //保存新的page
-                $("#main").data("page", res.page);
                 var list = res.resultList;
+                var totalPage = res.totalPages;
+                var page = res.page;
+                $("#main").data("page", page);
+                if(page >= totalPage){
+                    //最后一页
+                    $("#main").data("page", totalPage);
+                    $("#pagination-div a:last").addClass("none");
+                }else{
+                    $("#pagination-div a:last").removeClass("none");
+                }
+                if(page <= 1){
+                    $("#main").data("page", 1);
+                    $("#pagination-div a:first").addClass("none");
+                }else{
+                    $("#pagination-div a:first").removeClass("none");
+                }
+
+                $("#blog-main").empty();
                 if(list.length > 0){
                     combineBlogs(list);
                     lazyloading();
@@ -79,16 +113,31 @@ function IndexUtils(){
                 }else{
                     //则提示没有数据
                     $("#loading-div").empty();
-                    $("#loading-div").append("<span>没有数据了。。。</span>")
+                    $("#loading-div").append("<span>没有数据了。。。</span>");
+                }
+            },
+            error : function(){
+                //则提示没有数据
+                $("#loading-div").empty();
+                $("#loading-div").append("<span>请求发生异常。。。</span>");
+                //然后打开开关
+                $("#main").data("isPage", true);
+            },
+            complete : function(XMLHttpRequest,status){ //请求完成后最终执行参数
+                if(status=='timeout'){//超时,status还有success,error等值的情况
+                    $("#loading-div").empty();
+                    $("#loading-div").append("<span>请求超时，请稍后再来。。。</span>");
+                    //然后打开开关
+                    $("#main").data("isPage", true);
                 }
             }
         })
 
     };
 
-    var createData = function(){
+    var createData = function(page){
         var data = {};
-        data.page = $("#main").data("page");
+        data.page = page;
         data.kw = $("#kw-text").val();
         return data;
     };
@@ -117,11 +166,11 @@ function IndexUtils(){
     };
 
     var showLoading = function(){
-        $("#loading-div").removeClass("loading-hidden");
+        $("#loading-div").removeClass("hidden");
     };
 
     var hideLoading = function(){
-        $("#loading-div").addClass("loading-hidden");
+        $("#loading-div").addClass("hidden");
     };
 
     var lazyloading = function(){

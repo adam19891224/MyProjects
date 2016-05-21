@@ -44,9 +44,19 @@
                         </h3>
                         <div class="line"></div>
                         <ul id="blog-main"></ul>
-                        <div id="loading-div" class="loading-div loading-hidden">
-                            <span>加载中。。。。。。</span>
-                            <img src="../base/images/loading1.gif">
+                        <div class="loading-div">
+                            <div id="loading-div" class="loading-bar hidden">
+                                <span>加载中。。。。。。</span>
+                                <img src="../base/images/loading1.gif">
+                            </div>
+                        </div>
+                        <div id="pagination-div" class="pagination-div">
+                            <a href="javascript:" forward="p" class="none">
+                                上一页
+                            </a>
+                            <a href="javascript:" forward="n">
+                                下一页
+                            </a>
                         </div>
                     </div>
                 </div>

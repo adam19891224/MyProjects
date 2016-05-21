@@ -23,6 +23,13 @@ public interface IBlogsService {
     Page<NewArticle> selectArticlesByPage(Page<NewArticle> page);
 
     /**
+     * 根据Page对象获取分页信息（solr）
+     * @param page
+     * @return
+     */
+    Page<NewArticle> selectArticlesByPageSolr(Page<NewArticle> page);
+
+    /**
      * 根据主键获取entity
      * @param sid
      * @return

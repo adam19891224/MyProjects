@@ -2,6 +2,7 @@ package com.article.dao;
 
 import com.article.vo.Article;
 import com.article.vo.ArticleWithBLOBs;
+import com.article.vo.NewArticle;
 import com.foundation.view.Page;
 
 import java.util.List;
@@ -21,5 +22,7 @@ public interface ArticleMapper {
 
     int updateByPrimaryKey(Article record);
 
-    List<ArticleWithBLOBs> selectByPage(Page<ArticleWithBLOBs> page);
+    List<NewArticle> selectByPage(Page<NewArticle> page);
+
+    int selectCountsByPage(Page<NewArticle> page);
 }
