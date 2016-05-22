@@ -51,23 +51,29 @@ public class SolrArticleMapperImpl implements SolrArticleMapper {
             List<NewArticle> list = ConUtils.arraylist();
             NewArticle newArticle;
             if(results.size() > 0){
-                page.setPage(page.getPage() + 1);
-            }
-            for(SolrDocument document : results){
-                newArticle = new NewArticle();
-                newArticle.setArticleSid((Integer) document.get("articleSid"));
-                newArticle.setArticleId((String) document.get("articleId"));
-                newArticle.setArticleImg((String) document.get("articleImg"));
-                newArticle.setArticleTitle((String) document.get("articleTitle"));
-                if(isHighlight){
-                    newArticle.setHighLightTitle(map.get(document.get("articleSid").toString()).get("articleTitle").get(0));
+//                page.setPage(page.getPage() + 1);
+                for(SolrDocument document : results){
+                    newArticle = new NewArticle();
+                    newArticle.setArticleSid((Integer) document.get("articleSid"));
+                    newArticle.setArticleId((String) document.get("articleId"));
+                    newArticle.setArticleImg((String) document.get("articleImg"));
+                    newArticle.setArticleTitle((String) document.get("articleTitle"));
+                    if(isHighlight){
+                        newArticle.setHighLightTitle(map.get(document.get("articleSid").toString()).get("articleTitle").get(0));
+                    }
+                    newArticle.setArticleDescription((String) document.get("articleDescription"));
+                    newArticle.setCreateDate((Date) document.get("createDate"));
+                    newArticle.setUpdateDate((Date) document.get("updateDate"));
+                    list.add(newArticle);
                 }
-                newArticle.setArticleDescription((String) document.get("articleDescription"));
-                newArticle.setCreateDate((Date) document.get("createDate"));
-                newArticle.setUpdateDate((Date) document.get("updateDate"));
-                list.add(newArticle);
+                page.setResultList(list);
+                if(page.getTotalCounts() == null){
+                    int count = (int) results.getNumFound();
+                    page.setTotalCounts(count);
+                    //总页数计算方法：总记录数 + 每页显示记录数 - 1 的结果 / 每页显示记录数
+                    page.setTotalPages((count + page.getPageSize() - 1) / page.getPageSize());
+                }
             }
-            page.setResultList(list);
         } catch (SolrServerException | IOException e) {
             e.printStackTrace();
         }
