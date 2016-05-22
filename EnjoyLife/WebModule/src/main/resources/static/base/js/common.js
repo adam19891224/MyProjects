@@ -9,6 +9,10 @@ function Common(){
             $(this).find("img").attr("src", "../base/images/mirror.png");
         });
 
+    };
+
+    this.showNavigatorBar = function(index){
+        $("#index-navigator li a").eq(index).css("color", "white");
     }
 }
 

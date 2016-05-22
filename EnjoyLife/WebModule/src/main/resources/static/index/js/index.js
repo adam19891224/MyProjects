@@ -21,6 +21,7 @@ require([
 
     var common = new Common();
     common.searchButtonMouseListener();
+    common.showNavigatorBar(0);
     var indexUtils = new IndexUtils();
     indexUtils.init();
     indexUtils.paginationClickListener();

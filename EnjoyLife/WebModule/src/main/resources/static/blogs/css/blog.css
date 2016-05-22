@@ -10,7 +10,8 @@
 
 .main .main-div{
     width: 1200px;
-    margin: 0 auto;
+    overflow: hidden;
+    margin: 10px auto 0;
 }
 
 .div-left{
@@ -18,9 +19,137 @@
     float: left;
 }
 
+.div-left .article-main{
+    width: 100%;
+    overflow: hidden;
+}
+
+.article-main h1{
+    text-align: center;
+    font-size: 30px;
+    line-height: 50px;
+}
+
+.article-main .article-show{
+    width: 100%;
+    height: 40px;
+    float: left;
+    line-height: 40px;
+}
+
+.article-show .show-left{
+    float: left;
+    margin-left: 20px;
+    height: 40px;
+    padding-top: 6px;
+}
+
+.article-show .show-right{
+    float: right;
+    margin-right: 20px;
+}
+
+.show-right img{
+    width: 40px;
+    height: 40px;
+    max-width: 100%;
+    float: left;
+    margin-right: 5px;
+}
+
+.article-main .article-body{
+    width: 98%;
+    float: left;
+    padding: 0 1%;
+}
+
+.article-body img{
+    max-width: 100%;
+}
+
+.div-left .article-comment{
+    width: 100%;
+    margin-top: 10px;
+    float: left;
+    overflow: hidden;
+}
+
+.article-comment h5{
+    float: left;
+    padding: 0;
+    margin: 0;
+    line-height: 30px;
+}
+
+.article-comment h5 i{
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    background: url("../images/comment-p.png") no-repeat;
+    background-size: cover;
+    margin-right: 5px;
+    float: left;
+}
+
+.article-comment .comment-main{
+    float: left;
+    width: 100%;
+    overflow: hidden;
+}
+
 .div-right{
     width: 290px;
     float: right;
+}
+
+.div-right .hot-div{
+    width: 100%;
+    height: 300px;
+    float: left;
+    background-color: #ebebeb;
+    padding: 10px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.hot-div h3{
+    text-align: left;
+    font-weight: normal;
+    line-height: 30px;
+    padding: 0 0 10px 0;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.hot-div h3 i{
+    width: 30px;
+    height: 30px;
+    float: left;
+    margin-right: 10px;
+    background: url("../../index/images/tips.png") no-repeat;
+}
+
+.hot-div .line{
+    width: 100%;
+    height: 2px;
+    float: left;
+    background-color: lightblue;
+}
+
+.hot-div ul{
+    margin: 0;
+    padding: 0;
+
+}
+
+.hot-div ul li{
+    line-height: 30px;
+    width: 100%;
+    text-align: center;
+}
+
+.hot-div ul li:hover{
+    text-decoration: underline;
 }
 
 

@@ -5,7 +5,7 @@
                 <img src="../base/images/logo.png">
             </a>
         </h1>
-        <ul class="index-ul">
+        <ul id="index-navigator" class="index-ul">
             <li>
                 <a href="/index.html">首页</a>
             </li>

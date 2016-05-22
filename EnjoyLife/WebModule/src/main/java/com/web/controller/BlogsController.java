@@ -48,7 +48,7 @@ public class BlogsController extends BaseController {
             return "redirect:/error";
         }
         map.addAttribute("article", article);
-        return "article/main";
+        return "blogs/main";
     }
 
     @RequestMapping("/getComment.html")

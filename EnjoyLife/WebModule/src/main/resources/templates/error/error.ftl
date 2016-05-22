@@ -2,9 +2,8 @@
 <html>
 <head>
     <title>找不到资源了</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    [#include "../layout/head-setting.ftl"]
     <link rel="stylesheet" href="../error/css/error.css" type="text/css"/>
-    <link rel="icon" href="../common/icon/favourite-icon_32X32.ico" mce_href="../common/icon/favourite-icon_32X32.ico" type="image/x-icon">
 </head>
 <body>
     <div class="container">
