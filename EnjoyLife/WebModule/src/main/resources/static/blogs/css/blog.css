@@ -91,10 +91,191 @@
     float: left;
 }
 
+.article-comment .comment-line{
+    width: 100%;
+    height: 2px;
+    background-color: #c6c6c6;
+    float: left;
+    margin-bottom: 5px;
+}
+
+.article-comment .comment-loading{
+    width: 100%;
+    float: left;
+    overflow: hidden;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+
 .article-comment .comment-main{
     float: left;
     width: 100%;
     overflow: hidden;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+.comment-main li{
+    width: 100%;
+    float: left;
+    border-bottom: 1px solid lightblue;
+    margin-bottom: 2px;
+}
+
+.comment-main li h6{
+    margin: 10px 0;
+    padding: 0 5px;
+    overflow: hidden;
+}
+
+.comment-main li h6 span{
+    display: inline-block;
+    float: right;
+}
+
+
+.comment-main li p{
+    padding: 0 5px;
+}
+
+.comment-main .comment-helper a:hover{
+    color: #0099cc;
+}
+/*回复标签*/
+.comment-main .comment-helper a:nth-child(1){
+    float: right;
+    cursor: pointer;
+}
+/*展开标签*/
+.comment-main .comment-helper a:nth-child(2){
+    float: right;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.comment-main .comment-reply-bar{
+    width: 100%;
+    height: 1px;
+    background-color: palevioletred;
+    margin-bottom: 2px;
+}
+
+/*回复ul列表*/
+.comment-main .comment-reply-ul{
+    width: 90%;
+    float: left;
+    overflow: hidden;
+    padding: 0;
+    margin: 5px 0 0 10%;
+    border-top: 1px solid #ebebeb;
+
+}
+
+.comment-main .comment-reply-ul h6 span{
+    display: inline;
+    float: left;
+    margin-left: 3px;
+}
+
+.comment-reply-ul li{
+    border-bottom: 1px dashed #9d9d9d;
+}
+
+/*评论间回复控件*/
+.comment-main .comment-reply-div{
+    width: 90%;
+    float: left;
+    overflow: hidden;
+    margin-left: 10%;
+}
+
+.comment-main .comment-reply-editor{
+    width: 100%;
+    float: left;
+    overflow: hidden;
+    margin-top: 5px;
+}
+
+.comment-main .comment-reply-submit{
+    width: 100%;
+    float: left;
+    overflow: hidden;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.comment-reply-submit a{
+    width: 50px;
+    height: 20px;
+    display: inline-block;
+    border-radius: 5px;
+    float: right;
+    background-color: lightblue;
+    color: black;
+    text-align: center;
+    line-height: 20px;
+    cursor: pointer;
+}
+
+.comment-reply-submit a:hover{
+    background-color: #0099cc;
+}
+
+
+.article-comment .comment-paginatior{
+    width: 100%;
+    float: left;
+    overflow: hidden;
+    margin-top: 5px;
+}
+
+.comment-paginatior .pre, .comment-paginatior .next{
+    float: right;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 12px;
+    color: lightblue;
+}
+
+.paginatior-none{
+    color: #c6c6c6;
+}
+
+.comment-paginatior .pre{
+    margin-right: 10px;
+}
+
+.article-comment .comment-editor{
+    width: 100%;
+    float: left;
+    overflow: hidden;
+    margin-top: 50px;
+}
+
+.article-comment .comment-submit{
+    width: 100%;
+    float: left;
+    overflow: hidden;
+    margin-top: 5px;
+}
+
+.comment-submit a{
+    width: 100px;
+    height: 30px;
+    display: inline-block;
+    border-radius: 5px;
+    float: right;
+    background-color: lightblue;
+    color: black;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+}
+
+.comment-submit a:hover{
+    background-color: #0099cc;
 }
 
 .div-right{
@@ -150,6 +331,81 @@
 
 .hot-div ul li:hover{
     text-decoration: underline;
+}
+
+.get-customer-info-whole{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 9999;
+    background-color: white;
+    opacity: 0.4;
+}
+
+.get-customer-info-div{
+    width: 300px;
+    height: 360px;
+    position: fixed;
+    top: 50%;
+    margin-top: -180px;
+    left: 50%;
+    margin-left: -150px;
+    z-index: 10000;
+    border-radius: 10px;
+    background-color: white;
+    border: 1px solid #ebebeb;
+    box-shadow: 3px;
+    cursor: default;
+}
+
+.get-customer-info-div .title{
+    width: 100%;
+    height: 60px;
+    float: left;
+    background-color: #0099cc;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-bottom: 10px;
+    line-height: 60px;
+    text-align: center;
+    font-size: 22px;
+}
+
+.get-customer-info-div h3{
+    margin: 10px 0;
+    padding: 0 0 0 10%;
+}
+
+.get-customer-info-div input{
+    width: 80%;
+    margin-left: 10%;
+    height: 30px;
+    border: 1px solid #0099cc;
+}
+
+.get-customer-info-div a{
+    display: inline-block;
+    width: 100px;
+    height: 30px;
+    float: right;
+    background-color: lightblue;
+    text-align: center;
+    line-height: 30px;
+    margin-top: 20px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.get-customer-info-div a:hover{
+    background-color: #0099cc;
+}
+
+#cancle-info{
+    margin-right: 10%;
+}
+
+#submit-info{
+    margin-right: 5px;
 }
 
 
