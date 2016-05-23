@@ -37,12 +37,18 @@ public class CommentServiceImpl extends BaseServiceImpl implements ICommentServi
         {
             List<Comment> list = commentMapper.selectByPage(page);
             if(list != null && list.size() > 0){
-                page.setPage(page.getPage() + 1);
+                int count = commentMapper.selectCountsByArticle(page.getArticleId());
+                page.setTotalCounts(count);
+                page.setResultList(list);
+                page.setTotalPages((count + page.getPageSize() - 1) / page.getPageSize());
             }
-            page.setTotalCounts(commentMapper.selectCountsByArticle(page.getArticleId()));
-            page.setResultList(list);
         }
         return page;
+    }
+
+    @Override
+    public List<Comment> selectReplyCommentByForm(CommentForm form) {
+        return commentMapper.selectReplyComment(form);
     }
 
     @Override

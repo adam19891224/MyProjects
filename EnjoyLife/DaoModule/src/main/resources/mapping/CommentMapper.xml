@@ -261,4 +261,24 @@
     </where>
   </select>
 
+  <select id="selectReplyComment" resultMap="ResultMapWithBLOBs" parameterType="com.foundation.form.CommentForm">
+    SELECT
+      tc.*
+    FROM
+      tb_article_comment tac
+    LEFT JOIN
+      tb_comment tc ON tac.COMMENT_ID = tc.COMMENT_ID
+    <where>
+      <if test="articleId != null and articleId != '' ">
+        tac.ARTICLE_ID = #{articleId}
+      </if>
+      <if test="commentId != null and commentId != '' ">
+        AND tac.COMMENT_ID = #{commentId}
+      </if>
+      <if test="commentIsReply != null and commentIsReply != '' ">
+        AND tc.COMMENT_IS_REPLY = #{commentIsReply}
+      </if>
+    </where>
+  </select>
+
 </mapper>

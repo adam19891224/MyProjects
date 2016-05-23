@@ -106,6 +106,7 @@
     height: 30px;
     line-height: 30px;
     text-align: center;
+    display: none;
 }
 
 .article-comment .comment-main{
@@ -115,6 +116,7 @@
     padding: 0;
     margin: 0;
     list-style-type: none;
+    display: none;
 }
 
 .comment-main li{
@@ -156,7 +158,7 @@
 }
 
 .comment-main .comment-reply-bar{
-    width: 100%;
+    width: 0%;
     height: 1px;
     background-color: palevioletred;
     margin-bottom: 2px;
@@ -170,6 +172,7 @@
     padding: 0;
     margin: 5px 0 0 10%;
     border-top: 1px solid #ebebeb;
+    display: none;
 
 }
 
@@ -189,6 +192,7 @@
     float: left;
     overflow: hidden;
     margin-left: 10%;
+    display: none;
 }
 
 .comment-main .comment-reply-editor{
@@ -206,21 +210,27 @@
     margin-bottom: 5px;
 }
 
+.comment-reply-submit span{
+    color: red;
+    display: none;
+}
+
 .comment-reply-submit a{
     width: 50px;
     height: 20px;
     display: inline-block;
-    border-radius: 5px;
+    border-radius: 3px;
     float: right;
-    background-color: lightblue;
+    background-color: #0099cc;
     color: black;
     text-align: center;
     line-height: 20px;
     cursor: pointer;
+    font-size: 12px;
 }
 
 .comment-reply-submit a:hover{
-    background-color: #0099cc;
+    background-color: lightblue;
 }
 
 
@@ -261,13 +271,18 @@
     margin-top: 5px;
 }
 
+.comment-submit span{
+    display: none;
+    color: red;
+}
+
 .comment-submit a{
     width: 100px;
     height: 30px;
     display: inline-block;
-    border-radius: 5px;
+    border-radius: 3px;
     float: right;
-    background-color: lightblue;
+    background-color: #0099cc;
     color: black;
     text-align: center;
     line-height: 30px;
@@ -275,7 +290,7 @@
 }
 
 .comment-submit a:hover{
-    background-color: #0099cc;
+    background-color: lightblue;
 }
 
 .div-right{
@@ -331,6 +346,10 @@
 
 .hot-div ul li:hover{
     text-decoration: underline;
+}
+
+.get-customer-info{
+    display: none;
 }
 
 .get-customer-info-whole{
@@ -406,6 +425,11 @@
 
 #submit-info{
     margin-right: 5px;
+}
+
+.line{
+    text-decoration: underline;
+    font-weight: bold;
 }
 
 

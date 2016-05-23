@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA
@@ -56,6 +57,16 @@ public class BlogsController extends BaseController {
     public String getComment(Page<Comment> page){
         logger.info("进入获取评论方法");
         page = commentService.selectCommentByPage(page);
+        return super.parseObjectToJson(page);
+    }
+
+    @RequestMapping("/getReplyComment.html")
+    @ResponseBody
+    public String getReplyComment(CommentForm form){
+        logger.info("进入获取回复评论方法");
+        List<Comment> list = commentService.selectReplyCommentByForm(form);
+        Page<Comment> page = new Page<>();
+        page.setResultList(list);
         return super.parseObjectToJson(page);
     }
 

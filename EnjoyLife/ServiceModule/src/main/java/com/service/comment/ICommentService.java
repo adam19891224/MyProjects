@@ -4,6 +4,8 @@ import com.comment.vo.Comment;
 import com.foundation.form.CommentForm;
 import com.foundation.view.Page;
 
+import java.util.List;
+
 /**
  * Created by IntelliJ IDEA
  * User: Adam
@@ -12,6 +14,8 @@ import com.foundation.view.Page;
 public interface ICommentService {
 
     Page<Comment> selectCommentByPage(Page<Comment> page);
+
+    List<Comment> selectReplyCommentByForm(CommentForm form);
 
     Integer selectCommentCountsByArticle(String articleId);
 

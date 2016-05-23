@@ -25,6 +25,16 @@ public class CommentForm {
 
     private String commentReplyBody;
 
+    private String commentId;
+
+    public String getCommentId() {
+        return commentId;
+    }
+
+    public void setCommentId(String commentId) {
+        this.commentId = commentId;
+    }
+
     public String getCommentReplyBody() {
         return commentReplyBody;
     }
