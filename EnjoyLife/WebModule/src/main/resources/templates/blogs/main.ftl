@@ -64,6 +64,9 @@
         [#--提交评论确认信息框--]
         [#include "customer-info.ftl"]
 
+        [#--提交完成展示div--]
+        [#include "comment-subimt-success.ftl"]
+
         [#--底部--]
         [#include "../layout/footer.ftl"]
 

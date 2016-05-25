@@ -46,6 +46,8 @@ require([
 
 function BolgUtils(){
 
+    var that = this;
+
     this.init = function(){
         commentHelperListener();
         customerInfoButtonListener();
@@ -125,7 +127,7 @@ function BolgUtils(){
                     //则提示没有数据
                     li = "<li class='no-comments'><h3>目前还没有评论，快块来挽尊吧~~~~(>_<)~~~~</h3></li>";
                 }
-                $("#comment-main-ul").show().append(li);
+                $("#comment-main-ul").show().empty().append(li);
             },
             error : function(res){
                 console.log(res);
@@ -143,11 +145,15 @@ function BolgUtils(){
      * 信息资料框按钮事件
      */
     var customerInfoButtonListener = function(){
+
+        //点击取消，隐藏
         $("#cancle-info").click(function(){
             $(this).parents("#get-customer-info").hide();
         });
+        //点击确定，提交
         $("#submit-info").click(function(){
             var obj = $("#get-customer-info");
+            var name = obj.data("editorName");
             var data = {};
             //获取传递过来的值
             var isReply = obj.data("isReply");
@@ -181,22 +187,34 @@ function BolgUtils(){
 
             data.articleId = $("#article").attr("aid");
 
+            //展示Loading
+            obj.find(".get-customer-info-div").hide().end().find(".get-customer-info-div-img").show();
+
             $.ajax({
                 url : "/blogs/saveComment.html",
                 data : data,
                 type : "post",
                 timeout : 5000,
                 success : function(res){
-                    res = eval("(" + res + ")");
+                    CKEDITOR.instances[name].content.setData("");
+                    obj.find(".get-customer-info-div").show().end().find(".get-customer-info-div-img").hide().end().hide();
                     if(res == "success"){
-
+                        showSubmitSuccessDiv("提交成功!");
+                        that.loadCommentById($("#article").attr("aid"));
+                    }else{
+                        showSubmitSuccessDiv("异常!");
                     }
                 },
                 error : function(res){
+                    CKEDITOR.instances[name].content.setData("");
+                    obj.find(".get-customer-info-div").show().end().find(".get-customer-info-div-img").hide().end().hide();
+                    showSubmitSuccessDiv("提交失败!");
                 },
                 complete : function(XMLHttpRequest, status){
                     if(status=='timeout'){
-
+                        CKEDITOR.instances[name].content.setData("");
+                        obj.find(".get-customer-info-div").show().end().find(".get-customer-info-div-img").hide().end().hide();
+                        showSubmitSuccessDiv("网络超时!");
                     }
                 }
             });
@@ -207,6 +225,7 @@ function BolgUtils(){
      * 评论间按钮事件
      */
     var commentHelperListener = function(){
+        //回复按钮
         $("#comment-main-ul").on("click", ".reply", function(){
             var _this = $(this);
             var name = "text" + _this.parent().attr("comment");
@@ -229,6 +248,7 @@ function BolgUtils(){
             }
         });
 
+        //展示回复评论按钮
         $("#comment-main-ul").on("click", ".open", function(){
             var _this = $(this);
             var li = _this.parents("li");
@@ -257,11 +277,11 @@ function BolgUtils(){
                                 if(list.length > 0){
                                     bar.animate({width : "80%"}, function(){
                                         var replyLi = addReplyCommentLi(list);
-                                        ul.append(replyLi);
+                                        ul.empty().append(replyLi);
                                     });
                                 }else{
                                     bar.animate({width : "100%"}, function(){
-                                        ul.append("<li class='no-comments'><h5>没有回复记录</h5></li>");
+                                        ul.append("<li class='no-comments'><h4>没有回复记录</h4></li>");
                                         bar.css("width", "0%");
                                     });
                                 }
@@ -275,7 +295,7 @@ function BolgUtils(){
                             complete : function(XMLHttpRequest, status){
                                 if(status=='timeout'){
                                     bar.animate({width : "100%"}, function(){
-                                        ul.append("<li class='no-comments'><h5>超时了，请重新加载</h5></li>");
+                                        ul.append("<li class='no-comments'><h4>超时了，请重新加载</h4></li>");
                                         bar.css("width", "0%");
                                     });
                                 }
@@ -291,6 +311,7 @@ function BolgUtils(){
             }
         });
 
+        //回复评论框按钮
         $("#comment-main-ul").on("click", ".submit-comment-reply", function(){
             var _this = $(this);
             var commentSid = _this.parents("li").find(".comment-helper").attr("comment");
@@ -305,9 +326,10 @@ function BolgUtils(){
                 _this.parent().find("span").hide();
             }
             var obj = $("#get-customer-info");
-            obj.data("isReply", true);
+            obj.data("isReply", 1);
             obj.data("commentBody", text);
             obj.data("replyUser", owner);
+            obj.data("editorName", name);
             obj.show();
         });
     };
@@ -327,8 +349,9 @@ function BolgUtils(){
                 _this.parent().find("span").hide();
             }
             var obj = $("#get-customer-info");
-            obj.data("isReply", false);
+            obj.data("isReply", 0);
             obj.data("commentBody", text);
+            obj.data("editorName", "commentEditor");
             obj.show();
         });
     };
@@ -337,7 +360,6 @@ function BolgUtils(){
      * 评论分页按钮
      */
     var commentPaginatorListener = function(){
-        var thisO = this;
         $("#article-comment").find(".comment-paginatior").on("click", "a", function(){
             var _this = $(this);
             if(_this.hasClass("paginatior-none")){
@@ -349,7 +371,7 @@ function BolgUtils(){
             }else if(_this.attr("forward") == "n"){
                 $("#article-comment").data("page", $("#article-comment").data("page") + 1);
             }
-            thisO.loadCommentById(aO.attr("aid"));
+            that.loadCommentById(aO.attr("aid"));
         });
     };
 
@@ -369,7 +391,7 @@ function BolgUtils(){
             date = new Date(obj.createDate);
             li += "<li>" +
                     "<h6>" +
-                        "<a href='" + href + "' class='" + clazz + "'>" + obj.commentUser + "</a>&nbsp;说：<span>" + date.format("yyyy-MM-dd") + "</span>" +
+                        "<a href='" + href + "' class='" + clazz + "' target='_blank'>" + obj.commentUser + "</a>&nbsp;说：<span>" + date.format("yyyy-MM-dd") + "</span>" +
                     "</h6>" +
                     "<p>" +
                         obj.commentBody +
@@ -416,4 +438,18 @@ function BolgUtils(){
         }
         return li;
     };
+
+    /**
+     * 提交后展示Div内容
+     */
+    var showSubmitSuccessDiv = function(str){
+        $("#comment-subimt-success-div").show().find("span").text(str);
+        setTimeout(hiddenSubmitSuccessDiv, 3000);
+    };
+    /**
+     * 隐藏展示Div
+     */
+    var hiddenSubmitSuccessDiv = function(){
+        $("#comment-subimt-success-div").hide();
+    }
 }

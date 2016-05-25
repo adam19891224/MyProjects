@@ -19,4 +19,5 @@
         <a id="cancle-info">取消</a>
         <a id="submit-info">确定</a>
     </div>
+    <div class="get-customer-info-div-img"></div>
 </div>

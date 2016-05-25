@@ -22,6 +22,7 @@
 .div-left .article-main{
     width: 100%;
     overflow: hidden;
+    background-color: #ebebeb;
 }
 
 .article-main h1{
@@ -69,7 +70,7 @@
 
 .div-left .article-comment{
     width: 100%;
-    margin-top: 10px;
+    margin-top: 20px;
     float: left;
     overflow: hidden;
 }
@@ -146,6 +147,13 @@
 .comment-main li p{
     padding: 0 5px;
 }
+
+
+.comment-main .line{
+    text-decoration: underline;
+    font-weight: bold;
+}
+
 
 .comment-main .comment-helper a:hover{
     color: #0099cc;
@@ -382,6 +390,22 @@
     cursor: default;
 }
 
+.get-customer-info-div-img{
+    width: 300px;
+    height: 360px;
+    position: fixed;
+    top: 50%;
+    margin-top: -180px;
+    left: 50%;
+    margin-left: -150px;
+    z-index: 10000;
+    background: url("../images/commet-loading.gif") no-repeat;
+    background-size: cover;
+    display: none;
+    line-height: 360px;
+    text-align: center;
+}
+
 .get-customer-info-div .title{
     width: 100%;
     height: 60px;
@@ -424,17 +448,31 @@
     background-color: #0099cc;
 }
 
+.comment-subimt-success-div{
+    width: 200px;
+    height: 60px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -33px;
+    margin-left: -103px;
+    border: 6px solid #0099cc;
+    border-radius: 3px;
+    background-color: white;
+    z-index: 6666;
+    line-height: 60px;
+    text-align: center;
+    font-size: 20px;
+    color: #0099cc;
+    display: none;
+}
+
 #cancle-info{
     margin-right: 10%;
 }
 
 #submit-info{
     margin-right: 5px;
-}
-
-.line{
-    text-decoration: underline;
-    font-weight: bold;
 }
 
 @media screen and (max-width: 1200px) {
