@@ -119,6 +119,11 @@
     display: none;
 }
 
+.comment-main .no-comments{
+    text-align: center;
+    line-height: 50px;
+}
+
 .comment-main li{
     width: 100%;
     float: left;
@@ -241,7 +246,7 @@
     margin-top: 5px;
 }
 
-.comment-paginatior .pre, .comment-paginatior .next{
+.comment-paginatior a{
     float: right;
     cursor: pointer;
     font-weight: bold;
@@ -249,7 +254,7 @@
     color: lightblue;
 }
 
-.paginatior-none{
+.comment-paginatior .paginatior-none{
     color: #c6c6c6;
 }
 
@@ -431,7 +436,6 @@
     text-decoration: underline;
     font-weight: bold;
 }
-
 
 @media screen and (max-width: 1200px) {
 

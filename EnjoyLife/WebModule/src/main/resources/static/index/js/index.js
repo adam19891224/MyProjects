@@ -87,21 +87,22 @@ function IndexUtils(){
                 //保存新的page
                 var list = res.resultList;
                 var totalPage = res.totalPages;
-                var page = res.page;
-                $("#main").data("page", page);
+                var page = res.page, newPage;
+                newPage = page;
                 if(page >= totalPage){
                     //最后一页
-                    $("#main").data("page", totalPage);
+                    newPage = totalPage;
                     $("#pagination-div a:last").addClass("none");
                 }else{
                     $("#pagination-div a:last").removeClass("none");
                 }
                 if(page <= 1){
-                    $("#main").data("page", 1);
+                    newPage = 1;
                     $("#pagination-div a:first").addClass("none");
                 }else{
                     $("#pagination-div a:first").removeClass("none");
                 }
+                $("#main").data("page", newPage);
 
                 $("#blog-main").empty();
                 if(list.length > 0){

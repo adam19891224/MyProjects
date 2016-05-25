@@ -45,10 +45,10 @@
         <#--</li>-->
     </ul>
     <div class="comment-paginatior">
-        <a href="javascript:" class="next" forward="n">
+        <a href="javascript:" forward="n">
             下一页
         </a>
-        <a href="javascript:" class="pre" forward="p">
+        <a href="javascript:" forward="p">
             上一页
         </a>
     </div>

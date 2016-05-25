@@ -5,6 +5,7 @@ import com.comment.dao.CommentMapper;
 import com.comment.vo.ArticleComment;
 import com.comment.vo.Comment;
 import com.foundation.form.CommentForm;
+import com.foundation.utils.ConUtils;
 import com.foundation.utils.StringUtils;
 import com.foundation.view.Page;
 import com.service.comment.ICommentService;
@@ -41,6 +42,8 @@ public class CommentServiceImpl extends BaseServiceImpl implements ICommentServi
                 page.setTotalCounts(count);
                 page.setResultList(list);
                 page.setTotalPages((count + page.getPageSize() - 1) / page.getPageSize());
+            }else{
+                page.setResultList(ConUtils.arraylist());
             }
         }
         return page;

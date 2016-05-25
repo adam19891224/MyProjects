@@ -30,7 +30,7 @@ public class Page<T> implements Serializable {
 
     private Integer totalCounts;
 
-    private Integer totalPages;
+    private Integer totalPages = 1;
 
     public Integer getTotalPages() {
         return totalPages;

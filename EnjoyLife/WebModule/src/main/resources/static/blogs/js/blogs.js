@@ -50,6 +50,7 @@ function BolgUtils(){
         commentHelperListener();
         customerInfoButtonListener();
         submitCommentButtonClick();
+        commentPaginatorListener();
     };
 
     this.offsetScroll = function(){
@@ -63,7 +64,7 @@ function BolgUtils(){
                 thisObj.loadComment();
             }else {
                 scrollHeight = win.scrollTop();
-                if(divHeight - scrollHeight < 0){
+                if(divHeight - scrollHeight <= 400){
                     thisObj.loadComment();
                 }
             }
@@ -96,19 +97,25 @@ function BolgUtils(){
                 //保存新的page
                 var list = res.resultList;
                 var totalPage = res.totalPages;
-                var page = res.page;
-                $("#main").data("page", page);
+                var page = res.page, newPage;
+                newPage = page;
+
                 if(page >= totalPage){
                     //最后一页
-                    $("#main").data("page", totalPage);
+                    newPage = totalPage;
+                    $("#article-comment").find(".comment-paginatior").find("a").last().addClass("paginatior-none");
                 }else{
-
+                    $("#article-comment").find(".comment-paginatior").find("a").last().removeClass("paginatior-none");
                 }
+
                 if(page <= 1){
-                    $("#main").data("page", 1);
+                    newPage = 1;
+                    $("#article-comment").find(".comment-paginatior").find("a").first().addClass("paginatior-none");
                 }else{
-
+                    $("#article-comment").find(".comment-paginatior").find("a").first().removeClass("paginatior-none");
                 }
+                $("#article-comment").data("page", newPage);
+
                 $("#comment-loading").hide();
 
                 var li = "";
@@ -116,7 +123,7 @@ function BolgUtils(){
                     li = addCommentLi(list);
                 }else{
                     //则提示没有数据
-                    li = "<li><h3>目前还没有评论，快块来挽尊吧~~~~(>_<)~~~~</h3></li>";
+                    li = "<li class='no-comments'><h3>目前还没有评论，快块来挽尊吧~~~~(>_<)~~~~</h3></li>";
                 }
                 $("#comment-main-ul").show().append(li);
             },
@@ -125,7 +132,7 @@ function BolgUtils(){
             },
             complete : function(XMLHttpRequest, status){
                 if(status=='timeout'){
-
+                    $("#comment-main-ul").show().append("<li class='no-comments'><h3>网络超时了 ~~~~(>_<)~~~~</h3></li>");
                 }
             }
         });
@@ -254,7 +261,7 @@ function BolgUtils(){
                                     });
                                 }else{
                                     bar.animate({width : "100%"}, function(){
-                                        ul.append("<li><h5>没有回复记录</h5></li>");
+                                        ul.append("<li class='no-comments'><h5>没有回复记录</h5></li>");
                                         bar.css("width", "0%");
                                     });
                                 }
@@ -268,7 +275,7 @@ function BolgUtils(){
                             complete : function(XMLHttpRequest, status){
                                 if(status=='timeout'){
                                     bar.animate({width : "100%"}, function(){
-                                        ul.append("<li><h5>超时了，请重新加载</h5></li>");
+                                        ul.append("<li class='no-comments'><h5>超时了，请重新加载</h5></li>");
                                         bar.css("width", "0%");
                                     });
                                 }
@@ -323,6 +330,26 @@ function BolgUtils(){
             obj.data("isReply", false);
             obj.data("commentBody", text);
             obj.show();
+        });
+    };
+
+    /**
+     * 评论分页按钮
+     */
+    var commentPaginatorListener = function(){
+        var thisO = this;
+        $("#article-comment").find(".comment-paginatior").on("click", "a", function(){
+            var _this = $(this);
+            if(_this.hasClass("paginatior-none")){
+                return false;
+            }
+            var aO = $("#article");
+            if(_this.attr("forward") == "p"){
+                $("#article-comment").data("page", $("#article-comment").data("page") - 1);
+            }else if(_this.attr("forward") == "n"){
+                $("#article-comment").data("page", $("#article-comment").data("page") + 1);
+            }
+            thisO.loadCommentById(aO.attr("aid"));
         });
     };
 
