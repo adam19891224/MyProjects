@@ -54,6 +54,10 @@ require([
 function BolgUtils(){
 
     var that = this;
+    var COOKIE_USER_NAME = "enjoy-life-customer-name";
+    var COOKIE_USER_EMAIL = "enjoy-life-customer-email";
+    var COOKIE_USER_WEB = "enjoy-life-customer-web";
+    var COOKIE_TIME = 30;
 
     this.init = function(){
         commentHelperListener();
@@ -158,6 +162,17 @@ function BolgUtils(){
     };
 
     /**
+     * 保存和获取cookie
+     */
+    var getCookieInfo = function(key){
+        return $.cookie(key);
+    };
+
+    var setCookieInfo = function(key, value){
+        $.cookie(key, value, { expires: COOKIE_TIME });
+    };
+
+    /**
      * 信息资料框按钮事件
      */
     var customerInfoButtonListener = function(){
@@ -187,8 +202,9 @@ function BolgUtils(){
                 return false;
             }
             data.commentUser = username;
-            var useremail = obj.find("#useremail").val();
+            setCookieInfo(COOKIE_USER_NAME, username);
 
+            var useremail = obj.find("#useremail").val();
             if(useremail == "" || reg.test(useremail)){
                 alert("请填写您的邮箱，放心，本人不会公开该信息");
                 return false;
@@ -199,8 +215,11 @@ function BolgUtils(){
                 return false;
             }
             data.commentEmail = useremail;
+            setCookieInfo(COOKIE_USER_EMAIL, useremail);
 
-            data.commentUserWebsite = obj.find("#usereweb").val();
+            var userWeb = obj.find("#usereweb").val();
+            setCookieInfo(COOKIE_USER_WEB, userWeb);
+            data.commentUserWebsite = userWeb;
 
             data.articleId = $("#article").attr("aid");
 
@@ -362,6 +381,9 @@ function BolgUtils(){
             obj.data("commentBody", text);
             obj.data("replyUser", owner);
             obj.data("editorName", name);
+            obj.find("#username").val(getCookieInfo(COOKIE_USER_NAME));
+            obj.find("#useremail").val(getCookieInfo(COOKIE_USER_EMAIL));
+            obj.find("#usereweb").val(getCookieInfo(COOKIE_USER_WEB));
             obj.show();
         });
     };
@@ -387,6 +409,9 @@ function BolgUtils(){
             obj.data("isReply", 0);
             obj.data("commentBody", text);
             obj.data("editorName", "commentEditor");
+            obj.find("#username").val(getCookieInfo(COOKIE_USER_NAME));
+            obj.find("#useremail").val(getCookieInfo(COOKIE_USER_EMAIL));
+            obj.find("#usereweb").val(getCookieInfo(COOKIE_USER_WEB));
             obj.show();
         });
     };
