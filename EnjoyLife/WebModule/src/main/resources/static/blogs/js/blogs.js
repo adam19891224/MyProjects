@@ -83,17 +83,18 @@ function BolgUtils(){
     this.loadComment = function(){
         var aO = $("#article");
         var allow = aO.attr("allow");
+        var commentO = $("#article-comment");
         if(allow == "Y"){
             aO.attr("allow", "N");
-            $("#article-comment").data("page", 1);
-            this.loadCommentById(aO.attr("aid"));
+            commentO.data("page", 1);
+            this.loadCommentById(aO.attr("aid"), commentO);
         }
     };
 
-    this.loadCommentById = function(aid){
+    this.loadCommentById = function(aid, commentObj){
         data = {};
         data.articleId = aid;
-        var clickPage = $("#article-comment").data("page");
+        var clickPage = commentObj.data("page");
         data.page = clickPage;
         $("#comment-loading").show();
         $.ajax({
@@ -112,27 +113,25 @@ function BolgUtils(){
                 if(page >= totalPage){
                     //最后一页
                     newPage = totalPage;
-                    $("#article-comment").find(".comment-paginatior").find("a").first().addClass("paginatior-none");
+                    commentObj.find(".comment-paginatior").find("a").first().addClass("paginatior-none");
                 }else{
-                    $("#article-comment").find(".comment-paginatior").find("a").first().removeClass("paginatior-none");
+                    commentObj.find(".comment-paginatior").find("a").first().removeClass("paginatior-none");
                 }
 
                 if(page <= 1){
                     newPage = 1;
-                    $("#article-comment").find(".comment-paginatior").find("a").last().addClass("paginatior-none");
+                    commentObj.find(".comment-paginatior").find("a").last().addClass("paginatior-none");
                 }else{
-                    $("#article-comment").find(".comment-paginatior").find("a").last().removeClass("paginatior-none");
+                    commentObj.find(".comment-paginatior").find("a").last().removeClass("paginatior-none");
                 }
-                $("#article-comment").data("page", newPage);
+                commentObj.data("page", newPage);
 
                 $("#comment-loading").hide();
 
                 var array = [];
                 if(list.length > 0){
                     array = addCommentLi(list);
-                    $("#comment-main-ul").show().empty();
-                    $("#comment-main-ul").setTemplateElement("mainComment");
-                    $("#comment-main-ul").processTemplate(array);
+                    commentObj.find("#comment-main-ul").show().empty().setTemplateElement("mainComment").processTemplate(array);
                     var thisSec;
                     $("#comment-main-ul").find(".comment-section").each(function(){
                         thisSec = $(this);
@@ -141,17 +140,17 @@ function BolgUtils(){
                 }else{
                     //则提示没有数据
                     li = "<li class='no-comments'><h3>目前还没有评论，快块来挽尊吧~~~~(>_<)~~~~</h3></li>";
-                    $("#comment-main-ul").show().empty().append(li);
+                    commentObj.find("#comment-main-ul").show().empty().append(li);
                 }
             },
             error : function(res){
-                $("#article-comment").data("page", clickPage);
+                commentObj.data("page", clickPage);
                 console.log(res);
             },
             complete : function(XMLHttpRequest, status){
                 if(status=='timeout'){
-                    $("#article-comment").data("page", clickPage);
-                    $("#comment-main-ul").show().append("<li class='no-comments'><h3>网络超时了 ~~~~(>_<)~~~~</h3></li>");
+                    commentObj.data("page", clickPage);
+                    commentObj.find("#comment-main-ul").show().append("<li class='no-comments'><h3>网络超时了 ~~~~(>_<)~~~~</h3></li>");
                 }
             }
         });
@@ -218,19 +217,17 @@ function BolgUtils(){
                     obj.find(".get-customer-info-div").show().end().find(".get-customer-info-div-img").hide().end().hide();
                     if(res == "success"){
                         showSubmitSuccessDiv("提交成功!");
-                        that.loadCommentById($("#article").attr("aid"));
+                        that.loadCommentById($("#article").attr("aid"), $("#article-comment"));
                     }else{
                         showSubmitSuccessDiv("异常!");
                     }
                 },
                 error : function(res){
-                    CKEDITOR.instances[name].content.setData("");
                     obj.find(".get-customer-info-div").show().end().find(".get-customer-info-div-img").hide().end().hide();
                     showSubmitSuccessDiv("提交失败!");
                 },
                 complete : function(XMLHttpRequest, status){
                     if(status=='timeout'){
-                        CKEDITOR.instances[name].content.setData("");
                         obj.find(".get-customer-info-div").show().end().find(".get-customer-info-div-img").hide().end().hide();
                         showSubmitSuccessDiv("网络超时!");
                     }
@@ -295,9 +292,7 @@ function BolgUtils(){
                                 if(list.length > 0){
                                     bar.animate({width : "80%"}, function(){
                                         var replyLi = addReplyCommentLi(list);
-                                        ul.empty();
-                                        ul.setTemplateElement("replyComment");
-                                        ul.processTemplate(replyLi);
+                                        ul.empty().setTemplateElement("replyComment").processTemplate(replyLi);
                                         var thisSec;
                                         ul.find(".comment-reply-section").each(function(){
                                             thisSec = $(this);
@@ -406,12 +401,13 @@ function BolgUtils(){
                 return false;
             }
             var aO = $("#article");
+            var commentO = $("#article-comment");
             if(_this.attr("forward") == "p"){
-                $("#article-comment").data("page", $("#article-comment").data("page") - 1);
+                commentO.data("page", commentO.data("page") - 1);
             }else if(_this.attr("forward") == "n"){
-                $("#article-comment").data("page", $("#article-comment").data("page") + 1);
+                commentO.data("page", commentO.data("page") + 1);
             }
-            that.loadCommentById(aO.attr("aid"));
+            that.loadCommentById(aO.attr("aid"), commentO);
         });
     };
 
@@ -440,48 +436,6 @@ function BolgUtils(){
         }
         return arr;
     };
-
-    // var addCommentLi = function(list){
-    //     var obj, li = "", date;
-    //     for(var a = 0, b = list.length; a < b; a++){
-    //         obj = list[a];
-    //         var href = "javascript:";
-    //         var clazz = "";
-    //         if(obj.commentUserWebsite != ""){
-    //             href = obj.commentUserWebsite;
-    //             clazz = "line"
-    //         }
-    //         date = new Date(obj.createDate);
-    //         li += "<li>" +
-    //                 "<h6>" +
-    //                     "<a href='" + href + "' class='" + clazz + "' target='_blank'>" + obj.commentUser + "</a>&nbsp;说：<span>" + date.format("yyyy-MM-dd") + "</span>" +
-    //                 "</h6>" +
-    //                 "<section>" +
-    //                     obj.commentBody +
-    //                 "</section>" +
-    //                 "<h6 class=\"comment-helper\" comment=\"" + obj.commentSid + "\" commentId='" + obj.commentId + "'>" +
-    //                     "<a class=\"reply\" show=\"N\">回复</a>" +
-    //                     "<a class=\"open\" show=\"N\" load=\"Y\">展开</a>" +
-    //                 "</h6>" +
-    //                 "<div class=\"comment-reply-bar\"></div>" +
-    //                 "<ul class=\"comment-reply-ul\"></ul>" +
-    //                 "<div class=\"comment-reply-div\">" +
-    //                     "<div class=\"comment-reply-editor\">" +
-    //                         "<textarea name=\"comment-reply-editor\" title=\"回复文章\"></textarea>" +
-    //                     "</div>" +
-    //                     "<div class=\"comment-reply-submit\">" +
-    //                         "<span>" +
-    //                             "对不起，文本内容不能为空！" +
-    //                         "</span>" +
-    //                         "<a class=\"submit-comment-reply\" owner=\"" + obj.commentUser + "\">" +
-    //                             "提交" +
-    //                         "</a>" +
-    //                     "</div>" +
-    //                 "</div>" +
-    //               "</li>";
-    //     }
-    //     return li;
-    // };
 
     /**
      * 拼接回复评论
