@@ -4,10 +4,15 @@ require.config({
         "cookie": "/base/js/jquery.cookie",
         "lazyload": "/base/js/jquery.lazyload.min",
         "common": "/base/js/common",
+        "jTempletes": "/blogs/js/jquery-jtemplates",
+        "jTempletesUn": "/blogs/js/jquery-jtemplates_uncompressed",
         "ck": "/blogs/ckeditor/ckeditor"
     },
     shim: {
-        "lazyload" : ["jquery"]
+        "lazyload" : ["jquery"],
+        "cookie" : ["jquery"],
+        "jTempletes" : ["jquery"],
+        "jTempletesUn" : ["jquery"]
     },
     //require.js添加统一的url后缀参数方法，这里添加一个后缀时间戳，防止缓存
     urlArgs: "t=" + (new Date()).getTime()
@@ -18,6 +23,8 @@ require([
     "cookie",
     "lazyload",
     "common",
+    "jTempletes",
+    "jTempletesUn",
     "ck"
 ], function ($){
 
@@ -120,14 +127,22 @@ function BolgUtils(){
 
                 $("#comment-loading").hide();
 
-                var li = "";
+                var array = [];
                 if(list.length > 0){
-                    li = addCommentLi(list);
+                    array = addCommentLi(list);
+                    $("#comment-main-ul").show().empty();
+                    $("#comment-main-ul").setTemplateElement("mainComment");
+                    $("#comment-main-ul").processTemplate(array);
+                    var thisSec;
+                    $("#comment-main-ul").find(".comment-section").each(function(){
+                        thisSec = $(this);
+                        thisSec.html(thisSec.text());
+                    });
                 }else{
                     //则提示没有数据
                     li = "<li class='no-comments'><h3>目前还没有评论，快块来挽尊吧~~~~(>_<)~~~~</h3></li>";
+                    $("#comment-main-ul").show().empty().append(li);
                 }
-                $("#comment-main-ul").show().empty().append(li);
             },
             error : function(res){
                 $("#article-comment").data("page", clickPage);
@@ -280,7 +295,14 @@ function BolgUtils(){
                                 if(list.length > 0){
                                     bar.animate({width : "80%"}, function(){
                                         var replyLi = addReplyCommentLi(list);
-                                        ul.empty().append(replyLi);
+                                        ul.empty();
+                                        ul.setTemplateElement("replyComment");
+                                        ul.processTemplate(replyLi);
+                                        var thisSec;
+                                        ul.find(".comment-reply-section").each(function(){
+                                            thisSec = $(this);
+                                            thisSec.html(thisSec.text());
+                                        });
                                         bar.animate({width : "100%"}, function(){
                                             bar.css("width", "0%");
                                         });
@@ -328,14 +350,17 @@ function BolgUtils(){
             var commentId = helper.attr("commentid");
             var owner = _this.attr("owner");
             var name = "text" + commentSid;
-            var text = CKEDITOR.instances[name].document.getBody().getText();
-            var reg = /^(<[^><]+>|\s|&nbsp)+$/;
-            if(text == "" || reg.test(text)){
-                _this.parent().find("span").show();
-                return false;
-            }else{
-                _this.parent().find("span").hide();
+            var checkText = CKEDITOR.instances[name].document.getBody().getText();
+            var text = CKEDITOR.instances[name].getData();
+            var checkReg = /^(<[^><]+>|\s|&nbsp)+$/;
+            if(checkText == "" || checkReg.test(checkText)){
+                var reg = /<img[^>]+img\/([^>"]*)"[^>]+\/>/;
+                if(!reg.test(text)){
+                    _this.parent().find("span").show();
+                    return false;
+                }
             }
+            _this.parent().find("span").hide();
             var obj = $("#get-customer-info");
             obj.data("isReply", 1);
             obj.data("replyComment", commentId);
@@ -352,14 +377,17 @@ function BolgUtils(){
     var submitCommentButtonClick = function(){
         $("#submit-comment").click(function(){
             var _this = $(this);
-            var text = CKEDITOR.instances.commentEditor.document.getBody().getText();
-            var reg = /^(<[^><]+>|\s|&nbsp)+$/;
-            if(text == "" || reg.test(text)){
-                _this.parent().find("span").show();
-                return false;
-            }else{
-                _this.parent().find("span").hide();
+            var checkText = CKEDITOR.instances.commentEditor.document.getBody().getText();
+            var text = CKEDITOR.instances.commentEditor.getData();
+            var checkReg = /^(<[^><]+>|\s|&nbsp)+$/;
+            if(checkText == "" || checkReg.test(checkText)){
+                var reg = /<img[^>]+img\/([^>"]*)"[^>]+\/>/;
+                if(!reg.test(text)){
+                    _this.parent().find("span").show();
+                    return false;
+                }
             }
+            _this.parent().find("span").hide();
             var obj = $("#get-customer-info");
             obj.data("isReply", 0);
             obj.data("commentBody", text);
@@ -391,66 +419,91 @@ function BolgUtils(){
      * 拼接评论
      */
     var addCommentLi = function(list){
-        var obj, li = "", date;
+        var obj, temp, arr = [], date, clazz = "";
         for(var a = 0, b = list.length; a < b; a++){
             obj = list[a];
             var href = "javascript:";
-            var clazz = "";
             if(obj.commentUserWebsite != ""){
                 href = obj.commentUserWebsite;
-                clazz = "line"
+                clazz = "line";
             }
             date = new Date(obj.createDate);
-            li += "<li>" +
-                    "<h6>" +
-                        "<a href='" + href + "' class='" + clazz + "' target='_blank'>" + obj.commentUser + "</a>&nbsp;说：<span>" + date.format("yyyy-MM-dd") + "</span>" +
-                    "</h6>" +
-                    "<p>" +
-                        obj.commentBody +
-                    "</p>" +
-                    "<h6 class=\"comment-helper\" comment=\"" + obj.commentSid + "\" commentId='" + obj.commentId + "'>" +
-                        "<a class=\"reply\" show=\"N\">回复</a>" +
-                        "<a class=\"open\" show=\"N\" load=\"Y\">展开</a>" +
-                    "</h6>" +
-                    "<div class=\"comment-reply-bar\"></div>" +
-                    "<ul class=\"comment-reply-ul\"></ul>" +
-                    "<div class=\"comment-reply-div\">" +
-                        "<div class=\"comment-reply-editor\">" +
-                            "<textarea name=\"comment-reply-editor\" title=\"回复文章\"></textarea>" +
-                        "</div>" +
-                        "<div class=\"comment-reply-submit\">" +
-                            "<span>" +
-                                "对不起，文本内容不能为空！" +
-                            "</span>" +
-                            "<a class=\"submit-comment-reply\" owner=\"" + obj.commentUser + "\">" +
-                                "提交" +
-                            "</a>" +
-                        "</div>" +
-                    "</div>" +
-                  "</li>";
+            temp = {};
+            temp.href = href;
+            temp.clazz = clazz;
+            temp.time = date.format("yyyy-MM-dd");
+            temp.userName = obj.commentUser;
+            temp.comment = obj.commentBody;
+            temp.commentSid = obj.commentSid;
+            temp.commentId = obj.commentId;
+            arr.push(temp);
         }
-        return li;
+        return arr;
     };
+
+    // var addCommentLi = function(list){
+    //     var obj, li = "", date;
+    //     for(var a = 0, b = list.length; a < b; a++){
+    //         obj = list[a];
+    //         var href = "javascript:";
+    //         var clazz = "";
+    //         if(obj.commentUserWebsite != ""){
+    //             href = obj.commentUserWebsite;
+    //             clazz = "line"
+    //         }
+    //         date = new Date(obj.createDate);
+    //         li += "<li>" +
+    //                 "<h6>" +
+    //                     "<a href='" + href + "' class='" + clazz + "' target='_blank'>" + obj.commentUser + "</a>&nbsp;说：<span>" + date.format("yyyy-MM-dd") + "</span>" +
+    //                 "</h6>" +
+    //                 "<section>" +
+    //                     obj.commentBody +
+    //                 "</section>" +
+    //                 "<h6 class=\"comment-helper\" comment=\"" + obj.commentSid + "\" commentId='" + obj.commentId + "'>" +
+    //                     "<a class=\"reply\" show=\"N\">回复</a>" +
+    //                     "<a class=\"open\" show=\"N\" load=\"Y\">展开</a>" +
+    //                 "</h6>" +
+    //                 "<div class=\"comment-reply-bar\"></div>" +
+    //                 "<ul class=\"comment-reply-ul\"></ul>" +
+    //                 "<div class=\"comment-reply-div\">" +
+    //                     "<div class=\"comment-reply-editor\">" +
+    //                         "<textarea name=\"comment-reply-editor\" title=\"回复文章\"></textarea>" +
+    //                     "</div>" +
+    //                     "<div class=\"comment-reply-submit\">" +
+    //                         "<span>" +
+    //                             "对不起，文本内容不能为空！" +
+    //                         "</span>" +
+    //                         "<a class=\"submit-comment-reply\" owner=\"" + obj.commentUser + "\">" +
+    //                             "提交" +
+    //                         "</a>" +
+    //                     "</div>" +
+    //                 "</div>" +
+    //               "</li>";
+    //     }
+    //     return li;
+    // };
 
     /**
      * 拼接回复评论
      */
     var addReplyCommentLi = function(list){
-        var obj, li = "", date;
+        var obj, temp, array = [], clazz = "";
         for(var a = 0, b = list.length; a < b; a++){
             obj = list[a];
             var href = "javascript:";
             if(obj.commentUserWebsite != ""){
                 href = obj.commentUserWebsite;
+                clazz = "line";
             }
-            li += "<li>" +
-                        "<h6>" +
-                            "<span><a href='" + href + "' target='_blank'>" + obj.commentUser + "</a></span><span>回复</span><span>" + obj.commentReplyUser + "</span>" +
-                        "</h6>" +
-                        "<p>" + obj.commentBody + "</p>" +
-                   "</li>";
+            temp = {};
+            temp.href = href;
+            temp.clazz = clazz;
+            temp.userName = obj.commentUser;
+            temp.comment = obj.commentBody;
+            temp.replyUser = obj.commentReplyUser;
+            array.push(temp);
         }
-        return li;
+        return array;
     };
 
     /**

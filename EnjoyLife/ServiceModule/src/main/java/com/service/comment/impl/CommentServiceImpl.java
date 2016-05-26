@@ -12,7 +12,6 @@ import com.service.comment.ICommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.util.HtmlUtils;
 
 import java.util.Date;
 import java.util.List;
@@ -65,7 +64,6 @@ public class CommentServiceImpl extends BaseServiceImpl implements ICommentServi
         //创建评论对象
         Comment comment = this.createCommentEntity(form);
         ArticleComment articleComment = this.createArticleCommentEntity(form, comment);
-
         commentMapper.insertSelective(comment);
         articleCommentMapper.insertSelective(articleComment);
 
@@ -75,7 +73,7 @@ public class CommentServiceImpl extends BaseServiceImpl implements ICommentServi
         //创建评论对象
         Comment comment = new Comment();
         comment.setCommentId(UUID.randomUUID().toString());
-        comment.setCommentBody(HtmlUtils.htmlEscape(form.getCommentBody()));
+        comment.setCommentBody(form.getCommentBody());
         comment.setCommentIsReply(form.getCommentIsReply());
         comment.setCommentUser(form.getCommentUser());
         comment.setCommentEmail(form.getCommentEmail());

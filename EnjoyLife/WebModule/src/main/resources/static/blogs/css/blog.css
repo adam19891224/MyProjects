@@ -303,6 +303,7 @@
 .comment-submit span{
     display: none;
     color: red;
+    font-weight: bold;
 }
 
 .comment-submit a{
@@ -483,12 +484,21 @@
     display: none;
 }
 
+.article-comment .comment-section, .article-comment .comment-reply-section{
+    padding: 5px;
+    box-sizing: border-box;
+}
+
 #cancle-info{
     margin-right: 10%;
 }
 
 #submit-info{
     margin-right: 5px;
+}
+
+.jTempleta-textarea{
+    display: none;
 }
 
 @media screen and (max-width: 1200px) {

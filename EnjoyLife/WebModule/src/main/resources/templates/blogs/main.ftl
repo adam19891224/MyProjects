@@ -7,8 +7,8 @@
         [#include "../layout/head-setting.ftl"]
         <link rel="stylesheet" href="../blogs/css/blog.css?t=[@time /]">
         <link rel="stylesheet" href="../blogs/css/prism.css?t=[@time /]">
-        <script src="../blogs/js/blogs.js?t=[@time /]"></script>
         <script src="../blogs/js/prism.js"></script>
+        <script src="../blogs/js/blogs.js?t=[@time /]"></script>
     </head>
     <body>
         [#--顶部--]
