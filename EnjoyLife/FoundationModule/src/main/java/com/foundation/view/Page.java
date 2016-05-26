@@ -14,23 +14,45 @@ public class Page<T> implements Serializable {
 
     Logger logger = Logger.getLogger("controllerLog");
 
-    private String kw;
-
+    /**
+     * 分页参数
+     */
     private Integer page = 1;
 
     private Integer pageNum = 0;
 
     private Integer pageSize = 20;
 
+    private Integer totalCounts;
+
+    private Integer totalPages = 1;
+
+    /**
+     * 搜索关键字
+     */
+    private String kw;
+
+    /**
+     * 文章相关属性
+     */
     private String articleId;
 
+    private Byte isReply;
+
+    /**
+     * 返回结果集
+     */
     private List<T> resultList;
 
     private T resultObject;
 
-    private Integer totalCounts;
+    public Byte getIsReply() {
+        return isReply;
+    }
 
-    private Integer totalPages = 1;
+    public void setIsReply(Byte isReply) {
+        this.isReply = isReply;
+    }
 
     public Integer getTotalPages() {
         return totalPages;

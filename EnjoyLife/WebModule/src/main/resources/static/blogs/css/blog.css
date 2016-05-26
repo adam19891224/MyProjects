@@ -192,7 +192,15 @@
 .comment-main .comment-reply-ul h6 span{
     display: inline;
     float: left;
-    margin-left: 3px;
+}
+
+.comment-main .comment-reply-ul h6 span:nth-child(2){
+    margin-left: 10px;
+    font-weight: normal;
+}
+
+.comment-main .comment-reply-ul h6 span:nth-child(3){
+    margin-left: 10px;
 }
 
 .comment-reply-ul li{
@@ -213,6 +221,10 @@
     float: left;
     overflow: hidden;
     margin-top: 5px;
+}
+
+.comment-reply-editor textarea{
+    display: none;
 }
 
 .comment-main .comment-reply-submit{
@@ -275,6 +287,10 @@
     float: left;
     overflow: hidden;
     margin-top: 50px;
+}
+
+.comment-editor textarea{
+    display: none;
 }
 
 .article-comment .comment-submit{

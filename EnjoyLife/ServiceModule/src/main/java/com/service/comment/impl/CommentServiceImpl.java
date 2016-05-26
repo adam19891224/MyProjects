@@ -6,10 +6,9 @@ import com.comment.vo.ArticleComment;
 import com.comment.vo.Comment;
 import com.foundation.form.CommentForm;
 import com.foundation.utils.ConUtils;
-import com.foundation.utils.StringUtils;
 import com.foundation.view.Page;
-import com.service.comment.ICommentService;
 import com.service.base.BaseServiceImpl;
+import com.service.comment.ICommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,7 +37,7 @@ public class CommentServiceImpl extends BaseServiceImpl implements ICommentServi
         {
             List<Comment> list = commentMapper.selectByPage(page);
             if(list != null && list.size() > 0){
-                int count = commentMapper.selectCountsByArticle(page.getArticleId());
+                int count = commentMapper.selectCountsByArticle(page);
                 page.setTotalCounts(count);
                 page.setResultList(list);
                 page.setTotalPages((count + page.getPageSize() - 1) / page.getPageSize());
@@ -55,8 +54,8 @@ public class CommentServiceImpl extends BaseServiceImpl implements ICommentServi
     }
 
     @Override
-    public Integer selectCommentCountsByArticle(String articleId) {
-        return commentMapper.selectCountsByArticle(articleId);
+    public Integer selectCommentCountsByArticle(Page<Comment> page) {
+        return commentMapper.selectCountsByArticle(page);
     }
 
     @Transactional
@@ -77,19 +76,12 @@ public class CommentServiceImpl extends BaseServiceImpl implements ICommentServi
         Comment comment = new Comment();
         comment.setCommentId(UUID.randomUUID().toString());
         comment.setCommentBody(HtmlUtils.htmlEscape(form.getCommentBody()));
-        comment.setCommentBody(comment.getCommentBody().replace("\n","<br/>"));
         comment.setCommentIsReply(form.getCommentIsReply());
         comment.setCommentUser(form.getCommentUser());
         comment.setCommentEmail(form.getCommentEmail());
         comment.setCommentUserWebsite(form.getCommentUserWebsite());
-        if(StringUtils.isNotNull(form.getCommentReplyUser()) && StringUtils.isNotNull(form.getCommentReplyBody())){
-            comment.setCommentIsReply(new Byte("1"));
-            comment.setCommentReplyUser(form.getCommentReplyUser());
-            form.setCommentReplyBody(form.getCommentReplyBody().replace("<br>","\n"));
-            comment.setCommentReplyBody(HtmlUtils.htmlEscape(HtmlUtils.htmlUnescape(form.getCommentReplyBody())));
-            //替换掉换行符
-            comment.setCommentReplyBody(comment.getCommentReplyBody().replace("\n","<br/>"));
-        }
+        comment.setCommentReplyUser(form.getCommentReplyUser());
+        comment.setCommentReplyBody(form.getCommentReplyBody());
         comment.setCreateDate(new Date());
         comment.setUpdateDate(new Date());
         return comment;

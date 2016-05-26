@@ -3,7 +3,6 @@ package com.comment.dao;
 import com.comment.vo.Comment;
 import com.foundation.form.CommentForm;
 import com.foundation.view.Page;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -24,7 +23,7 @@ public interface CommentMapper {
 
     List<Comment> selectByPage(Page<Comment> page);
 
-    Integer selectCountsByArticle(@Param(value = "articleId") String articleId);
+    Integer selectCountsByArticle(Page<Comment> page);
 
     List<Comment> selectReplyComment(CommentForm form);
 }

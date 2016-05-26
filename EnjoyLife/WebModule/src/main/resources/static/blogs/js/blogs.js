@@ -86,8 +86,8 @@ function BolgUtils(){
     this.loadCommentById = function(aid){
         data = {};
         data.articleId = aid;
-        data.pageSize = 10;
-        data.page = $("#article-comment").data("page");
+        var clickPage = $("#article-comment").data("page");
+        data.page = clickPage;
         $("#comment-loading").show();
         $.ajax({
             url : "/blogs/getComment.html",
@@ -105,16 +105,16 @@ function BolgUtils(){
                 if(page >= totalPage){
                     //最后一页
                     newPage = totalPage;
-                    $("#article-comment").find(".comment-paginatior").find("a").last().addClass("paginatior-none");
+                    $("#article-comment").find(".comment-paginatior").find("a").first().addClass("paginatior-none");
                 }else{
-                    $("#article-comment").find(".comment-paginatior").find("a").last().removeClass("paginatior-none");
+                    $("#article-comment").find(".comment-paginatior").find("a").first().removeClass("paginatior-none");
                 }
 
                 if(page <= 1){
                     newPage = 1;
-                    $("#article-comment").find(".comment-paginatior").find("a").first().addClass("paginatior-none");
+                    $("#article-comment").find(".comment-paginatior").find("a").last().addClass("paginatior-none");
                 }else{
-                    $("#article-comment").find(".comment-paginatior").find("a").first().removeClass("paginatior-none");
+                    $("#article-comment").find(".comment-paginatior").find("a").last().removeClass("paginatior-none");
                 }
                 $("#article-comment").data("page", newPage);
 
@@ -130,10 +130,12 @@ function BolgUtils(){
                 $("#comment-main-ul").show().empty().append(li);
             },
             error : function(res){
+                $("#article-comment").data("page", clickPage);
                 console.log(res);
             },
             complete : function(XMLHttpRequest, status){
                 if(status=='timeout'){
+                    $("#article-comment").data("page", clickPage);
                     $("#comment-main-ul").show().append("<li class='no-comments'><h3>网络超时了 ~~~~(>_<)~~~~</h3></li>");
                 }
             }
@@ -159,6 +161,7 @@ function BolgUtils(){
             var isReply = obj.data("isReply");
             if(isReply){
                 data.commentReplyUser = obj.data("replyUser");
+                data.commentReplyBody = obj.data("replyComment");
             }
             data.commentIsReply = isReply;
             data.commentBody = obj.data("commentBody");
@@ -196,7 +199,7 @@ function BolgUtils(){
                 type : "post",
                 timeout : 5000,
                 success : function(res){
-                    CKEDITOR.instances[name].content.setData("");
+                    CKEDITOR.instances[name].setData("");
                     obj.find(".get-customer-info-div").show().end().find(".get-customer-info-div-img").hide().end().hide();
                     if(res == "success"){
                         showSubmitSuccessDiv("提交成功!");
@@ -258,6 +261,7 @@ function BolgUtils(){
                 if(_this.attr("load") == "Y"){
                     var bar = li.find(".comment-reply-bar");
                     var commentId = _this.parent().attr("commentId");
+                    //查询回复评论，则根据这条主评论查询，commentId 即为这条主评论的id
                     var data = {
                         commentId : commentId,
                         articleId : $("#article").attr("aid"),
@@ -265,7 +269,6 @@ function BolgUtils(){
                     };
 
                     bar.animate({width : "60%"}, function(){
-                        //ajax
                         $.ajax({
                             url : "/blogs/getReplyComment.html",
                             data : data,
@@ -278,6 +281,9 @@ function BolgUtils(){
                                     bar.animate({width : "80%"}, function(){
                                         var replyLi = addReplyCommentLi(list);
                                         ul.empty().append(replyLi);
+                                        bar.animate({width : "100%"}, function(){
+                                            bar.css("width", "0%");
+                                        });
                                     });
                                 }else{
                                     bar.animate({width : "100%"}, function(){
@@ -289,6 +295,8 @@ function BolgUtils(){
                             },
                             error : function(res){
                                 bar.animate({width : "100%"}, function(){
+                                    _this.text("重新加载");
+                                    console.log(res);
                                     bar.css("width", "0%");
                                 });
                             },
@@ -296,6 +304,7 @@ function BolgUtils(){
                                 if(status=='timeout'){
                                     bar.animate({width : "100%"}, function(){
                                         ul.append("<li class='no-comments'><h4>超时了，请重新加载</h4></li>");
+                                        _this.text("重新加载");
                                         bar.css("width", "0%");
                                     });
                                 }
@@ -314,7 +323,9 @@ function BolgUtils(){
         //回复评论框按钮
         $("#comment-main-ul").on("click", ".submit-comment-reply", function(){
             var _this = $(this);
-            var commentSid = _this.parents("li").find(".comment-helper").attr("comment");
+            var helper = _this.parents("li").find(".comment-helper");
+            var commentSid = helper.attr("comment");
+            var commentId = helper.attr("commentid");
             var owner = _this.attr("owner");
             var name = "text" + commentSid;
             var text = CKEDITOR.instances[name].document.getBody().getText();
@@ -327,6 +338,7 @@ function BolgUtils(){
             }
             var obj = $("#get-customer-info");
             obj.data("isReply", 1);
+            obj.data("replyComment", commentId);
             obj.data("commentBody", text);
             obj.data("replyUser", owner);
             obj.data("editorName", name);
@@ -410,7 +422,7 @@ function BolgUtils(){
                             "<span>" +
                                 "对不起，文本内容不能为空！" +
                             "</span>" +
-                            "<a class=\"submit-comment-reply\" owner=\"123123\">" +
+                            "<a class=\"submit-comment-reply\" owner=\"" + obj.commentUser + "\">" +
                                 "提交" +
                             "</a>" +
                         "</div>" +
@@ -427,13 +439,15 @@ function BolgUtils(){
         var obj, li = "", date;
         for(var a = 0, b = list.length; a < b; a++){
             obj = list[a];
+            var href = "javascript:";
+            if(obj.commentUserWebsite != ""){
+                href = obj.commentUserWebsite;
+            }
             li += "<li>" +
-                    "<h6>" +
-                        "<span>SSSS</span><span>回复</span><span>XXXX</span>" +
-                    "</h6>" +
-                    "<p>" +
-                        "按时大大大哇的" +
-                    "</p>" +
+                        "<h6>" +
+                            "<span><a href='" + href + "' target='_blank'>" + obj.commentUser + "</a></span><span>回复</span><span>" + obj.commentReplyUser + "</span>" +
+                        "</h6>" +
+                        "<p>" + obj.commentBody + "</p>" +
                    "</li>";
         }
         return li;
@@ -444,7 +458,7 @@ function BolgUtils(){
      */
     var showSubmitSuccessDiv = function(str){
         $("#comment-subimt-success-div").show().find("span").text(str);
-        setTimeout(hiddenSubmitSuccessDiv, 3000);
+        setTimeout(hiddenSubmitSuccessDiv, 2000);
     };
     /**
      * 隐藏展示Div

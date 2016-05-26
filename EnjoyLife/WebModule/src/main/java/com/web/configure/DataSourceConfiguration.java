@@ -42,6 +42,7 @@ public class DataSourceConfiguration {
         config.setJdbcUrl(url);
         config.setUsername(userName);
         config.setPassword(userPassword);
+        config.setConnectionTimeout(20000);
         return new HikariDataSource(config);
     }
 

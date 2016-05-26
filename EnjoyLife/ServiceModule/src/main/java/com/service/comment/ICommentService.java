@@ -17,7 +17,7 @@ public interface ICommentService {
 
     List<Comment> selectReplyCommentByForm(CommentForm form);
 
-    Integer selectCommentCountsByArticle(String articleId);
+    Integer selectCommentCountsByArticle(Page<Comment> page);
 
     void saveComment(CommentForm form);
 

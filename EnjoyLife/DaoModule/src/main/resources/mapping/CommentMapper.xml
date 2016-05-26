@@ -244,19 +244,27 @@
       <if test="articleId != null and articleId != '' ">
         tac.ARTICLE_ID = #{articleId}
       </if>
+      <if test="isReply != null">
+        AND tc.COMMENT_IS_REPLY = #{isReply}
+      </if>
     </where>
     ORDER BY tc.CREATE_DATE DESC
     limit #{pageNum}, #{pageSize}
   </select>
 
-  <select id="selectCountsByArticle" resultType="java.lang.Integer" parameterType="java.lang.String">
+  <select id="selectCountsByArticle" resultType="java.lang.Integer" parameterType="com.foundation.view.Page">
     SELECT
       COUNT(1)
     FROM
       tb_article_comment tac
+    LEFT JOIN
+      tb_comment tc ON tac.COMMENT_ID = tc.COMMENT_ID
     <where>
       <if test="articleId != null and articleId != '' ">
         tac.ARTICLE_ID = #{articleId}
+      </if>
+      <if test="isReply != null and isReply != '' ">
+        AND tc.COMMENT_IS_REPLY = #{isReply}
       </if>
     </where>
   </select>
@@ -273,7 +281,7 @@
         tac.ARTICLE_ID = #{articleId}
       </if>
       <if test="commentId != null and commentId != '' ">
-        AND tac.COMMENT_ID = #{commentId}
+        AND tc.COMMENT_REPLY_BODY = #{commentId}
       </if>
       <if test="commentIsReply != null and commentIsReply != '' ">
         AND tc.COMMENT_IS_REPLY = #{commentIsReply}

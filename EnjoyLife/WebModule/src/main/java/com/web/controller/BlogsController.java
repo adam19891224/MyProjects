@@ -56,6 +56,9 @@ public class BlogsController extends BaseController {
     @ResponseBody
     public String getComment(Page<Comment> page){
         logger.info("进入获取评论方法");
+        page.setPageSize(10);
+        page.setPage(page.getPage());
+        page.setIsReply(Byte.valueOf("0"));
         page = commentService.selectCommentByPage(page);
         return super.parseObjectToJson(page);
     }
