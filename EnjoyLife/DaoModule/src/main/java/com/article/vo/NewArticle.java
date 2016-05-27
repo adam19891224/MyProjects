@@ -1,7 +1,5 @@
 package com.article.vo;
 
-import com.article.vo.ArticleWithBLOBs;
-
 /**
  * Created by IntelliJ IDEA
  * User: Adam
@@ -10,6 +8,16 @@ import com.article.vo.ArticleWithBLOBs;
 public class NewArticle extends ArticleWithBLOBs {
 
     private String highLightTitle;
+
+    private int hots;
+
+    public int getHots() {
+        return hots;
+    }
+
+    public void setHots(int hots) {
+        this.hots = hots;
+    }
 
     public String getHighLightTitle() {
         return highLightTitle;

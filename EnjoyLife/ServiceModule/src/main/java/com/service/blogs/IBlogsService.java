@@ -2,9 +2,7 @@ package com.service.blogs;
 
 import com.article.vo.ArticleWithBLOBs;
 import com.article.vo.NewArticle;
-import com.foundation.form.ArticleForm;
 import com.foundation.view.Page;
-import com.foundation.view.Tree;
 
 import java.util.List;
 
@@ -35,5 +33,10 @@ public interface IBlogsService {
      * @return
      */
     ArticleWithBLOBs selectArticleBySID(Integer sid);
+
+    /**
+     * 获取前8个热门评论的博客
+     */
+    List<NewArticle> selectHotsForEight();
 
 }

@@ -2,6 +2,7 @@ package com.article.search.impl;
 
 import com.article.search.SolrArticleMapper;
 import com.article.vo.NewArticle;
+import com.foundation.enums.SolrResultMapKeyEnum;
 import com.foundation.solr.factory.SolrFactory;
 import com.foundation.utils.ConUtils;
 import com.foundation.utils.StringUtils;
@@ -20,7 +21,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by adam on 2016/5/8.
+ * Created by IntelliJ IDEA
+ * User: Adam
+ * Date: 2016/5/8
  */
 @Repository
 public class SolrArticleMapperImpl implements SolrArticleMapper {
@@ -33,7 +36,7 @@ public class SolrArticleMapperImpl implements SolrArticleMapper {
 
 
     @Override
-    public Page<NewArticle> selectArticlesByPage(Page<NewArticle> page) {
+    public Map<String, Object> selectArticlesByPage(Page<NewArticle> page) throws IOException, SolrServerException {
         boolean isHighlight = false;
         QueryResponse response = null;
 
@@ -44,40 +47,34 @@ public class SolrArticleMapperImpl implements SolrArticleMapper {
         if(StringUtils.isNotNull(page.getKw())){
             isHighlight = true;
         }
-        try {
-            response = solrClient.query(query);
-            Map<String, Map<String, List<String>>>  map = response.getHighlighting();
-            SolrDocumentList results = response.getResults();
-            List<NewArticle> list = ConUtils.arraylist();
-            NewArticle newArticle;
-            if(results.size() > 0){
-//                page.setPage(page.getPage() + 1);
-                for(SolrDocument document : results){
-                    newArticle = new NewArticle();
-                    newArticle.setArticleSid((Integer) document.get("articleSid"));
-                    newArticle.setArticleId((String) document.get("articleId"));
-                    newArticle.setArticleImg((String) document.get("articleImg"));
-                    newArticle.setArticleTitle((String) document.get("articleTitle"));
-                    if(isHighlight){
-                        newArticle.setHighLightTitle(map.get(document.get("articleSid").toString()).get("articleTitle").get(0));
-                    }
-                    newArticle.setArticleDescription((String) document.get("articleDescription"));
-                    newArticle.setCreateDate((Date) document.get("createDate"));
-                    newArticle.setUpdateDate((Date) document.get("updateDate"));
-                    list.add(newArticle);
+        response = solrClient.query(query);
+        Map<String, Map<String, List<String>>>  map = response.getHighlighting();
+        SolrDocumentList results = response.getResults();
+        List<NewArticle> list = ConUtils.arraylist();
+        Map<String, Object> resultMap = ConUtils.hashmap();
+        int count = 0;
+        NewArticle newArticle;
+        if(results.size() > 0){
+            for(SolrDocument document : results){
+                newArticle = new NewArticle();
+                newArticle.setArticleSid((Integer) document.get("articleSid"));
+                newArticle.setArticleId((String) document.get("articleId"));
+                newArticle.setArticleImg((String) document.get("articleImg"));
+                newArticle.setArticleTitle((String) document.get("articleTitle"));
+                if(isHighlight){
+                    newArticle.setHighLightTitle(map.get(document.get("articleSid").toString()).get("articleTitle").get(0));
                 }
-                page.setResultList(list);
-                if(page.getTotalCounts() == null){
-                    int count = (int) results.getNumFound();
-                    page.setTotalCounts(count);
-                    //总页数计算方法：总记录数 + 每页显示记录数 - 1 的结果 / 每页显示记录数
-                    page.setTotalPages((count + page.getPageSize() - 1) / page.getPageSize());
-                }
+                newArticle.setArticleDescription((String) document.get("articleDescription"));
+                newArticle.setCreateDate((Date) document.get("createDate"));
+                newArticle.setUpdateDate((Date) document.get("updateDate"));
+                list.add(newArticle);
             }
-        } catch (SolrServerException | IOException e) {
-            e.printStackTrace();
+            count = (int) results.getNumFound();
         }
-        return page;
+        //保存进返回结果map中
+        resultMap.put(SolrResultMapKeyEnum.ResultSet.getKey(), list);
+        resultMap.put(SolrResultMapKeyEnum.ResultCounts.getKey(), count);
+        return resultMap;
     }
 
     //组装solr的query查询对象

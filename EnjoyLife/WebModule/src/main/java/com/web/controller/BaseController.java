@@ -26,8 +26,8 @@ class BaseController {
         try {
             res = JSONObject.toJSONString(o);
         }catch (Exception e){
-            logger.error("JSON 转换错误： ");
-            logger.error(e);
+            logger.error("JSON 转换错误: =========================");
+            logger.error("异常原因： " + e);
         }
         return res;
     }

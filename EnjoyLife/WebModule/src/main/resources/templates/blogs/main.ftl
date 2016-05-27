@@ -48,24 +48,20 @@
                             热门搜索
                         </h3>
                         <div class="line"></div>
-                        <ul>
-                            <li>
-                                <a href="#">热点11111</a>
-                            </li>
-                            <li>
-                                <a href="#">热点11111</a>
-                            </li>
-                        </ul>
+                        <ul id="hots-article-ul"></ul>
                     </div>
                 </div>
             </div>
         </main>
 
         [#--提交评论确认信息框--]
-        [#include "customer-info.ftl"]
+        [#include "comment-customer-submit-info.ftl"]
 
         [#--提交完成展示div--]
-        [#include "comment-subimt-success.ftl"]
+        [#include "comment-customer-subimt-success.ftl"]
+
+        [#--热门文章模板--]
+        [#include "../index/hot-article-li.ftl"]
 
         [#--底部--]
         [#include "../layout/footer.ftl"]

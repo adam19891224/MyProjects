@@ -13,7 +13,7 @@ function Common(){
 
     this.showNavigatorBar = function(index){
         $("#index-navigator li a").eq(index).css("color", "white");
-    }
+    };
 }
 
 Date.prototype.format = function(fmt) {

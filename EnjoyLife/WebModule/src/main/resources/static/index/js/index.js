@@ -3,10 +3,15 @@ require.config({
         "jquery": "/base/js/jquery-2.2.3.min",
         "cookie": "/base/js/jquery.cookie",
         "lazyload": "/base/js/jquery.lazyload.min",
-        "common": "/base/js/common"
+        "jTempletes": "/blogs/js/jquery-jtemplates",
+        "jTempletesUn": "/blogs/js/jquery-jtemplates_uncompressed",
+        "common": "/base/js/common",
+        "hots": "/base/js/hots"
     },
     shim: {
-        "lazyload" : ["jquery"]
+        "lazyload" : ["jquery"],
+        "jTempletes" : ["jquery"],
+        "jTempletesUn" : ["jquery"]
     },
     //require.js添加统一的url后缀参数方法，这里添加一个后缀时间戳，防止缓存
     urlArgs: "t=" + (new Date()).getTime()
@@ -16,28 +21,22 @@ require([
     "jquery",
     "cookie",
     "lazyload",
-    "common"
+    "jTempletes",
+    "jTempletesUn",
+    "common",
+    "hots"
 ], function ($){
 
     var common = new Common();
     common.searchButtonMouseListener();
     common.showNavigatorBar(0);
+
     var indexUtils = new IndexUtils();
     indexUtils.init();
     indexUtils.paginationClickListener();
 
-    // var win;
-    // var scrollTop, scrollHeight, windowHeight;
-    // $(window).scroll(function(){
-    //     win = $(this);
-    //     scrollTop = win.scrollTop();
-    //     scrollHeight = $(document).height();
-    //     windowHeight = win.height();
-    //     if(scrollTop + windowHeight == scrollHeight){
-    //         indexUtils.getBlogsByPage();
-    //     }
-    // });
-
+    var hotsUtils = new HotsUtils();
+    hotsUtils.getHots();
 });
 
 function IndexUtils(){

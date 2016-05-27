@@ -67,36 +67,14 @@
                             热门搜索
                         </h3>
                         <div class="line"></div>
-                        <ul>
-                            <li>
-                                <a href="#">热点11111</a>
-                            </li>
-                            <li>
-                                <a href="#">热点11111</a>
-                            </li>
-                            <li>
-                                <a href="#">热点11111</a>
-                            </li>
-                            <li>
-                                <a href="#">热点11111</a>
-                            </li>
-                            <li>
-                                <a href="#">热点11111</a>
-                            </li>
-                            <li>
-                                <a href="#">热点11111</a>
-                            </li>
-                            <li>
-                                <a href="#">热点11111</a>
-                            </li>
-                            <li>
-                                <a href="#">热点11111</a>
-                            </li>
-                        </ul>
+                        <ul id="hots-article-ul"></ul>
                     </div>
                 </div>
             </div>
         </main>
+
+        [#--热门文章模板--]
+        [#include "hot-article-li.ftl"]
 
         [#--底部--]
         [#include "../layout/footer.ftl"]

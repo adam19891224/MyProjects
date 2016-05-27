@@ -6,7 +6,8 @@ require.config({
         "common": "/base/js/common",
         "jTempletes": "/blogs/js/jquery-jtemplates",
         "jTempletesUn": "/blogs/js/jquery-jtemplates_uncompressed",
-        "ck": "/blogs/ckeditor/ckeditor"
+        "ck": "/blogs/ckeditor/ckeditor",
+        "hots": "/base/js/hots"
     },
     shim: {
         "lazyload" : ["jquery"],
@@ -25,7 +26,8 @@ require([
     "common",
     "jTempletes",
     "jTempletesUn",
-    "ck"
+    "ck",
+    "hots"
 ], function ($){
 
     var common = new Common();
@@ -49,6 +51,10 @@ require([
     var blogUtils = new BolgUtils();
     blogUtils.init();
     blogUtils.offsetScroll();
+
+    var hotsUtils = new HotsUtils();
+    hotsUtils.getHots();
+
 });
 
 function BolgUtils(){
