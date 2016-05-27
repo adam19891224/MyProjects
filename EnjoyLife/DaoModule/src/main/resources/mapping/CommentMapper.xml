@@ -263,7 +263,7 @@
       <if test="articleId != null and articleId != '' ">
         tac.ARTICLE_ID = #{articleId}
       </if>
-      <if test="isReply != null and isReply != '' ">
+      <if test="isReply != null">
         AND tc.COMMENT_IS_REPLY = #{isReply}
       </if>
     </where>

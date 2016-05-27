@@ -58,6 +58,9 @@ function BolgUtils(){
     var COOKIE_USER_EMAIL = "enjoy-life-customer-email";
     var COOKIE_USER_WEB = "enjoy-life-customer-web";
     var COOKIE_TIME = 30;
+    var CHECK_REG = /^(<[^><]+>|\s|&nbsp)+$/;
+    var EMAIL_REG = /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/;
+    var IMAGE_REG = /<img\b[^>]*>/;
 
     this.init = function(){
         commentHelperListener();
@@ -195,9 +198,8 @@ function BolgUtils(){
             data.commentIsReply = isReply;
             data.commentBody = obj.data("commentBody");
 
-            var reg = /^(<[^><]+>|\s|&nbsp)+$/;
             var username = obj.find("#username").val();
-            if(username == "" || reg.test(username)){
+            if(username == "" || CHECK_REG.test(username)){
                 alert("请填写您的称呼");
                 return false;
             }
@@ -205,12 +207,11 @@ function BolgUtils(){
             setCookieInfo(COOKIE_USER_NAME, username);
 
             var useremail = obj.find("#useremail").val();
-            if(useremail == "" || reg.test(useremail)){
+            if(useremail == "" || CHECK_REG.test(useremail)){
                 alert("请填写您的邮箱，放心，本人不会公开该信息");
                 return false;
             }
-            var emailReg = /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/;
-            if(!emailReg.test(useremail)){
+            if(!EMAIL_REG.test(useremail)){
                 alert("请填写正确的邮箱格式");
                 return false;
             }
@@ -243,6 +244,7 @@ function BolgUtils(){
                 },
                 error : function(res){
                     obj.find(".get-customer-info-div").show().end().find(".get-customer-info-div-img").hide().end().hide();
+                    console.log(res);
                     showSubmitSuccessDiv("提交失败!");
                 },
                 complete : function(XMLHttpRequest, status){
@@ -282,7 +284,7 @@ function BolgUtils(){
             }
         });
 
-        //展示回复评论按钮
+        //展开按钮
         $("#comment-main-ul").on("click", ".open", function(){
             var _this = $(this);
             var li = _this.parents("li");
@@ -356,7 +358,7 @@ function BolgUtils(){
             }
         });
 
-        //回复评论框按钮
+        //回复评论提交按钮
         $("#comment-main-ul").on("click", ".submit-comment-reply", function(){
             var _this = $(this);
             var helper = _this.parents("li").find(".comment-helper");
@@ -366,10 +368,8 @@ function BolgUtils(){
             var name = "text" + commentSid;
             var checkText = CKEDITOR.instances[name].document.getBody().getText();
             var text = CKEDITOR.instances[name].getData();
-            var checkReg = /^(<[^><]+>|\s|&nbsp)+$/;
-            if(checkText == "" || checkReg.test(checkText)){
-                var reg = /<img[^>]+img\/([^>"]*)"[^>]+\/>/;
-                if(!reg.test(text)){
+            if(checkText == "" || CHECK_REG.test(checkText)){
+                if(!IMAGE_REG.test(text)){
                     _this.parent().find("span").show();
                     return false;
                 }
@@ -389,17 +389,15 @@ function BolgUtils(){
     };
 
     /**
-     * 回复文章按钮事件
+     * 主评论提交按钮事件
      */
     var submitCommentButtonClick = function(){
         $("#submit-comment").click(function(){
             var _this = $(this);
             var checkText = CKEDITOR.instances.commentEditor.document.getBody().getText();
             var text = CKEDITOR.instances.commentEditor.getData();
-            var checkReg = /^(<[^><]+>|\s|&nbsp)+$/;
-            if(checkText == "" || checkReg.test(checkText)){
-                var reg = /<img[^>]+img\/([^>"]*)"[^>]+\/>/;
-                if(!reg.test(text)){
+            if(checkText == "" || CHECK_REG.test(checkText)){
+                if(!IMAGE_REG.test(text)){
                     _this.parent().find("span").show();
                     return false;
                 }
@@ -437,7 +435,7 @@ function BolgUtils(){
     };
 
     /**
-     * 拼接评论
+     * 拼接主评论
      */
     var addCommentLi = function(list){
         var obj, temp, arr = [], date, clazz = "";
