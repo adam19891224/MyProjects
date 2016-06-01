@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.article.dao.ArticleMapper" >
+
+    <resultMap id="NewArticleBody" type="com.article.vo.NewArticle" extends="ResultMapWithBLOBs" >
+        <result column="hots" property="hots" jdbcType="INTEGER" />
+    </resultMap>
+
+    <select id="selectByPage" resultMap="NewArticleBody" parameterType="com.foundation.view.Page">
+        SELECT
+          ta.*
+        FROM
+          tb_article ta
+        <where>
+            <if test="kw != null and kw != '' ">
+                ta.ARTICLE_TITLE LIKE CONCAT('%', #{kw}, '%')
+            </if>
+        </where>
+        ORDER BY ta.CREATE_DATE DESC
+        limit #{pageNum}, #{pageSize}
+    </select>
+
+    <select id="selectCountsByPage" resultType="java.lang.Integer" parameterType="com.foundation.view.Page">
+        SELECT
+          COUNT(1)
+        FROM
+          tb_article ta
+        <where>
+            <if test="kw != null and kw != '' ">
+                ta.ARTICLE_TITLE LIKE CONCAT('%', #{kw}, '%')
+            </if>
+        </where>
+    </select>
+
+    <select id="selectHotsLimitEight" resultMap="NewArticleBody">
+        SELECT
+            temp.*
+        FROM
+            (SELECT
+                ta.ARTICLE_SID,
+                ta.ARTICLE_TITLE,
+                (
+                    SELECT
+                        COUNT(tac.ARTICLE_COMMENT_ID)
+                    FROM
+                        tb_article_comment tac
+                    INNER JOIN tb_comment tc ON tac.COMMENT_ID = tc.COMMENT_ID
+                    WHERE
+                        tac.ARTICLE_ID = ta.ARTICLE_ID
+                    AND tc.COMMENT_IS_REPLY = 0
+                ) hots
+            FROM
+                tb_article ta
+            ORDER BY hots DESC
+            ) temp
+        WHERE
+          temp.hots > 0
+        LIMIT 0,8
+    </select>
+</mapper>

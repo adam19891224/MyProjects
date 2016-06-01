@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.type.dao.TypeMapper" >
+
+    <resultMap id="TreeMap" type="com.foundation.view.Tree" >
+        <id column="TYPE_ID" property="id" jdbcType="VARCHAR" />
+        <result column="TYPE_NAME" property="name" jdbcType="VARCHAR" />
+        <result column="TYPE_PARENT_ID" property="parentId" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="selectToTree" resultMap="TreeMap">
+        SELECT
+            tt.TYPE_ID,
+            tt.TYPE_NAME,
+            tt.TYPE_PARENT_ID
+        FROM
+          tb_type tt
+    </select>
+
+</mapper>

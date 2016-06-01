@@ -24,7 +24,7 @@ public class MybatisConfiguration {
         sqlSessionFactoryBean.setDataSource(dataSource);
         //配置sql.xml
         PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-        sqlSessionFactoryBean.setMapperLocations(resolver.getResources("classpath*:/mapping/*.xml"));
+        sqlSessionFactoryBean.setMapperLocations(resolver.getResources("classpath*:/mapping/*/*.xml"));
         return sqlSessionFactoryBean.getObject();
 
     }
