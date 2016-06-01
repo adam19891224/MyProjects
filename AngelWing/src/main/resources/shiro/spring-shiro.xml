@@ -22,15 +22,15 @@
 	    		关于下面的配置，anon是shiro自带的权限，空权限，表示这个权限对应的资源不需要进行权限认证
 	    		而authc也是shiro的权限，但是这个权限就表示它前面的资源需要进行权限认证，并且如果后面有参数，则表示这个资源不仅要认证，还需要有对应的权限资格才行
 	    	 -->
-	         /login.html=anon
-	         /error.html=anon
-	         /register.html=anon
-	         /toRegister.html=anon
-	         /logout.html=anon
-	         /notfound.html=anon
-	         /main.html=authc,perms[user]
-	         /applications/**=authc,perms[user]
-	         /manager/**=authc,perms[admin,user]
+	         /login.html = anon
+	         /error.html = anon
+	         /register.html = anon
+	         /toRegister.html = anon
+	         /logout.html = anon
+	         /notfound.html = anon
+	         /main.html = authc,perms[user]
+	         /applications/** = authc,perms[user]
+	         /manager/** = authc,perms[admin,user]
 		</value>
 	  </property>
 	</bean>

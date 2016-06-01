@@ -49,7 +49,7 @@ public class ArticleServiceImpl extends BaseServiceImpl<ArticleWithBLOBs> implem
         article.setCreateDate(new Date());
         article.setUpdateDate(new Date());
         article.setArticleTitle(form.getArticleTitle());
-        article.setArticleImg(UploadUtils.WEB_URL + form.getArticleImage());
+        article.setArticleImg(form.getArticleImage());
         article.setArticleDescription(form.getArticleDesc());
         article.setArticleBody(form.getArticleBody());
 

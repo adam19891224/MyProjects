@@ -39,11 +39,11 @@
             如果需要用maven打war包，则需要移除spring boot的tomcat依赖，
             不然生成的war会包含tomcat的相关jar包，这样把这个war放入tomcat中运行自然会报错
         -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-tomcat</artifactId>
-            <scope>provided</scope>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-starter-tomcat</artifactId>-->
+            <!--<scope>provided</scope>-->
+        <!--</dependency>-->
 
 
         <dependency>

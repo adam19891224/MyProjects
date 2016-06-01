@@ -19,9 +19,9 @@ import java.io.InputStreamReader;
  */
 public class UploadUtils {
 
-    public static final String WEB_URL = "http://image.adamzhou.cn/";
+//    public static final String WEB_URL = "http://img.xiao-shadow.com/";
 
-//    public static final String WEB_URL = "http://localhost:9999/";
+    public static final String WEB_URL = "http://localhost:9999/";
 
     public static CloseableHttpResponse uploadFile(String url, HttpEntity entity){
 
@@ -74,7 +74,7 @@ public class UploadUtils {
                 }
             }
         }
-        return  res;
+        return res;
     }
 
 }

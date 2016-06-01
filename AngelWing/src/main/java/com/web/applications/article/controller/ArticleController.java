@@ -9,20 +9,19 @@ import com.web.applications.article.form.ArticleForm;
 import com.web.applications.article.service.ArticleService;
 import com.web.applications.article.service.TypeService;
 import com.web.base.controller.BaseController;
-import org.apache.commons.fileupload.disk.DiskFileItem;
 import org.apache.http.HttpEntity;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
-import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.InputStreamBody;
 import org.apache.http.entity.mime.content.StringBody;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.annotation.Resource;
-import java.io.File;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -62,20 +61,43 @@ public class ArticleController extends BaseController {
     @ResponseBody
     public String uploadFile(String topx, String topy, String imgW, String imgH, MultipartFile file) {
 
-        //转换multipartFile为file
-        DiskFileItem fi = (DiskFileItem) ((CommonsMultipartFile) file).getFileItem();
-        File uploadFile = fi.getStoreLocation();
+        try {
+            HttpEntity reqEntity = null;
+            reqEntity = MultipartEntityBuilder.create()
+                    .addPart("file", new InputStreamBody(file.getInputStream(), file.getOriginalFilename()))
+                    .addPart("x", new StringBody(topx, ContentType.TEXT_PLAIN))
+                    .addPart("y", new StringBody(topy, ContentType.TEXT_PLAIN))
+                    .addPart("cutWidth", new StringBody(imgW, ContentType.TEXT_PLAIN))
+                    .addPart("cutHeight", new StringBody(imgH, ContentType.TEXT_PLAIN))
+                    .addPart("suffix", new StringBody(UploadUtils.getPostfix(file.getOriginalFilename()), ContentType.TEXT_PLAIN))
+                    .build();
+            return UploadUtils.WEB_URL + UploadUtils.getResponseString(UploadUtils.uploadFile(UploadUtils.WEB_URL + "image/upload.html", reqEntity));
+        } catch (IOException e) {
+            logger.error("上传主图发生异常， 异常为：" + e);
+        }
+        return "error";
+    }
 
-        HttpEntity reqEntity = MultipartEntityBuilder.create()
-                .addPart("file", new FileBody(uploadFile))
-                .addPart("x", new StringBody(topx, ContentType.TEXT_PLAIN))
-                .addPart("y", new StringBody(topy, ContentType.TEXT_PLAIN))
-                .addPart("cutWidth", new StringBody(imgW, ContentType.TEXT_PLAIN))
-                .addPart("cutHeight", new StringBody(imgH, ContentType.TEXT_PLAIN))
-                .addPart("suffix", new StringBody(UploadUtils.getPostfix(file.getOriginalFilename()), ContentType.TEXT_PLAIN))
-                .build();
+    @RequestMapping("/uploadImage.html")
+    @ResponseBody
+    public String uploadImage(MultipartFile upload, String CKEditorFuncNum, HttpServletRequest request) {
 
-        return UploadUtils.getResponseString(UploadUtils.uploadFile(UploadUtils.WEB_URL + "image/upload.html", reqEntity));
+        try {
+            HttpEntity reqEntity = null;
+            reqEntity = MultipartEntityBuilder.create()
+                    .addPart("file", new InputStreamBody(upload.getInputStream(), upload.getOriginalFilename()))
+                    .addPart("suffix", new StringBody(UploadUtils.getPostfix(upload.getOriginalFilename()), ContentType.TEXT_PLAIN))
+                    .build();
+            String res = UploadUtils.WEB_URL + UploadUtils.getResponseString(UploadUtils.uploadFile(UploadUtils.WEB_URL + "image/upload.html", reqEntity));
+
+            res = res.replaceAll("\\\\", "/");
+            return "<script type=\"text/javascript\">" +
+                    "window.parent.CKEDITOR.tools.callFunction(" + CKEditorFuncNum + ",'" + res + "','')" +
+                    "</script>";
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "error";
     }
 
     @RequestMapping("/save.html")

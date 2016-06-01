@@ -26,7 +26,8 @@
                     <span>标题</span>
                 </div>
                 <div class="title-right">
-                    <input id="articleTitle" class="easyui-textbox" data-options="prompt:'请输入博文标题...'" style="width:95%;height:28px;">
+                    <input id="articleTitle" class="easyui-textbox" data-options="prompt:'请输入博文标题...'"
+                           style="width:95%;height:28px;">
                 </div>
             </div>
             <!--描述-->
@@ -35,7 +36,8 @@
                     <span>主要描述</span>
                 </div>
                 <div class="title-right">
-                    <input id="articleDescription" class="easyui-textbox" data-options="prompt:'请输入博文描述...'" style="width:95%;height:28px;">
+                    <input id="articleDescription" class="easyui-textbox" data-options="prompt:'请输入博文描述...'"
+                           style="width:95%;height:28px;">
                 </div>
             </div>
             <div id="left-main">
@@ -55,9 +57,6 @@
             <div id="left-button">
                 <a id="submitButton" href="javascript:" class="easyui-linkbutton" data-options="iconCls:'icon-save'">提交保存</a>
             </div>
-        </div>
-        <div id="content-right" style="color: black;">
-            <article></article>
         </div>
     </div>
 </div>
@@ -94,16 +93,19 @@
                         <img id="getImage" style="max-width: 100%">
                     </td>
                     <td align="center" style="width: 50%">
-                        <div id="image-preview" style="width: 102px; height: 102px; margin: 0 auto;border: 2px solid orange; overflow: hidden">
+                        <div id="image-preview"
+                             style="width: 102px; height: 102px; margin: 0 auto;border: 2px solid orange; overflow: hidden">
                             <img id="getPreviewImage" style="max-width: 100%">
                         </div>
                     </td>
                 </tr>
             </table>
-            <div id="getImageBar" class="easyui-progressbar" data-options="value:0" style="width:400px; height: 30px; margin: 50px auto 0; display: none;"></div>
+            <div id="getImageBar" class="easyui-progressbar" data-options="value:0"
+                 style="width:400px; height: 30px; margin: 50px auto 0; display: none;"></div>
         </div>
         <div class="image-submit">
-            <a id="submitBolg" href="javascript:" style="margin-right: 50px; float:right;" class="easyui-linkbutton" data-options="iconCls:'icon-save'">保存博客</a>
+            <a id="submitBolg" href="javascript:" style="margin-right: 50px; float:right;" class="easyui-linkbutton"
+               data-options="iconCls:'icon-save'">保存博客</a>
         </div>
     </div>
 </div>
@@ -117,9 +119,6 @@
 <script type="text/javascript" src="<%=path%>/resources/applications/article/cropper/js/cropper.min.js"></script>
 <script type="text/javascript">
 
-    //初始化highlight控件
-    hljs.initHighlightingOnLoad();
-
     function reback() {
         window.location = "<%=path%>/applications/article/list.html";
     }
@@ -131,34 +130,12 @@
             ['Bold', 'Italic', '-', 'NumberedList', 'BulletedList', '-', 'Image', 'Link', '-', 'insertcode', '-', 'saveData', 'About']
         ],
         uiColor: '#3d3d3d',
-        height: "300px",
-        width: "470px"
+        height: "400px",
+        width: "95%",
+        resize_enabled: false,
+        removePlugins: "elementspath"
     });
 
-    CKEDITOR.on('instanceReady', function (e) {
-        if (e.editor.document.$.addEventListener)
-            e.editor.document.$.addEventListener('keyup', keydown, false);
-        else if (e.editor.document.$.attachEvent)
-            e.editor.document.$.attachEvent('onkeyup', function (e) {
-                keydown(e)
-            });
-//        if(e.editor.document.$.addEventListener)
-//            e.editor.document.$.addEventListener('keyup',keydown, false);
-    });
-
-    function keydown(e) {
-        var content = editor.getData();
-//        content = marked(content);
-        $("#content-right").find("article").html(content);
-        //调用渲染highlight的方法
-        showHighlight();
-    }
-
-    function showHighlight() {
-        $("pre code").each(function (i, block) {
-            hljs.highlightBlock(block);
-        });
-    }
 
     $(function () {
         $("#saveDialog").dialog("close");
@@ -174,37 +151,37 @@
             file.remove();
         });
 
-        $("#uploadFile").click(function(){
+        $("#uploadFile").click(function () {
             //上传图片
             uploadFile();
         });
 
         //点击保存按钮
-        $("#submitBolg").click(function(){
+        $("#submitBolg").click(function () {
 
             //得到标题
             var title = $("#articleTitle").textbox("getValue");
-            if(title == ""){
-                $.messager.alert('信息','标题不能为空!','error');
+            if (title == "") {
+                $.messager.alert('信息', '标题不能为空!', 'error');
                 return false;
             }
             //得到描述
             var description = $("#articleDescription").textbox("getValue");
-            if(description == ""){
-                $.messager.alert('信息','描述不能为空!','error');
+            if (description == "") {
+                $.messager.alert('信息', '描述不能为空!', 'error');
                 return false;
             }
             //得到内容
             var content = editor.getData();
-            if(content == ""){
-                $.messager.alert('信息','内容不能为空!','error');
+            if (content == "") {
+                $.messager.alert('信息', '内容不能为空!', 'error');
                 return false;
             }
             //得到选择类型
             var t = $('#typeSelect').combotree('tree');	// get the tree object
             var n = t.tree('getSelected');
-            if(!n){
-                $.messager.alert('信息','文章类型不能为空!','error');
+            if (!n) {
+                $.messager.alert('信息', '文章类型不能为空!', 'error');
                 return false;
             }
             var typeId = n.id;
@@ -213,21 +190,21 @@
             subimtObject.articleDesc = description;
             subimtObject.articleBody = content;
             subimtObject.typeID = typeId;
-            if(!subimtObject.articleImage){
-                $.messager.alert('信息','文章配图不能为空!','error');
+            if (!subimtObject.articleImage) {
+                $.messager.alert('信息', '文章配图不能为空!', 'error');
                 return false;
             }
 
             $.post(
                     "<%=path%>/applications/article/save.html",
                     subimtObject,
-                    function(result){
-                        if(result == "success"){
-                            $.messager.alert('信息','添加博文成功!','info');
+                    function (result) {
+                        if (result == "success") {
+                            $.messager.alert('信息', '添加博文成功!', 'info');
                             window.location = "<%=path%>/applications/article/list.html";
                         }
                     }
-                );
+            );
 
         });
 
@@ -275,7 +252,7 @@
 //            aspectRatio: 16 / 9,
             aspectRatio: 1,
             preview: '#image-preview',
-            crop: function(e) {
+            crop: function (e) {
                 // Output the result data for cropping image.
                 topx = e.x;
                 topy = e.y;
@@ -301,11 +278,11 @@
      * @param imgH 裁剪图片范围匡的高
      * @returns {boolean}
      */
-    function uploadFile(){
+    function uploadFile() {
         var fd = new FormData();
         var file = document.getElementById('exampleInputFile').files[0];
-        if(!file){
-            $.messager.alert('信息','文件不能为空!','error');
+        if (!file) {
+            $.messager.alert('信息', '文件不能为空!', 'error');
             return false;
         }
         fd.append("file", file);
@@ -328,7 +305,7 @@
     }
 
     //开始事件
-    function uploadStart(evt){
+    function uploadStart(evt) {
         //typeImage的table 隐藏
         $(".typeImage").find(".image-canvas").find("table").css("display", "none");
         //typeImage的进度条显示
@@ -341,14 +318,14 @@
             var percentComplete = Math.round(evt.loaded * 100 / evt.total);
             //设置进度
             $('#getImageBar').progressbar('setValue', percentComplete);
-        }else {
+        } else {
             alert("err");
         }
     }
     //完成事件
     function uploadComplete(evt) {
         var res = eval("(" + evt.target.responseText + ")");
-        if(res == "err"){
+        if (res == "err") {
             return;
         }
         //将filepath传递给subimtObject对象
@@ -370,106 +347,3 @@
 </script>
 </body>
 </html>
-
-
-<%--<%@ page language="java" contentType="text/html; charset=utf-8"--%>
-<%--pageEncoding="utf-8" %>--%>
-<%--<%@ include file="/include.jsp" %>--%>
-<%--<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">--%>
-<%--<html>--%>
-<%--<head>--%>
-<%--<meta http-equiv="Content-Type" content="text/html; charset=utf-8">--%>
-<%--<link rel="stylesheet" type="text/css" href="<%=path%>/easyui/themes/black/easyui.css">--%>
-<%--<link rel="stylesheet" type="text/css" href="<%=path%>/easyui/themes/icon.css">--%>
-<%--<link rel="stylesheet" type="text/css" href="<%=path%>/resources/applications/article/highlight/css/monokai_sublime.css">--%>
-<%--<link rel="stylesheet" type="text/css" href="<%=path%>/resources/applications/article/css/article.css">--%>
-<%--</head>--%>
-<%--<body class="easyui-layout">--%>
-<%--<div id="content" border="false" region="center">--%>
-<%--<div id="p" class="easyui-panel" tools="#tt" title="写博客" style="width:100%;height:100%;padding:10px;">--%>
-<%--<div id="content-left">--%>
-<%--<!--标题-->--%>
-<%--<div id="left-title">--%>
-<%--<div class="title-left">--%>
-<%--<span>标题</span>--%>
-<%--</div>--%>
-<%--<div class="title-right">--%>
-<%--<input class="easyui-textbox" data-options="prompt:'请输入博文标题...'" style="width:95%;height:28px;">--%>
-<%--</div>--%>
-<%--</div>--%>
-<%--<!--描述-->--%>
-<%--<div id="left-description">--%>
-<%--<div class="title-left">--%>
-<%--<span>主要描述</span>--%>
-<%--</div>--%>
-<%--<div class="title-right">--%>
-<%--<input class="easyui-textbox" data-options="prompt:'请输入博文描述...'" style="width:95%;height:28px;">--%>
-<%--</div>--%>
-<%--</div>--%>
-<%--<div id="left-main">--%>
-<%--<div class="title-left">--%>
-<%--<span>主要内容</span>--%>
-<%--</div>--%>
-<%--<div class="title-right">--%>
-<%--<input class="easyui-textbox" body="true" data-options="multiline:true" style="width:95%;height:400px">--%>
-<%--</div>--%>
-<%--&lt;%&ndash;<script type="text/javascript" src="<%=path%>/resources/applications/article/ckeditor/ckeditor.js"></script>&ndash;%&gt;--%>
-<%--&lt;%&ndash;<div class="title-right">&ndash;%&gt;--%>
-<%--&lt;%&ndash;<textarea rows="25" cols="65" style="resize: none;" name="getMyEditor"></textarea>&ndash;%&gt;--%>
-<%--&lt;%&ndash;<script type="text/javascript">&ndash;%&gt;--%>
-<%--&lt;%&ndash;CKEDITOR.replace("getMyEditor");&ndash;%&gt;--%>
-<%--&lt;%&ndash;</script>&ndash;%&gt;--%>
-<%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-<%--</div>--%>
-<%--<div id="left-button">--%>
-<%--<a href="javascript:" style="outline: none;float: right; margin-right: 5%; margin-top: 10px;"--%>
-<%--onclick="add();" class="easyui-linkbutton"--%>
-<%--data-options="iconCls:'icon-save'">保存博文</a>--%>
-<%--</div>--%>
-<%--</div>--%>
-<%--<div id="content-right" style="color: black;">--%>
-<%--</div>--%>
-<%--</div>--%>
-<%--</div>--%>
-<%--<div id="tt">--%>
-<%--<a href="javascript:void(0)" class="icon-back" onclick="reback();"></a>--%>
-<%--<a href="javascript:void(0)" class="icon-save" onclick="javascript:alert('add')"></a>--%>
-<%--</div>--%>
-<%--<script type="text/javascript" src="<%=path%>/easyui/jquery.min.js"></script>--%>
-<%--<script type="text/javascript" src="<%=path%>/easyui/jquery.easyui.min.js"></script>--%>
-<%--<script type="text/javascript" src="<%=path%>/easyui/locale/easyui-lang-zh_CN.js"></script>--%>
-<%--<script type="text/javascript" src="<%=path%>/easyui/easyui-formatter.js"></script>--%>
-<%--<script type="text/javascript" src="<%=path%>/easyui/easyui-formatter.js"></script>--%>
-<%--<script type="text/javascript" src="<%=path%>/resources/applications/article/highlight/js/highlight.pack.js"></script>--%>
-<%--<script type="text/javascript" src="<%=path%>/resources/applications/article/markdown/js/marked.min.js"></script>--%>
-<%--<script type="text/javascript">--%>
-
-<%--//初始化highlight控件--%>
-<%--hljs.initHighlightingOnLoad();--%>
-
-<%--function reback() {--%>
-<%--window.location = "<%=path%>/applications/article/list.html";--%>
-<%--}--%>
-
-<%--$().ready(function(){--%>
-
-<%--$(".textbox-text").keyup(function(){--%>
-<%--var body = $(this).parents(".title-right").find(".easyui-textbox").attr("body");--%>
-<%--if(body == "true"){--%>
-<%--var content = $(this).val();--%>
-<%--content = marked(content);--%>
-<%--$("#content-right").html(content);--%>
-<%--//调用渲染highlight的方法--%>
-<%--showHighlight();--%>
-<%--}--%>
-<%--});--%>
-<%--});--%>
-
-<%--function showHighlight(){--%>
-<%--$("pre code").each(function(i, block){--%>
-<%--hljs.highlightBlock(block);--%>
-<%--});--%>
-<%--}--%>
-<%--</script>--%>
-<%--</body>--%>
-<%--</html>--%>
