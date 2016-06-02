@@ -80,6 +80,7 @@ public class BolgsServiceImpl extends BaseServiceImpl implements IBlogsService {
 
     @Override
     public List<NewArticle> selectHotsForEight() {
+        logger.info("开始查询热门文章列表......");
         return articleMapper.selectHotsLimitEight();
     }
 
