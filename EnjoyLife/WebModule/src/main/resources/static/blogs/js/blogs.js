@@ -6,7 +6,7 @@ require.config({
         "common": "/base/js/common",
         "jTempletes": "/blogs/js/jquery-jtemplates",
         "jTempletesUn": "/blogs/js/jquery-jtemplates_uncompressed",
-        "ck": "/blogs/ckeditor/ckeditor",
+        "ck": "/blogs/commentEditor/ckeditor",
         "hots": "/base/js/hots"
     },
     shim: {
