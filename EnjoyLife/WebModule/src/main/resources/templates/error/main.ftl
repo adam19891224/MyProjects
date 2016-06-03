@@ -3,10 +3,14 @@
 <head>
     <title>找不到资源了</title>
     [#include "../layout/head-setting.ftl"]
-    <link rel="stylesheet" href="../error/css/error.css" type="text/css"/>
+    <link rel="stylesheet" href="../error/css/error.css?t=[@time /]" type="text/css"/>
 </head>
 <body>
-    <div class="container">
+
+    [#--顶部--]
+    [#include "../layout/header.ftl"]
+
+    <main class="main">
         <div class="logo">
             <h1>404</h1>
             <p>资源错误。。。。。。</p>
@@ -16,6 +20,9 @@
                 </p>
             </div>
         </div>
-    </div>
+    </main>
+
+    [#--底部--]
+    [#include "../layout/footer.ftl"]
 </body>
 </html>

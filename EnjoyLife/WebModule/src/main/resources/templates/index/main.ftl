@@ -78,7 +78,7 @@
         </main>
 
         [#--热门文章模板--]
-        [#include "hot-article-li.ftl"]
+        [#include "templates/hot-article-li.ftl"]
 
         [#--底部--]
         [#include "../layout/footer.ftl"]

@@ -38,7 +38,7 @@
                     </article>
 
                     [#--评论展示部分--]
-                    [#include "comment-body.ftl"]
+                    [#include "templates/comment-body.ftl"]
 
                 </div>
                 <div class="div-right">
@@ -59,13 +59,13 @@
         </main>
 
         [#--提交评论确认信息框--]
-        [#include "comment-customer-submit-info.ftl"]
+        [#include "templates/comment-customer-submit-info.ftl"]
 
         [#--提交完成展示div--]
-        [#include "comment-customer-subimt-success.ftl"]
+        [#include "templates/comment-customer-subimt-success.ftl"]
 
         [#--热门文章模板--]
-        [#include "../index/hot-article-li.ftl"]
+        [#include "../index/templates/hot-article-li.ftl"]
 
         [#--底部--]
         [#include "../layout/footer.ftl"]

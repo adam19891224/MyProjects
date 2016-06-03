@@ -19,4 +19,5 @@
         <a id="submit-comment">提交</a>
     </div>
 </div>
-[#include "comment-li-templete.ftl" /]
+[#--引入评论列表模板--]
+[#include "comment-li-template.ftl" /]

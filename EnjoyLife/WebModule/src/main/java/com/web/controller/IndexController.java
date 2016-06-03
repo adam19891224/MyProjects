@@ -16,7 +16,7 @@ public class IndexController extends BaseController {
     @RequestMapping("/index.html")
     public String index(HttpServletRequest request){
         logger.info("来自： " + super.getIP(request) + "  的朋友访问本站！         ------》");
-        return "index/index";
+        return "index/main";
     }
 
 }

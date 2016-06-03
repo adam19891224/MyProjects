@@ -1,13 +1,16 @@
-body {
-    font-family: 'Courgette', cursive;
-}
+@import "../../base/css/common.css";
 
-body {
-    background: #f3f3e1;
+.main{
+    width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
 }
 
 .logo {
-    margin-top: 50px;
+    margin-top: 60px;
+    height: 600px;
+    padding-top: 100px;
+    font-family: 幼圆, serif;
 }
 
 .logo h1 {
@@ -42,4 +45,12 @@ body {
     -moz-border-radius: .1em;
     -border-radius: .1em;
     font-family: 楷体, serif;
+}
+
+@media screen and (max-width: 1200px) {
+
+    .main{
+        width: 100%;
+    }
+
 }
