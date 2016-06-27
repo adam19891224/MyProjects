@@ -133,7 +133,7 @@
     function update(){
         var row = $('#treegrid').treegrid('getEditor', {index:editingId,field:"text"});
         var text = $(row.target).combobox('getText');
-        var obj = new Object();
+        var obj = {};
         obj.typeId = editingId;
         obj.typeName = text;
         $.ajax({
@@ -160,7 +160,7 @@
             $('#getAddTitle').html(res);
             $("#getParentId").val(row.id);
             $("#getTypeName").textbox("setValue", "");
-            $('#addNewDialog').dialog("open");
+            $('#addNewDialog').window("open");
         }
     }
 
