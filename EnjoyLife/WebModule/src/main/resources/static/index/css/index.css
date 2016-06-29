@@ -294,6 +294,9 @@
     float: right;
 }
 
+/*
+    热门评论
+*/
 .div-right .hot-div{
     width: 100%;
     height: 300px;

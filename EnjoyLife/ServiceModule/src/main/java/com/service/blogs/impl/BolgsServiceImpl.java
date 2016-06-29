@@ -32,7 +32,6 @@ public class BolgsServiceImpl extends BaseServiceImpl implements IBlogsService {
 
     @Override
     public Page<NewArticle> selectArticlesByPage(Page<NewArticle> page) {
-        logger.info("开始查询文章列表......");
         {
             List<NewArticle> list = articleMapper.selectByPage(page);
             if(ConUtils.isNotNull(list)){
@@ -52,7 +51,6 @@ public class BolgsServiceImpl extends BaseServiceImpl implements IBlogsService {
 
     @Override
     public Page<NewArticle> selectArticlesByPageSolr(Page<NewArticle> page) {
-        logger.info("开始查询文章列表......");
         try {
             {
                 Map<String, Object> result = solrArticleMapper.selectArticlesByPage(page);
@@ -74,13 +72,11 @@ public class BolgsServiceImpl extends BaseServiceImpl implements IBlogsService {
 
     @Override
     public ArticleWithBLOBs selectArticleBySID(Integer sid) {
-        logger.info("开始查询文章详情......");
         return articleMapper.selectByPrimaryKey(sid);
     }
 
     @Override
     public List<NewArticle> selectHotsForEight() {
-        logger.info("开始查询热门文章列表......");
         return articleMapper.selectHotsLimitEight();
     }
 

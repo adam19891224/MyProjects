@@ -13,6 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class IndexController extends BaseController {
 
+    /**
+     * 首页方法
+     * @param request
+     * @return
+     */
     @RequestMapping("/index.html")
     public String index(HttpServletRequest request){
         logger.info("来自： " + super.getIP(request) + "  的朋友访问本站！         ------》");

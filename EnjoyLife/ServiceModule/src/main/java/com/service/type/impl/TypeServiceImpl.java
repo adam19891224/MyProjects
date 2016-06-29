@@ -22,7 +22,6 @@ public class TypeServiceImpl extends BaseServiceImpl implements ITypeService {
 
     @Override
     public List<Type> selectAllTypes() {
-        logger.info("开始查询全部类别列表.....");
         return typeMapper.selectAllTypes();
     }
 }

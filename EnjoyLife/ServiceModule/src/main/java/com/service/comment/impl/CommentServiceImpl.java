@@ -32,7 +32,6 @@ public class CommentServiceImpl extends BaseServiceImpl implements ICommentServi
 
     @Override
     public Page<Comment> selectCommentByPage(Page<Comment> page) {
-        logger.info("开始查询主评论列表......");
         {
             List<Comment> list = commentMapper.selectByPage(page);
             if(list != null && list.size() > 0){
@@ -49,14 +48,12 @@ public class CommentServiceImpl extends BaseServiceImpl implements ICommentServi
 
     @Override
     public List<Comment> selectReplyCommentByForm(CommentForm form) {
-        logger.info("开始查询回复评论列表......");
         return commentMapper.selectReplyComment(form);
     }
 
     @Transactional
     @Override
     public void saveComment(CommentForm form) {
-        logger.info("开始保存评论......");
         //创建评论对象
         Comment comment = this.createCommentEntity(form);
         ArticleComment articleComment = this.createArticleCommentEntity(form, comment);

@@ -10,7 +10,7 @@
                 <a href="/index.html">首页</a>
             </li>
             <li>
-                <a href="#">系列专题</a>
+                <a href="/series/index.html">系列专题</a>
             </li>
             <li>
                 <a href="#">文章一览</a>
