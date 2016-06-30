@@ -32,7 +32,7 @@ require([
 
     var common = new Common();
     common.searchButtonMouseListener();
-    common.showNavigatorBar(1);
+    common.showNavigatorBar(2);
 
     //创建ck
     CKEDITOR.replace(
