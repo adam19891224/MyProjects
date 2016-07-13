@@ -79,18 +79,19 @@ function BolgUtils(){
         var scrollHeight, divHeight, documentHeight = $(window).height(), win;
         var commentObj = $("#article-comment");
         var thisObj = this;
-        $(window).scroll(function(){
-            win = $(this);
-            divHeight = commentObj.offset().top;
-            if(divHeight < documentHeight){
-                thisObj.loadComment();
-            }else {
+        divHeight = commentObj.offset().top;
+        if(divHeight < documentHeight){
+            thisObj.loadComment();
+        }else{
+            $(window).scroll(function(){
+                win = $(this);
+                divHeight = commentObj.offset().top;
                 scrollHeight = win.scrollTop();
                 if(divHeight - scrollHeight <= 400){
                     thisObj.loadComment();
                 }
-            }
-        });
+            });
+        }
     };
 
     this.loadComment = function(){
