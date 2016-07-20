@@ -7,7 +7,7 @@ import com.article.vo.NewArticle;
 import com.foundation.enums.SolrResultMapKeyEnum;
 import com.foundation.utils.ConUtils;
 import com.foundation.view.Page;
-import com.service.base.BaseServiceImpl;
+import com.service.base.BaseAbstractClass;
 import com.service.blogs.IBlogsService;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ import java.util.Map;
  * Date: 2016/4/23
  */
 @Service
-public class BolgsServiceImpl extends BaseServiceImpl implements IBlogsService {
+public class BolgsServiceImpl extends BaseAbstractClass implements IBlogsService {
 
     @Autowired
     private ArticleMapper articleMapper;

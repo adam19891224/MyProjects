@@ -8,29 +8,13 @@
     background-color: lightblue;
 }
 
-/*
-    中间
-*/
-.main{
+.light-line{
     width: 100%;
+    height: 1px;
     float: left;
+    background-color: #18C0DF;
 }
 
-.main .main-div{
-    width: 1200px;
-    margin: 0 auto;
-    overflow: hidden;
-}
-
-.div-left{
-    width: 900px;
-    float: left;
-}
-
-.div-right{
-    width: 290px;
-    float: right;
-}
 
 /*
     左边
@@ -38,7 +22,7 @@
 .div-left h3{
     text-align: left;
     font-weight: normal;
-    line-height: 50px;
+    line-height: 70px;
 }
 
 .div-left h3 i{
@@ -48,7 +32,33 @@
     margin-right: 10px;
     background: url("../images/showIcon.png") no-repeat;
     background-size: cover;
+    margin-top: 10px;
 }
+
+.series-main{
+    width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: 0 20px;
+}
+
+.series-main h3{
+    font-size: 20px;
+    line-height: 50px;
+    cursor: pointer;
+    padding: 0 5px;
+}
+
+.series-main h3 span{
+    float: right;
+    font-size: 14px;
+}
+
+.series-main li{
+    height: 50px;
+    margin-top: 5px;
+}
+
 
 /*
     标签云
@@ -139,31 +149,4 @@
 
 .hot-div ul li:hover{
     text-decoration: underline;
-}
-
-
-@media screen and (max-width: 1200px) {
-
-    .main .main-div{
-        width: 100%;
-    }
-
-    .div-left{
-        width: 70%;
-        float: left;
-    }
-
-    .div-right{
-        width: 29%;
-        float: right;
-    }
-}
-
-@media screen and (max-width: 950px){
-    .div-right{
-        display: none;
-    }
-    .div-left{
-        width: 100%;
-    }
 }

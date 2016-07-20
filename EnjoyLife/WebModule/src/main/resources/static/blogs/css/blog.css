@@ -3,21 +3,7 @@
 /*
     中间
 */
-.main{
-    width: 100%;
-    float: left;
-}
 
-.main .main-div{
-    width: 1200px;
-    overflow: hidden;
-    margin: 10px auto 0;
-}
-
-.div-left{
-    width: 900px;
-    float: left;
-}
 
 .div-left .article-main{
     width: 100%;
@@ -323,10 +309,6 @@
     background-color: lightblue;
 }
 
-.div-right{
-    width: 290px;
-    float: right;
-}
 
 .div-right .hot-div{
     width: 100%;
@@ -495,30 +477,4 @@
 
 #submit-info{
     margin-right: 5px;
-}
-
-@media screen and (max-width: 1200px) {
-
-    .main .main-div{
-        width: 100%;
-    }
-
-    .div-left{
-        width: 70%;
-        float: left;
-    }
-
-    .div-right{
-        width: 29%;
-        float: right;
-    }
-}
-
-@media screen and (max-width: 950px){
-    .div-right{
-        display: none;
-    }
-    .div-left{
-        width: 100%;
-    }
 }

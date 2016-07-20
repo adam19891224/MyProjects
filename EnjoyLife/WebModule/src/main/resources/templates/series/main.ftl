@@ -21,6 +21,22 @@
                 技术交流
             </h3>
             <div class="line"></div>
+            <ul class="series-main">
+                [#if series?? && series?size > 0]
+                    [#list series as serie]
+                        <li>
+                            <h3>${serie.seriesName}<span><em>${serie.counts}</em> 篇</span></h3>
+                            <div class="light-line"></div>
+                        </li>
+                    [/#list]
+
+                [#else]
+                    <li>
+                        <h3 style="text-align: center;">敬请期待</h3>
+                        <div class="light-line"></div>
+                    </li>
+                [/#if]
+            </ul>
         </div>
         <div class="div-right">
             <div class="type-div">
@@ -31,8 +47,8 @@
                 <div class="line"></div>
                 <div id="type-body" class="type-body">
                     [#if types?? && types?size > 0]
-                        [#list types as types]
-                            <a href="${types.typeId}" target="_blank">${types.typeName}</a>
+                        [#list types as type]
+                            <a href="${type.typeId}" target="_blank">${type.typeName}</a>
                         [/#list]
                     [#else]
                         <h2>敬请期待</h2>

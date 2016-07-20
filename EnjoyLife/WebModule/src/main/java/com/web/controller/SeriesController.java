@@ -1,6 +1,9 @@
 package com.web.controller;
 
 import com.foundation.utils.ConUtils;
+import com.series.vo.Series;
+import com.series.vo.SeriesInfo;
+import com.service.series.ISeriesService;
 import com.service.type.ITypeService;
 import com.type.vo.Type;
 import org.springframework.stereotype.Controller;
@@ -21,6 +24,8 @@ public class SeriesController extends BaseController {
 
     @Resource
     private ITypeService typeService;
+    @Resource
+    private ISeriesService seriesService;
 
 
     /**
@@ -38,6 +43,9 @@ public class SeriesController extends BaseController {
             logger.info("获取文章所有类型结果，结果数：" + types.size());
             map.addAttribute("types", types);
         }
+
+        List<SeriesInfo> series = seriesService.selectAllSeries();
+        map.addAttribute("series", series);
 
         return "series/main";
     }

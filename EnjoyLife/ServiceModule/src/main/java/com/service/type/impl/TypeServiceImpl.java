@@ -1,6 +1,6 @@
 package com.service.type.impl;
 
-import com.service.base.BaseServiceImpl;
+import com.service.base.BaseAbstractClass;
 import com.service.type.ITypeService;
 import com.type.dao.TypeMapper;
 import com.type.vo.Type;
@@ -15,7 +15,7 @@ import java.util.List;
  * Date: 2016/6/2
  */
 @Service
-public class TypeServiceImpl extends BaseServiceImpl implements ITypeService {
+public class TypeServiceImpl extends BaseAbstractClass implements ITypeService {
 
     @Autowired
     private TypeMapper typeMapper;

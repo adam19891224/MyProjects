@@ -86,6 +86,29 @@
     left: 2px;
 }
 
+/*
+    中间
+*/
+.main{
+    width: 100%;
+    float: left;
+}
+
+.main .main-div{
+    width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.div-left{
+    width: 900px;
+    float: left;
+}
+
+.div-right{
+    width: 290px;
+    float: right;
+}
 
 
 /*
@@ -117,6 +140,29 @@
 @media screen and (max-width: 1200px) {
     .header-div .about{
         width: auto;
+    }
+
+    .main .main-div{
+        width: 100%;
+    }
+
+    .div-left{
+        width: 70%;
+        float: left;
+    }
+
+    .div-right{
+        width: 29%;
+        float: right;
+    }
+}
+
+@media screen and (max-width: 950px){
+    .div-right{
+        display: none;
+    }
+    .div-left{
+        width: 100%;
     }
 }
 

@@ -10,7 +10,7 @@
     [#--顶部--]
     [#include "../layout/header.ftl"]
 
-    <main class="main">
+    <main class="err-main">
         <div class="logo">
             <h1>404</h1>
             <p>资源错误。。。。。。</p>

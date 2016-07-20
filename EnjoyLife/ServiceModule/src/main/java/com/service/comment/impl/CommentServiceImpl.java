@@ -7,7 +7,7 @@ import com.comment.vo.Comment;
 import com.foundation.form.CommentForm;
 import com.foundation.utils.ConUtils;
 import com.foundation.view.Page;
-import com.service.base.BaseServiceImpl;
+import com.service.base.BaseAbstractClass;
 import com.service.comment.ICommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +23,7 @@ import java.util.UUID;
  * Date: 2016/1/18
  */
 @Service
-public class CommentServiceImpl extends BaseServiceImpl implements ICommentService {
+public class CommentServiceImpl extends BaseAbstractClass implements ICommentService {
 
     @Autowired
     private CommentMapper commentMapper;

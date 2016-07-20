@@ -9,8 +9,8 @@ import org.apache.solr.client.solrj.SolrClient;
  * User: Adam
  * Date: 2016/5/3
  */
-public class BaseServiceImpl {
+public abstract class BaseAbstractClass {
 
-    public Logger logger = Logger.getLogger("serviceLog");
+    protected Logger logger = Logger.getLogger("serviceLog");
 
 }
