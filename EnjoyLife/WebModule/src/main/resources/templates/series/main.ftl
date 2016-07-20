@@ -18,7 +18,7 @@
         <div class="div-left">
             <h3>
                 <i class="tips"></i>
-                技术交流
+                系列专题
             </h3>
             <div class="line"></div>
             <ul class="series-main">

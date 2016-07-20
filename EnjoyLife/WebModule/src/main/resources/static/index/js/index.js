@@ -157,7 +157,7 @@ function IndexUtils(){
                         "<h2 title=\"" + obj.articleTitle + "\">" +
                             "<a href=\"/blogs/" + obj.articleSid + ".html\">" + obj.articleTitle + "</a>" +
                         "</h2>" +
-                        "<a href=\"#\" class=\"li-a\">" +
+                        "<a href=\"/blogs/" + obj.articleSid + ".html\" class=\"li-a\">" +
                             "<img src=\"../base/images/image-loading.gif\" class=\"lazy\" data-original=\"" + obj.articleImg + "\" alt=\"" + obj.articleTitle + "\">" +
                         "</a>" +
                         "<span>" + obj.articleDescription + "</span>" +
