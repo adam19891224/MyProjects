@@ -4,8 +4,8 @@ require.config({
         "cookie": "/base/js/jquery.cookie",
         "lazyload": "/base/js/jquery.lazyload.min",
         "common": "/base/js/common",
-        "jTempletes": "/blogs/js/jquery-jtemplates",
-        "jTempletesUn": "/blogs/js/jquery-jtemplates_uncompressed",
+        "jTempletes": "/blogs/js/templates",
+        "jTempletesUn": "/blogs/js/templates_uncompressed",
         "hots": "/base/js/hots"
     },
     shim: {
