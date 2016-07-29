@@ -11,6 +11,26 @@ public class NewArticle extends ArticleWithBLOBs {
 
     private int hots;
 
+    private String createDateStr;
+
+    private String updateDateStr;
+
+    public String getCreateDateStr() {
+        return createDateStr;
+    }
+
+    public void setCreateDateStr(String createDateStr) {
+        this.createDateStr = createDateStr;
+    }
+
+    public String getUpdateDateStr() {
+        return updateDateStr;
+    }
+
+    public void setUpdateDateStr(String updateDateStr) {
+        this.updateDateStr = updateDateStr;
+    }
+
     public int getHots() {
         return hots;
     }

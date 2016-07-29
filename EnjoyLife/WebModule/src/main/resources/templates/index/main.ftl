@@ -80,6 +80,9 @@
             </div>
         </main>
 
+        [#--首页文章模板--]
+        [#include "templates/index-blog-li.ftl"]
+
         [#--热门文章模板--]
         [#include "templates/hot-article-li.ftl"]
 

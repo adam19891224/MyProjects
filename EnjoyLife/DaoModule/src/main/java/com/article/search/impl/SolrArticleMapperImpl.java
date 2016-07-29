@@ -5,6 +5,7 @@ import com.article.vo.NewArticle;
 import com.foundation.enums.SolrResultMapKeyEnum;
 import com.foundation.solr.factory.SolrFactory;
 import com.foundation.utils.ConUtils;
+import com.foundation.utils.DateUtils;
 import com.foundation.utils.StringUtils;
 import com.foundation.view.Page;
 import org.apache.solr.client.solrj.SolrClient;
@@ -16,6 +17,10 @@ import org.apache.solr.common.SolrDocumentList;
 import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -50,11 +55,20 @@ public class SolrArticleMapperImpl implements SolrArticleMapper {
         response = solrClient.query(query);
         Map<String, Map<String, List<String>>>  map = response.getHighlighting();
         SolrDocumentList results = response.getResults();
+
+        //根据solr结果集，组成数据对象
+        return this.createDataMapBySolrResult(isHighlight, map, results);
+    }
+
+    private Map<String, Object> createDataMapBySolrResult(boolean isHighlight, Map<String, Map<String, List<String>>> map, SolrDocumentList results) {
+        //创建数据集合
+        Map<String, Object> dataMap = ConUtils.hashmap();
         List<NewArticle> list = ConUtils.arraylist();
-        Map<String, Object> resultMap = ConUtils.hashmap();
         int count = 0;
-        NewArticle newArticle;
+
+        //如果结果大于0，开始封装
         if(results.size() > 0){
+            NewArticle newArticle;
             for(SolrDocument document : results){
                 newArticle = new NewArticle();
                 newArticle.setArticleSid((Integer) document.get("articleSid"));
@@ -65,16 +79,17 @@ public class SolrArticleMapperImpl implements SolrArticleMapper {
                     newArticle.setHighLightTitle(map.get(document.get("articleSid").toString()).get("articleTitle").get(0));
                 }
                 newArticle.setArticleDescription((String) document.get("articleDescription"));
-                newArticle.setCreateDate((Date) document.get("createDate"));
-                newArticle.setUpdateDate((Date) document.get("updateDate"));
+                newArticle.setCreateDateStr(DateUtils.castDate2YMDString((Date) document.get("createDate")));
+                newArticle.setUpdateDateStr(DateUtils.castDate2YMDString((Date) document.get("updateDate")));
                 list.add(newArticle);
             }
             count = (int) results.getNumFound();
         }
         //保存进返回结果map中
-        resultMap.put(SolrResultMapKeyEnum.ResultSet.getKey(), list);
-        resultMap.put(SolrResultMapKeyEnum.ResultCounts.getKey(), count);
-        return resultMap;
+        dataMap.put(SolrResultMapKeyEnum.ResultSet.getKey(), list);
+        dataMap.put(SolrResultMapKeyEnum.ResultCounts.getKey(), count);
+
+        return dataMap;
     }
 
     //组装solr的query查询对象
@@ -97,4 +112,5 @@ public class SolrArticleMapperImpl implements SolrArticleMapper {
         }
         return query;
     }
+
 }

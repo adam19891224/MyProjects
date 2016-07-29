@@ -1,6 +1,8 @@
 require.config({
     paths: {
         "jquery": "/base/js/jquery-2.2.3.min",
+        "cookie": "/base/js/jquery.cookie",
+        "lazyload": "/base/js/jquery.lazyload.min",
         "common": "/base/js/common",
         "jTempletes": "/blogs/js/templates",
         "jTempletesUn": "/blogs/js/templates_uncompressed",
@@ -8,6 +10,8 @@ require.config({
         "tarCloud": "/base/js/tar-cloud"
     },
     shim: {
+        "lazyload" : ["jquery"],
+        "cookie" : ["jquery"],
         "jTempletes" : ["jquery"],
         "jTempletesUn" : ["jquery"]
     },
@@ -17,11 +21,12 @@ require.config({
 
 require([
     "jquery",
+    "cookie",
+    "lazyload",
     "common",
     "jTempletes",
     "jTempletesUn",
-    "hots",
-    "tarCloud"
+    "hots"
 ], function ($){
 
     var common = new Common();

@@ -39,7 +39,8 @@ public class BlogsController extends BaseController {
     @ResponseBody
     public String list(Page<NewArticle> page){
         logger.info("进入获取文章列表方法");
-        page = blogsService.selectArticlesByPage(page);
+//        page = blogsService.selectArticlesByPage(page);
+        page = blogsService.selectArticlesByPageSolr(page);
         logger.info("退出获取文章列表方法，返回参数：" + page);
         return super.parseObjectToJson(page);
     }

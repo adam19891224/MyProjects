@@ -144,26 +144,7 @@ function IndexUtils(){
     };
 
     var combineBlogs = function(list){
-        var lis = "";
-        var obj;
-        var date;
-        for(var a = 0, b = list.length; a < b; a++){
-            obj = list[a];
-            date = new Date(obj.createDate);
-            lis += "<li>" +
-                        "<div class=\"blog-tips\">" +
-                            "<span>" + date.format("yyyy-MM-dd") + "</span><br>" +
-                        "</div>" +
-                        "<h2 title=\"" + obj.articleTitle + "\">" +
-                            "<a href=\"/blogs/" + obj.articleSid + ".html\">" + obj.articleTitle + "</a>" +
-                        "</h2>" +
-                        "<a href=\"/blogs/" + obj.articleSid + ".html\" class=\"li-a\">" +
-                            "<img src=\"../base/images/image-loading.gif\" class=\"lazy\" data-original=\"" + obj.articleImg + "\" alt=\"" + obj.articleTitle + "\">" +
-                        "</a>" +
-                        "<span>" + obj.articleDescription + "</span>" +
-                  "</li>";
-        }
-        $("#blog-main").append(lis);
+        $("#blog-main").setTemplateElement("indexArticle").processTemplate(list);
     };
 
     var showLoading = function(){
