@@ -13,7 +13,7 @@
                 <a href="/series/index.html">系列专题</a>
             </li>
             <li>
-                <a href="#">文章一览</a>
+                <a href="/eyes/index.html">文章一览</a>
             </li>
             <#--<li>-->
                 <#--<a href="#">留言</a>-->

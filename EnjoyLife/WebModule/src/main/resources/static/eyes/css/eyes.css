@@ -36,26 +36,35 @@
     margin-top: 10px;
 }
 
-.series-main{
+.eyes-main{
     width: 100%;
     overflow: hidden;
     box-sizing: border-box;
     padding: 0 20px;
 }
 
-.series-main h3{
-    font-size: 20px;
-    line-height: 50px;
-    cursor: pointer;
-    padding: 0 5px;
+.eyes-main li{
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 300px;
+    margin-bottom: 10px;
+    margin-top: 30px;
+    border: 1px solid #eee;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
+    position: relative;
 }
 
-.series-main h3 span{
-    float: right;
-    font-size: 14px;
+.eyes-main li .eyes-top{
+    width: 120px;
+    height: 40px;
+    position: absolute;
+    right: 50px;
+    top: -20px;
+    border-radius:50px 25px;
+    text-align: center;
+    line-height: 40px;
 }
 
-.series-main li{
-    height: 50px;
-    margin-top: 5px;
+.eyes-main li .eyes-top:nth-child(7n){
+    background-color: red;
 }

@@ -26,12 +26,13 @@ require([
     "common",
     "jTempletes",
     "jTempletesUn",
-    "hots"
+    "hots",
+    "tarCloud"
 ], function ($){
 
     var common = new Common();
     common.searchButtonMouseListener();
-    common.showNavigatorBar(1);
+    common.showNavigatorBar(2);
 
     var categorys = new CategoryUtils();
     categorys.init(0, document.getElementById("type-body"));
