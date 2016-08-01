@@ -9,65 +9,76 @@
         <script src="../eyes/js/eyes.js?t=[@time /]"></script>
     </head>
     <body>
-    [#--顶部--]
-    [#include "../layout/header.ftl"]
+        [#--顶部--]
+        [#include "../layout/header.ftl"]
 
-    [#--中间--]
-    <main id="main" class="main">
-        <div class="main-div">
-            <div class="div-left">
-                <h3>
-                    <i class="tips"></i>
-                    文章一览
-                </h3>
-                <div class="line"></div>
-                <ul class="eyes-main">
-                    <li>
-                        <div class="eyes-top">
-                            2015-05-01
-                        </div>
-                    </li>
-                </ul>
-                <div class="curved_box"></div>
-            </div>
-            <div class="div-right">
-                <div class="hot-div">
+        [#--中间--]
+        <main id="main" class="main">
+            <div class="main-div">
+                <div class="div-left">
                     <h3>
                         <i class="tips"></i>
-                        热门搜索
+                        文章一览
                     </h3>
                     <div class="line"></div>
-                    <ul id="hots-article-ul">
-                        <li>
-                            <img src="../base/images/hot-loading.gif">
-                        </li>
-                    </ul>
-                </div>
-                <div class="type-div">
-                    <h3>
-                        <i class="tips"></i>
-                        分类查看
-                    </h3>
-                    <div class="line"></div>
-                    <div id="type-body" class="type-body">
-                        [#if types?? && types?size > 0]
-                            [#list types as type]
-                                <a href="${type.typeId}" target="_blank">${type.typeName}</a>
-                            [/#list]
-                        [#else]
-                            <h2>敬请期待</h2>
-                        [/#if]
+                    <div class="left-time">
+
+                    </div>
+                    <div class="left-main">
+                        <ul class="eyes-main">
+                            <li>
+                                <div class="eyes-top">
+                                    2015-05-01
+                                </div>
+                            </li>
+                            <li>
+                                <div class="eyes-top">
+                                    2015-05-02
+                                </div>
+                            </li>
+                            <li>
+                                <div class="eyes-top">
+                                    2015-05-03
+                                </div>
+                            </li>
+                            <li>
+                                <div class="eyes-top">
+                                    2015-05-04
+                                </div>
+                            </li>
+                            <li>
+                                <div class="eyes-top">
+                                    2015-05-05
+                                </div>
+                            </li>
+                            <li>
+                                <div class="eyes-top">
+                                    2015-05-06
+                                </div>
+                            </li>
+                            <li>
+                                <div class="eyes-top">
+                                    2015-05-07
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
+                <div class="div-right">
+                    [#--热门搜索--]
+                    [#include "../common/hot-div.ftl" ]
+
+                    [#--标签--]
+                    [#include "../common/cloud-div.ftl" ]
+                </div>
             </div>
-        </div>
-    </main>
+        </main>
 
-    [#--热门文章模板--]
-    [#include "../index/templates/hot-article-li.ftl"]
+        [#--热门文章模板--]
+        [#include "../index/templates/hot-article-li.ftl"]
 
-    [#--底部--]
-    [#include "../layout/footer.ftl"]
+        [#--底部--]
+        [#include "../layout/footer.ftl"]
 
     </body>
 </html>

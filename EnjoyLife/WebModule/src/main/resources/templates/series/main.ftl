@@ -39,34 +39,11 @@
             </ul>
         </div>
         <div class="div-right">
-            <div class="hot-div">
-                <h3>
-                    <i class="tips"></i>
-                    热门搜索
-                </h3>
-                <div class="line"></div>
-                <ul id="hots-article-ul">
-                    <li>
-                        <img src="../base/images/hot-loading.gif">
-                    </li>
-                </ul>
-            </div>
-            <div class="type-div">
-                <h3>
-                    <i class="tips"></i>
-                    分类查看
-                </h3>
-                <div class="line"></div>
-                <div id="type-body" class="type-body">
-                    [#if types?? && types?size > 0]
-                        [#list types as type]
-                            <a href="${type.typeId}" target="_blank">${type.typeName}</a>
-                        [/#list]
-                    [#else]
-                        <h2>敬请期待</h2>
-                    [/#if]
-                </div>
-            </div>
+            [#--热门搜索--]
+            [#include "../common/hot-div.ftl" ]
+
+            [#--标签--]
+            [#include "../common/cloud-div.ftl" ]
         </div>
     </div>
 </main>

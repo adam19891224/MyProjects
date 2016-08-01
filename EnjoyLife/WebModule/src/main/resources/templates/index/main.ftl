@@ -61,21 +61,12 @@
                     </div>
                 </div>
                 <div class="div-right">
-                    <div class="hot-div">
-                        <h3>
-                            <i class="tips"></i>
-                            热门搜索
-                        </h3>
-                        <div class="line"></div>
-                        <ul id="hots-article-ul">
-                            <li>
-                                <img src="../base/images/hot-loading.gif">
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="music-div">
-                        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=100% height=60 src="http://music.163.com/outchain/player?type=2&id=30953009&auto=0&height=32"></iframe>
-                    </div>
+                    [#--热门搜索--]
+                    [#include "../common/hot-div.ftl" ]
+
+                    [#--音乐--]
+                    [#include "../common/music-div.ftl" ]
+
                 </div>
             </div>
         </main>
