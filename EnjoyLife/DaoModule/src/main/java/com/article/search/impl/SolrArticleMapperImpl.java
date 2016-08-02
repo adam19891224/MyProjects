@@ -97,8 +97,10 @@ public class SolrArticleMapperImpl implements SolrArticleMapper {
 
         SolrQuery query = new SolrQuery();
         query.addSort(new SolrQuery.SortClause("createDate", SolrQuery.ORDER.desc));
-        query.set("start", page.getPageNum());
-        query.set("rows", page.getPageSize());
+        if(page.getPagination()){
+            query.set("start", page.getPageNum());
+            query.set("rows", page.getPageSize());
+        }
         //如果是搜索查询，则创建高亮，搜索范围
         if(StringUtils.isNotNull(page.getKw())){
             query.set("q", "articleTitle:(" + page.getKw() + ")");

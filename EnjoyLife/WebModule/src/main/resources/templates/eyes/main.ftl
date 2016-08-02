@@ -26,41 +26,20 @@
                     </div>
                     <div class="left-main">
                         <ul class="eyes-main">
-                            <li>
-                                <div class="eyes-top">
-                                    2015-05-01
-                                </div>
-                            </li>
-                            <li>
-                                <div class="eyes-top">
-                                    2015-05-02
-                                </div>
-                            </li>
-                            <li>
-                                <div class="eyes-top">
-                                    2015-05-03
-                                </div>
-                            </li>
-                            <li>
-                                <div class="eyes-top">
-                                    2015-05-04
-                                </div>
-                            </li>
-                            <li>
-                                <div class="eyes-top">
-                                    2015-05-05
-                                </div>
-                            </li>
-                            <li>
-                                <div class="eyes-top">
-                                    2015-05-06
-                                </div>
-                            </li>
-                            <li>
-                                <div class="eyes-top">
-                                    2015-05-07
-                                </div>
-                            </li>
+                            [#if all.resultList?? && all.resultList?size > 0]
+                                [#list all.resultList as entity]
+                                    <li>
+                                        <div class="eyes-top">
+                                            ${entity.createDateStr}
+                                        </div>
+                                    </li>
+                                [/#list]
+                            [#else]
+                                <li>
+                                    <h3 style="text-align: center;">敬请期待</h3>
+                                    <div class="light-line"></div>
+                                </li>
+                            [/#if]
                         </ul>
                     </div>
                 </div>

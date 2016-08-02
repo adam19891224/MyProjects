@@ -17,11 +17,13 @@ public class Page<T> implements Serializable {
 
     private Integer pageNum = 0;
 
-    private Integer pageSize = 20;
+    private Integer pageSize = 4;
 
     private Integer totalCounts;
 
     private Integer totalPages = 1;
+
+    private Boolean pagination = true;
 
     /**
      * 搜索关键字
@@ -52,6 +54,14 @@ public class Page<T> implements Serializable {
     private List<T> resultList;
 
     private T resultObject;
+
+    public Boolean getPagination() {
+        return pagination;
+    }
+
+    public void setPagination(Boolean pagination) {
+        this.pagination = pagination;
+    }
 
     public Integer getTypeSid() {
         return typeSid;
