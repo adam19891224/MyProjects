@@ -79,6 +79,7 @@ public class SolrArticleMapperImpl implements SolrArticleMapper {
                     newArticle.setHighLightTitle(map.get(document.get("articleSid").toString()).get("articleTitle").get(0));
                 }
                 newArticle.setArticleDescription((String) document.get("articleDescription"));
+                newArticle.setCreateDate((Date) document.get("createDate"));
                 newArticle.setCreateDateStr(DateUtils.castDate2YMDString((Date) document.get("createDate")));
                 newArticle.setUpdateDateStr(DateUtils.castDate2YMDString((Date) document.get("updateDate")));
                 list.add(newArticle);

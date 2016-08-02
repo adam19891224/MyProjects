@@ -53,7 +53,8 @@ function CategoryUtils(){
 
         var $element = $(element);
         //若其当前不可见则待其可见后方可执行初始化
-        if ($element.is(":hidden"))return $window.one("resize", $.proxy(init, null, index, element));
+        // if ($element.is(":hidden"))
+        //     return $window.one("resize", $.proxy(init, null, index, element));
         //取其尺寸
         var oWidth = element.offsetWidth;
         var oHeight = element.offsetHeight;

@@ -2,6 +2,7 @@ package com.service.blogs.impl;
 
 import com.article.dao.ArticleMapper;
 import com.article.search.SolrArticleMapper;
+import com.article.vo.ArticleTime;
 import com.article.vo.ArticleWithBLOBs;
 import com.article.vo.NewArticle;
 import com.foundation.enums.SolrResultMapKeyEnum;
@@ -78,6 +79,11 @@ public class BolgsServiceImpl extends BaseAbstractClass implements IBlogsService
     @Override
     public List<NewArticle> selectHotsForEight() {
         return articleMapper.selectHotsLimitEight();
+    }
+
+    @Override
+    public List<ArticleTime> selectTimeGroupByArticle() {
+        return articleMapper.selectTimeGroupByArticle();
     }
 
 }

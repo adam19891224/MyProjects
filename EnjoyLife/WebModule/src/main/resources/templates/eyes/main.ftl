@@ -22,13 +22,14 @@
                     </h3>
                     <div class="line"></div>
                     <div class="left-time">
-
+                        [#--引入时间模板--]
+                        [#include "templates/time.ftl"]
                     </div>
                     <div class="left-main">
-                        <ul class="eyes-main">
+                        <ul id="eyes-main" class="eyes-main">
                             [#if all.resultList?? && all.resultList?size > 0]
                                 [#list all.resultList as entity]
-                                    <li>
+                                    <li data-time-Y="${entity.createDate?string("yyyy")}" data-time-M="${entity.createDate?string("MM")}">
                                         <div class="eyes-top">
                                             ${entity.createDateStr}
                                         </div>

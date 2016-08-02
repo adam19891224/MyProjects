@@ -40,4 +40,54 @@ require([
     var hotsUtils = new HotsUtils();
     hotsUtils.getHots();
 
+    var eyesUtils = new EyesUtils();
+
+
+    var scrollTop;
+    //时间监控
+    $(window).scroll(function () {
+        scrollTop = $(document).scrollTop();
+        eyesUtils.timerListener(scrollTop);
+    });
 });
+
+function EyesUtils(){
+
+    var eyes = this;
+    var timeDoc = $("#time-year");
+    var articleDoc = $("#eyes-main");
+
+    this.timerListener = function(scrollTop){
+        eyes.locationTime(scrollTop);
+    };
+
+    this.locationTime = function(scrollTop){
+        var _this, articleIn, date_Y, date_M, time_Now, time_M, time_Y;
+
+        articleDoc.find("li").each(function(){
+            _this = $(this);
+            articleIn = _this.offset().top - scrollTop;
+            if(articleIn <= 300 && articleIn >= 0){
+                //得到当前li的date
+                date_Y = _this.attr("data-time-Y");
+                date_M = _this.attr("data-time-M");
+                time_Now = timeDoc.find(".show");
+                time_M = time_Now.parent().attr("data-M");
+                time_Y = time_Now.parents("ul").attr("data-Y");
+                if(date_Y != time_Y || date_M != time_M){
+                    eyes.changeTime(date_Y, date_M);
+                }
+            }
+        });
+    };
+
+    this.changeTime = function(Y, M){
+        timeDoc.find("i").removeClass("show");
+        var ul = timeDoc.find("ul[data-Y='" + Y + "']");
+        if(ul.attr("is-show") == "false"){
+            timeDoc.find("ul[is-show='true']").attr("is-show", "false").slideUp();
+            ul.attr("is-show", "true").slideDown();
+        }
+        ul.find("h5[data-M='" + M + "']").find("i").addClass("show");
+    }
+}

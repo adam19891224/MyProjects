@@ -1,6 +1,7 @@
 package com.article.dao;
 
 import com.article.vo.Article;
+import com.article.vo.ArticleTime;
 import com.article.vo.ArticleWithBLOBs;
 import com.article.vo.NewArticle;
 import com.foundation.view.Page;
@@ -27,4 +28,6 @@ public interface ArticleMapper {
     List<NewArticle> selectHotsLimitEight();
 
     int selectCountsByPage(Page<NewArticle> page);
+
+    List<ArticleTime> selectTimeGroupByArticle();
 }

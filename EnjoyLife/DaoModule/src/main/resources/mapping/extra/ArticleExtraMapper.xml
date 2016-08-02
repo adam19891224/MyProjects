@@ -57,4 +57,39 @@
           temp.hots > 0
         LIMIT 0,8
     </select>
+
+
+    <resultMap id="ArticleTimeForYear" type="com.article.vo.ArticleTime" >
+        <result column="article_year" property="date" jdbcType="VARCHAR" />
+        <collection property="list" column="article_year" select="selectTimeByYear"/>
+    </resultMap>
+
+    <select id="selectTimeGroupByArticle" resultMap="ArticleTimeForYear">
+        SELECT
+            DATE_FORMAT(CREATE_DATE, "%Y") article_year
+        FROM
+            tb_article
+        GROUP BY
+            article_year
+        ORDER BY
+            article_year DESC
+    </select>
+
+    <resultMap id="ArticleTimeForMonth" type="com.article.vo.ArticleTime" >
+        <result column="article_month" property="date" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="selectTimeByYear" resultMap="ArticleTimeForMonth">
+        SELECT
+            DATE_FORMAT(CREATE_DATE, "%m") article_month
+        FROM
+            tb_article
+        WHERE
+             date_format(CREATE_DATE, '%Y') = #{date}
+        GROUP BY
+            article_month
+        ORDER BY
+            article_month DESC
+    </select>
+
 </mapper>

@@ -1,5 +1,6 @@
 package com.service.blogs;
 
+import com.article.vo.ArticleTime;
 import com.article.vo.ArticleWithBLOBs;
 import com.article.vo.NewArticle;
 import com.foundation.view.Page;
@@ -39,4 +40,5 @@ public interface IBlogsService {
      */
     List<NewArticle> selectHotsForEight();
 
+    List<ArticleTime> selectTimeGroupByArticle();
 }

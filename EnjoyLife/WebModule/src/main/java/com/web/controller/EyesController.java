@@ -1,5 +1,6 @@
 package com.web.controller;
 
+import com.article.vo.ArticleTime;
 import com.article.vo.NewArticle;
 import com.foundation.utils.ConUtils;
 import com.foundation.view.Page;
@@ -38,11 +39,14 @@ public class EyesController extends BaseController {
             logger.info("获取文章所有类型结果，结果数：" + types.size());
             map.addAttribute("types", types);
         }
+
         //不分页
         page.setPagination(false);
         page = blogsService.selectArticlesByPageSolr(page);
-
         map.addAttribute("all", page);
+
+        List<ArticleTime> times = blogsService.selectTimeGroupByArticle();
+        map.addAttribute("times", times);
 
         return "eyes/main";
     }
