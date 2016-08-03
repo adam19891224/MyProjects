@@ -16,19 +16,23 @@
     background-color: #FFB6C1;
 }
 
+.div-left{
+    padding: 0 10px;
+    box-sizing: border-box;
+}
 
 /*
     左边
 */
 .div-left .left-time {
     width: 80px;
-    height: auto;
     float: left;
     padding-top: 25px;
+    overflow: hidden;
 }
 
 .div-left .left-main{
-    width: 820px;
+    width: 800px;
     overflow: hidden;
     float: left;
 }
@@ -51,8 +55,8 @@
 }
 
 .left-time ul{
-    margin: 0;
     padding: 0;
+    margin: 0 0 0 20px;
 }
 
 .left-time ul li{
@@ -67,8 +71,9 @@
     cursor: pointer;
 }
 
-.time-year{
+.time-year-location{
     position: fixed;
+    top: 30px;
 }
 
 .div-left .time-year h3{
@@ -184,23 +189,12 @@
     }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 800px) {
     .div-left .left-time {
-        width: 14%;
+        display: none;
     }
 
     .div-left .left-main{
-        width: 86%;
-    }
-}
-
-
-@media screen and (max-width: 500px) {
-    .div-left .left-time {
-        width: 15%;
-    }
-
-    .div-left .left-main{
-        width: 85%;
+        width: 100%
     }
 }

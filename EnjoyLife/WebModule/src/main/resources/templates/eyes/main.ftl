@@ -15,7 +15,7 @@
         [#--中间--]
         <main id="main" class="main">
             <div class="main-div">
-                <div class="div-left">
+                <div id="div-left" class="div-left">
                     <h3>
                         <i class="tips"></i>
                         文章一览
@@ -29,7 +29,7 @@
                         <ul id="eyes-main" class="eyes-main">
                             [#if all.resultList?? && all.resultList?size > 0]
                                 [#list all.resultList as entity]
-                                    <li data-time-Y="${entity.createDate?string("yyyy")}" data-time-M="${entity.createDate?string("MM")}">
+                                    <li data-time-Y="${entity.createDate?string("yyyy")}" data-time-M="${entity.createDate?string("MM")}" data-time-YM="${entity.createDate?string("yyyy-MM")}">
                                         <div class="eyes-top">
                                             ${entity.createDateStr}
                                         </div>

@@ -37,6 +37,8 @@ require([
 
     var hotsUtils = new HotsUtils();
     hotsUtils.getHots();
+
+    console.log("欢迎访问本网站！ (*^__^*) ");
 });
 
 function IndexUtils(){
@@ -104,6 +106,12 @@ function IndexUtils(){
                 $("#main").data("page", newPage);
 
                 $("#blog-main").empty();
+                if(list == null){
+                    //则提示没有数据
+                    $("#loading-div").empty();
+                    $("#loading-div").append("<span>没有数据了。。。</span>");
+                    return;
+                }
                 if(list.length > 0){
                     combineBlogs(list);
                     lazyloading();
