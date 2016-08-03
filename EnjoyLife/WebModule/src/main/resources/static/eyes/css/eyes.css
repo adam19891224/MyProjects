@@ -21,14 +21,14 @@
     左边
 */
 .div-left .left-time {
-    width: 50px;
+    width: 80px;
     height: auto;
     float: left;
     padding-top: 25px;
 }
 
 .div-left .left-main{
-    width: 850px;
+    width: 820px;
     overflow: hidden;
     float: left;
 }
@@ -69,6 +69,32 @@
 
 .time-year{
     position: fixed;
+}
+
+.div-left .time-year h3{
+    width: 100%;
+    display: inline-block;
+    position: relative;
+}
+
+.div-left .time-year h3 i{
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    float: right;
+    position: absolute;
+    margin-top: 2px;
+    margin-left: 2px;
+}
+
+.div-left .time-year h3 .up{
+    background: url("../images/up.png") no-repeat;
+    background-size: contain;
+}
+
+.div-left .time-year h3 .down{
+    background: url("../images/down.png") no-repeat;
+    background-size: contain;
 }
 
 .time-year li ul{
@@ -150,16 +176,6 @@
 
 @media screen and (max-width: 1250px) {
     .div-left .left-time {
-        width: 8%;
-    }
-
-    .div-left .left-main{
-        width: 92%;
-    }
-}
-
-@media screen and (max-width: 700px) {
-    .div-left .left-time {
         width: 10%;
     }
 
@@ -170,11 +186,11 @@
 
 @media screen and (max-width: 500px) {
     .div-left .left-time {
-        width: 12%;
+        width: 14%;
     }
 
     .div-left .left-main{
-        width: 87%;
+        width: 86%;
     }
 }
 

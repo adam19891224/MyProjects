@@ -85,8 +85,9 @@ function EyesUtils(){
         timeDoc.find("i").removeClass("show");
         var ul = timeDoc.find("ul[data-Y='" + Y + "']");
         if(ul.attr("is-show") == "false"){
-            timeDoc.find("ul[is-show='true']").attr("is-show", "false").slideUp();
-            ul.attr("is-show", "true").slideDown();
+            timeDoc.find("ul[is-show='true']").attr("is-show", "false").slideUp().end()
+                .find(".up").removeClass("up").addClass("down");
+            ul.attr("is-show", "true").slideDown().parent().find("h3").find("i").removeClass("down").addClass("up");
         }
         ul.find("h5[data-M='" + M + "']").find("i").addClass("show");
     }

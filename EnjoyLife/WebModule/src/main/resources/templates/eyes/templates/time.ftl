@@ -4,7 +4,9 @@
         [#--判断是否是第一个年份--]
         [#if time_index == 0]
             <li>
-                <h3>${time.date}</h3>
+                <h3>
+                    ${time.date}<i class="up"></i>
+                </h3>
                 <ul class="show-ul" is-show="true" data-Y="${time.date}">
                     [#if time.list?? && time.list?size > 0]
                         [#list time.list as list]
@@ -29,7 +31,9 @@
             </li>
         [#else]
             <li>
-                <h3>${time.date}</h3>
+                <h3>
+                    ${time.date}<i class="down"></i>
+                </h3>
                 <ul is-show="false" data-Y="${time.date}">
                     [#if time.list?? && time.list?size > 0]
                         [#list time.list as list]
