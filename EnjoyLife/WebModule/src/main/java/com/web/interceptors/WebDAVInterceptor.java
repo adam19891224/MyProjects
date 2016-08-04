@@ -1,6 +1,7 @@
 package com.web.interceptors;
 
 import com.foundation.utils.BowserUtils;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -12,15 +13,12 @@ import javax.servlet.http.HttpServletResponse;
  * Adam
  * 2016/7/28
  */
+@Component
 public class WebDAVInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Methods", "GET, POST");
-        String url = String.valueOf(request.getRequestURL());
-        if(url.indexOf("hope") > 0){
-            return true;
-        }
         String version = BowserUtils.getBowserVersion(request);
         if(version.equalsIgnoreCase("ie7")
                 || version.equalsIgnoreCase("ie8")

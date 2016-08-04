@@ -3,7 +3,6 @@ package com.article.search.impl;
 import com.article.search.SolrArticleMapper;
 import com.article.vo.NewArticle;
 import com.foundation.enums.SolrResultMapKeyEnum;
-import com.foundation.solr.factory.SolrFactory;
 import com.foundation.utils.ConUtils;
 import com.foundation.utils.DateUtils;
 import com.foundation.utils.StringUtils;
@@ -14,13 +13,10 @@ import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -33,12 +29,8 @@ import java.util.Map;
 @Repository
 public class SolrArticleMapperImpl implements SolrArticleMapper {
 
+    @Autowired
     private SolrClient solrClient;
-
-    public SolrArticleMapperImpl(){
-        this.solrClient = SolrFactory.getClient();
-    }
-
 
     @Override
     public Map<String, Object> selectArticlesByPage(Page<NewArticle> page) throws IOException, SolrServerException {
