@@ -36,11 +36,8 @@ public class SeriesController extends BaseController {
     @RequestMapping("/index.html")
     public String index(ModelMap map){
 
-        logger.info("进入专题系列首页");
-
         List<Type> types = typeService.selectAllTypes();
         if(ConUtils.isNotNull(types)){
-            logger.info("获取文章所有类型结果，结果数：" + types.size());
             map.addAttribute("types", types);
         }
 

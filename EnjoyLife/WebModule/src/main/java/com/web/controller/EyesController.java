@@ -36,7 +36,6 @@ public class EyesController extends BaseController {
 
         List<Type> types = typeService.selectAllTypes();
         if(ConUtils.isNotNull(types)){
-            logger.info("获取文章所有类型结果，结果数：" + types.size());
             map.addAttribute("types", types);
         }
 

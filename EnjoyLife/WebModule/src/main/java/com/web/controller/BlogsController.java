@@ -38,9 +38,7 @@ public class BlogsController extends BaseController {
     @RequestMapping("/getBlogs.html")
     @ResponseBody
     public String list(Page<NewArticle> page){
-        logger.info("进入获取文章列表方法");
         page = blogsService.selectArticlesByPageSolr(page);
-        logger.info("退出获取文章列表方法，返回参数：" + page);
         return super.parseObjectToJson(page);
     }
 
@@ -50,9 +48,7 @@ public class BlogsController extends BaseController {
     @RequestMapping("/getHotsBlogs.html")
     @ResponseBody
     public String hotsList(){
-        logger.info("进入获取热门文章列表方法");
         List<NewArticle> hots = blogsService.selectHotsForEight();
-        logger.info("退出获取热门文章列表方法，返回结果数：" + hots.size());
         return super.parseObjectToJson(hots);
     }
 
@@ -65,13 +61,11 @@ public class BlogsController extends BaseController {
     @RequestMapping("/{sid}.html")
     public String getArticle(@PathVariable Integer sid, ModelMap map){
 
-        logger.info("进入查询文章详情方法，文章id：" + sid);
         ArticleWithBLOBs article = blogsService.selectArticleBySID(sid);
         if(article == null){
-            logger.error("查询文章详情失败，原因 【没有找到对应的文章】");
+            logger.error("查询文章详情失败，原因 【没有找到对应id为: " + sid + " 的文章】");
             return "redirect:/error";
         }
-        logger.info("退出查询文章详情方法，返回文章标题：" + article.getArticleTitle());
         map.addAttribute("article", article);
         return "blogs/main";
     }
@@ -85,12 +79,10 @@ public class BlogsController extends BaseController {
     @RequestMapping("/getComment.html")
     @ResponseBody
     public String getComment(Page<Comment> page){
-        logger.info("进入查询主评论列表方法， 文章id： " + page.getArticleId());
         page.setPageSize(10);
         page.setPage(page.getPage());
         page.setIsReply(Byte.valueOf("0"));
         page = commentService.selectCommentByPage(page);
-        logger.info("退出查询主评论列表方法， 返回参数" + page);
         return super.parseObjectToJson(page);
     }
 
@@ -103,11 +95,9 @@ public class BlogsController extends BaseController {
     @RequestMapping("/getReplyComment.html")
     @ResponseBody
     public String getReplyComment(CommentForm form){
-        logger.info("进入查询回复评论方法");
         List<Comment> list = commentService.selectReplyCommentByForm(form);
         Page<Comment> page = new Page<>();
         page.setResultList(list);
-        logger.info("退出查询回复评论方法， 返回参数" + page);
         return super.parseObjectToJson(page);
     }
 
@@ -121,7 +111,6 @@ public class BlogsController extends BaseController {
     @RequestMapping("/saveComment.html")
     @ResponseBody
     public String saveComment(CommentForm form){
-        logger.info("进入保存评论方法");
         try {
             commentService.saveComment(form);
             return "success";

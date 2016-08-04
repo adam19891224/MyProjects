@@ -24,4 +24,13 @@ public class IndexController extends BaseController {
         return "index/main";
     }
 
+    /**
+     * 浏览器版本过低
+     */
+    @RequestMapping("/hope.html")
+    public String hope(HttpServletRequest request){
+        logger.info("来自： " + super.getIP(request) + "  的朋友由于本地浏览器版本过低， 进入提示页面          ------》");
+        return "index/hope";
+    }
+
 }
