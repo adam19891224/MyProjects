@@ -5,7 +5,7 @@ require.config({
         "jTempletes": "/blogs/js/templates",
         "jTempletesUn": "/blogs/js/templates_uncompressed",
         "hots": "/base/js/hots",
-        "tarCloud": "/base/js/tar-cloud"
+        "tarCloud": "/base/js/tar-cloud.min"
     },
     shim: {
         "jTempletes" : ["jquery"],
@@ -29,7 +29,7 @@ require([
     common.showNavigatorBar(1);
 
     var categorys = new CategoryUtils();
-    categorys.init(0, document.getElementById("type-body"));
+    categorys.init($("#type-body"));
 
     var hotsUtils = new HotsUtils();
     hotsUtils.getHots();

@@ -7,7 +7,7 @@ require.config({
         "jTempletes": "/blogs/js/templates",
         "jTempletesUn": "/blogs/js/templates_uncompressed",
         "hots": "/base/js/hots",
-        "tarCloud": "/base/js/tar-cloud"
+        "tarCloud": "/base/js/tar-cloud.min"
     },
     shim: {
         "lazyload" : ["jquery"],
@@ -35,7 +35,7 @@ require([
     common.showNavigatorBar(2);
 
     var categorys = new CategoryUtils();
-    categorys.init(0, document.getElementById("type-body"));
+    categorys.init($("#type-body"));
 
     var hotsUtils = new HotsUtils();
     hotsUtils.getHots();
@@ -177,7 +177,7 @@ function EyesUtils(){
      * 滚动到指定地方
      */
     this.scrollTo = function (height) {
-        $("body").animate({scrollTop: height}, 1000, function () {
+        $("body,html").animate({scrollTop: height}, 1000, function () {
             type = true;
         });
     };

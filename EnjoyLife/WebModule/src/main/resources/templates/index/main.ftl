@@ -65,7 +65,7 @@
                     [#include "../common/hot-div.ftl" ]
 
                     [#--音乐--]
-                    [#include "../common/music-div.ftl" ]
+                    [#--[#include "../common/music-div.ftl" ]--]
 
                 </div>
             </div>

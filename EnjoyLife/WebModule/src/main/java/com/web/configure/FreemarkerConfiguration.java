@@ -52,9 +52,10 @@ public class FreemarkerConfiguration {
     public void checkTemplateLocationExists() {
         if (this.properties.isCheckTemplateLocation()) {
             TemplateLocation templatePathLocation = null;
+            TemplateLocation location = null;
             List<TemplateLocation> locations = new ArrayList<TemplateLocation>();
             for (String templateLoaderPath : this.properties.getTemplateLoaderPath()) {
-                TemplateLocation location = new TemplateLocation(templateLoaderPath);
+                location = new TemplateLocation(templateLoaderPath);
                 locations.add(location);
                 if (location.exists(this.applicationContext)) {
                     templatePathLocation = location;
@@ -62,10 +63,8 @@ public class FreemarkerConfiguration {
                 }
             }
             if (templatePathLocation == null) {
-                logger.warn("Cannot find template location(s): " + locations
-                        + " (please add some templates, "
-                        + "check your FreeMarker configuration, or set "
-                        + "spring.freemarker.checkTemplateLocation=false)");
+                logger.error("没有找到freemarker的location地址: " + locations
+                        + " (请检查，或者设置spring.freemarker.checkTemplateLocation为false,");
             }
         }
     }
