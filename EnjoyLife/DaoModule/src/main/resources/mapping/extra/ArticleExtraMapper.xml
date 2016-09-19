@@ -11,12 +11,22 @@
           ta.*
         FROM
           tb_article ta
+        INNER JOIN
+          tb_article_type tap ON ta.ARTICLE_ID = tap.ARTICLE_ID
+        INNER JOIN
+          tb_type tp ON tap.TYPE_ID = tp.TYPE_ID
+
         <where>
             <if test="kw != null and kw != '' ">
                 ta.ARTICLE_TITLE LIKE CONCAT('%', #{kw}, '%')
             </if>
+            <if test="typeName != null and typeName != '' ">
+                tp.TYPE_NAME = #{typeName}
+            </if>
         </where>
+
         ORDER BY ta.CREATE_DATE DESC
+
         limit #{pageNum}, #{pageSize}
     </select>
 

@@ -7,7 +7,7 @@
     <div id="type-body" class="type-body">
         [#if types?? && types?size > 0]
             [#list types as type]
-                <a href="${type.typeId}" target="_blank">${type.typeName}</a>
+                <a href="/eyes/category/${type.typeName}/1.html">${type.typeName}</a>
             [/#list]
         [#else]
             <h2>敬请期待</h2>

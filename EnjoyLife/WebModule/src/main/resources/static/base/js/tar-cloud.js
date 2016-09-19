@@ -247,7 +247,7 @@ function CategoryUtils(){
             $(canvas).on({
                 click: function () {
                     if (active){
-                        window.open(active.href)
+                        window.open(active.attr("href"));
                     }
                 },
                 mousemove: function (e) { //hover事件，修改标签样式
