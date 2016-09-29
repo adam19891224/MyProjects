@@ -1,0 +1,61 @@
+@import "../../base/css/common.css";
+@import "../../base/css/right.css";
+
+
+.line{
+    width: 100%;
+    height: 2px;
+    float: left;
+    background-color: lightblue;
+}
+
+.light-line{
+    width: 100%;
+    height: 1px;
+    float: left;
+    background-color: #FFB6C1;
+}
+
+
+/*
+    左边
+*/
+.div-left h3{
+    text-align: left;
+    font-weight: normal;
+    line-height: 70px;
+}
+
+.div-left h3 i{
+    width: 50px;
+    height: 50px;
+    float: left;
+    margin-right: 10px;
+    background: url("../images/showIcon.png") no-repeat;
+    background-size: cover;
+    margin-top: 10px;
+}
+
+.search-main{
+    width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: 0 20px;
+}
+
+.search-main h3{
+    font-size: 20px;
+    line-height: 50px;
+    cursor: pointer;
+    padding: 0 5px;
+}
+
+.search-main h3 span{
+    float: right;
+    font-size: 14px;
+}
+
+.search-main li{
+    height: 50px;
+    margin-top: 5px;
+}

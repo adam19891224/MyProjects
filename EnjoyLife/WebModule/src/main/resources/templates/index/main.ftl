@@ -5,8 +5,8 @@
         <meta name="keywords" content="Web技术，Web开发，Web交流，月下竹影，竹影，箫竹影，周禹宏" />
         <meta name="description" content="月下竹影，是一个作为Web技术交流平台的个人原创技术博客。期待大家的光临。" />
         [#include "../layout/head-setting.ftl"]
-        <link rel="stylesheet" href="../index/css/index.css?t=[@time /]">
-        <script src="../index/js/index.js?t=[@time /]"></script>
+        <link rel="stylesheet" href="/index/css/index.css?t=[@time /]">
+        <script src="/index/js/index.js?t=[@time /]"></script>
     </head>
     <body>
         [#--顶部--]
@@ -47,7 +47,7 @@
                         <div class="loading-div">
                             <div id="loading-div" class="loading-bar hidden">
                                 <span>加载中。。。。。。</span>
-                                <img src="../base/images/loading1.gif">
+                                <img src="/base/images/loading1.gif">
                             </div>
                         </div>
                         <div id="pagination-div" class="pagination-div">

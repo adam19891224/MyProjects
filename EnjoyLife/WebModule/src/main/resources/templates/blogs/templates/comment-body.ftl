@@ -4,7 +4,7 @@
     </h5>
     <div class="comment-line"></div>
     <div id="comment-loading" class="comment-loading">
-        <img src="../base/images/loading1.gif">
+        <img src="/base/images/loading1.gif">
     </div>
     <ul id="comment-main-ul" class="comment-main"></ul>
     <div class="comment-paginatior">

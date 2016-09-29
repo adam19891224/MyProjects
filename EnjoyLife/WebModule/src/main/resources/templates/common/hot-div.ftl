@@ -6,7 +6,7 @@
     <div class="line"></div>
     <ul id="hots-article-ul">
         <li>
-            <img src="../base/images/hot-loading.gif">
+            <img src="/base/images/hot-loading.gif">
         </li>
     </ul>
 </div>

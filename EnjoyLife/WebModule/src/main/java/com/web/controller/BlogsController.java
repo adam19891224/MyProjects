@@ -4,6 +4,7 @@ import com.article.vo.NewArticle;
 import com.article.vo.ArticleWithBLOBs;
 import com.comment.vo.Comment;
 import com.foundation.form.CommentForm;
+import com.foundation.utils.StringUtils;
 import com.foundation.view.Page;
 import com.service.blogs.IBlogsService;
 import com.service.comment.ICommentService;
@@ -112,6 +113,9 @@ public class BlogsController extends BaseController {
     @ResponseBody
     public String saveComment(CommentForm form){
         try {
+            if(!StringUtils.isNotNull(form.getCommentUser()) || !StringUtils.isNotNull(form.getCommentEmail())){
+                return "err";
+            }
             commentService.saveComment(form);
             return "success";
         } catch (Exception e){

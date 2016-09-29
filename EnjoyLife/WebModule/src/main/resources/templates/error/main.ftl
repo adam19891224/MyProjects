@@ -3,7 +3,7 @@
 <head>
     <title>找不到资源了</title>
     [#include "../layout/head-setting.ftl"]
-    <link rel="stylesheet" href="../error/css/error.css?t=[@time /]" type="text/css"/>
+    <link rel="stylesheet" href="/error/css/error.css?t=[@time /]" type="text/css"/>
 </head>
 <body>
 

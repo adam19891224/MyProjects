@@ -5,10 +5,10 @@
         <meta name="keywords" content="Web技术，Web开发，Web交流，月下竹影，竹影，箫竹影，周禹宏" />
         <meta name="description" content="${article.articleDescription}" />
         [#include "../layout/head-setting.ftl"]
-        <link rel="stylesheet" href="../blogs/css/blog.css?t=[@time /]">
-        <link rel="stylesheet" href="../blogs/css/prism.css?t=[@time /]">
-        <script src="../blogs/js/prism.js"></script>
-        <script src="../blogs/js/blogs.js?t=[@time /]"></script>
+        <link rel="stylesheet" href="/blogs/css/blog.css?t=[@time /]">
+        <link rel="stylesheet" href="/blogs/css/prism.css?t=[@time /]">
+        <script src="/blogs/js/prism.js"></script>
+        <script src="/blogs/js/blogs.js?t=[@time /]"></script>
     </head>
     <body>
         [#--顶部--]
@@ -28,7 +28,7 @@
                                 <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a><a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a></div>
                             </div>
                             <div class="show-right">
-                                <img src="../blogs/images/time.png">
+                                <img src="/blogs/images/time.png">
                                 <span>${article.createDate?string("yyyy-MM-dd")}</span>
                             </div>
                         </div>
