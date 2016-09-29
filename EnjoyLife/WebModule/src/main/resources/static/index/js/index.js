@@ -1,7 +1,6 @@
 require.config({
     paths: {
         "jquery": "/base/js/jquery-2.2.3.min",
-        "cookie": "/base/js/jquery.cookie",
         "lazyload": "/base/js/jquery.lazyload.min",
         "jTempletes": "/blogs/js/templates",
         "jTempletesUn": "/blogs/js/templates_uncompressed",
@@ -19,7 +18,6 @@ require.config({
 
 require([
     "jquery",
-    "cookie",
     "lazyload",
     "jTempletes",
     "jTempletesUn",

@@ -8,8 +8,8 @@
     </div>
     <ul id="comment-main-ul" class="comment-main"></ul>
     <div class="comment-paginatior">
-        <a href="javascript:" forward="n">下一页</a>
-        <a href="javascript:" forward="p">上一页</a>
+        <a href="javascript:" forward="n" class="paginatior-none">下一页</a>
+        <a href="javascript:" forward="p" class="paginatior-none">上一页</a>
     </div>
     <div class="comment-editor">
         <textarea name="commentEditor" title="回复文章"></textarea>

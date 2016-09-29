@@ -30,7 +30,7 @@ public class SearchController extends BaseController {
     /**
      * 进入分类一览页
      */
-    @RequestMapping("/{name}/{num}.html")
+    @RequestMapping("/category/{name}/{num}.html")
     public String category(ModelMap map, @PathVariable String name, @PathVariable Integer num){
         List<Type> types = typeService.selectAllTypes();
         if(ConUtils.isNotNull(types)){
@@ -41,7 +41,7 @@ public class SearchController extends BaseController {
         page.setPage(num);
         page = blogsService.selectArticlesByPage(page);
         map.addAttribute("all", page);
-
+        map.addAttribute("key", name);
         return "search/main";
     }
 }

@@ -1,6 +1,6 @@
 @import "../../base/css/common.css";
 @import "../../base/css/right.css";
-@import "animation.css";
+/*@import "animation.css";*/
 
 /*
     中间
@@ -188,6 +188,8 @@
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     position: relative;
+    margin-top: 10px;
+    background-color: #FFDAB9;
 }
 
 .left-main ul li .blog-tips{

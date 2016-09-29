@@ -18,23 +18,32 @@
         <div class="div-left">
             <h3>
                 <i class="tips"></i>
-                系列专题
+                ${key}
             </h3>
             <div class="line"></div>
-            <ul class="search-main">
-            [#if series?? && series?size > 0]
-                [#list series as serie]
-                    <li>
-                        <h3>${serie.seriesName}<span><em>${serie.counts}</em> 篇</span></h3>
-                        <div class="light-line"></div>
+            <ul id="search-main" class="search-main">
+                [#if all.resultList?? && all.resultList?size > 0]
+                    [#list all.resultList as entity]
+                        <li data-time-Y="${entity.createDate?string("yyyy")}" data-time-M="${entity.createDate?string("MM")}" data-time-YM="${entity.createDate?string("yyyy-MM")}">
+                            <div class="search-top">
+                                ${entity.createDate?string("yyyy-MM-dd")}
+                            </div>
+                            <h2 class="search-title">
+                                ${entity.articleTitle}
+                            </h2>
+                            <a href="/blogs/${entity.articleSid}.html" class="li-a">
+                                <img src="/base/images/image-loading.gif" class="lazy" data-original="${entity.articleImg}" alt="${entity.articleTitle}">
+                            </a>
+                            <span>
+                                ${entity.articleDescription}
+                            </span>
+                        </li>
+                    [/#list]
+                [#else]
+                    <li style="min-height: 70px; height: 70px;">
+                        <h3 style="text-align: center;">敬请期待</h3>
                     </li>
-                [/#list]
-            [#else]
-                <li>
-                    <h3 style="text-align: center;">敬请期待</h3>
-                    <div class="light-line"></div>
-                </li>
-            [/#if]
+                [/#if]
             </ul>
         </div>
         <div class="div-right">

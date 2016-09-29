@@ -111,6 +111,7 @@ function BolgUtils(){
         var clickPage = commentObj.data("page");
         data.page = clickPage;
         $("#comment-loading").show();
+        commentObj.find("#comment-main-ul").hide();
         $.ajax({
             url : "/blogs/getComment.html",
             type : "post",

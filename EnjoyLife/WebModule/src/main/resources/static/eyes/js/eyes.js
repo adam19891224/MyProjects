@@ -1,7 +1,6 @@
 require.config({
     paths: {
         "jquery": "/base/js/jquery-2.2.3.min",
-        "cookie": "/base/js/jquery.cookie",
         "lazyload": "/base/js/jquery.lazyload.min",
         "common": "/base/js/common",
         "jTempletes": "/blogs/js/templates",
@@ -11,7 +10,6 @@ require.config({
     },
     shim: {
         "lazyload" : ["jquery"],
-        "cookie" : ["jquery"],
         "jTempletes" : ["jquery"],
         "jTempletesUn" : ["jquery"]
     }
@@ -21,7 +19,6 @@ require.config({
 
 require([
     "jquery",
-    "cookie",
     "lazyload",
     "common",
     "jTempletes",
@@ -44,6 +41,7 @@ require([
     eyesUtils.timerYearClickListener();
     eyesUtils.timerMonthClickListener();
     eyesUtils.initLocation();
+    eyesUtils.lazyLoading();
 
     var scrollTop;
     //时间监控
@@ -190,5 +188,16 @@ function EyesUtils(){
         var liDoc = $("#eyes-main").find("li[data-time-YM='" + str + "']").first();
         //滚动到这个Li的高度
         eyes.scrollTo(liDoc.offset().top - 50);
+    };
+
+    /**
+     * 图片懒加载
+     */
+    this.lazyLoading = function () {
+        $("#eyes-main img").lazyload({
+            effect: "fadeIn",
+            threshold : 200,
+            failure_limit: 1
+        });
     }
 }

@@ -33,6 +33,15 @@
                                         <div class="eyes-top">
                                             ${entity.createDateStr}
                                         </div>
+                                        <h2 class="eyes-title">
+                                            ${entity.articleTitle}
+                                        </h2>
+                                        <a href="/blogs/${entity.articleSid}.html" class="li-a">
+                                            <img src="/base/images/image-loading.gif" class="lazy" data-original="${entity.articleImg}" alt="${entity.articleTitle}">
+                                        </a>
+                                        <span>
+                                            ${entity.articleDescription}
+                                        </span>
                                     </li>
                                 [/#list]
                             [#else]

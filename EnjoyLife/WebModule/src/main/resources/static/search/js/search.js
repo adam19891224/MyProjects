@@ -1,6 +1,7 @@
 require.config({
     paths: {
         "jquery": "/base/js/jquery-2.2.3.min",
+        "lazyload": "/base/js/jquery.lazyload.min",
         "common": "/base/js/common",
         "jTempletes": "/blogs/js/templates",
         "jTempletesUn": "/blogs/js/templates_uncompressed",
@@ -8,6 +9,7 @@ require.config({
         "tarCloud": "/base/js/tar-cloud.min"
     },
     shim: {
+        "lazyload" : ["jquery"],
         "jTempletes" : ["jquery"],
         "jTempletesUn" : ["jquery"]
     }
@@ -17,6 +19,7 @@ require.config({
 
 require([
     "jquery",
+    "lazyload",
     "common",
     "jTempletes",
     "jTempletesUn",
@@ -26,7 +29,7 @@ require([
 
     var common = new Common();
     common.searchButtonMouseListener();
-    common.showNavigatorBar(1);
+    common.showNavigatorBar(2);
 
     var categorys = new CategoryUtils();
     categorys.init($("#type-body"));
@@ -34,4 +37,20 @@ require([
     var hotsUtils = new HotsUtils();
     hotsUtils.getHots();
 
+    var searchUtils = new SearchUtils();
+    searchUtils.lazyLoading();
 });
+
+function SearchUtils(){
+
+    /**
+     * 图片懒加载
+     */
+    this.lazyLoading = function () {
+        $("#search-main img").lazyload({
+            effect: "fadeIn",
+            threshold : 200,
+            failure_limit: 1
+        });
+    }
+}

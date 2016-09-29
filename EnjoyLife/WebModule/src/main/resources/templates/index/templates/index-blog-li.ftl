@@ -9,7 +9,7 @@
                 <a href="/blogs/{$T.entity.articleSid}.html">{$T.entity.articleTitle}</a>
             </h2>
             <a href="/blogs/{$T.entity.articleSid}.html" class="li-a">
-                <img src="/base/images/image-loading.gif" class="lazy" data-original="{$T.entity.articleImg}" alt="图片">
+                <img src="/base/images/image-loading.gif" class="lazy" data-original="{$T.entity.articleImg}" alt="{$T.entity.articleTitle}">
             </a>
             <span>{$T.entity.articleDescription}</span>
         </li>

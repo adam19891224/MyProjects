@@ -90,6 +90,7 @@ public class FreemarkerConfiguration {
 
         private Map<String, Object> getFreemarkerVariables(){
             Map<String, Object> variables = ConUtils.hashmap();
+
             variables.put("time", freemarkerTime);
             return variables;
         }
@@ -134,6 +135,7 @@ public class FreemarkerConfiguration {
         @ConditionalOnProperty(name = "spring.freemarker.enabled", matchIfMissing = true)
         public FreeMarkerViewResolver freeMarkerViewResolver() {
             FreeMarkerViewResolver resolver = new FreeMarkerViewResolver();
+            //设置${base}的路径
             this.properties.applyToViewResolver(resolver);
             return resolver;
         }
