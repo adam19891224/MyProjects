@@ -419,6 +419,7 @@
 .article-comment .comment-section, .article-comment .comment-reply-section{
     padding: 5px;
     box-sizing: border-box;
+    -moz-box-sizing: border-box;
 }
 
 #cancle-info{

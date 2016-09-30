@@ -40,7 +40,14 @@
     width: 100%;
     overflow: hidden;
     box-sizing: border-box;
+    -moz-box-sizing: border-box;
     padding: 0 20px;
+}
+
+.series-main a{
+    width: 100%;
+    overflow: hidden;
+    display: inline-block;
 }
 
 .series-main h3{

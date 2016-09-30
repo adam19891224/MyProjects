@@ -5,6 +5,7 @@
     <meta name="keywords" content="Web技术，Web开发，Web交流，月下竹影，竹影，箫竹影，周禹宏"/>
     <meta name="description" content="月下竹影，是一个作为Web技术交流平台的个人原创技术博客。期待大家的光临。"/>
     [#include "../layout/head-setting.ftl"]
+    <link rel="stylesheet" href="/base/css/page.css?t=[@time /]">
     <link rel="stylesheet" href="/search/css/search.css?t=[@time /]">
     <script src="/search/js/search.js?t=[@time /]"></script>
 </head>
@@ -29,7 +30,13 @@
                                 ${entity.createDate?string("yyyy-MM-dd")}
                             </div>
                             <h2 class="search-title">
-                                ${entity.articleTitle}
+                                <a href="/blogs/${entity.articleSid}.html">
+                                    [#if entity.highLightTitle??]
+                                        ${entity.highLightTitle}
+                                    [#else]
+                                        ${entity.articleTitle}
+                                    [/#if]
+                                </a>
                             </h2>
                             <a href="/blogs/${entity.articleSid}.html" class="li-a">
                                 <img src="/base/images/image-loading.gif" class="lazy" data-original="${entity.articleImg}" alt="${entity.articleTitle}">
@@ -45,6 +52,7 @@
                     </li>
                 [/#if]
             </ul>
+            <div id="kkpager" class="div-page" total="${all.totalPages}" current="${all.page}" key="${key}"></div>
         </div>
         <div class="div-right">
             [#--热门搜索--]

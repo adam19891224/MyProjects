@@ -19,6 +19,7 @@
 .div-left{
     padding: 0 10px;
     box-sizing: border-box;
+    -moz-box-sizing: border-box;
 }
 
 /*
@@ -67,6 +68,7 @@
     margin: 0;
     padding: 0 0 0 5px;
     box-sizing: border-box;
+    -moz-box-sizing: border-box;
     line-height: 15px;
     cursor: pointer;
 }
@@ -127,12 +129,14 @@
     width: 100%;
     overflow: hidden;
     box-sizing: border-box;
+    -moz-box-sizing: border-box;
     padding: 0 20px;
 }
 
 .eyes-main li{
     width: 100%;
     box-sizing: border-box;
+    -moz-box-sizing: border-box;
     min-height: 200px;
     margin-bottom: 10px;
     margin-top: 30px;

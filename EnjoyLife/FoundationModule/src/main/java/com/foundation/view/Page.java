@@ -49,11 +49,44 @@ public class Page<T> implements Serializable {
     private String typeParentId;
 
     /**
+     * 系列相关属性
+     */
+    private String seriesName;
+
+    private Integer seriesSid;
+
+    private String seriesId;
+
+    /**
      * 返回结果集
      */
     private List<T> resultList;
 
     private T resultObject;
+
+    public String getSeriesName() {
+        return seriesName;
+    }
+
+    public void setSeriesName(String seriesName) {
+        this.seriesName = seriesName;
+    }
+
+    public Integer getSeriesSid() {
+        return seriesSid;
+    }
+
+    public void setSeriesSid(Integer seriesSid) {
+        this.seriesSid = seriesSid;
+    }
+
+    public String getSeriesId() {
+        return seriesId;
+    }
+
+    public void setSeriesId(String seriesId) {
+        this.seriesId = seriesId;
+    }
 
     public Boolean getPagination() {
         return pagination;

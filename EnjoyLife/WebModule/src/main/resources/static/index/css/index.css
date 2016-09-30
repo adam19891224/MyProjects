@@ -184,12 +184,12 @@
 .left-main ul li{
     width: 100%;
     min-height: 200px;
-    padding: 50px;
+    padding: 20px 50px;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     position: relative;
     margin-top: 10px;
-    background-color: #FFDAB9;
+    background-color: #bbdfe1;
 }
 
 .left-main ul li .blog-tips{

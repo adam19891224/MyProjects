@@ -44,4 +44,23 @@ public class SearchController extends BaseController {
         map.addAttribute("key", name);
         return "search/main";
     }
+
+    /**
+     * 进入搜索页
+     */
+    @RequestMapping("/keyword/{name}/{num}.html")
+    public String keyword(ModelMap map, @PathVariable String name, @PathVariable Integer num){
+        List<Type> types = typeService.selectAllTypes();
+        if(ConUtils.isNotNull(types)){
+            map.addAttribute("types", types);
+        }
+        Page<NewArticle> page = new Page<NewArticle>();
+        page.setKw(name);
+        page.setPageSize(2);
+        page.setPage(num);
+        page = blogsService.selectArticlesByPageSolr(page);
+        map.addAttribute("all", page);
+        map.addAttribute("key", name);
+        return "search/main";
+    }
 }

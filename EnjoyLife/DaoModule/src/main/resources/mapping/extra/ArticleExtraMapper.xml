@@ -15,6 +15,10 @@
           tb_article_type tap ON ta.ARTICLE_ID = tap.ARTICLE_ID
         INNER JOIN
           tb_type tp ON tap.TYPE_ID = tp.TYPE_ID
+        INNER JOIN
+          tb_series_article tsa ON ta.ARTICLE_ID = tsa.ARTICLE_ID
+        INNER JOIN
+          tb_series ts ON tsa.SERIES_ID = ts.SERIES_ID
 
         <where>
             <if test="kw != null and kw != '' ">
@@ -22,6 +26,9 @@
             </if>
             <if test="typeName != null and typeName != '' ">
                 tp.TYPE_NAME = #{typeName}
+            </if>
+            <if test="seriesName != null and seriesName != '' ">
+                ts.SERIES_NAME = #{seriesName}
             </if>
         </where>
 
@@ -39,12 +46,20 @@
             tb_article_type tap ON ta.ARTICLE_ID = tap.ARTICLE_ID
         INNER JOIN
             tb_type tp ON tap.TYPE_ID = tp.TYPE_ID
+        INNER JOIN
+            tb_series_article tsa ON ta.ARTICLE_ID = tsa.ARTICLE_ID
+        INNER JOIN
+            tb_series ts ON tsa.SERIES_ID = ts.SERIES_ID
+
         <where>
             <if test="kw != null and kw != '' ">
                 ta.ARTICLE_TITLE LIKE CONCAT('%', #{kw}, '%')
             </if>
             <if test="typeName != null and typeName != '' ">
                 tp.TYPE_NAME = #{typeName}
+            </if>
+            <if test="seriesName != null and seriesName != '' ">
+                ts.SERIES_NAME = #{seriesName}
             </if>
         </where>
     </select>

@@ -25,11 +25,12 @@
                 [#if series?? && series?size > 0]
                     [#list series as serie]
                         <li>
-                            <h3>${serie.seriesName}<span><em>${serie.counts}</em> 篇</span></h3>
+                            <a href="/series/${serie.seriesName}/1.html">
+                                <h3>${serie.seriesName}<span><em>${serie.counts}</em> 篇</span></h3>
+                            </a>
                             <div class="light-line"></div>
                         </li>
                     [/#list]
-
                 [#else]
                     <li>
                         <h3 style="text-align: center;">敬请期待</h3>

@@ -10,6 +10,15 @@ function Common(){
             $(this).find("img").attr("src", "/base/images/mirror.png");
         });
 
+        $("#search").click(function(){
+            var kw = $(this).parent().find("input").val();
+            if(isNotNull(kw)){
+                window.location = "/search/keyword/" + kw + "/1.html";
+            }else{
+                window.location = "/eyes/index.html";
+            }
+        });
+
     };
 
     this.showNavigatorBar = function(index){
@@ -29,9 +38,16 @@ Date.prototype.format = function(fmt) {
         "S"  : this.getMilliseconds()             //毫秒
     };
     if(/(y+)/.test(fmt))
-        fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));
+        fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
     for(var k in o)
         if(new RegExp("("+ k +")").test(fmt))
-            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
+            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
     return fmt;
 };
+
+function isNotNull(res) {
+    if(Object.prototype.toString.call(res) === "[object String]"){
+        return (res != null && res != "" && !res.match(" ") && res != undefined);
+    }
+    return (res != null && res != "" && res != undefined && res.length > 0);
+}
