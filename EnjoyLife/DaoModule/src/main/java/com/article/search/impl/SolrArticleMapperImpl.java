@@ -97,7 +97,7 @@ public class SolrArticleMapperImpl implements SolrArticleMapper {
         //如果是搜索查询，则创建高亮，搜索范围
         if(StringUtils.isNotNull(page.getKw())){
             query.set("q", "articleTitle:(" + page.getKw() + ")");
-            query.addFilterQuery("articleDescription:(" + page.getKw() + ")");
+//            query.addFilterQuery("articleDescription:(" + page.getKw() + ")");
             query.setHighlight(true);                //开启高亮
             query.setHighlightSimplePre("<font color = \"red\">");    //前缀
             query.setHighlightSimplePost("</font>");    //后缀

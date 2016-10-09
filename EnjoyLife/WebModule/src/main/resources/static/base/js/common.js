@@ -11,7 +11,7 @@ function Common(){
         });
 
         $("#search").click(function(){
-            var kw = $(this).parent().find("input").val();
+            var kw = $(this).parent().find("input").val().replace(/\//g, '');
             if(isNotNull(kw)){
                 window.location = "/search/keyword/" + kw + "/1.html";
             }else{
@@ -47,7 +47,7 @@ Date.prototype.format = function(fmt) {
 
 function isNotNull(res) {
     if(Object.prototype.toString.call(res) === "[object String]"){
-        return (res != null && res != "" && !res.match(" ") && res != undefined);
+        return (res != null && res != "" && res != undefined);
     }
     return (res != null && res != "" && res != undefined && res.length > 0);
 }

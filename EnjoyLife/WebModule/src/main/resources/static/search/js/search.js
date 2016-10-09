@@ -81,7 +81,7 @@ function SearchUtils() {
                     nextPageTipText: '下一页'
                 },
                 click: function (n) {
-                    window.location = "/search/keyword/" + page.attr("key") + "/" + n + ".html";
+                    window.location = "/search/keyword/" + page.attr("key").replace(/\//g, '') + "/" + n + ".html";
                 }
             });
         });

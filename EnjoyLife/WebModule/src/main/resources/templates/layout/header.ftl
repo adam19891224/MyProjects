@@ -23,7 +23,7 @@
             </li>
         </ul>
         <div class="about">
-            <input id="kw-text" type="text" autocomplete="off" placeholder="请输入搜索关键字"/>
+            <input id="kw-text" type="text" autocomplete="off" value="${key?default("")}" placeholder="请输入搜索关键字"/>
             <a id="search" href="javascript:" class="search">
                 <img src="/base/images/mirror.png">
             </a>

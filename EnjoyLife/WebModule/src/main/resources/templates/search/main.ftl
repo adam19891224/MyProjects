@@ -48,7 +48,7 @@
                     [/#list]
                 [#else]
                     <li style="min-height: 70px; height: 70px;">
-                        <h3 style="text-align: center;">敬请期待</h3>
+                        <h3 style="text-align: center;">暂无结果...</h3>
                     </li>
                 [/#if]
             </ul>

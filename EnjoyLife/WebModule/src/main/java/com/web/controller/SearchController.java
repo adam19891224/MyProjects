@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.util.HtmlUtils;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -37,6 +38,7 @@ public class SearchController extends BaseController {
             map.addAttribute("types", types);
         }
         Page<NewArticle> page = new Page<NewArticle>();
+        name = HtmlUtils.htmlEscape(name);
         page.setTypeName(name);
         page.setPage(num);
         page = blogsService.selectArticlesByPage(page);
@@ -55,8 +57,8 @@ public class SearchController extends BaseController {
             map.addAttribute("types", types);
         }
         Page<NewArticle> page = new Page<NewArticle>();
+        name = HtmlUtils.htmlEscape(name);
         page.setKw(name);
-        page.setPageSize(2);
         page.setPage(num);
         page = blogsService.selectArticlesByPageSolr(page);
         map.addAttribute("all", page);
