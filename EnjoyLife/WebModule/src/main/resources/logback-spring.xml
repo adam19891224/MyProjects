@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <include resource="org/springframework/boot/logging/logback/base.xml" />
+
+    <!--移除继承配置-->
+    <!--<include resource="org/springframework/boot/logging/logback/base.xml" />-->
 
 
     <!--
@@ -15,28 +17,8 @@
         </filter>
     </appender>
 
-    <!--
-        设置全局日志
-    -->
-    <appender name="webappLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>/logs/app/day.log</File>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <!--
-                设置日志输出形式，%d{yyyy-MM-dd} 表示这个日志文件每天会生成一个
-             -->
-            <FileNamePattern>/logs/app/day.%d{yyyy-MM-dd}.log</FileNamePattern>
-            <!--
-                保留时间，这里设置30表示系统只会保留最后30天的日志记录
-             -->
-            <maxHistory>30</maxHistory>
-        </rollingPolicy>
-        <encoder>
-            <Pattern>%d{yyyy-MM-dd - HH:mm:ss} [%thread] %-5level %logger{35} - %msg %n</Pattern>
-        </encoder>
-    </appender>
-
     <root level="info">
-        <appender-ref ref="webappLog"/>
+        <appender-ref ref="consoleLog"/>
     </root>
 
     <!--
