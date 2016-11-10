@@ -102,15 +102,6 @@
             <version>${httpclient.version}</version>
         </dependency>
 
-
-
-        <!-- patchca验证码工具 -->
-        <dependency>
-            <groupId>com.github.bingoohuang</groupId>
-            <artifactId>patchca</artifactId>
-            <version>${patchca.version}</version>
-        </dependency>
-
     </dependencies>
 
 </project>

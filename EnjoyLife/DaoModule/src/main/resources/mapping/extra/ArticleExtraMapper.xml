@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.article.dao.ArticleMapper" >
+<mapper namespace="com.enjoylife.article.dao.ArticleMapper" >
 
-    <resultMap id="NewArticleBody" type="com.article.vo.NewArticle" extends="ResultMapWithBLOBs" >
+    <resultMap id="NewArticleBody" type="com.enjoylife.article.vo.NewArticle" extends="ResultMapWithBLOBs" >
         <result column="hots" property="hots" jdbcType="INTEGER" />
     </resultMap>
 
-    <select id="selectByPage" resultMap="NewArticleBody" parameterType="com.foundation.view.Page">
+    <select id="selectByPage" resultMap="NewArticleBody" parameterType="com.enjoylife.view.Page">
         SELECT
           ta.*
         FROM
@@ -15,9 +15,9 @@
           tb_article_type tap ON ta.ARTICLE_ID = tap.ARTICLE_ID
         INNER JOIN
           tb_type tp ON tap.TYPE_ID = tp.TYPE_ID
-        INNER JOIN
+        LEFT JOIN
           tb_series_article tsa ON ta.ARTICLE_ID = tsa.ARTICLE_ID
-        INNER JOIN
+        LEFT JOIN
           tb_series ts ON tsa.SERIES_ID = ts.SERIES_ID
 
         <where>
@@ -37,7 +37,7 @@
         limit #{pageNum}, #{pageSize}
     </select>
 
-    <select id="selectCountsByPage" resultType="java.lang.Integer" parameterType="com.foundation.view.Page">
+    <select id="selectCountsByPage" resultType="java.lang.Integer" parameterType="com.enjoylife.view.Page">
         SELECT
             COUNT(1)
         FROM
@@ -91,7 +91,7 @@
     </select>
 
 
-    <resultMap id="ArticleTimeForYear" type="com.article.vo.ArticleTime" >
+    <resultMap id="ArticleTimeForYear" type="com.enjoylife.article.vo.ArticleTime" >
         <result column="article_year" property="date" jdbcType="VARCHAR" />
         <collection property="list" column="article_year" select="selectTimeByYear"/>
     </resultMap>
@@ -107,7 +107,7 @@
             article_year DESC
     </select>
 
-    <resultMap id="ArticleTimeForMonth" type="com.article.vo.ArticleTime" >
+    <resultMap id="ArticleTimeForMonth" type="com.enjoylife.article.vo.ArticleTime" >
         <result column="article_month" property="date" jdbcType="VARCHAR" />
     </resultMap>
 

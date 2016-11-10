@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.article.dao.ArticleMapper" >
-  <resultMap id="BaseResultMap" type="com.article.vo.Article" >
+<mapper namespace="com.enjoylife.article.dao.ArticleMapper" >
+  <resultMap id="BaseResultMap" type="com.enjoylife.article.vo.Article" >
     <id column="ARTICLE_SID" property="articleSid" jdbcType="INTEGER" />
     <result column="ARTICLE_ID" property="articleId" jdbcType="VARCHAR" />
     <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
@@ -12,7 +12,7 @@
     <result column="ARTICLE_BACKUP3" property="articleBackup3" jdbcType="VARCHAR" />
     <result column="ARTICLE_IMG" property="articleImg" jdbcType="VARCHAR" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.article.vo.ArticleWithBLOBs" extends="BaseResultMap" >
+  <resultMap id="ResultMapWithBLOBs" type="com.enjoylife.article.vo.ArticleWithBLOBs" extends="BaseResultMap" >
     <result column="ARTICLE_BODY" property="articleBody" jdbcType="LONGVARCHAR" />
     <result column="ARTICLE_DESCRIPTION" property="articleDescription" jdbcType="LONGVARCHAR" />
   </resultMap>
@@ -35,7 +35,7 @@
     delete from tb_article
     where ARTICLE_SID = #{articleSid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.article.vo.ArticleWithBLOBs" >
+  <insert id="insert" parameterType="com.enjoylife.article.vo.ArticleWithBLOBs" >
     insert into tb_article (ARTICLE_SID, ARTICLE_ID, CREATE_DATE, 
       UPDATE_DATE, ARTICLE_TITLE, ARTICLE_BACKUP1, 
       ARTICLE_BACKUP2, ARTICLE_BACKUP3, ARTICLE_IMG, 
@@ -47,7 +47,7 @@
       #{articleBody,jdbcType=LONGVARCHAR}, #{articleDescription,jdbcType=LONGVARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.article.vo.ArticleWithBLOBs" >
+  <insert id="insertSelective" parameterType="com.enjoylife.article.vo.ArticleWithBLOBs" >
     insert into tb_article
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="articleSid != null" >
@@ -120,7 +120,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.article.vo.ArticleWithBLOBs" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.enjoylife.article.vo.ArticleWithBLOBs" >
     update tb_article
     <set >
       <if test="articleId != null" >
@@ -156,7 +156,7 @@
     </set>
     where ARTICLE_SID = #{articleSid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.article.vo.ArticleWithBLOBs" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.enjoylife.article.vo.ArticleWithBLOBs" >
     update tb_article
     set ARTICLE_ID = #{articleId,jdbcType=VARCHAR},
       CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
@@ -170,7 +170,7 @@
       ARTICLE_DESCRIPTION = #{articleDescription,jdbcType=LONGVARCHAR}
     where ARTICLE_SID = #{articleSid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.article.vo.Article" >
+  <update id="updateByPrimaryKey" parameterType="com.enjoylife.article.vo.Article" >
     update tb_article
     set ARTICLE_ID = #{articleId,jdbcType=VARCHAR},
       CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},

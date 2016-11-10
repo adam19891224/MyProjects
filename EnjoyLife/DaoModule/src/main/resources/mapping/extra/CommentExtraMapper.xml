@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.comment.dao.CommentMapper" >
+<mapper namespace="com.enjoylife.comment.dao.CommentMapper" >
 
-    <select id="selectByPage" resultMap="ResultMapWithBLOBs" parameterType="com.foundation.view.Page">
+    <select id="selectByPage" resultMap="ResultMapWithBLOBs" parameterType="com.enjoylife.view.Page">
         SELECT
           tc.*
         FROM
@@ -21,7 +21,7 @@
         limit #{pageNum}, #{pageSize}
     </select>
 
-    <select id="selectCountsByArticle" resultType="java.lang.Integer" parameterType="com.foundation.view.Page">
+    <select id="selectCountsByArticle" resultType="java.lang.Integer" parameterType="com.enjoylife.view.Page">
         SELECT
           COUNT(1)
         FROM
@@ -38,7 +38,7 @@
         </where>
     </select>
 
-    <select id="selectReplyComment" resultMap="ResultMapWithBLOBs" parameterType="com.foundation.form.CommentForm">
+    <select id="selectReplyComment" resultMap="ResultMapWithBLOBs" parameterType="com.enjoylife.form.CommentForm">
         SELECT
           tc.*
         FROM
