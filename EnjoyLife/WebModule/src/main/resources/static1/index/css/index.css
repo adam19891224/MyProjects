@@ -1,0 +1,300 @@
+@import "../../base/css/common.css";
+@import "../../base/css/right.css";
+/*@import "animation.css";*/
+
+/*
+    中间
+*/
+
+.main-top{
+    width: 100%;
+    height: 400px;
+    float: left;
+    overflow: hidden;
+    text-align: center;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    line-height: 300px;
+    margin-bottom: 15px;
+    display: none\0;
+}
+
+.main-top ul{
+    width: 1200px;
+    height: 100%;
+    padding: 0;
+    position: relative;
+    margin: 0 auto;
+}
+
+.main-top ul li{
+    float: left;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    position: absolute;
+}
+
+.main-top ul li:nth-child(1){
+    background: url("../images/line-1.jpg") no-repeat;
+    background-size: cover;
+    -webkit-animation: image1 21s linear infinite 0s;
+    -moz-animation: image1 21s linear infinite 0s;
+    animation: image1 21s linear infinite 0s;
+}
+
+.main-top ul li:nth-child(1) span{
+    display: block;
+    position: absolute;
+    left: 900px;
+    top: 60px;
+    font-size: 20px;
+    color: white;
+    width: 260px;
+    height: 50px;
+    line-height: 50px;
+    text-align: left;
+    text-shadow: 0 0 20px red;
+    animation: span51 21s linear infinite 0s;
+    -webkit-animation: span51 21s linear infinite 0s;
+    -moz-animation: span51 21s linear infinite 0s;
+    overflow: hidden;
+}
+
+.main-top ul li:nth-child(2){
+    background: url("../images/line-2.jpg") no-repeat;
+    background-size: cover;
+    -webkit-animation: image2 21s linear infinite 7s;
+    -moz-animation: image2 21s linear infinite 7s;
+    animation: image2 21s linear infinite 7s;
+}
+
+.main-top ul li:nth-child(2) span:nth-child(1){
+    display: block;
+    position: absolute;
+    left: 60px;
+    top: 60px;
+    font-size: 20px;
+    color: white;
+    width: 260px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    -moz-animation: span2 21s linear infinite 7s;
+    -webkit-animation: span2 21s linear infinite 7s;
+    animation: span2 21s linear infinite 7s;
+    overflow: hidden;
+}
+
+.main-top ul li:nth-child(2) span:nth-child(2){
+    display: block;
+    position: absolute;
+    left: 80px;
+    top: 110px;
+    font-size: 20px;
+    color: white;
+    width: 260px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    -moz-animation: span3 21s linear infinite 7s;
+    -webkit-animation: span3 21s linear infinite 7s;
+    animation: span3 21s linear infinite 7s;
+    overflow: hidden;
+}
+
+.main-top ul li:nth-child(2) span:nth-child(3){
+    display: block;
+    position: absolute;
+    left: 100px;
+    top: 160px;
+    font-size: 20px;
+    color: white;
+    width: 260px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    -moz-animation: span4 21s linear infinite 7s;
+    -webkit-animation: span4 21s linear infinite 7s;
+    animation: span4 21s linear infinite 7s;
+    overflow: hidden;
+}
+
+.main-top ul li:nth-child(3){
+    background: url("../images/line-3.jpg") no-repeat;
+    background-size: cover;
+    perspective: 800px;
+    -webkit-animation: image3 21s linear infinite 14s;
+    -moz-animation: image3 21s linear infinite 14s;
+    animation: image3 21s linear infinite 14s;
+}
+
+.main-top ul li:nth-child(3) span{
+    display: block;
+    color: white;
+    margin-top: 30px;
+    line-height: 50px;
+    font-size: 200%;
+    text-align: center;
+    -moz-animation: span5 21s linear infinite 14s;
+    -webkit-animation: span5 21s linear infinite 14s;
+    animation: span5 21s linear infinite 14s;
+}
+
+
+.left-top span{
+    font-size: 64px;
+}
+
+.left-main{
+    width: 100%;
+    float: left;
+    background-color: #ebebeb;
+    padding: 30px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+.left-main h3{
+    text-align: left;
+    font-weight: normal;
+    line-height: 30px;
+}
+
+.left-main h3 i{
+    width: 30px;
+    height: 30px;
+    float: left;
+    margin-right: 10px;
+    background: url("../../base/images/tips.png") no-repeat;
+}
+
+.left-main .line{
+    width: 100%;
+    height: 2px;
+    float: left;
+    background-color: lightblue;
+    margin-top: 10px;
+}
+
+.left-main ul{
+    margin: 0;
+    padding: 0;
+}
+
+.left-main ul li{
+    width: 100%;
+    min-height: 200px;
+    padding: 20px 50px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    position: relative;
+    margin-top: 10px;
+    background-color: #bbdfe1;
+}
+
+.left-main ul li .blog-tips{
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    top: 15px;
+    left: -30px;
+    background: url("../images/blogs-tips.png") no-repeat;
+    background-size: cover;
+    line-height: 80px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.left-main ul li h2{
+    text-align: center;
+    line-height: 40px;
+    font-weight: normal;
+    color: #696969;
+    cursor: pointer;
+}
+
+.left-main ul li .li-a{
+    display: block;
+    float: left;
+    overflow: hidden;
+    width: 100px;
+    height: 100px;
+    border: none;
+    margin: 0 10px 0 0;
+    text-align: center;
+}
+
+.left-main ul li .li-a img{
+    max-width: 100%;
+}
+
+.left-main ul li span{
+    word-break: break-all;
+    font-weight: normal;
+}
+
+.left-main .loading-div{
+    width: 100%;
+    float: left;
+}
+
+.loading-div .loading-bar{
+    width: 150px;
+    float: right;
+}
+
+.loading-div img{
+    max-height: 100%;
+}
+
+.left-main .pagination-div{
+    width: 40%;
+    margin-left: 30%;
+    float: left;
+    margin-top: 10px;
+}
+
+.pagination-div a{
+    display: inline-block;
+    width: 100px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background-color: lightblue;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.pagination-div .none{
+    background-color: #c6c6c6;
+}
+
+.pagination-div a:nth-child(1){
+    float: left;
+}
+
+.pagination-div a:nth-child(2){
+    float: right;
+}
+
+
+@media screen and (max-width: 1250px) {
+    .main-top {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 650px){
+    .left-main .pagination-div{
+        width: 60%;
+        margin-left: 20%;
+    }
+}
+
+@media screen and (max-width: 470px){
+    .left-main .pagination-div{
+        width: 80%;
+        margin-left: 10%;
+    }
+}
+

@@ -1,0 +1,104 @@
+/*
+    热门搜索
+*/
+.div-right .hot-div{
+    width: 100%;
+    height: 300px;
+    float: left;
+    background-color: #ebebeb;
+    padding: 10px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.hot-div h3{
+    text-align: left;
+    font-weight: normal;
+    line-height: 30px;
+    padding: 0 0 10px 0;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.hot-div h3 i{
+    width: 30px;
+    height: 30px;
+    float: left;
+    margin-right: 10px;
+    background: url("../images/tips.png") no-repeat;
+}
+
+.hot-div .line{
+    width: 100%;
+    height: 2px;
+    float: left;
+    background-color: lightblue;
+}
+
+.hot-div ul{
+    margin: 0;
+    padding: 0;
+
+}
+
+.hot-div ul li{
+    line-height: 30px;
+    width: 100%;
+    text-align: center;
+}
+
+.hot-div ul li:hover{
+    text-decoration: underline;
+}
+
+/*
+    音乐
+*/
+.div-right .music-div{
+    width: 100%;
+    height: 72px;
+    float: left;
+    background-color: #ebebeb;
+    padding: 10px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    margin-top: 10px;
+}
+
+/*
+    标签云
+*/
+.div-right .type-div{
+    width: 100%;
+    height: 300px;
+    float: left;
+    background-color: #ebebeb;
+    padding: 10px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    margin-top: 10px;
+}
+
+.type-div h3{
+    text-align: left;
+    font-weight: normal;
+    line-height: 30px;
+    padding: 0 0 10px 0;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.type-div h3 i{
+    width: 30px;
+    height: 30px;
+    float: left;
+    margin-right: 10px;
+    background: url("../images/category.png") no-repeat;
+}
+
+.type-div .type-body{
+    width: 100%;
+    height: 237px;
+    float: left;
+    text-align: center;
+}

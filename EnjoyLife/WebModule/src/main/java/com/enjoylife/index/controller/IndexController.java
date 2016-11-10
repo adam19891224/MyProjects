@@ -1,7 +1,9 @@
 package com.enjoylife.index.controller;
 
 import com.enjoylife.base.controller.BaseController;
+import com.enjoylife.enums.YesNoTypeEnum;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,13 +18,12 @@ public class IndexController extends BaseController {
 
     /**
      * 首页方法
-     * @param request
-     * @return
+     * @param map
      */
     @RequestMapping("/index.html")
-    public String index(HttpServletRequest request){
-        logger.info("来自： " + super.getIP(request) + "  的朋友访问本站！         ------》");
-        return "index/main";
+    public String index(ModelMap map){
+        map.addAttribute("isIndex", YesNoTypeEnum.Yes.getCode());
+        return "index/index";
     }
 
     /**

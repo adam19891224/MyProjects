@@ -19,7 +19,8 @@ public class WebDAVInterceptor implements HandlerInterceptor {
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Methods", "GET, POST");
         String version = BowserUtils.getBowserVersion(request);
-        if(version.equalsIgnoreCase("ie7")
+        if(version.equalsIgnoreCase("ie6")
+                || version.equalsIgnoreCase("ie7")
                 || version.equalsIgnoreCase("ie8")
                 || version.equalsIgnoreCase("ie9")){
             request.getServletContext().getRequestDispatcher("/hope.html").forward(request, response);
