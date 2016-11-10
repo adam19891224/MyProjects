@@ -1,0 +1,45 @@
+@import "../../base/css/common.css";
+
+.main-left{
+    padding: 20px;
+}
+
+.left-body{
+    overflow: hidden;
+    margin-bottom: 10px;
+    padding: 2px 2px;
+    box-sizing: border-box;
+    float: left;
+    width: 100%;
+}
+
+.series-main{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 500px;
+}
+
+.series-main li{
+    width: 100%;
+    line-height: 40px;
+    margin-top: 5px;
+    border-bottom: 2px solid #ebebeb;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.series-main h2{
+    display: inline-block;
+}
+
+.series-main h2:hover{
+    cursor: pointer;
+    color: #2e9ad0;
+    text-decoration: underline;
+}
+
+.series-main span{
+    display: inline-block;
+    float: right;
+}

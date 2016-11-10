@@ -2,6 +2,7 @@ package com.enjoylife.series.controller;
 
 import com.enjoylife.article.vo.NewArticle;
 import com.enjoylife.base.controller.BaseController;
+import com.enjoylife.enums.YesNoTypeEnum;
 import com.enjoylife.utils.ConUtils;
 import com.enjoylife.view.Page;
 import com.enjoylife.series.vo.SeriesInfo;
@@ -50,7 +51,9 @@ public class SeriesController extends BaseController {
         List<SeriesInfo> series = seriesService.selectAllSeries();
         map.addAttribute("series", series);
 
-        return "series/main";
+        map.addAttribute("isSeries", YesNoTypeEnum.Yes.getCode());
+
+        return "series/index";
     }
 
     /**
@@ -69,7 +72,7 @@ public class SeriesController extends BaseController {
         page = blogsService.selectArticlesByPage(page);
         map.addAttribute("all", page);
         map.addAttribute("key", name);
-        return "search/main";
+        return "search/index";
     }
 
 }

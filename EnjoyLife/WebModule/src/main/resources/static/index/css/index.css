@@ -1,2 +1,137 @@
 @import "../../base/css/common.css";
 
+.main-left{
+    padding: 20px;
+}
+
+.left-body{
+    overflow: hidden;
+    margin-bottom: 10px;
+    padding: 2px 2px;
+    box-sizing: border-box;
+    float: left;
+}
+
+.main-blog{
+    width: 100%;
+    min-height: 235px;
+    float: left;
+    box-shadow: 0 1px 5px #c6c6c6;
+    margin-bottom: 20px;
+}
+
+.blog-head{
+    width: 100%;
+    line-height: 40px;
+    font-size: 20px;
+    padding: 5px 20px;
+    text-align: center;
+    float: left;
+    box-sizing: border-box;
+    word-wrap: break-word;
+}
+
+.blog-head a:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.blog-intro{
+    width: 100%;
+    line-height: 20px;
+    font-size: 14px;
+    float: left;
+    padding: 0 30px;
+    box-sizing: border-box;
+    text-align: right;
+}
+.blog-intro span:nth-child(2){
+    margin-left: 5px;
+}
+
+.blog-line{
+    width: 98%;
+    height: 1px;
+    margin-left: 1%;
+    background-color: #c6c6c6;
+    float: left;
+    margin-bottom: 5px;
+}
+
+.blog-type{
+    width: 100%;
+    font-size: 14px;
+    float: left;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.type-body{
+    min-width: 50px;
+    line-height: 30px;
+    padding: 0 5px;
+    text-align: center;
+    box-sizing: border-box;
+    float: left;
+    margin-left: 10px;
+    border-radius: 5px;
+    margin-top: 3px;
+}
+
+.type-body:nth-child(7n + 1){
+    background-color: #FFC0CB;
+}
+.type-body:nth-child(7n + 2){
+    background-color: #FFA07A;
+}
+.type-body:nth-child(7n + 3){
+    background-color: #FFFFE0;
+}
+.type-body:nth-child(7n + 4){
+    background-color: #98FB98;
+}
+.type-body:nth-child(7n + 5){
+    background-color: #87CEEB;
+}
+.type-body:nth-child(7n + 6){
+    background-color: #191970;
+    color: white;
+}
+.type-body:nth-child(7n + 7) {
+    background-color: #BA55D3;
+    color: white;
+}
+
+.blog-body{
+    width: 100%;
+    font-size: 14px;
+    float: left;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    margin-top: 10px;
+    position: relative;
+}
+
+.blog-body a{
+    display: block;
+    float: left;
+    overflow: hidden;
+    width: 100px;
+    height: 100px;
+    border: none;
+    margin: 0 10px 0 0;
+    text-align: center;
+}
+
+.blog-body img{
+    max-width: 100%;
+}
+
+.left-page{
+    width: 100%;
+    overflow: hidden;
+    padding: 2px 2px;
+    box-sizing: border-box;
+    float: left;
+    text-align: center;
+}

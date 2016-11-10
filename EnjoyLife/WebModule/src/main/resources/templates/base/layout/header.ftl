@@ -11,7 +11,7 @@
         <div class="header-nav">
             <ul>
                 <li [#if isIndex?? && isIndex == "Y"]class="header-underline"[/#if]>
-                    <a>
+                    <a href="/index.html">
                         首页
                     </a>
                 </li>
@@ -21,12 +21,12 @@
                     </a>
                 </li>
                 <li [#if isSeries?? && isSeries == "Y"]class="header-underline"[/#if]>
-                    <a>
+                    <a href="/series/index.html">
                         专题
                     </a>
                 </li>
                 <li [#if isEyes?? && isEyes == "Y"]class="header-underline"[/#if]>
-                    <a>
+                    <a >
                         一览
                     </a>
                 </li>
