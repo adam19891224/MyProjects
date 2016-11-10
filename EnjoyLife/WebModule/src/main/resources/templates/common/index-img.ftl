@@ -1,0 +1,21 @@
+<div class="main-top">
+    <ul>
+        <li>
+            <span>用最多的梦想面对未来！</span>
+        </li>
+        <li>
+            <span>
+                当你能飞的时候不要放弃飞！
+            </span>
+            <span>
+                当你能梦的时候不要放弃梦！
+            </span>
+            <span>
+                当你能爱的时候不要放弃爱！
+            </span>
+        </li>
+        <li>
+            <span>你不能左右天气，但你能转变你的心情！</span>
+        </li>
+    </ul>
+</div>
