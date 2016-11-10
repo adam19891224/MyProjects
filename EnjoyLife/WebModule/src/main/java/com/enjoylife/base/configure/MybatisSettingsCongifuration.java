@@ -1,4 +1,4 @@
-package com.enjoylife.configure;
+package com.enjoylife.base.configure;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;

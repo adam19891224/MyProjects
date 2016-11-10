@@ -1,7 +1,8 @@
-package com.enjoylife.controller;
+package com.enjoylife.blogs.controller;
 
 import com.enjoylife.article.vo.NewArticle;
 import com.enjoylife.article.vo.ArticleWithBLOBs;
+import com.enjoylife.base.controller.BaseController;
 import com.enjoylife.comment.vo.Comment;
 import com.enjoylife.form.CommentForm;
 import com.enjoylife.utils.StringUtils;

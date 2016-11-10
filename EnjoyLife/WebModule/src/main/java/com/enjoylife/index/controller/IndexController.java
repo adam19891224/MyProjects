@@ -1,5 +1,6 @@
-package com.enjoylife.controller;
+package com.enjoylife.index.controller;
 
+import com.enjoylife.base.controller.BaseController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 

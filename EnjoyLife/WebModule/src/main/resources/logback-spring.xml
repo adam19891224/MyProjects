@@ -4,11 +4,7 @@
     <!--移除继承配置-->
     <!--<include resource="org/springframework/boot/logging/logback/base.xml" />-->
 
-
-    <!--
-        设置控制台日志
-    -->
-    <appender name="consoleLog" class="ch.qos.logback.core.ConsoleAppender">
+    <appender name="CONSOLE_LOG" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <Pattern>%d{yyyy-MM-dd - HH:mm:ss} [%thread] %-5level %logger{36} - %msg %n</Pattern>
         </encoder>
@@ -17,58 +13,45 @@
         </filter>
     </appender>
 
-    <root level="info">
-        <appender-ref ref="consoleLog"/>
+    <appender name="INFO_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${LOG_PATH}/info.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/info-%d{yyyyMMdd}.log.%i</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>500MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>2</maxHistory>
+        </rollingPolicy>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} -%msg %n
+            </Pattern>
+        </layout>
+    </appender>
+
+    <appender name="ERROR_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <File>${LOG_PATH}/error.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/error-%d{yyyyMMdd}.log.%i
+            </fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>500MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>2</maxHistory>
+        </rollingPolicy>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>
+                %d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} -%msg %n
+            </Pattern>
+        </layout>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="INFO_FILE" />
+        <appender-ref ref="ERROR_FILE" />
+        <appender-ref ref="CONSOLE_LOG"/>
     </root>
-
-    <!--
-        设置controller日志
-    -->
-    <appender name="controllerLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>/logs/controller/day.log</File>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <!--
-                设置日志输出形式，%d{yyyy-MM-dd} 表示这个日志文件每天会生成一个
-             -->
-            <FileNamePattern>/logs/controller/day.%d{yyyy-MM-dd}.log</FileNamePattern>
-            <!--
-                保留时间，这里设置30表示系统只会保留最后30天的日志记录
-             -->
-            <maxHistory>30</maxHistory>
-        </rollingPolicy>
-        <encoder>
-            <Pattern>%d{yyyy-MM-dd - HH:mm:ss} [%thread] %-5level %logger{35} - %msg %n</Pattern>
-        </encoder>
-    </appender>
-
-    <!--
-        设置service日志
-    -->
-    <appender name="serviceLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>/logs/service/day.log</File>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <!--
-                设置日志输出形式，%d{yyyy-MM-dd} 表示这个日志文件每天会生成一个
-             -->
-            <FileNamePattern>/logs/service/day.%d{yyyy-MM-dd}.log</FileNamePattern>
-            <!--
-                保留时间，这里设置30表示系统只会保留最后30天的日志记录
-             -->
-            <maxHistory>30</maxHistory>
-        </rollingPolicy>
-        <encoder>
-            <Pattern>%d{yyyy-MM-dd - HH:mm:ss} [%thread] %-5level %logger{35} - %msg %n</Pattern>
-        </encoder>
-    </appender>
-
-
-    <!-- 这是controller日志器 -->
-    <logger name="controllerLog" additivity="true">
-        <appender-ref ref="controllerLog" />
-    </logger>
-    <!-- 这是service日志器 -->
-    <logger name="serviceLog" additivity="true">
-        <appender-ref ref="serviceLog" />
-    </logger>
 
 </configuration>

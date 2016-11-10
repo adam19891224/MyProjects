@@ -9,6 +9,6 @@ import org.apache.log4j.Logger;
  */
 public abstract class BaseAbstractClass {
 
-    protected Logger logger = Logger.getLogger("serviceLog");
+    protected Logger logger = Logger.getLogger(this.getClass());
 
 }

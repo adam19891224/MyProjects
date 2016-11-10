@@ -1,4 +1,4 @@
-package com.enjoylife.configure;
+package com.enjoylife.base.configure;
 
 import freemarker.core.Environment;
 import freemarker.template.TemplateDirectiveBody;

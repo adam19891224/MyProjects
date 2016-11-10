@@ -1,4 +1,4 @@
-package com.enjoylife.controller;
+package com.enjoylife.base.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.enjoylife.utils.IPUtils;
@@ -14,14 +14,14 @@ import javax.servlet.http.HttpSession;
  * User: Adam
  * Date: 2016/1/15
  */
-class BaseController {
+public class BaseController {
 
-    Logger logger = Logger.getLogger("controllerLog");
+    protected Logger logger = Logger.getLogger(this.getClass());
 
     /**
      * 把参数转换为json
      */
-    String parseObjectToJson(Object o){
+    protected String parseObjectToJson(Object o){
         String res = null;
         try {
             res = JSONObject.toJSONString(o);
@@ -42,14 +42,14 @@ class BaseController {
     /**
      * 获取session
      */
-    HttpSession getSession(HttpServletRequest request){
+    protected HttpSession getSession(HttpServletRequest request){
         return request.getSession();
     }
 
     /**
      * 获取当前用户ip
      */
-    String getIP(HttpServletRequest request){
+    protected String getIP(HttpServletRequest request){
         return IPUtils.getClientIp(request);
     }
 

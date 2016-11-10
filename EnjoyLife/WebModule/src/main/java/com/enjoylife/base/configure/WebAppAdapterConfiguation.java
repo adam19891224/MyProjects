@@ -1,6 +1,6 @@
-package com.enjoylife.configure;
+package com.enjoylife.base.configure;
 
-import com.enjoylife.interceptors.WebDAVInterceptor;
+import com.enjoylife.base.interceptors.WebDAVInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;

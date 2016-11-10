@@ -1,4 +1,4 @@
-package com.enjoylife.configure;
+package com.enjoylife.base.configure;
 
 import com.enjoylife.utils.ConUtils;
 import org.apache.commons.logging.Log;

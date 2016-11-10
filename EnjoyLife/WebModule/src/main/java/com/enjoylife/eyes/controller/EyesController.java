@@ -1,7 +1,8 @@
-package com.enjoylife.controller;
+package com.enjoylife.eyes.controller;
 
 import com.enjoylife.article.vo.ArticleTime;
 import com.enjoylife.article.vo.NewArticle;
+import com.enjoylife.base.controller.BaseController;
 import com.enjoylife.utils.ConUtils;
 import com.enjoylife.view.Page;
 import com.enjoylife.blogs.IBlogsService;

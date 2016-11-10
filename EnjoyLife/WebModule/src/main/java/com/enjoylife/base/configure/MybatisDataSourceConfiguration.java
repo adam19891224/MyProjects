@@ -1,4 +1,4 @@
-package com.enjoylife.configure;
+package com.enjoylife.base.configure;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;

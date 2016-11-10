@@ -1,4 +1,4 @@
-package com.enjoylife.interceptors;
+package com.enjoylife.base.interceptors;
 
 import com.enjoylife.utils.BowserUtils;
 import org.springframework.stereotype.Component;
