@@ -1,13 +1,16 @@
 var categorys = new CategoryUtils();
 
-function EyesUtils(){
+function Eyes(){
 
-    var thisObj = this;
+    var timeDiv = $("#time-div");
+    var blogDiv = $("#container-title");
 
+    /**
+     * 页面滚动事件，动态根据文章标题改变时间轴
+     */
     this.scrollBarListener = function(){
         var windowHeight;
         var _window = $(window);
-        var timeDiv = $("#time-div");
         var firstDiv, nowY, nowM;
         var isLis = false;//是否监听的开关
         _window.scroll(function(){
@@ -16,7 +19,7 @@ function EyesUtils(){
                 //开始监测滚动的文章
                 timeDiv.css("position", "fixed");
                 isLis = true;
-                getNowTimeArticle(timeDiv);
+                autoChangeTimeBar();
             }else{
                 if(isLis){
                     isLis = false;//关闭监听开关，防止在非文章区域滚动时，多次触发
@@ -34,8 +37,8 @@ function EyesUtils(){
                         .find("i").removeClass("yead-front-up").end()
                         .find("li").removeClass("now-month");
                     firstDiv.find("em").addClass("now-year").end()
-                            .find("i").addClass("yead-front-up").end()
-                            .find("li:first").addClass("now-month");
+                        .find("i").addClass("yead-front-up").end()
+                        .find("li:first").addClass("now-month");
                     timeDiv.attr("n-y", nowY).attr("n-m", nowM);
 
                     if(firstDiv.find("ul").css("display") == "none"){
@@ -47,24 +50,68 @@ function EyesUtils(){
         });
     };
 
-    this.changeTimeBar = function (timeDiv, tarY, tarM) {
+    /**
+     * 时间轴年份点击事件
+     */
+    this.timeYearClickListener = function(){
+        var _this, nowY, thisY, thisM;
+        timeDiv.on("click", "span", function () {
+            _this = $(this);
+            thisY = _this.attr("class");
+            nowY = timeDiv.attr("n-y");
+            if(thisY != nowY){
+                thisM = _this.parent().find("li:first").attr("t-m");
+                //获取点击的月份中的最上面的一个
+                changeTimeBar(thisY, thisM);
+                gotoScrollBlogLine(thisY, thisM);
+            }
+        });
+    };
+
+    this.timeMonthClickListener = function () {
+        var _this, nowY, nowM, thisY, thisM;
+        timeDiv.on("click", "li", function () {
+            _this = $(this);
+            thisY = _this.parents(".time-year").find("em").text();
+            thisM = _this.attr("t-m");
+            nowY = timeDiv.attr("n-y");
+            nowM = timeDiv.attr("n-m");
+            if(nowY == thisY && nowM != thisM){
+                changeTimeBar(thisY, thisM);
+                gotoScrollBlogLine(thisY, thisM);
+            }
+        });
+    };
+
+    /**
+     * 根据传入的年份和月份改变时间轴的当前样式
+     * @param tarY
+     * @param tarM
+     */
+    var changeTimeBar = function (tarY, tarM) {
         //如果年份不同，则需要修改年份显示
         var bar_year = timeDiv.attr("n-y");
         var bar_month = timeDiv.attr("n-m");
         if(tarY != bar_year){
+            //修改年份样式
             timeDiv.attr("n-y", tarY).find("i").removeClass("yead-front-up").end()
                    .find("em").removeClass("now-year").end()
                    .find("ul").slideUp(200);
             $("." + tarY).find("i").addClass("yead-front-up").end()
                          .find("em").addClass("now-year").end().parent().find("ul").slideDown(200);
-        }
-        if(tarM != bar_month){
-            timeDiv.attr("n-m", tarM).find("." + tarY).parent().find("li").removeClass().end()
-                   .find("li[t-m='" + tarM + "']").addClass("now-month")
+            //修改月份样式
+            timeDiv.attr("n-m", tarM).find("li").removeClass().end()
+                   .find("." + tarY).parent().find("li[t-m='" + tarM + "']").addClass("now-month");
+        }else if(tarM != bar_month){
+            timeDiv.attr("n-m", tarM).find("li").removeClass().end()
+                   .find("." + tarY).parent().find("li[t-m='" + tarM + "']").addClass("now-month");
         }
     };
 
-    var getNowTimeArticle = function (timeDiv) {
+    /**
+     * 自动根据滚动的文章时间改变时间轴
+     */
+    var autoChangeTimeBar = function () {
         var year, month;
         var nowDom = document.elementFromPoint(500, 20);
         nowDom = $(nowDom);
@@ -75,15 +122,33 @@ function EyesUtils(){
             year = parent.attr("data-year");
             month = parent.attr("data-month");
             if(bar_year != year || bar_month != month){
-                thisObj.changeTimeBar(timeDiv, year, month);
+                changeTimeBar(year, month);
             }
         }
+    };
+
+    /**
+     * 根据年份和月份自动滚动到指定的位置
+     * @param tarY
+     * @param tarM
+     */
+    var gotoScrollBlogLine = function (tarY, tarM) {
+        //找到年份和月份的所有h2中的第一个
+        var tarF = blogDiv.find("h2[data-year='" + tarY + "'][data-month='" + tarM + "']:first");
+        //滚动到这个的高度
+        doScrollByHeight(tarF.offset().top)
+    };
+
+    var doScrollByHeight = function (height) {
+        $("body, html").animate({scrollTop: height}, 600);
     }
 
 }
-var eyes = new EyesUtils();
+var eyes = new Eyes();
 
 $(function () {
     categorys.init($("#type-body"));
     eyes.scrollBarListener();
+    eyes.timeYearClickListener();
+    eyes.timeMonthClickListener();
 });

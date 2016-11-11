@@ -69,6 +69,11 @@
     font-size: 14px;
 }
 
+.time-year ul li:hover{
+    color: #2e9ad0;
+    cursor: pointer;
+}
+
 .now-year{
     color: #2e9ad0;
 }

@@ -54,7 +54,7 @@
                         <i></i>
                     </span>
                     <ul class="display-ul">
-                        <li class="now-month" t-m="12">
+                        <li t-m="12">
                             12月
                         </li>
                         <li t-m="11">
