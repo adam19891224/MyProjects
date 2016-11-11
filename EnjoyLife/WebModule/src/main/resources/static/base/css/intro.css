@@ -14,9 +14,7 @@
     width: 100%;
     float: left;
     height: 50px;
-    margin-bottom: 5px;
     box-sizing: border-box;
-    border-bottom: 1px solid #ebebeb;
 }
 
 .msg-intro span{

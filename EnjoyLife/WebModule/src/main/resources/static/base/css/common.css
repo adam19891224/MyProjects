@@ -54,15 +54,17 @@
     width: 15px;
     height: 15px;
     position: absolute;
-    background: url("../images/mirror.png") no-repeat;
+    background: url("../images/magnifier.png") no-repeat;
     cursor: pointer;
     z-index: 5;
     margin-top: 13px;
     margin-left: -25px;
+    background-size: 15px 15px;
 }
 
 .header-mid i:hover{
-    background: url("../images/mirror-hover.png") no-repeat;
+    background: url("../images/magnifier-hover.png") no-repeat;
+    background-size: 15px 15px;
 }
 
 .header-nav{

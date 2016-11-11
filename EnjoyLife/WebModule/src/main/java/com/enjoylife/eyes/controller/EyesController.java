@@ -3,6 +3,7 @@ package com.enjoylife.eyes.controller;
 import com.enjoylife.article.vo.ArticleTime;
 import com.enjoylife.article.vo.NewArticle;
 import com.enjoylife.base.controller.BaseController;
+import com.enjoylife.enums.YesNoTypeEnum;
 import com.enjoylife.utils.ConUtils;
 import com.enjoylife.view.Page;
 import com.enjoylife.blogs.IBlogsService;
@@ -48,7 +49,9 @@ public class EyesController extends BaseController {
         List<ArticleTime> times = blogsService.selectTimeGroupByArticle();
         map.addAttribute("times", times);
 
-        return "eyes/main";
+        map.addAttribute("isEyes", YesNoTypeEnum.Yes.getCode());
+
+        return "eyes/index";
     }
 
 }

@@ -26,7 +26,7 @@
                     </a>
                 </li>
                 <li [#if isEyes?? && isEyes == "Y"]class="header-underline"[/#if]>
-                    <a >
+                    <a href="/eyes/index.html">
                         一览
                     </a>
                 </li>
