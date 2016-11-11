@@ -28,7 +28,7 @@
                 <div class="main-blog">
                     <div class="blog-head">
                         <h2>
-                            <a>测试博客asfsadfsdfsdgsdgsd撒大声地撒大所多</a>
+                            <a href="#">测试博客asfsadfsdfsdgsdgsd撒大声地撒大所多</a>
                         </h2>
                     </div>
                     <div class="blog-intro">
@@ -55,7 +55,7 @@
                 <div class="main-blog">
                     <div class="blog-head">
                         <h2>
-                            <a>测试博客asfsadfsdfsdgsdgsd撒大声地撒大所多</a>
+                            <a href="#">测试博客asfsadfsdfsdgsdgsd撒大声地撒大所多</a>
                         </h2>
                     </div>
                     <div class="blog-intro">
@@ -82,7 +82,7 @@
                 <div class="main-blog">
                     <div class="blog-head">
                         <h2>
-                            <a>测试博客asfsadfsdfsdgsdgsd撒大声地撒大所多</a>
+                            <a href="#">测试博客asfsadfsdfsdgsdgsd撒大声地撒大所多</a>
                         </h2>
                     </div>
                     <div class="blog-intro">
@@ -114,7 +114,10 @@
         </div>
         [#--右边--]
         <div class="main-right">
-
+            <div class="right-body">
+                [#--引入介绍--]
+                [#include "../base/common/intro.ftl"/]
+            </div>
         </div>
     </main>
 
@@ -122,4 +125,5 @@
     [#include "../base/layout/footer.ftl"]
 </body>
 <script src="/index/js/index.js?t=[@time /]"></script>
+
 </html>

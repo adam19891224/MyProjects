@@ -7,10 +7,10 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <link rel="stylesheet" href="/hope/css/hope.css?t=[@time /]" type="text/css"/>
+        <link rel="stylesheet" href="/exception/css/low.css?t=[@time /]" type="text/css"/>
     </head>
     <body>
-        <img src="/hope/images/no-bowser.gif">
+        <img src="/exception/images/no-bowser.gif">
         <h3>对不起，您的浏览器版本过低，请更换浏览器O(∩_∩)O</h3>
     </body>
 </html>

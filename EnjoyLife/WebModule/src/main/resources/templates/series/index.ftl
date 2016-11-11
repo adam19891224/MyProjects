@@ -12,6 +12,7 @@
     <script src="/base/js/jquery-2.2.3.min.js"></script>
     <script src="/base/js/jquery.lazyload.min.js"></script>
     <script src="/base/js/app.js"></script>
+    <script src="/base/js/tar-cloud.min.js"></script>
 </head>
 <body>
 [#--顶部--]
@@ -47,7 +48,14 @@
     </div>
     [#--右边--]
     <div class="main-right">
-
+        <div class="right-body">
+            [#--引入介绍--]
+            [#include "../base/common/intro.ftl"/]
+        </div>
+        <div class="right-body">
+            [#--引入标签云--]
+            [#include "../base/common/cloud.ftl"/]
+        </div>
     </div>
 </main>
 

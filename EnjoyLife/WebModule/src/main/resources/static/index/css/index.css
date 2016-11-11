@@ -1,4 +1,5 @@
 @import "../../base/css/common.css";
+@import "../../base/css/intro.css";
 
 .main-left{
     padding: 20px;
@@ -31,9 +32,13 @@
     word-wrap: break-word;
 }
 
+.blog-head h2{
+    font-weight: normal;
+}
+
 .blog-head a:hover{
-    text-decoration: underline;
     cursor: pointer;
+    color: #2e9ad0;
 }
 
 .blog-intro{
@@ -134,4 +139,10 @@
     box-sizing: border-box;
     float: left;
     text-align: center;
+}
+
+.right-body{
+    width: 100%;
+    float: left;
+    border-bottom: 1px solid #ebebeb;
 }

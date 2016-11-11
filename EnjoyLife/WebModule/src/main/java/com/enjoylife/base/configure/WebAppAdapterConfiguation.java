@@ -23,6 +23,6 @@ public class WebAppAdapterConfiguation extends WebMvcConfigurerAdapter {
         // excludePathPatterns 用户排除拦截
         registry.addInterceptor(webDAVInterceptor)
                 .addPathPatterns("/**")
-                .excludePathPatterns("/hope.html");
+                .excludePathPatterns("/sorry.html");
     }
 }

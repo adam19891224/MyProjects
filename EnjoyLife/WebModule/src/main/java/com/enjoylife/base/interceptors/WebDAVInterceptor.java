@@ -23,7 +23,7 @@ public class WebDAVInterceptor implements HandlerInterceptor {
                 || version.equalsIgnoreCase("ie7")
                 || version.equalsIgnoreCase("ie8")
                 || version.equalsIgnoreCase("ie9")){
-            request.getServletContext().getRequestDispatcher("/hope.html").forward(request, response);
+            request.getServletContext().getRequestDispatcher("/sorry.html").forward(request, response);
             return false;
         }
         return true;

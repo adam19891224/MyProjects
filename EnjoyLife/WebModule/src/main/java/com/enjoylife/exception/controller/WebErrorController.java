@@ -1,5 +1,6 @@
-package com.enjoylife.base.controller;
+package com.enjoylife.exception.controller;
 
+import com.enjoylife.base.controller.BaseController;
 import org.springframework.boot.autoconfigure.web.ErrorController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +20,7 @@ public class WebErrorController extends BaseController implements ErrorControlle
     @RequestMapping(value = ERROR_PATH)
     public String handleError(HttpServletRequest request){
         logger.error("来自： " + super.getIP(request) + "  的朋友访问出现404! ");
-        return "error/main";
+        return "exception/notfound";
     }
 
     @Override
