@@ -1,0 +1,29 @@
+@import "../../base/css/common.css";
+@import "../../base/css/intro.css";
+@import "../../base/css/cloud.css";
+
+.main-left{
+    padding: 20px;
+}
+
+
+.main-left h1{
+    width: 100%;
+    text-align: center;
+    line-height: 40px;
+    font-size: 2em;
+    float: left;
+}
+
+.article-intro{
+    width: 100%;
+    height: 30px;
+    float: left;
+    background-color: red;
+}
+
+.right-body{
+    width: 100%;
+    float: left;
+    border-bottom: 1px solid #ebebeb;
+}

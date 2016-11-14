@@ -6,6 +6,9 @@ import com.enjoylife.blogs.IBlogsService;
 import com.enjoylife.comment.ICommentService;
 import com.enjoylife.comment.vo.Comment;
 import com.enjoylife.form.CommentForm;
+import com.enjoylife.type.ITypeService;
+import com.enjoylife.type.vo.Type;
+import com.enjoylife.utils.ConUtils;
 import com.enjoylife.utils.StringUtils;
 import com.enjoylife.view.Page;
 import org.springframework.stereotype.Controller;
@@ -30,6 +33,8 @@ public class BlogsController extends BaseController {
     private IBlogsService blogsService;
     @Resource
     private ICommentService commentService;
+    @Resource
+    private ITypeService typeService;
 
     /**
      * 跳转到详情页面
@@ -40,13 +45,18 @@ public class BlogsController extends BaseController {
     @RequestMapping("/{sid}.html")
     public String getArticle(@PathVariable Integer sid, ModelMap map){
 
+        List<Type> types = typeService.selectAllTypes();
+        if(ConUtils.isNotNull(types)){
+            map.addAttribute("types", types);
+        }
+
         ArticleWithBLOBs article = blogsService.selectArticleBySID(sid);
         if(article == null){
             logger.error("查询文章详情失败，原因 【没有找到对应id为: " + sid + " 的文章】");
             return "redirect:/error";
         }
         map.addAttribute("article", article);
-        return "blogs/main";
+        return "blogs/index";
     }
 
     /**

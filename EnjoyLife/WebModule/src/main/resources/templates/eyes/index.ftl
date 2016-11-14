@@ -17,7 +17,7 @@
 [#include "../base/layout/header.ftl"]
 
 [#--中间--]
-<main id="main" class="main" data-pages="2">
+<main id="main" class="main">
     [#--左边--]
     <div class="main-left">
         <div class="left-time">
@@ -62,7 +62,7 @@
                 [/#list]
             </div>
         </div>
-        <div class="left-titsle">
+        <div class="left-title">
             <div id="container-title" class="container-title">
                 [#list result as blog]
                     <h2 data-year="${blog.createDate?string("yyyy")}" data-month="${blog.createDate?string("MM")?eval}">
