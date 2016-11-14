@@ -1,5 +1,7 @@
 package com.enjoylife.article.vo;
 
+import java.util.List;
+
 /**
  * Created by IntelliJ IDEA
  * User: Adam
@@ -9,11 +11,29 @@ public class NewArticle extends ArticleWithBLOBs {
 
     private String highLightTitle;
 
-    private int hots;
+    private int comments;
 
     private String createDateStr;
 
     private String updateDateStr;
+
+    private List<String> types;
+
+    public int getComments() {
+        return comments;
+    }
+
+    public void setComments(int comments) {
+        this.comments = comments;
+    }
+
+    public List<String> getTypes() {
+        return types;
+    }
+
+    public void setTypes(List<String> types) {
+        this.types = types;
+    }
 
     public String getCreateDateStr() {
         return createDateStr;
@@ -29,14 +49,6 @@ public class NewArticle extends ArticleWithBLOBs {
 
     public void setUpdateDateStr(String updateDateStr) {
         this.updateDateStr = updateDateStr;
-    }
-
-    public int getHots() {
-        return hots;
-    }
-
-    public void setHots(int hots) {
-        this.hots = hots;
     }
 
     public String getHighLightTitle() {

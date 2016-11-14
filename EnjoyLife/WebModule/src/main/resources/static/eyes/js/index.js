@@ -60,9 +60,8 @@ function Eyes(){
             thisY = _this.attr("class");
             nowY = timeDiv.attr("n-y");
             if(thisY != nowY){
-                thisM = _this.parent().find("li:first").attr("t-m");
                 //获取点击的月份中的最上面的一个
-                changeTimeBar(thisY, thisM);
+                thisM = _this.parent().find("li:first").attr("t-m");
                 gotoScrollBlogLine(thisY, thisM);
             }
         });
@@ -77,7 +76,6 @@ function Eyes(){
             nowY = timeDiv.attr("n-y");
             nowM = timeDiv.attr("n-m");
             if(nowY == thisY && nowM != thisM){
-                changeTimeBar(thisY, thisM);
                 gotoScrollBlogLine(thisY, thisM);
             }
         });
@@ -113,7 +111,7 @@ function Eyes(){
      */
     var autoChangeTimeBar = function () {
         var year, month;
-        var nowDom = document.elementFromPoint(500, 20);
+        var nowDom = document.elementFromPoint(260, 20);
         nowDom = $(nowDom);
         var parent = nowDom.parents("h2");
         if(parent.length > 0){

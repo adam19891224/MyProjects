@@ -25,8 +25,6 @@ public interface ArticleMapper {
 
     List<NewArticle> selectByPage(Page<NewArticle> page);
 
-    List<NewArticle> selectHotsLimitEight();
-
     int selectCountsByPage(Page<NewArticle> page);
 
     List<ArticleTime> selectTimeGroupByArticle();

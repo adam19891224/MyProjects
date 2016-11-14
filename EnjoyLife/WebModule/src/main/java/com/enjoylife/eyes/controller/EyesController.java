@@ -44,7 +44,7 @@ public class EyesController extends BaseController {
         //不分页
         page.setPagination(false);
         page = blogsService.selectArticlesByPage(page);
-        map.addAttribute("all", page);
+        map.addAttribute("result", page.getResultList());
 
         List<ArticleTime> times = blogsService.selectTimeGroupByArticle();
         map.addAttribute("times", times);

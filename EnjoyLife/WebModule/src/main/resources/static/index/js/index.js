@@ -6,12 +6,22 @@ $(function () {
         failure_limit: 1
     });
 
-    $("#page-div").Page({
-        totalPages: applications.castStr2Num($("#main").attr("data-pages")),
-        liNums: 5,
-        activeClass: 'activP',
-        callBack : function(page){
-            console.log(page);
+    var isClick = true;
+
+    $("#page-div").createPage({
+        pageCount: applications.castStr2Num($("#page-div").attr("data-pages")),
+        current: applications.castStr2Num($("#page-div").attr("data-current")),
+        backFn: function(page){
+            if(isClick){
+                var location = "";
+                if(page == 1){
+                    location = "/index.html"
+                }else{
+                    location = "/page/" + page + ".html";
+                }
+                window.location = location;
+            }
         }
     });
+
 });

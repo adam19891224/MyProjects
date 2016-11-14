@@ -1,14 +1,13 @@
 package com.enjoylife.blogs.controller;
 
-import com.enjoylife.article.vo.NewArticle;
 import com.enjoylife.article.vo.ArticleWithBLOBs;
 import com.enjoylife.base.controller.BaseController;
+import com.enjoylife.blogs.IBlogsService;
+import com.enjoylife.comment.ICommentService;
 import com.enjoylife.comment.vo.Comment;
 import com.enjoylife.form.CommentForm;
 import com.enjoylife.utils.StringUtils;
 import com.enjoylife.view.Page;
-import com.enjoylife.blogs.IBlogsService;
-import com.enjoylife.comment.ICommentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,28 +30,6 @@ public class BlogsController extends BaseController {
     private IBlogsService blogsService;
     @Resource
     private ICommentService commentService;
-
-    /**
-     * 获取文章列表
-     * @param page
-     * @return
-     */
-    @RequestMapping("/getBlogs.html")
-    @ResponseBody
-    public String list(Page<NewArticle> page){
-        page = blogsService.selectArticlesByPage(page);
-        return super.parseObjectToJson(page);
-    }
-
-    /**
-     * 获取热门文章列表
-     */
-    @RequestMapping("/getHotsBlogs.html")
-    @ResponseBody
-    public String hotsList(){
-        List<NewArticle> hots = blogsService.selectHotsForEight();
-        return super.parseObjectToJson(hots);
-    }
 
     /**
      * 跳转到详情页面

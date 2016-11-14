@@ -1,87 +1,48 @@
 .page-div {
-    height: 50px;
-    display: table;
-    margin: 0 auto;
-}
-
-.page {
+    padding: 15px 20px;
+    color: #ccc;
     text-align: center;
 }
 
-.fl {
-    float: left;
-}
-
-.fr {
-    float: right;
-}
-
-.pagingUl {
-    float: right;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    height: 30px;
-}
-
-.pagingUl li {
-    float: left;
-    width: 30px;
-    height: 30px;
-    background: #fff;
-    text-align: center;
-    margin-right: 5px;
-    border-radius: 5px
-}
-
-.pagingUl li a {
+.page-div a {
     display: inline-block;
-    width: 30px;
-    height: 30px;
-    text-align: center;
-    line-height: 28px;
-    color: #666;
-    font-size: 12px;
-    border-radius: 5px
+    color: #428bca;
+    height: 25px;
+    line-height: 25px;
+    padding: 0 10px;
+    border: 1px solid #ddd;
+    margin: 0 2px;
+    border-radius: 4px;
+    vertical-align: middle;
 }
 
-.prv,
-.next {
-    width: 30px;
-    height: 30px;
-    text-align: center;
-    line-height: 30px;
-    cursor: pointer;
-    background: #fff;
-    padding: 0 5px;
-    border-radius: 5px;
+.page-div a:hover {
+    text-decoration: none;
+    border: 1px solid #2e9ad0;
 }
 
-.prv {
-    margin-right: 10px;
+.page-div span.current {
+    display: inline-block;
+    height: 25px;
+    line-height: 25px;
+    padding: 0 10px;
+    margin: 0 2px;
+    color: #fff;
+    background-color: #2e9ad0;
+    border: 1px solid #2e9ad0;
+    border-radius: 4px;
+    vertical-align: middle;
 }
 
-.first,
-.last {
-    width: 30px;
-    height: 30px;
-    font-size: 12px;
-    text-align: center;
-    line-height: 30px;
-    /*border: 1px solid #ddd;*/
-    cursor: pointer;
-    background: #fff;
-    padding: 0 5px;
-    border-radius: 5px;
-    margin-right: 10px;
-}
-
-.prv:hover,
-.next:hover,
-.first:hover,
-.last:hover,
-.pagingUl li a:hover,
-.activP {
-    background-color: #2e9ad0!important;
-    color: #fff!important;
+.page-div span.disabled {
+    display: inline-block;
+    height: 25px;
+    line-height: 25px;
+    padding: 0 10px;
+    margin: 0 2px;
+    color: #bfbfbf;
+    background: #f2f2f2;
+    border: 1px solid #bfbfbf;
+    border-radius: 4px;
+    vertical-align: middle;
 }

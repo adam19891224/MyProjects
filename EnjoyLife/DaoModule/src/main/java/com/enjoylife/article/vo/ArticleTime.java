@@ -8,15 +8,15 @@ import java.util.List;
  */
 public class ArticleTime {
 
-    private String date;
+    private Integer date;
 
     private List<ArticleTime> list;
 
-    public String getDate() {
+    public Integer getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Integer date) {
         this.date = date;
     }
 

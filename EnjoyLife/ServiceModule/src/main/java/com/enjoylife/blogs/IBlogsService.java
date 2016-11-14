@@ -28,10 +28,5 @@ public interface IBlogsService {
      */
     ArticleWithBLOBs selectArticleBySID(Integer sid);
 
-    /**
-     * 获取前8个热门评论的博客
-     */
-    List<NewArticle> selectHotsForEight();
-
     List<ArticleTime> selectTimeGroupByArticle();
 }

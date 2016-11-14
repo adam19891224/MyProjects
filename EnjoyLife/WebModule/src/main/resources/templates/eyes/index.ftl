@@ -21,284 +21,61 @@
     [#--左边--]
     <div class="main-left">
         <div class="left-time">
-            <div id="time-div" class="time-div" n-y="2016" n-m="3">
-                <div class="time-year">
-                    <span class="2016">
-                        <em class="now-year">2016</em>
-                        <i class="yead-front-up"></i>
-                    </span>
-                    <ul>
-                        <li class="now-month" t-m="6">
-                            6月
-                        </li>
-                        <li t-m="5">
-                            5月
-                        </li>
-                        <li t-m="4">
-                            4月
-                        </li>
-                        <li t-m="3">
-                            3月
-                        </li>
-                        <li t-m="2">
-                            2月
-                        </li>
-                        <li t-m="1">
-                            1月
-                        </li>
-                    </ul>
-                </div>
-                <div class="time-year">
-                    <span class="2015">
-                        <em>2015</em>
-                        <i></i>
-                    </span>
-                    <ul class="display-ul">
-                        <li t-m="12">
-                            12月
-                        </li>
-                        <li t-m="11">
-                            11月
-                        </li>
-                        <li t-m="10">
-                            10月
-                        </li>
-                    </ul>
-                </div>
+            <div id="time-div" class="time-div" n-y="${times?first.date?c}" n-m="${times?first.list?first.date?c}">
+                [#list times as year]
+                [#--第一个元素--]
+                    [#if year_index == 0]
+                        <div class="time-year">
+                                <span class="${year.date?c}">
+                                    <em class="now-year">${year.date?c}</em>
+                                    <i class="yead-front-up"></i>
+                                </span>
+                            <ul>
+                                [#list year.list as month]
+                                    [#if month_index == 0]
+                                        <li class="now-month" t-m="${month.date?c}">
+                                            ${month.date?c}月
+                                        </li>
+                                    [#else]
+                                        <li t-m="${month.date?c}">
+                                            ${month.date?c}月
+                                        </li>
+                                    [/#if]
+                                [/#list]
+                            </ul>
+                        </div>
+                    [#else]
+                        <div class="time-year">
+                                <span class="${year.date?c}">
+                                    <em>${year.date?c}</em>
+                                    <i></i>
+                                </span>
+                            <ul class="display-ul">
+                                [#list year.list as month]
+                                    <li t-m="${month.date?c}">
+                                        ${month.date?c}月
+                                    </li>
+                                [/#list]
+                            </ul>
+                        </div>
+                    [/#if]
+                [/#list]
             </div>
         </div>
         <div class="left-titsle">
             <div id="container-title" class="container-title">
-                <h2 data-year="2016" data-month="6">
-                    <span class="title-time">
-                        6-24
-                    </span>
-                    <span class="title-content">
-                        <a href="#">
-                            埃索达算法沙发发发违法s
-                        </a>
-                    </span>
-                </h2>
-                <h2 data-year="2016" data-month="5">
-                    <span class="title-time">
-                        5-24
-                    </span>
-                    <span class="title-content">
-                        <a href="#">
-                            埃索达算法沙发发发违法s
-                        </a>
-                    </span>
-                </h2>
-                <h2 data-year="2016" data-month="4">
-                    <span class="title-time">
-                        4-24
-                    </span>
-                    <span class="title-content">
-                        <a href="#">
-                            埃索达算法沙发发发违法s
-                        </a>
-                    </span>
-                </h2>
-                <h2 data-year="2016" data-month="3">
-                    <span class="title-time">
-                        3-24
-                    </span>
-                    <span class="title-content">
-                        <a href="#">
-                            埃索达算法沙发发发违法s
-                        </a>
-                    </span>
-                </h2>
-                <h2 data-year="2016" data-month="3">
-                    <span class="title-time">
-                        3-24
-                    </span>
-                    <span class="title-content">
-                        <a href="#">
-                            埃索达算法沙发发发违法s
-                        </a>
-                    </span>
-                </h2>
-                <h2 data-year="2016" data-month="3">
-                    <span class="title-time">
-                        3-24
-                    </span>
-                    <span class="title-content">
-                        <a href="#">
-                            埃索达算法沙发发发违法s
-                        </a>
-                    </span>
-                </h2>
-                <h2 data-year="2016" data-month="2">
-                    <span class="title-time">
-                        2-24
-                    </span>
-                    <span class="title-content">
-                        <a href="#">
-                            埃索达算法沙发发发违法s
-                        </a>
-                    </span>
-                </h2>
-                <h2 data-year="2016" data-month="2">
-                    <span class="title-time">
-                        2-24
-                    </span>
-                    <span class="title-content">
-                        <a href="#">
-                            埃索达算法沙发发发违法s
-                        </a>
-                    </span>
-                </h2>
-                <h2 data-year="2016" data-month="1">
-                    <span class="title-time">
-                        1-24
-                    </span>
-                    <span class="title-content">
-                        <a href="#">
-                            埃索达算法沙发发发违法s
-                        </a>
-                    </span>
-                </h2>
-                <h2 data-year="2016" data-month="1">
-                    <span class="title-time">
-                        1-24
-                    </span>
-                    <span class="title-content">
-                        <a href="#">
-                            埃索达算法沙发发发违法s
-                        </a>
-                    </span>
-                </h2>
-                <h2 data-year="2016" data-month="1">
-                    <span class="title-time">
-                        1-24
-                    </span>
-                    <span class="title-content">
-                        <a href="#">
-                            埃索达算法沙发发发违法s
-                        </a>
-                    </span>
-                </h2>
-                <h2 data-year="2015" data-month="12">
-                    <span class="title-time">
-                        12-24
-                    </span>
-                    <span class="title-content">
-                        <a href="#">
-                            埃索达算法沙发发发违法s
-                        </a>
-                    </span>
-                </h2>
-                <h2 data-year="2015" data-month="12">
-                    <span class="title-time">
-                        12-24
-                    </span>
-                    <span class="title-content">
-                        <a href="#">
-                            埃索达算法沙发发发违法s
-                        </a>
-                    </span>
-                </h2>
-                <h2 data-year="2015" data-month="12">
-                    <span class="title-time">
-                        12-24
-                    </span>
-                    <span class="title-content">
-                        <a href="#">
-                            埃索达算法沙发发发违法s
-                        </a>
-                    </span>
-                </h2>
-                <h2 data-year="2015" data-month="11">
-                    <span class="title-time">
-                        11-24
-                    </span>
-                    <span class="title-content">
-                        <a href="#">
-                            埃索达算法沙发发发违法s
-                        </a>
-                    </span>
-                </h2>
-                <h2 data-year="2015" data-month="11">
-                    <span class="title-time">
-                        11-24
-                    </span>
-                    <span class="title-content">
-                        <a href="#">
-                            埃索达算法沙发发发违法s
-                        </a>
-                    </span>
-                </h2>
-                <h2 data-year="2015" data-month="11">
-                    <span class="title-time">
-                        11-24
-                    </span>
-                    <span class="title-content">
-                        <a href="#">
-                            埃索达算法沙发发发违法s
-                        </a>
-                    </span>
-                </h2>
-                <h2 data-year="2015" data-month="10">
-                    <span class="title-time">
-                        10-24
-                    </span>
-                    <span class="title-content">
-                        <a href="#">
-                            埃索达算法沙发发发违法s
-                        </a>
-                    </span>
-                </h2>
-                <h2 data-year="2015" data-month="10">
-                    <span class="title-time">
-                        10-24
-                    </span>
-                    <span class="title-content">
-                        <a href="#">
-                            埃索达算法沙发发发违法s
-                        </a>
-                    </span>
-                </h2>
-                <h2 data-year="2015" data-month="10">
-                    <span class="title-time">
-                        10-24
-                    </span>
-                    <span class="title-content">
-                        <a href="#">
-                            埃索达算法沙发发发违法s
-                        </a>
-                    </span>
-                </h2>
-                <h2 data-year="2015" data-month="10">
-                    <span class="title-time">
-                        10-24
-                    </span>
-                    <span class="title-content">
-                        <a href="#">
-                            埃索达算法沙发发发违法s
-                        </a>
-                    </span>
-                </h2>
-                <h2 data-year="2015" data-month="9">
-                    <span class="title-time">
-                        9-24
-                    </span>
-                    <span class="title-content">
-                        <a href="#">
-                            埃索达算法沙发发发违法s
-                        </a>
-                    </span>
-                </h2>
-                <h2 data-year="2015" data-month="9">
-                    <span class="title-time">
-                        9-24
-                    </span>
-                    <span class="title-content">
-                        <a href="#">
-                            埃索达算法沙发发发违法s
-                        </a>
-                    </span>
-                </h2>
+                [#list result as blog]
+                    <h2 data-year="${blog.createDate?string("yyyy")}" data-month="${blog.createDate?string("MM")?eval}">
+                        <span class="title-time">
+                            ${blog.createDate?string("MM-dd")}
+                        </span>
+                        <span class="title-content">
+                            <a href="/blogs/${blog.articleSid}.html">
+                                ${blog.articleTitle}
+                            </a>
+                        </span>
+                    </h2>
+                [/#list]
             </div>
         </div>
     </div>

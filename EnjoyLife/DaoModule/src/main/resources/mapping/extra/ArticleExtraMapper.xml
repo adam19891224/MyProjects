@@ -3,34 +3,29 @@
 <mapper namespace="com.enjoylife.article.dao.ArticleMapper" >
 
     <resultMap id="NewArticleBody" type="com.enjoylife.article.vo.NewArticle" extends="ResultMapWithBLOBs" >
-        <result column="hots" property="hots" jdbcType="INTEGER" />
+        <!--
+            association表示复合查询: 一对一
+        -->
+        <association property="comments" column="articleId" select="selectCommentCountsByArticleID"/>
+        <!--
+            collection表示复合查询: 一对多，即这里的newArticle中的属性types是一个集合，而这个集合的取值就看下面设置的
+            select，表示newArticle的types的值用selectTypeByArticleID这个sql去获取，而这个sql要带上一个参数，即
+            articleId, 而这个articleId就是我们selectByPage中查询的id，
+            同时，我们也可以不用select，而是用resultMap的方式，表示这个collecton返回的是一个resultMap结果
+        -->
+        <collection property="types" column="articleId" select="selectTypeByArticleID"/>
     </resultMap>
 
     <select id="selectByPage" resultMap="NewArticleBody" parameterType="com.enjoylife.view.Page">
         SELECT
-          ta.*
+          ta.ARTICLE_SID as articleSid,
+          ta.ARTICLE_ID as articleId,
+          ta.CREATE_DATE as createDate,
+          ta.ARTICLE_TITLE as articleTitle,
+          ta.ARTICLE_DESCRIPTION as articleDescription,
+          ta.ARTICLE_IMG as articleImg
         FROM
           tb_article ta
-        INNER JOIN
-          tb_article_type tap ON ta.ARTICLE_ID = tap.ARTICLE_ID
-        INNER JOIN
-          tb_type tp ON tap.TYPE_ID = tp.TYPE_ID
-        LEFT JOIN
-          tb_series_article tsa ON ta.ARTICLE_ID = tsa.ARTICLE_ID
-        LEFT JOIN
-          tb_series ts ON tsa.SERIES_ID = ts.SERIES_ID
-
-        <where>
-            <if test="kw != null and kw != '' ">
-                ta.ARTICLE_TITLE LIKE CONCAT('%', #{kw}, '%')
-            </if>
-            <if test="typeName != null and typeName != '' ">
-                tp.TYPE_NAME = #{typeName}
-            </if>
-            <if test="seriesName != null and seriesName != '' ">
-                ts.SERIES_NAME = #{seriesName}
-            </if>
-        </where>
 
         ORDER BY ta.CREATE_DATE DESC
 
@@ -39,60 +34,40 @@
 
     <select id="selectCountsByPage" resultType="java.lang.Integer" parameterType="com.enjoylife.view.Page">
         SELECT
-            COUNT(1)
+          COUNT(1)
         FROM
-            tb_article ta
-        INNER JOIN
-            tb_article_type tap ON ta.ARTICLE_ID = tap.ARTICLE_ID
-        INNER JOIN
-            tb_type tp ON tap.TYPE_ID = tp.TYPE_ID
-        INNER JOIN
-            tb_series_article tsa ON ta.ARTICLE_ID = tsa.ARTICLE_ID
-        INNER JOIN
-            tb_series ts ON tsa.SERIES_ID = ts.SERIES_ID
-
-        <where>
-            <if test="kw != null and kw != '' ">
-                ta.ARTICLE_TITLE LIKE CONCAT('%', #{kw}, '%')
-            </if>
-            <if test="typeName != null and typeName != '' ">
-                tp.TYPE_NAME = #{typeName}
-            </if>
-            <if test="seriesName != null and seriesName != '' ">
-                ts.SERIES_NAME = #{seriesName}
-            </if>
-        </where>
+          tb_article ta
     </select>
 
-    <select id="selectHotsLimitEight" resultMap="NewArticleBody">
+    <!--根据文章id获取类型-->
+    <select id="selectTypeByArticleID" resultType="java.lang.String">
         SELECT
-            temp.*
+          tt.TYPE_NAME
         FROM
-            (SELECT
-                ta.ARTICLE_SID,
-                ta.ARTICLE_TITLE,
-                (
-                    SELECT
-                        COUNT(tac.ARTICLE_COMMENT_ID)
-                    FROM
-                        tb_article_comment tac
-                    INNER JOIN tb_comment tc ON tac.COMMENT_ID = tc.COMMENT_ID
-                    WHERE
-                        tac.ARTICLE_ID = ta.ARTICLE_ID
-                    AND tc.COMMENT_IS_REPLY = 0
-                ) hots
-            FROM
-                tb_article ta
-            ORDER BY hots DESC
-            ) temp
+          tb_article_type tat
+        INNER JOIN
+          tb_type tt ON tat.TYPE_ID = tt.TYPE_ID
         WHERE
-          temp.hots > 0
-        LIMIT 0,8
+          tat.ARTICLE_ID = #{articleId}
     </select>
 
+    <!--根据文章id获取评论数-->
+    <select id="selectCommentCountsByArticleID" resultType="java.lang.Integer">
+        SELECT
+          COUNT(1)
+        FROM
+          tb_article_comment tac
+        INNER JOIN
+          tb_comment tc ON tac.COMMENT_ID = tc.COMMENT_ID
+        WHERE
+          tac.ARTICLE_ID = #{articleId}
+        AND
+          tc.COMMENT_IS_REPLY = FALSE
+    </select>
 
+    <!--获取所有文章的年份和月份，做时间轴-->
     <resultMap id="ArticleTimeForYear" type="com.enjoylife.article.vo.ArticleTime" >
-        <result column="article_year" property="date" jdbcType="VARCHAR" />
+        <result column="article_year" property="date" jdbcType="INTEGER" />
         <collection property="list" column="article_year" select="selectTimeByYear"/>
     </resultMap>
 
@@ -108,7 +83,7 @@
     </select>
 
     <resultMap id="ArticleTimeForMonth" type="com.enjoylife.article.vo.ArticleTime" >
-        <result column="article_month" property="date" jdbcType="VARCHAR" />
+        <result column="article_month" property="date" jdbcType="INTEGER" />
     </resultMap>
 
     <select id="selectTimeByYear" resultMap="ArticleTimeForMonth">

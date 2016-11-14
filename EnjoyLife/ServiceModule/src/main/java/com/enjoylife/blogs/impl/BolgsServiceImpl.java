@@ -4,13 +4,14 @@ import com.enjoylife.article.dao.ArticleMapper;
 import com.enjoylife.article.vo.ArticleTime;
 import com.enjoylife.article.vo.ArticleWithBLOBs;
 import com.enjoylife.article.vo.NewArticle;
-import com.enjoylife.utils.ConUtils;
-import com.enjoylife.view.Page;
 import com.enjoylife.base.BaseAbstractClass;
 import com.enjoylife.blogs.IBlogsService;
+import com.enjoylife.utils.ConUtils;
+import com.enjoylife.view.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -27,6 +28,7 @@ public class BolgsServiceImpl extends BaseAbstractClass implements IBlogsService
     @Override
     public Page<NewArticle> selectArticlesByPage(Page<NewArticle> page) {
         {
+            Date start = new Date();
             List<NewArticle> list = articleMapper.selectByPage(page);
             if(ConUtils.isNotNull(list)){
                 page.setResultList(list);
@@ -39,6 +41,8 @@ public class BolgsServiceImpl extends BaseAbstractClass implements IBlogsService
             }else{
                 page.setResultList(ConUtils.arraylist());
             }
+            Date end = new Date();
+            logger.info("【查询文章集合结束】，当前页数: " + page.getPage() + "，总共耗时： " + super.getMsBetweenTwoDate(start, end) + " ms");
         }
         return page;
     }
@@ -46,11 +50,6 @@ public class BolgsServiceImpl extends BaseAbstractClass implements IBlogsService
     @Override
     public ArticleWithBLOBs selectArticleBySID(Integer sid) {
         return articleMapper.selectByPrimaryKey(sid);
-    }
-
-    @Override
-    public List<NewArticle> selectHotsForEight() {
-        return articleMapper.selectHotsLimitEight();
     }
 
     @Override
