@@ -1,18 +1,18 @@
 package com.enjoylife.comment.vo;
 
 public class ArticleComment {
-    private String articleCommentId;
+    private Integer articleCommentId;
 
     private String articleId;
 
     private String commentId;
 
-    public String getArticleCommentId() {
+    public Integer getArticleCommentId() {
         return articleCommentId;
     }
 
-    public void setArticleCommentId(String articleCommentId) {
-        this.articleCommentId = articleCommentId == null ? null : articleCommentId.trim();
+    public void setArticleCommentId(Integer articleCommentId) {
+        this.articleCommentId = articleCommentId;
     }
 
     public String getArticleId() {

@@ -24,4 +24,9 @@ public class TypeServiceImpl extends BaseAbstractClass implements ITypeService {
     public List<Type> selectAllTypes() {
         return typeMapper.selectAllTypes();
     }
+
+    @Override
+    public Type selectTypeByArticleId(String articleID) {
+        return typeMapper.selectTypeByArticleId(articleID);
+    }
 }

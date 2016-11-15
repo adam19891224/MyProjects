@@ -10,6 +10,7 @@
     <link href="/base/images/ico.ico" rel="shortcut icon" type="image/x-icon">
     <link href="/blogs/css/index.css?t=[@time /]" rel="stylesheet" type="text/css" media="all">
     <script src="/base/js/jquery-2.2.3.min.js"></script>
+    <script src="/base/js/tar-cloud.min.js"></script>
     <script src="/base/js/app.js"></script>
 </head>
 <body>
@@ -23,7 +24,15 @@
             ${article.articleTitle}
         </h1>
         <div class="article-intro">
-
+            <span class="intro-type">
+                <i></i>${type.typeName}
+            </span>
+            <span class="intro-time">
+                <i></i>${article.createDate?string("yyyy-MM-dd")}
+            </span>
+        </div>
+        <div class="article-tags">
+            <span>adsa</span>
         </div>
         <article id="article-body" class="article-body">
 

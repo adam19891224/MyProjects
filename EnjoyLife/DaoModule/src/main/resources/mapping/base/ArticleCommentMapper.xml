@@ -2,27 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.enjoylife.comment.dao.ArticleCommentMapper" >
   <resultMap id="BaseResultMap" type="com.enjoylife.comment.vo.ArticleComment" >
-    <id column="ARTICLE_COMMENT_ID" property="articleCommentId" jdbcType="VARCHAR" />
+    <id column="ARTICLE_COMMENT_ID" property="articleCommentId" jdbcType="INTEGER" />
     <result column="ARTICLE_ID" property="articleId" jdbcType="VARCHAR" />
     <result column="COMMENT_ID" property="commentId" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     ARTICLE_COMMENT_ID, ARTICLE_ID, COMMENT_ID
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from tb_article_comment
-    where ARTICLE_COMMENT_ID = #{articleCommentId,jdbcType=VARCHAR}
+    where ARTICLE_COMMENT_ID = #{articleCommentId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from tb_article_comment
-    where ARTICLE_COMMENT_ID = #{articleCommentId,jdbcType=VARCHAR}
+    where ARTICLE_COMMENT_ID = #{articleCommentId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.enjoylife.comment.vo.ArticleComment" >
     insert into tb_article_comment (ARTICLE_COMMENT_ID, ARTICLE_ID, COMMENT_ID
       )
-    values (#{articleCommentId,jdbcType=VARCHAR}, #{articleId,jdbcType=VARCHAR}, #{commentId,jdbcType=VARCHAR}
+    values (#{articleCommentId,jdbcType=INTEGER}, #{articleId,jdbcType=VARCHAR}, #{commentId,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.enjoylife.comment.vo.ArticleComment" >
@@ -40,7 +40,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="articleCommentId != null" >
-        #{articleCommentId,jdbcType=VARCHAR},
+        #{articleCommentId,jdbcType=INTEGER},
       </if>
       <if test="articleId != null" >
         #{articleId,jdbcType=VARCHAR},
@@ -60,12 +60,12 @@
         COMMENT_ID = #{commentId,jdbcType=VARCHAR},
       </if>
     </set>
-    where ARTICLE_COMMENT_ID = #{articleCommentId,jdbcType=VARCHAR}
+    where ARTICLE_COMMENT_ID = #{articleCommentId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.enjoylife.comment.vo.ArticleComment" >
     update tb_article_comment
     set ARTICLE_ID = #{articleId,jdbcType=VARCHAR},
       COMMENT_ID = #{commentId,jdbcType=VARCHAR}
-    where ARTICLE_COMMENT_ID = #{articleCommentId,jdbcType=VARCHAR}
+    where ARTICLE_COMMENT_ID = #{articleCommentId,jdbcType=INTEGER}
   </update>
 </mapper>

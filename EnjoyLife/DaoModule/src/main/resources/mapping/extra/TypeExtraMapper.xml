@@ -9,4 +9,15 @@
           tb_type tt
     </select>
 
+    <select id="selectTypeByArticleId" resultMap="BaseResultMap">
+        SELECT
+          tt.*
+        FROM
+          tb_article_type tat
+        INNER JOIN
+          tb_type tt ON tat.TYPE_ID = tt.TYPE_ID
+        WHERE
+          tat.ARTICLE_ID = #{articleID}
+    </select>
+
 </mapper>

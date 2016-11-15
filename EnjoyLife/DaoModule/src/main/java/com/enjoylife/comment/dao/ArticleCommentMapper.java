@@ -3,13 +3,13 @@ package com.enjoylife.comment.dao;
 import com.enjoylife.comment.vo.ArticleComment;
 
 public interface ArticleCommentMapper {
-    int deleteByPrimaryKey(String articleCommentId);
+    int deleteByPrimaryKey(Integer articleCommentId);
 
     int insert(ArticleComment record);
 
     int insertSelective(ArticleComment record);
 
-    ArticleComment selectByPrimaryKey(String articleCommentId);
+    ArticleComment selectByPrimaryKey(Integer articleCommentId);
 
     int updateByPrimaryKeySelective(ArticleComment record);
 

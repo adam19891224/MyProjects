@@ -17,7 +17,7 @@ public class NewArticle extends ArticleWithBLOBs {
 
     private String updateDateStr;
 
-    private List<String> types;
+    private List<String> tags;
 
     public int getComments() {
         return comments;
@@ -28,11 +28,11 @@ public class NewArticle extends ArticleWithBLOBs {
     }
 
     public List<String> getTypes() {
-        return types;
+        return tags;
     }
 
     public void setTypes(List<String> types) {
-        this.types = types;
+        this.tags = types;
     }
 
     public String getCreateDateStr() {

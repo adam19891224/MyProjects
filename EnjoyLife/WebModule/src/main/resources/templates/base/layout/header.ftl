@@ -1,7 +1,9 @@
 <header id="header" class="header-main">
     <div class="header-inner">
         <div class="header-left">
-            <img src="/base/images/logo.png">
+            <a href="/index.html">
+                <img src="/base/images/logo.png">
+            </a>
             <h2>月下竹影</h2>
         </div>
         <div class="header-mid">

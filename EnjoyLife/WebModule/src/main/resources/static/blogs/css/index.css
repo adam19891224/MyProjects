@@ -17,7 +17,62 @@
 
 .article-intro{
     width: 100%;
+    line-height: 30px;
+    float: left;
+}
+
+.article-intro span{
+    display: inline-block;
+    height: 100%;
+    position: relative;
+}
+
+.intro-type{
+    float: left;
+    width: 120px;
+    text-align: left;
+    padding-left: 40px;
+    box-sizing: border-box;
+}
+
+.intro-type i{
+    width: 30px;
     height: 30px;
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    background: url("../images/type.png") no-repeat;
+    background-size: contain;
+}
+
+.intro-time{
+    float: right;
+    width: 120px;
+    text-align: right;
+}
+
+.intro-time i{
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    background: url("../images/calendar.png") no-repeat;
+    background-size: contain;
+}
+
+.article-tags{
+    width: 100%;
+    line-height: 30px;
+    float: left;
+    margin-top: 10px;
+    border-top: 2px solid #2e9ad0;
+}
+
+.article-tags span{
+    display: inline-block;
+    width: 50px;
+    height: 100%;
     float: left;
     background-color: red;
 }

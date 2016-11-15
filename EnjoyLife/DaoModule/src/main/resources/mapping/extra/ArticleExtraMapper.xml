@@ -13,7 +13,7 @@
             articleId, 而这个articleId就是我们selectByPage中查询的id，
             同时，我们也可以不用select，而是用resultMap的方式，表示这个collecton返回的是一个resultMap结果
         -->
-        <collection property="types" column="articleId" select="selectTypeByArticleID"/>
+        <collection property="tags" column="articleId" select="selectTagsByArticleID"/>
     </resultMap>
 
     <select id="selectByPage" resultMap="NewArticleBody" parameterType="com.enjoylife.view.Page">
@@ -40,13 +40,13 @@
     </select>
 
     <!--根据文章id获取类型-->
-    <select id="selectTypeByArticleID" resultType="java.lang.String">
+    <select id="selectTagsByArticleID" resultType="java.lang.String">
         SELECT
-          tt.TYPE_NAME
+          tt.TAG_NAME
         FROM
-          tb_article_type tat
+          tb_article_tags tat
         INNER JOIN
-          tb_type tt ON tat.TYPE_ID = tt.TYPE_ID
+          tb_tags tt ON tat.TAG_ID = tt.TAG_ID
         WHERE
           tat.ARTICLE_ID = #{articleId}
     </select>

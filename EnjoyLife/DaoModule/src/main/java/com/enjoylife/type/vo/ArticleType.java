@@ -1,18 +1,18 @@
 package com.enjoylife.type.vo;
 
 public class ArticleType {
-    private String articleTypeId;
+    private Integer articleTypeId;
 
     private String articleId;
 
     private String typeId;
 
-    public String getArticleTypeId() {
+    public Integer getArticleTypeId() {
         return articleTypeId;
     }
 
-    public void setArticleTypeId(String articleTypeId) {
-        this.articleTypeId = articleTypeId == null ? null : articleTypeId.trim();
+    public void setArticleTypeId(Integer articleTypeId) {
+        this.articleTypeId = articleTypeId;
     }
 
     public String getArticleId() {
