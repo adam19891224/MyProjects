@@ -1,6 +1,7 @@
 @import "../../base/css/common.css";
 @import "../../base/css/intro.css";
 @import "../../base/css/cloud.css";
+@import "prism.css";
 
 .main-left{
     padding: 20px;
@@ -43,6 +44,12 @@
     left: 0;
     background: url("../images/type.png") no-repeat;
     background-size: contain;
+}
+
+.intro-type span:hover{
+    color: #2e9ad0;
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 .intro-time{

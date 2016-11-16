@@ -12,6 +12,7 @@
     <script src="/base/js/jquery-2.2.3.min.js"></script>
     <script src="/base/js/tar-cloud.min.js"></script>
     <script src="/base/js/app.js"></script>
+    <script src="/blogs/js/prism.js"></script>
 </head>
 <body>
 [#--顶部--]
@@ -25,7 +26,7 @@
         </h1>
         <div class="article-intro">
             <span class="intro-type">
-                <i></i>${type.typeName}
+                <i></i># <span>${type.typeName}</span>
             </span>
             <span class="intro-time">
                 <i></i>${article.createDate?string("yyyy-MM-dd")}
