@@ -1,9 +1,14 @@
 $(function () {
-    //绑定懒加载
-    $(".blog-body img").lazyload({
-        effect: "fadeIn",
-        threshold : 200,
-        failure_limit: 1
+    new Blazy({
+        container: '.blog-body',
+        error: function(ele, msg){
+            // if(msg === 'missing'){
+            //     console.log("加载丢失");
+            // }else if(msg === 'invalid'){
+            //     console.log("加载失败");
+            // }
+            ele.src = "/base/images/failed.png";
+        }
     });
 
     var isClick = true;

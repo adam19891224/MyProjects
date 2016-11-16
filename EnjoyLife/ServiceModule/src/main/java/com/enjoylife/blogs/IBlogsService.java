@@ -28,5 +28,9 @@ public interface IBlogsService {
      */
     ArticleWithBLOBs selectArticleBySID(Integer sid);
 
+    /**
+     * 根据现有的文章获取时间轴
+     * @return
+     */
     List<ArticleTime> selectTimeGroupByArticle();
 }

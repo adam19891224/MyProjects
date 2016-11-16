@@ -11,7 +11,7 @@
     <link href="/base/css/page.css" rel="stylesheet" type="text/css" media="all">
     <link href="/index/css/index.css?t=[@time /]" rel="stylesheet" type="text/css" media="all">
     <script src="/base/js/jquery-2.2.3.min.js"></script>
-    <script src="/base/js/jquery.lazyload.min.js"></script>
+    <script src="/base/js/blazy.min.js"></script>
     <script src="/base/js/app.js"></script>
     <script src="/base/js/page.js"></script>
 </head>
@@ -44,7 +44,7 @@
                         </div>
                         <div class="blog-body">
                             <a href="/blogs/${blog.articleSid}.html">
-                                <img src="/base/images/image-loading.gif" class="lazy" data-original="${blog.articleImg}" alt="${blog.articleTitle}"/>
+                                <img src="/base/images/image-loading.gif" class="b-lazy" data-src="${blog.articleImg}" alt="${blog.articleTitle}"/>
                             </a>
                             <span>
                                 ${blog.articleDescription}

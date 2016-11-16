@@ -4,6 +4,7 @@ function Eyes(){
 
     var timeDiv = $("#time-div");
     var blogDiv = $("#container-title");
+    var scrollLeft = $("#container-title").offset().left;
 
     /**
      * 页面滚动事件，动态根据文章标题改变时间轴
@@ -52,6 +53,7 @@ function Eyes(){
 
     /**
      * 时间轴年份点击事件
+     * 进入当前年份的最上面的月份区域
      */
     this.timeYearClickListener = function(){
         var _this, nowY, thisY, thisM;
@@ -67,6 +69,9 @@ function Eyes(){
         });
     };
 
+    /**
+     * 时间轴月份点击事件
+     */
     this.timeMonthClickListener = function () {
         var _this, nowY, nowM, thisY, thisM;
         timeDiv.on("click", "li", function () {
@@ -111,14 +116,18 @@ function Eyes(){
      */
     var autoChangeTimeBar = function () {
         var year, month;
-        var nowDom = document.elementFromPoint(260, 20);
+        //获取文章列表dom据父元素左边的距离
+        window.onresize = function(){
+            scrollLeft = $("#container-title").offset().left;
+        };
+        var nowDom = document.elementFromPoint(scrollLeft, 20);
         nowDom = $(nowDom);
-        var parent = nowDom.parents("h2");
-        if(parent.length > 0){
+        var tarName = nowDom.prop("tagName");
+        if(tarName == "H2"){
             var bar_year = timeDiv.attr("n-y");
             var bar_month = timeDiv.attr("n-m");
-            year = parent.attr("data-year");
-            month = parent.attr("data-month");
+            year = nowDom.attr("data-year");
+            month = nowDom.attr("data-month");
             if(bar_year != year || bar_month != month){
                 changeTimeBar(year, month);
             }

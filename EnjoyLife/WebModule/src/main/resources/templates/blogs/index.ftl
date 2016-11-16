@@ -32,10 +32,14 @@
             </span>
         </div>
         <div class="article-tags">
-            <span>adsa</span>
+            [#if tags?? && tags?size > 0]
+                [#list tags as tag]
+                    <span tid="${tag.tagId}">${tag.tagName}</span>
+                [/#list]
+            [/#if]
         </div>
         <article id="article-body" class="article-body">
-
+            ${article.articleBody}
         </article>
     </div>
     [#--右边--]
