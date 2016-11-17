@@ -96,13 +96,14 @@ public class BlogsController extends BaseController {
         Map<String, Object> map = ConUtils.hashmap();
         if(ConUtils.isNotNull(list)){
             map.put("isOk", "Y");
+            map.put("totalCounts", totalCounts);
+            map.put("totalPages", totalPages);
+            map.put("current", current);
+            map.put("list", list);
         }else{
             map.put("isOk", "N");
+            map.put("msg", "没有数据");
         }
-        map.put("totalCounts", totalCounts);
-        map.put("totalPages", totalPages);
-        map.put("current", current);
-        map.put("list", list);
         return super.parseObjectToJson(map);
     }
 

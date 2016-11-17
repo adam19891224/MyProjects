@@ -20,6 +20,7 @@ function Blogs(){
     this.initPage = function () {
         //渲染评论编辑器
         commentEditor = CKEDITOR.replace("comment-main-editor", { height: "160px"});
+        loadingComment(1, true);
     };
 
     this.commentReplyButtonClick = function () {
@@ -144,11 +145,75 @@ function Blogs(){
         span.data("type", "y").addClass("reply-color").text("收起");
     };
 
-    var loadingComment = function (page) {
+    var loadingComment = function (page, init) {
+        //清空现有的评论列表
+        $("#articlt-comment-div").find(".comment-container").empty();
         var obj = {};
         obj.isReply = 0;
-        obj.articleId = "";
+        obj.articleId = $("#article-body").attr("data-aid");
+        obj.page = page;
+        $.post('/blogs/getComment.html', obj, function (text) {
+            var result = eval("(" + text + ")");
+            var isOk = result.isOk;
+            var lis = "";
+            if(isOk == "Y"){
+                // var counts = result.totalCounts;
+                var pages = result.totalPages;
+                var current = result.current;
+                var list = result.list;
+                lis = getCommentLis(list);
+                if(init){
+                    createPageLine(pages, current);
+                }
+            }else{
+                lis = "<li class=\"comment-no-data\"><span>暂无评论~~~~(>_<)~~~~</span></li>";
+            }
+            $("#articlt-comment-div").find(".comment-container").append(lis);
+        });
     };
+
+    var getCommentLis = function (list) {
+        var tempO, lis = "";
+        for(var a = 0, b = list.length; a < b; a++){
+            tempO = list[a];
+            lis += "<li data-id='" + tempO.commentId + "'>" +
+                        "<div class='comment-left'>" +
+                            "<div class='left-head'></div>" +
+                        "</div>" +
+                        "<div class='comment-right'>" +
+                        "<div class='right-main'>" +
+                            "<div class='mian-name'>" +
+                                tempO.commentUser +
+                            "</div>" +
+                            "<div class='main-content'>" +
+                                tempO.commentBody +
+                            "</div>" +
+                            "<div class='main-reply'>" +
+                                "<span class='to-reply' data-l='0'>回复</span><span class='to-show' data-l='0'>展开</span>" +
+                            "</div>" +
+                            "<div class='main-line'></div>" +
+                                "<div class='main-reply-container'>" +
+                                    "<ul class='reply-container' load='0'>" +
+                                    "</ul>" +
+                                "</div>" +
+                            "</div>" +
+                        "</div>" +
+                   "</li>";
+        }
+        return lis;
+    };
+
+    var createPageLine = function (count, current) {
+        $("#comment-pages").empty();
+        $("#comment-pages").createPage({
+            pageCount: count,
+            current: current,
+            backFn: function(page, eve, obj){
+                eve.fillHtml(obj, {"current": page,"pageCount": count});
+                loadingComment(page, false);
+            }
+        });
+    }
 
 }
 

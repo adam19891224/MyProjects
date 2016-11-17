@@ -8,12 +8,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link href="/base/images/ico.ico" rel="shortcut icon" type="image/x-icon">
+    <link href="/base/css/common.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/base/css/intro.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/base/css/cloud.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/blogs/css/page.css?t=[@time /]" rel="stylesheet" type="text/css" media="all">
+    <link href="/blogs/css/prism.css?t=[@time /]" rel="stylesheet" type="text/css" media="all">
     <link href="/blogs/css/index.css?t=[@time /]" rel="stylesheet" type="text/css" media="all">
     <script src="/base/js/jquery-2.2.3.min.js"></script>
+    <script src="/ckeditor/ckeditor.js"></script>
     <script src="/base/js/tar-cloud.min.js"></script>
     <script src="/base/js/app.js"></script>
+    <script src="/base/js/page.js"></script>
     <script src="/blogs/js/prism.js"></script>
-    <script src="/ckeditor/ckeditor.js"></script>
 </head>
 <body>
 [#--顶部--]

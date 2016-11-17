@@ -8,6 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link href="/base/images/ico.ico" rel="shortcut icon" type="image/x-icon">
+    <link href="/base/css/common.css" rel="stylesheet" type="text/css" media="all">
+    <link href="/base/css/intro.css" rel="stylesheet" type="text/css" media="all">
     <link href="/base/css/page.css" rel="stylesheet" type="text/css" media="all">
     <link href="/index/css/index.css?t=[@time /]" rel="stylesheet" type="text/css" media="all">
     <script src="/base/js/jquery-2.2.3.min.js"></script>

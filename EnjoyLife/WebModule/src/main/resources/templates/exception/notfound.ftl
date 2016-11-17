@@ -8,7 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="shortcut icon" href="/base/images/ico.ico" type="image/x-icon">
-    <link rel="stylesheet" href="/exception/css/notfound.css?t=[@time /]">
+    <link rel="stylesheet" href="/base/css/common.css" type="text/css" media="all">
+    <link rel="stylesheet" href="/exception/css/notfound.css?t=[@time /]" type="text/css" media="all">
 </hsead>
 <body>
     [#--顶部--]

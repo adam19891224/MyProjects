@@ -8,7 +8,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <link rel="shortcut icon" href="/base/images/ico.ico" type="image/x-icon">
-        <link rel="stylesheet" href="/exception/css/low.css?t=[@time /]" type="text/css"/>
+        <link rel="stylesheet" href="/exception/css/low.css?t=[@time /]" type="text/css" media="all"/>
     </head>
     <body>
         <img src="/exception/images/no-bowser.gif">
