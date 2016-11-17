@@ -205,6 +205,7 @@
     float: left;
     text-align: right;
     font-size: 12px;
+    margin-bottom: 5px;
 }
 
 .main-reply span{
@@ -215,6 +216,10 @@
 .main-reply span:hover{
     color: #2e9ad0;
     cursor: pointer;
+}
+
+.reply-color{
+    color: #2e9ad0;
 }
 
 .main-line{
@@ -256,6 +261,75 @@
     margin-bottom: 10px;
     padding-left: 40px;
     box-sizing: border-box;
+}
+
+.comment-editor{
+    width: 100%;
+    overflow: hidden;
+    margin-top: 10px;
+    float: left;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.comment-buttons{
+    width: 100%;
+    margin-top: 10px;
+    float: left;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.submit-button{
+    width: 80px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    display: block;
+    float: right;
+    border-radius: 5px;
+    border: 1px solid #c6c6c6;
+}
+
+.submit-button:hover{
+    cursor: pointer;
+    background-color: #2e9ad0;
+    color: #ffffff;
+}
+
+.reply-editor{
+    width: 100%;
+    overflow: hidden;
+    float: left;
+    margin-top: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.reply-buttons{
+    width: 100%;
+    margin-top: 10px;
+    float: left;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.submit-reply-button{
+    width: 60px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    display: block;
+    float: right;
+    border-radius: 5px;
+    border: 1px solid #c6c6c6;
+    font-size: 12px;
+}
+
+.submit-reply-button:hover{
+    color: #fff;
+    cursor: pointer;
+    background-color: #2e9ad0;
 }
 
 .right-body{

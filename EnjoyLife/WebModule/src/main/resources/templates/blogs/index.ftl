@@ -13,6 +13,7 @@
     <script src="/base/js/tar-cloud.min.js"></script>
     <script src="/base/js/app.js"></script>
     <script src="/blogs/js/prism.js"></script>
+    <script src="/ckeditor/ckeditor.js"></script>
 </head>
 <body>
 [#--顶部--]
@@ -44,44 +45,9 @@
         </article>
         <div class="article-line"></div>
         <div class="article-block"></div>
-        <div class="article-comment">
-            <div class="comment-title">
-                <i></i><span>交流区</span>
-            </div>
-            <ul class="comment-container">
-                <li>
-                    <div class="comment-left">
-                        <div class="left-head"></div>
-                    </div>
-                    <div class="comment-right">
-                        <div class="right-main">
-                            <div class="mian-name">
-                                发那我发份
-                            </div>
-                            <div class="main-content">
-                                afasf撒旦法师法算法我挖的爱上艾弗森awful阿文爱上法萨芬afasf撒旦法师法算法我挖的爱上艾弗森awful阿文爱上法萨芬afasf撒旦法师法算法我挖的爱上艾弗森awful阿文爱上法萨芬
-                            </div>
-                            <div class="main-reply">
-                                <span>回复</span><span>展开</span>
-                            </div>
-                            <div class="main-line"></div>
-                            <div class="main-reply-container">
-                                <ul class="reply-container">
-                                    <li>
-                                        <h5>
-                                            <span>XXX</span> 回复 <span>XXX</span>
-                                        </h5>
-                                        <div class="reply-content">
-                                            afasf撒旦法师法算法我挖的爱上艾弗森awful阿文爱上法萨芬afasf撒旦法师法算法我挖的爱上艾弗森awful阿文爱上法萨芬afasf撒旦法师法算法我挖的爱上艾弗森awful阿文爱上法萨芬
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
+
+        [#--引入评论--]
+        [#include "comment.ftl"/]
     </div>
     [#--右边--]
     <div class="main-right">
