@@ -21,9 +21,9 @@ public interface CommentMapper {
 
     int updateByPrimaryKey(Comment record);
 
-    List<Comment> selectByPage(Page<Comment> page);
+    List<Comment> selectCommentsByPage(Page<Comment> page);
 
-    Integer selectCountsByArticle(Page<Comment> page);
+    Integer selectCommentsCountsByPage(Page<Comment> page);
 
     List<Comment> selectReplyComment(CommentForm form);
 }

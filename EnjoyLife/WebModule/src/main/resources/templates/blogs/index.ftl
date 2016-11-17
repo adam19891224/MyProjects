@@ -40,7 +40,7 @@
                 [/#list]
             [/#if]
         </div>
-        <article id="article-body" class="article-body">
+        <article id="article-body" class="article-body" data-aid="${article.articleId}">
             ${article.articleBody}
         </article>
         <div class="article-line"></div>
@@ -61,6 +61,34 @@
         </div>
     </div>
 </main>
+
+<div id="whole-div" class="whole-div">
+    <div class="submit-screen-div"></div>
+    <div class="submit-info-div">
+        <ul class="info-main">
+            <li>
+                <input type="text" id="firden-name" title="名称" placeholder="请输入昵称(必填)" />
+            </li>
+            <li>
+                <input type="text" id="firden-email" title="邮箱" placeholder="请输入邮箱(必填)" />
+            </li>
+            <li>
+                <input type="text" id="firden-website" title="网站" placeholder="请输入网站" />
+            </li>
+        </ul>
+        <div class="info-buttons">
+            <span id="to-submit">提交</span>
+            <span id="to-cancle">取消</span>
+        </div>
+    </div>
+</div>
+<div id="loading-div" class="whole-div">
+    <div class="submit-screen-div"></div>
+    <div class="loading-div">
+        <div class="loading-info"></div>
+    </div>
+</div>
+
 
 [#--底部--]
 [#include "../base/layout/footer.ftl"]

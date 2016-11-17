@@ -5,6 +5,7 @@ import com.enjoylife.article.vo.ArticleTime;
 import com.enjoylife.article.vo.ArticleWithBLOBs;
 import com.enjoylife.article.vo.NewArticle;
 import com.enjoylife.view.Page;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -28,4 +29,6 @@ public interface ArticleMapper {
     int selectCountsByPage(Page<NewArticle> page);
 
     List<ArticleTime> selectTimeGroupByArticle();
+
+    String selectArticleInfoByArticleID(@Param("articleID") String articleID);
 }

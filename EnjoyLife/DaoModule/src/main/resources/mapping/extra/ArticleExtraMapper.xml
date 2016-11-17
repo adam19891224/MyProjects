@@ -99,4 +99,13 @@
             article_month DESC
     </select>
 
+    <select id="selectArticleInfoByArticleID" resultType="java.lang.String">
+        SELECT
+            ta.ARTICLE_TITLE
+        FROM
+            tb_article ta
+        WHERE
+             ta.ARTICLE_ID = #{articleID}
+    </select>
+
 </mapper>
