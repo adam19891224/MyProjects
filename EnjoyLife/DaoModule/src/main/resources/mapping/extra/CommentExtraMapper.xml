@@ -16,9 +16,17 @@
             <if test="isReply != null">
                 AND tc.COMMENT_IS_REPLY = #{isReply}
             </if>
+            <if test="commentId != null and commentId != '' ">
+                AND tc.COMMENT_REPLY_BODY = #{commentId}
+            </if>
         </where>
+
         ORDER BY tc.CREATE_DATE DESC
-        limit #{pageNum}, #{pageSize}
+
+        <if test="pagination != null and pagination == true">
+            limit #{pageNum}, #{pageSize}
+        </if>
+
     </select>
 
     <select id="selectCommentsCountsByPage" resultType="java.lang.Integer" parameterType="com.enjoylife.view.Page">

@@ -29,7 +29,9 @@
 
         ORDER BY ta.CREATE_DATE DESC
 
-        limit #{pageNum}, #{pageSize}
+        <if test="pagination != null and pagination == true">
+            limit #{pageNum}, #{pageSize}
+        </if>
     </select>
 
     <select id="selectCountsByPage" resultType="java.lang.Integer" parameterType="com.enjoylife.view.Page">

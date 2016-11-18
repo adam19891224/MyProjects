@@ -73,15 +73,6 @@ public class BlogsController extends BaseController {
         List<Tags> tagses = tagesService.selectTagsByArticleId(article.getArticleId());
         map.addAttribute("tags", tagses);
 
-        Page<Comment> page = new Page<>();
-        page.setArticleId(article.getArticleId());
-        page.setIsReply((byte) 0);
-        page = commentService.getCommentsByPage(page);
-        map.addAttribute("totalCounts", page.getTotalCounts());
-        map.addAttribute("totalPages", page.getTotalPages());
-        map.addAttribute("page", page.getPage());
-        map.addAttribute("result", page.getResultList());
-
         return "blogs/index";
     }
 
@@ -89,22 +80,8 @@ public class BlogsController extends BaseController {
     @ResponseBody
     public String getComment(Page<Comment> page){
         page = commentService.getCommentsByPage(page);
-        List<Comment> list = page.getResultList();
-        Integer totalCounts = page.getTotalCounts();
-        Integer totalPages = page.getTotalPages();
-        Integer current = page.getPage();
-        Map<String, Object> map = ConUtils.hashmap();
-        if(ConUtils.isNotNull(list)){
-            map.put("isOk", "Y");
-            map.put("totalCounts", totalCounts);
-            map.put("totalPages", totalPages);
-            map.put("current", current);
-            map.put("list", list);
-        }else{
-            map.put("isOk", "N");
-            map.put("msg", "没有数据");
-        }
-        return super.parseObjectToJson(map);
+        //将结果封装成map对象，然后转为json返回给前台
+        return super.parseObjectToJson(this.getCommentMapByResult(page));
     }
 
     @RequestMapping("/postComment.html")
@@ -117,5 +94,28 @@ public class BlogsController extends BaseController {
             logger.error("保存文章Id为: " + form.getArticleId() + " 的评论发生异常：" + e);
         }
         return "error";
+    }
+
+
+    /**
+     * 根据评论结果封装成map
+     */
+    private Map<String, Object> getCommentMapByResult(Page<Comment> page){
+        Map<String, Object> map = ConUtils.hashmap();
+        List<Comment> list = page.getResultList();
+        Integer totalCounts = page.getTotalCounts();
+        Integer totalPages = page.getTotalPages();
+        Integer current = page.getPage();
+        if(ConUtils.isNotNull(list)){
+            map.put("isOk", "Y");
+            map.put("totalCounts", totalCounts);
+            map.put("totalPages", totalPages);
+            map.put("current", current);
+            map.put("list", list);
+        }else{
+            map.put("isOk", "N");
+            map.put("msg", "没有数据");
+        }
+        return map;
     }
 }

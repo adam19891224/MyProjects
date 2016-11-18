@@ -32,7 +32,7 @@ public class BolgsServiceImpl extends BaseAbstractClass implements IBlogsService
             List<NewArticle> list = articleMapper.selectByPage(page);
             if(ConUtils.isNotNull(list)){
                 page.setResultList(list);
-                if(page.getTotalCounts() == null){
+                if(page.getPagination()){
                     int count = articleMapper.selectCountsByPage(page);
                     page.setTotalCounts(count);
                     //总页数计算方法：总记录数 + 每页显示记录数 - 1 的结果 / 每页显示记录数

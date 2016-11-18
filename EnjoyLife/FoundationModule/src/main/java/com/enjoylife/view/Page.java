@@ -17,7 +17,7 @@ public class Page<T> implements Serializable {
 
     private Integer pageNum = 0;
 
-    private Integer pageSize = 1;
+    private Integer pageSize = 10;
 
     private Integer totalCounts;
 
@@ -58,11 +58,34 @@ public class Page<T> implements Serializable {
     private String seriesId;
 
     /**
+     * 评论相关
+     */
+    private String commentId;
+
+    private Byte commentIsReply;
+
+    /**
      * 返回结果集
      */
     private List<T> resultList;
 
     private T resultObject;
+
+    public Byte getCommentIsReply() {
+        return commentIsReply;
+    }
+
+    public void setCommentIsReply(Byte commentIsReply) {
+        this.commentIsReply = commentIsReply;
+    }
+
+    public String getCommentId() {
+        return commentId;
+    }
+
+    public void setCommentId(String commentId) {
+        this.commentId = commentId;
+    }
 
     public String getSeriesName() {
         return seriesName;
