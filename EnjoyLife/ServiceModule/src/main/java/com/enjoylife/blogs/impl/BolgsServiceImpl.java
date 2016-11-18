@@ -48,6 +48,11 @@ public class BolgsServiceImpl extends BaseAbstractClass implements IBlogsService
     }
 
     @Override
+    public int selectArticlesCountsByPage(Page<NewArticle> page) {
+        return articleMapper.selectCountsByPage(page);
+    }
+
+    @Override
     public ArticleWithBLOBs selectArticleBySID(Integer sid) {
         return articleMapper.selectByPrimaryKey(sid);
     }

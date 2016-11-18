@@ -21,4 +21,6 @@ public interface TypeMapper {
     List<Type> selectAllTypes();
 
     Type selectTypeByArticleId(@Param("articleID") String articleID);
+
+    int selectAllTypesCount();
 }

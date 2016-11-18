@@ -2,6 +2,9 @@ function Applications() {
 
     var _this = this;
 
+    var EMAIL_REG = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
+    var SITE_REG = /[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+\.?/;
+
     this.castStr2Num = function(str){
         return parseInt(str);
     };
@@ -16,6 +19,14 @@ function Applications() {
     this.replaceBlock = function (str) {
         return str.replace(/\s/g, '');
     };
+    
+    this.checkIsEmail = function (str) {
+        return EMAIL_REG.test(str);
+    };
+
+    this.checkIsSite = function (str) {
+        return SITE_REG.test(str);
+    }
 
 }
 var applications = new Applications();

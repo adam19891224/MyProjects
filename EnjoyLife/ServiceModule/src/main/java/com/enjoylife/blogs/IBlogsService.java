@@ -22,6 +22,11 @@ public interface IBlogsService {
     Page<NewArticle> selectArticlesByPage(Page<NewArticle> page);
 
     /**
+     * 获取当前总文章数
+     */
+    int selectArticlesCountsByPage(Page<NewArticle> page);
+
+    /**
      * 根据主键获取entity
      * @param sid
      * @return

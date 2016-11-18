@@ -53,6 +53,12 @@ public class SeriesController extends BaseController {
 
         map.addAttribute("isSeries", YesNoTypeEnum.Yes.getCode());
 
+        int typesCount = typeService.selectAllTypesCount();
+        map.addAttribute("allTypes", typesCount);
+
+        int blogCount = blogsService.selectArticlesCountsByPage(new Page<NewArticle>());
+        map.addAttribute("totalCounts", blogCount);
+
         return "series/index";
     }
 

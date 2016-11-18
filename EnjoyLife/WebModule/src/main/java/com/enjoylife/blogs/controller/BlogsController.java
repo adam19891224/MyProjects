@@ -1,6 +1,7 @@
 package com.enjoylife.blogs.controller;
 
 import com.enjoylife.article.vo.ArticleWithBLOBs;
+import com.enjoylife.article.vo.NewArticle;
 import com.enjoylife.base.controller.BaseController;
 import com.enjoylife.blogs.IBlogsService;
 import com.enjoylife.comment.ICommentService;
@@ -72,6 +73,12 @@ public class BlogsController extends BaseController {
         //根据文章id查询标签
         List<Tags> tagses = tagesService.selectTagsByArticleId(article.getArticleId());
         map.addAttribute("tags", tagses);
+
+        int typesCount = typeService.selectAllTypesCount();
+        map.addAttribute("allTypes", typesCount);
+
+        int blogCount = blogsService.selectArticlesCountsByPage(new Page<NewArticle>());
+        map.addAttribute("totalCounts", blogCount);
 
         return "blogs/index";
     }

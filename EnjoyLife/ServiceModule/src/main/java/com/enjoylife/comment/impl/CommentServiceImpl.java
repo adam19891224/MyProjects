@@ -15,6 +15,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.util.HtmlUtils;
 
 import java.util.Date;
 import java.util.List;
@@ -69,6 +70,9 @@ public class CommentServiceImpl extends BaseAbstractClass implements ICommentSer
         BeanUtils.copyProperties(form, comment);
         String commentID = UUID.randomUUID().toString();
         comment.setCommentId(commentID);
+        comment.setCommentEmail(HtmlUtils.htmlEscape(comment.getCommentEmail()));
+        comment.setCommentUser(HtmlUtils.htmlEscape(comment.getCommentUser()));
+        comment.setCommentUserWebsite(HtmlUtils.htmlEscape(comment.getCommentUserWebsite()));
         //创建文章，评论关联关系
         ArticleComment articleComment = new ArticleComment();
         articleComment.setArticleId(articleID);

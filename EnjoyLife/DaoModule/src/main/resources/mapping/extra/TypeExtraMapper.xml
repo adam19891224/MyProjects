@@ -20,4 +20,11 @@
           tat.ARTICLE_ID = #{articleID}
     </select>
 
+    <select id="selectAllTypesCount" resultType="java.lang.Integer">
+        SELECT
+            COUNT(1)
+        FROM
+          tb_type tt
+    </select>
+
 </mapper>

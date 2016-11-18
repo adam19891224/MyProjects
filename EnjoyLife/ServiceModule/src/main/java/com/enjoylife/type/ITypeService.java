@@ -14,4 +14,6 @@ public interface ITypeService {
     List<Type> selectAllTypes();
 
     Type selectTypeByArticleId(String articleID);
+
+    int selectAllTypesCount();
 }

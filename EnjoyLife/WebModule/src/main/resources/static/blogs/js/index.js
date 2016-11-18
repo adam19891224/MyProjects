@@ -10,6 +10,7 @@ $(function () {
     blogs.replySubmitButtonClick();
     blogs.dataSubmitClick();
     blogs.dataCancleClick();
+    blogs.websiteClick();
 });
 
 function Blogs(){
@@ -99,6 +100,8 @@ function Blogs(){
                     $("#whole-div").data("comment", data);
                     //同时标注此条评论是主评论
                     $("#whole-div").data("isReply", 0);
+                    $("#whole-div").data("replyUser", "");
+                    $("#whole-div").data("replyBody", "");
                     $("#whole-div").show();
                 }
                 _this.data("lock", "0");
@@ -127,7 +130,7 @@ function Blogs(){
                     $("#whole-div").data("isReply", 1);
                     //同时填写回复人的名称和评论id
                     var _thisP = _this.parents("li");
-                    $("#whole-div").data("replyUser", _thisP.find(".mian-name").text());
+                    $("#whole-div").data("replyUser", _thisP.find(".mian-name").find("span").first().text());
                     $("#whole-div").data("replyBody", _thisP.attr("data-id"));
                     $("#whole-div").show();
                 }
@@ -138,8 +141,6 @@ function Blogs(){
 
     this.dataSubmitClick = function () {
         $("#to-submit").click(function () {
-            $("#whole-div").hide();
-            $("#loading-div").show();
             var name = $("#firden-name").val();
             var email = $("#firden-email").val();
             var site = $("#firden-website").val();
@@ -155,8 +156,22 @@ function Blogs(){
             var isReply = $("#whole-div").data("isReply");
             var dataId = $("#whole-div").data("replyBody");
             obj.commentUser = name;
+
+            if(!applications.checkIsEmail(email)){
+                alert("请大牛输入正确的邮箱地址");
+                return false;
+            }
             obj.commentEmail = email;
+
+            if(applications.isNotNull(site) && !applications.checkIsSite(site)){
+                alert("请大牛输入正确的网站地址");
+                return false;
+            }
             obj.commentUserWebsite = site;
+
+            $("#whole-div").hide();
+            $("#loading-div").show();
+
             obj.articleId = $("#article-body").attr("data-aid");
             obj.commentBody = $("#whole-div").data("comment");
             obj.commentIsReply = isReply;
@@ -189,6 +204,18 @@ function Blogs(){
     this.dataCancleClick = function () {
         $("#to-cancle").click(function () {
             $("#whole-div").data("comment", "").hide();
+        });
+    };
+
+    this.websiteClick = function () {
+        var site = "";
+        $("#articlt-comment-div").on("click", ".has-website", function () {
+            site = $(this).attr("data-w");
+            if(site.indexOf("http://") >= 0 || site.indexOf("https://") >= 0){
+                window.open(site);
+            }else{
+                window.open("http://" + site);
+            }
         });
     };
 
@@ -253,10 +280,16 @@ function Blogs(){
     };
 
     var getCommentLis = function (list) {
-        var tempO, lis = "", time = "";
+        var tempO, lis = "", time = "", span = "";
         for(var a = 0, b = list.length; a < b; a++){
             tempO = list[a];
             time = new Date(tempO.createDate).Format("yyyy-MM-dd");
+            var site = tempO.commentUserWebsite;
+            if(applications.isNotNull(site) && applications.checkIsSite(site)){
+                span = "<span class='has-website' data-w='" + site + "'>" + tempO.commentUser + "</span><span>" + time + "</span>";
+            }else{
+                span = "<span>" + tempO.commentUser + "</span><span>" + time + "</span>";
+            }
             lis += "<li data-id='" + tempO.commentId + "'>" +
                         "<div class='comment-left'>" +
                             "<div class='left-head'></div>" +
@@ -264,7 +297,7 @@ function Blogs(){
                         "<div class='comment-right'>" +
                             "<div class='right-main'>" +
                                 "<div class='mian-name'>" +
-                                    "<span>" + tempO.commentUser + "</span><span>" + time + "</span>" +
+                                    span +
                                 "</div>" +
                                 "<div class='main-content'>" +
                                     tempO.commentBody +

@@ -51,6 +51,12 @@ public class EyesController extends BaseController {
 
         map.addAttribute("isEyes", YesNoTypeEnum.Yes.getCode());
 
+        int typesCount = typeService.selectAllTypesCount();
+        map.addAttribute("allTypes", typesCount);
+
+        int blogCount = blogsService.selectArticlesCountsByPage(new Page<NewArticle>());
+        map.addAttribute("totalCounts", blogCount);
+
         return "eyes/index";
     }
 
