@@ -253,9 +253,10 @@ function Blogs(){
     };
 
     var getCommentLis = function (list) {
-        var tempO, lis = "";
+        var tempO, lis = "", time = "";
         for(var a = 0, b = list.length; a < b; a++){
             tempO = list[a];
+            time = new Date(tempO.createDate).Format("yyyy-MM-dd");
             lis += "<li data-id='" + tempO.commentId + "'>" +
                         "<div class='comment-left'>" +
                             "<div class='left-head'></div>" +
@@ -263,7 +264,7 @@ function Blogs(){
                         "<div class='comment-right'>" +
                             "<div class='right-main'>" +
                                 "<div class='mian-name'>" +
-                                    tempO.commentUser +
+                                    "<span>" + tempO.commentUser + "</span><span>" + time + "</span>" +
                                 "</div>" +
                                 "<div class='main-content'>" +
                                     tempO.commentBody +
@@ -299,13 +300,14 @@ function Blogs(){
     };
 
     var getReplysLis = function (list) {
-        var lis = "";
+        var lis = "", time = "";
         var tempO;
         for(var a = 0, b = list.length; a < b; a++){
             tempO = list[a];
+            time = new Date(tempO.createDate).Format("yyyy-MM-dd");
             lis += "<li>" +
                         "<h5>" +
-                            "<span>" + tempO.commentUser + "</span> 回复 <span></span>" +
+                            "<span>" + tempO.commentUser + "</span> 回复 <span>" + time + "</span>" +
                         "</h5>" +
                         "<div class=\"reply-content\">" +
                             tempO.commentBody +

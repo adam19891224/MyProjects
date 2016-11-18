@@ -79,6 +79,7 @@ public class BlogsController extends BaseController {
     @RequestMapping("/getComment.html")
     @ResponseBody
     public String getComment(Page<Comment> page){
+        page.setPageSize(5);
         page = commentService.getCommentsByPage(page);
         //将结果封装成map对象，然后转为json返回给前台
         return super.parseObjectToJson(this.getCommentMapByResult(page));

@@ -222,6 +222,7 @@ public class Page<T> implements Serializable {
 
     public void setPageSize(Integer pageSize) {
         this.pageSize = pageSize;
+        this.setPageNum(this.page);
     }
 
     public Integer getPageNum() {
