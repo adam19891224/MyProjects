@@ -141,9 +141,10 @@ function Blogs(){
 
     this.dataSubmitClick = function () {
         $("#to-submit").click(function () {
-            var name = $("#firden-name").val();
-            var email = $("#firden-email").val();
-            var site = $("#firden-website").val();
+            var name = $("#friend-name").val();
+            var email = $("#friend-email").val();
+            var type = $("#friend-sitetype").val();
+            var site = $("#friend-website").val();
             if(!applications.isNotNull(name)){
                 alert("请大牛输入昵称");
                 return false;
@@ -167,6 +168,15 @@ function Blogs(){
                 alert("请大牛输入正确的网站地址");
                 return false;
             }
+
+            site = site.replace("http://", "");
+            site = site.replace("https://", "");
+            if(type == "http"){
+                site = "http://" + site;
+            }else if(type == "https"){
+                site = "https://" + site;
+            }
+
             obj.commentUserWebsite = site;
 
             $("#whole-div").hide();

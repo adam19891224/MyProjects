@@ -73,13 +73,17 @@
     <div class="submit-info-div">
         <ul class="info-main">
             <li>
-                <input type="text" id="firden-name" title="名称" placeholder="请输入昵称(必填)" />
+                <input type="text" id="friend-name" title="名称" placeholder="请输入昵称(必填)" />
             </li>
             <li>
-                <input type="text" id="firden-email" title="邮箱" placeholder="请输入邮箱(必填)" />
+                <input type="text" id="friend-email" title="邮箱" placeholder="请输入邮箱(必填)" />
             </li>
             <li>
-                <input type="text" id="firden-website" title="网站" placeholder="请输入网站" />
+                <select id="friend-sitetype" title="类型">
+                    <option value="http">http://</option>    
+                    <option value="https">https://</option>
+                </select>
+                <input type="text" id="friend-website" title="网站" placeholder="请输入网站" />
             </li>
         </ul>
         <div class="info-buttons">

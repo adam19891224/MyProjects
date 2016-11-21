@@ -28,24 +28,18 @@
         [#--列表--]
         <div class="left-body">
             <ul class="series-main">
-                <li>
-                    <a href="#">
-                        <h2>专题111</h2>
-                    </a>
-                    <span>5 篇</span>
-                </li>
-                <li>
-                    <a href="#">
-                        <h2>专题111</h2>
-                    </a>
-                    <span>5 篇</span>
-                </li>
-                <li>
-                    <a href="#">
-                        <h2>专题111</h2>
-                    </a>
-                    <span>5 篇</span>
-                </li>
+                [#if series?? && series?size > 0]
+                    <li>
+                        <a href="#">
+                            <h2>专题111</h2>
+                        </a>
+                        <span>5 篇</span>
+                    </li>
+                [#else]
+                    <li>
+                        <h5>敬请期待</h5>
+                    </li>
+                [/#if]
             </ul>
         </div>
     </div>

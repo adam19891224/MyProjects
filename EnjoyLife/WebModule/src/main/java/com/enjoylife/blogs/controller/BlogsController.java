@@ -6,6 +6,7 @@ import com.enjoylife.base.controller.BaseController;
 import com.enjoylife.blogs.IBlogsService;
 import com.enjoylife.comment.ICommentService;
 import com.enjoylife.comment.vo.Comment;
+import com.enjoylife.enums.YesNoTypeEnum;
 import com.enjoylife.form.CommentForm;
 import com.enjoylife.tags.ITagesService;
 import com.enjoylife.tags.vo.Tags;
@@ -50,6 +51,8 @@ public class BlogsController extends BaseController {
     @RequestMapping("/{sid}.html")
     public String getArticle(@PathVariable Integer sid, ModelMap map){
 
+        map.addAttribute("isEyes", YesNoTypeEnum.Yes.getCode());
+
         List<Type> types = typeService.selectAllTypes();
         if(ConUtils.isNotNull(types)){
             map.addAttribute("types", types);
@@ -86,7 +89,6 @@ public class BlogsController extends BaseController {
     @RequestMapping("/getComment.html")
     @ResponseBody
     public String getComment(Page<Comment> page){
-        page.setPageSize(5);
         page = commentService.getCommentsByPage(page);
         //将结果封装成map对象，然后转为json返回给前台
         return super.parseObjectToJson(this.getCommentMapByResult(page));

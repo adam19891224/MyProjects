@@ -470,6 +470,15 @@
     outline: none;
 }
 
+.info-main input:nth-child(2){
+    width: 130px;
+}
+
+.info-main select{
+    width: 60px;
+    height: 24px;
+}
+
 .info-buttons{
     width: 100%;
     float: left;
