@@ -30,6 +30,8 @@ public class Page<T> implements Serializable {
      */
     private String kw;
 
+    private Integer esPage = 0;
+
     /**
      * 文章相关属性
      */
@@ -70,6 +72,16 @@ public class Page<T> implements Serializable {
     private List<T> resultList;
 
     private T resultObject;
+
+    public Integer getEsPage() {
+        return esPage;
+    }
+
+    public void setEsPage(Integer esPage) {
+        if(esPage > 0) esPage--;
+        if(esPage <= 0) esPage = 0;
+        this.esPage = esPage;
+    }
 
     public Byte getCommentIsReply() {
         return commentIsReply;

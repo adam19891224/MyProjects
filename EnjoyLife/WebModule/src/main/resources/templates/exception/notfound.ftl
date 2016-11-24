@@ -10,6 +10,8 @@
     <link rel="shortcut icon" href="/base/images/ico.ico" type="image/x-icon">
     <link rel="stylesheet" href="/base/css/common.css" type="text/css" media="all">
     <link rel="stylesheet" href="/exception/css/notfound.css?t=[@time /]" type="text/css" media="all">
+    <script src="/base/js/jquery-2.2.3.min.js"></script>
+    <script src="/base/js/app.js"></script>
 </hsead>
 <body>
     [#--顶部--]

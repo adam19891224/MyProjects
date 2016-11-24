@@ -77,6 +77,7 @@ public class BlogsController extends BaseController {
         List<Tags> tagses = tagesService.selectTagsByArticleId(article.getArticleId());
         map.addAttribute("tags", tagses);
 
+        //查询总分类数和总文章数给前台展示
         int typesCount = typeService.selectAllTypesCount();
         map.addAttribute("allTypes", typesCount);
 

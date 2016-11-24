@@ -20,7 +20,7 @@ import java.util.List;
  * Date: 2016/4/23
  */
 @Service
-public class BolgsServiceImpl extends BaseAbstractClass implements IBlogsService {
+public class BlogsServiceImpl extends BaseAbstractClass implements IBlogsService {
 
     @Autowired
     private ArticleMapper articleMapper;

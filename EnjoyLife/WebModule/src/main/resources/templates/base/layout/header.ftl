@@ -8,7 +8,7 @@
         </div>
         <div class="header-mid">
             <input type="text" title="搜索"/>
-            <i></i>
+            <i id="search-button"></i>
         </div>
         <div class="header-nav">
             <ul>

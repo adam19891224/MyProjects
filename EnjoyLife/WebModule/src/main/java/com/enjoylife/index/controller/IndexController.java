@@ -41,6 +41,7 @@ public class IndexController extends BaseController {
         map.addAttribute("page", page.getPage());
         map.addAttribute("isIndex", YesNoTypeEnum.Yes.getCode());
 
+        //查询总分类数，给首页右边展示
         int types = typeService.selectAllTypesCount();
         map.addAttribute("allTypes", types);
 

@@ -53,6 +53,7 @@ public class SeriesController extends BaseController {
 
         map.addAttribute("isSeries", YesNoTypeEnum.Yes.getCode());
 
+        //查询总文章数和总分类数给前台展示
         int typesCount = typeService.selectAllTypesCount();
         map.addAttribute("allTypes", typesCount);
 
