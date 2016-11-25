@@ -75,7 +75,7 @@ public class SearchController extends BaseController {
         map.addAttribute("totalCounts", blogCount);
 
         //封装查询
-        name = HtmlUtils.htmlEscape(name);
+        name = HtmlUtils.htmlEscape(name.trim());
         page.setKw(name);
         page.setEsPage(num);
         Map<String, Object> resM = esService.selectArticlesHighlightByPage(page);
@@ -83,6 +83,7 @@ public class SearchController extends BaseController {
         map.addAttribute("result", resM.get("result"));
         map.addAttribute("totalPages", resM.get("totalPage"));
         map.addAttribute("page", num);
+        map.addAttribute("keyword", name);
 
         return "search/index";
     }

@@ -68,8 +68,8 @@ public class BlogsESServiceImpl extends BaseAbstractClass implements IBlogsESSer
         SearchQuery searchQuery = new NativeSearchQueryBuilder()
                 .withQuery(bool)
                 .withHighlightFields(
-                        new HighlightBuilder.Field("articleTitle").preTags("<span style='color: red;'>").postTags("</span>"),
-                        new HighlightBuilder.Field("articleDescription").preTags("<span style='color: red;'>").postTags("</span>"))
+                        new HighlightBuilder.Field("articleTitle").preTags("<u class=\"search-red\">").postTags("</u>"),
+                        new HighlightBuilder.Field("articleDescription").preTags("<span class=\"search-red\">").postTags("</span>"))
                 .withPageable(new PageRequest(page.getEsPage(), page.getPageSize()))
                 .build();
 

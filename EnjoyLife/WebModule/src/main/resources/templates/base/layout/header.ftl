@@ -7,7 +7,7 @@
             <h2>月下竹影</h2>
         </div>
         <div class="header-mid">
-            <input type="text" title="搜索"/>
+            <input type="text" title="搜索" value="${keyword?default("")}"/>
             <i id="search-button"></i>
         </div>
         <div class="header-nav">
@@ -18,7 +18,7 @@
                     </a>
                 </li>
                 <li [#if isComplain?? && isComplain == "Y"]class="header-underline"[/#if]>
-                    <a>
+                    <a href="#">
                         吐槽
                     </a>
                 </li>
@@ -33,7 +33,7 @@
                     </a>
                 </li>
                 <li [#if isAbout?? && isAbout == "Y"]class="header-underline"[/#if]>
-                    <a>
+                    <a href="#">
                         关于
                     </a>
                 </li>

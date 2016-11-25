@@ -53,8 +53,8 @@ $(function () {
     $("#search-button").click(function () {
         var input = $(this).prev();
         var locations = "/eyes/index.html";
-        if(applications.isNotNull(input))
-            locations = "/search/" + input.val() + "/1.html";
+        if(applications.isNotNull(input.val()) && !input.val().match(/^\s+$/))
+            locations = "/search/" + input.val().replace(/(^\s*)|(\s*$)/g,"") + "/1.html";
         window.location = locations;
     });
 });

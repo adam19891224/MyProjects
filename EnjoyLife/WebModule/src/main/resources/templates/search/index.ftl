@@ -27,7 +27,26 @@
     [#--左边--]
     <div class="main-left">
         <div class="left-body">
-
+            [#if result?? && result?size > 0]
+                [#list result as info]
+                    <div class="info-container">
+                        <h2>
+                            <a href="/blogs/${info.articleSid}.html">
+                                ${info.articleTitle?default("")}
+                            </a>
+                        </h2>
+                        <section>
+                            <span class="info-date">${info.createDate?default("")?string("yyyy-MM-dd")}</span> - ${info.articleDescription?default("")}
+                        </section>
+                    </div>
+                [/#list]
+            [#else]
+                <div class="info-container">
+                    <h2 class="not-data">
+                        没有找到数据。。。
+                    </h2>
+                </div>
+            [/#if]
         </div>
         [#--分页--]
         <div class="left-page">

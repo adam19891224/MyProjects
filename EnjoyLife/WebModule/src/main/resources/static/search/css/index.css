@@ -11,6 +11,51 @@
     width: 100%;
 }
 
+.info-container{
+    width: 100%;
+    min-height: 100px;
+    float: left;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.info-container h2{
+    width: 100%;
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    line-height: 40px;
+    text-align: left;
+    float: left;
+}
+
+.info-container h2 a{
+    color: #2e9ad0;
+    font-weight: normal;
+    font-size: 26px;
+    text-decoration: underline;
+}
+
+.search-red{
+    color: red;
+}
+
+.info-date{
+    color: #c6c6c6;
+}
+
+.info-container .not-data{
+    text-align: center;
+}
+
+.info-container section{
+    width: 100%;
+    line-height: 20px;
+    float: left;
+    word-break: break-all;
+    font-size: 14px;
+}
+
 .left-page{
     width: 100%;
     overflow: hidden;
