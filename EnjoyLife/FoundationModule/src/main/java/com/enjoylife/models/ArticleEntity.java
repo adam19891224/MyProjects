@@ -1,4 +1,4 @@
-package com.enjoylife.article.vo;
+package com.enjoylife.models;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -28,10 +28,10 @@ public class ArticleEntity implements Serializable {
     @Field(type = FieldType.String, index = FieldIndex.not_analyzed)
     private String articleImg;
 
-    @Field(type = FieldType.String, store = true, analyzer = "ik_max_word", searchAnalyzer = "ik_max_word", includeInParent = true)
+    @Field(type = FieldType.String, store = true, analyzer = "ik_max_word", includeInParent = true)
     private String articleTitle;
 
-    @Field(type = FieldType.String, store = true, analyzer = "ik_max_word", searchAnalyzer = "ik_max_word", includeInParent = true)
+    @Field(type = FieldType.String, store = true, analyzer = "ik_max_word", includeInParent = true)
     private String articleDescription;
 
     public Integer getArticleSid() {

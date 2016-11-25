@@ -1,0 +1,28 @@
+.main-left{
+    padding: 20px;
+}
+
+.left-body{
+    overflow: hidden;
+    margin-bottom: 10px;
+    padding: 2px 2px;
+    box-sizing: border-box;
+    float: left;
+    width: 100%;
+}
+
+.left-page{
+    width: 100%;
+    overflow: hidden;
+    padding: 2px 2px;
+    box-sizing: border-box;
+    float: left;
+    text-align: center;
+}
+
+
+.right-body{
+    width: 100%;
+    float: left;
+    border-bottom: 1px solid #ebebeb;
+}

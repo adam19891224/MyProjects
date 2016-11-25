@@ -52,6 +52,9 @@ Date.prototype.Format = function(fmt){
 $(function () {
     $("#search-button").click(function () {
         var input = $(this).prev();
-        window.location = "/search/keyword/" + input.val() + "/1.html";
+        var locations = "/eyes/index.html";
+        if(applications.isNotNull(input))
+            locations = "/search/" + input.val() + "/1.html";
+        window.location = locations;
     });
 });

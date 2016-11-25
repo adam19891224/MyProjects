@@ -1,6 +1,5 @@
 package com.enjoylife.search.controller;
 
-import com.enjoylife.article.vo.ArticleEntity;
 import com.enjoylife.article.vo.NewArticle;
 import com.enjoylife.base.controller.BaseController;
 import com.enjoylife.blogs.IBlogsESService;
@@ -18,13 +17,13 @@ import org.springframework.web.util.HtmlUtils;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Adam
  * 2016/9/29
  */
 @Controller
-@RequestMapping("/search")
 public class SearchController extends BaseController {
 
     @Resource
@@ -56,7 +55,7 @@ public class SearchController extends BaseController {
     /**
      * 进入搜索页
      */
-    @RequestMapping("/keyword/{name}/{num}.html")
+    @RequestMapping("/search/{name}/{num}.html")
     public String keyword(ModelMap map, @PathVariable String name, @PathVariable Integer num){
 
         List<Type> types = typeService.selectAllTypes();
@@ -71,6 +70,7 @@ public class SearchController extends BaseController {
         int typesCount = typeService.selectAllTypesCount();
         map.addAttribute("allTypes", typesCount);
 
+        page.setPagination(false);
         int blogCount = blogsService.selectArticlesCountsByPage(page);
         map.addAttribute("totalCounts", blogCount);
 
@@ -78,16 +78,12 @@ public class SearchController extends BaseController {
         name = HtmlUtils.htmlEscape(name);
         page.setKw(name);
         page.setEsPage(num);
-        List<ArticleEntity> results = esService.selectArticlesByPage(page);
+        Map<String, Object> resM = esService.selectArticlesHighlightByPage(page);
 
-        map.addAttribute("all", page);
-        map.addAttribute("key", name);
+        map.addAttribute("result", resM.get("result"));
+        map.addAttribute("totalPages", resM.get("totalPage"));
+        map.addAttribute("page", num);
 
-//        Page<NewArticle> page = new Page<NewArticle>();
-//        page.setPagination(false);
-//        page = blogsService.selectArticlesByPage(page);
-//
-//        esService.insertArticlesByList(page.getResultList());
-        return "search/main";
+        return "search/index";
     }
 }
