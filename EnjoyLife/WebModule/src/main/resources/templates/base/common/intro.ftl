@@ -5,21 +5,13 @@
     <div class="intro-blogs">
         <span>文章</span>
         <span>
-            [#if totalCounts??]
-                ${totalCounts}
-            [#else]
-                0
-            [/#if]
+            ${totalArticles?default("0")}
         </span>
     </div>
     <div class="intro-types">
         <span>类别</span>
         <span>
-            [#if allTypes??]
-                ${allTypes}
-            [#else]
-                0
-            [/#if]
+            ${totalTypes?default("0")}
         </span>
     </div>
 </div>

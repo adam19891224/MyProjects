@@ -4,16 +4,11 @@ import com.enjoylife.article.vo.ArticleTime;
 import com.enjoylife.article.vo.NewArticle;
 import com.enjoylife.base.controller.BaseController;
 import com.enjoylife.enums.YesNoTypeEnum;
-import com.enjoylife.utils.ConUtils;
 import com.enjoylife.view.Page;
-import com.enjoylife.blogs.IBlogsService;
-import com.enjoylife.type.ITypeService;
-import com.enjoylife.type.vo.Type;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -24,11 +19,6 @@ import java.util.List;
 @RequestMapping("/eyes")
 public class EyesController extends BaseController {
 
-    @Resource
-    private ITypeService typeService;
-    @Resource
-    private IBlogsService blogsService;
-
     /**
      * 进入一览页面
      * @return
@@ -36,10 +26,7 @@ public class EyesController extends BaseController {
     @RequestMapping("/index.html")
     public String index(Page<NewArticle> page, ModelMap map){
 
-        List<Type> types = typeService.selectAllTypes();
-        if(ConUtils.isNotNull(types)){
-            map.addAttribute("types", types);
-        }
+        map.addAttribute("isEyes", YesNoTypeEnum.Yes.getCode());
 
         //不分页
         page.setPagination(false);
@@ -49,14 +36,9 @@ public class EyesController extends BaseController {
         List<ArticleTime> times = blogsService.selectTimeGroupByArticle();
         map.addAttribute("times", times);
 
-        map.addAttribute("isEyes", YesNoTypeEnum.Yes.getCode());
-
         //查询总文章数和总分类数给前台展示
-        int typesCount = typeService.selectAllTypesCount();
-        map.addAttribute("allTypes", typesCount);
-
-        int blogCount = blogsService.selectArticlesCountsByPage(new Page<NewArticle>());
-        map.addAttribute("totalCounts", blogCount);
+        super.getTotalTypesToMap(map);
+        super.getTotalArticlesToMap(map);
 
         return "eyes/index";
     }

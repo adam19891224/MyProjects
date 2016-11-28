@@ -12,7 +12,6 @@ import com.google.common.collect.Lists;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
-import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.search.highlight.HighlightBuilder;
 import org.elasticsearch.search.highlight.HighlightField;
@@ -29,7 +28,7 @@ import org.springframework.stereotype.Service;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -45,13 +44,6 @@ public class BlogsESServiceImpl extends BaseAbstractClass implements IBlogsESSer
 
     @Autowired
     private ElasticsearchTemplate elasticsearchTemplate;
-
-    @Override
-    public List<ArticleEntity> selectArticlesByPage(Page<NewArticle> page) {
-        org.springframework.data.domain.Page<ArticleEntity> resP = this.blogESRepository.findArticlesByArticleTitle(page.getKw(), new PageRequest(page.getEsPage(), page.getPageSize()));
-        Iterator<ArticleEntity> iterator = resP.iterator();
-        return Lists.newArrayList(iterator);
-    }
 
     @Override
     public Map<String, Object> selectArticlesHighlightByPage(Page<NewArticle> page) {
@@ -80,34 +72,29 @@ public class BlogsESServiceImpl extends BaseAbstractClass implements IBlogsESSer
                 List<ArticleEntity> list = ConUtils.arraylist();
                 SearchHits searchHits = response.getHits();
                 long total = searchHits.getTotalHits();
-                SearchHit[] hits = searchHits.hits();
-                if (hits.length > 0) {
-                    searchHits.forEach(
-                            obj
-                                    ->
-                            {
-                                Map<String, Object> result = obj.getSource();
-                                Map<String, HighlightField> resultH = obj.getHighlightFields();
-                                ArticleEntity articleEntity = null;
-                                try {
-                                    articleEntity = EsResultCastUtils.getEntityByMap(result);
-                                } catch (InvocationTargetException | IllegalAccessException e) {
-                                    logger.error("es搜索 map结果转bean错误：", e);
-                                }
-                                if(articleEntity != null){
-                                    if(resultH.containsKey("articleTitle"))
-                                        articleEntity.setArticleTitle(resultH.get("articleTitle").fragments()[0].toString());
-                                    if(resultH.containsKey("articleDescription"))
-                                        articleEntity.setArticleDescription(resultH.get("articleDescription").fragments()[0].toString());
-                                    list.add(articleEntity);
-                                }
-                            }
-                    );
-                    if (list.size() > 0) {
-                        return new PageImpl<T>((List<T>) list, pageable, total);
+                Arrays.stream(searchHits.hits()).forEach(
+                    obj
+                        ->
+                    {
+                        Map<String, Object> result = obj.getSource();
+                        Map<String, HighlightField> resultH = obj.getHighlightFields();
+                        ArticleEntity articleEntity = null;
+                        try {
+                            articleEntity = EsResultCastUtils.getEntityByMap(result);
+                        } catch (InvocationTargetException | IllegalAccessException e) {
+                            logger.error("es搜索 map结果转bean错误：", e);
+                        }
+                        if(articleEntity != null){
+                            if(resultH.containsKey("articleTitle"))
+                                articleEntity.setArticleTitle(resultH.get("articleTitle").fragments()[0].toString());
+                            if(resultH.containsKey("articleDescription"))
+                                articleEntity.setArticleDescription(resultH.get("articleDescription").fragments()[0].toString());
+                            list.add(articleEntity);
+                        }
                     }
-                }
-                return new PageImpl<T>((List<T>) list, pageable, 0);
+                );
+
+                return new PageImpl<T>((List<T>) list, pageable, total);
             }
         });
 

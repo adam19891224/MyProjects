@@ -32,8 +32,8 @@
                         一览
                     </a>
                 </li>
-                <li [#if isAbout?? && isAbout == "Y"]class="header-underline"[/#if]>
-                    <a href="#">
+                <li [#if isProfile?? && isProfile == "Y"]class="header-underline"[/#if]>
+                    <a href="/profile.html">
                         关于
                     </a>
                 </li>

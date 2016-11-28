@@ -1,16 +1,13 @@
 package com.enjoylife.blogs.controller;
 
 import com.enjoylife.article.vo.ArticleWithBLOBs;
-import com.enjoylife.article.vo.NewArticle;
 import com.enjoylife.base.controller.BaseController;
-import com.enjoylife.blogs.IBlogsService;
 import com.enjoylife.comment.ICommentService;
 import com.enjoylife.comment.vo.Comment;
 import com.enjoylife.enums.YesNoTypeEnum;
 import com.enjoylife.form.CommentForm;
 import com.enjoylife.tags.ITagesService;
 import com.enjoylife.tags.vo.Tags;
-import com.enjoylife.type.ITypeService;
 import com.enjoylife.type.vo.Type;
 import com.enjoylife.utils.ConUtils;
 import com.enjoylife.view.Page;
@@ -34,11 +31,7 @@ import java.util.Map;
 public class BlogsController extends BaseController {
 
     @Resource
-    private IBlogsService blogsService;
-    @Resource
     private ICommentService commentService;
-    @Resource
-    private ITypeService typeService;
     @Resource
     private ITagesService tagesService;
 
@@ -52,11 +45,6 @@ public class BlogsController extends BaseController {
     public String getArticle(@PathVariable Integer sid, ModelMap map){
 
         map.addAttribute("isEyes", YesNoTypeEnum.Yes.getCode());
-
-        List<Type> types = typeService.selectAllTypes();
-        if(ConUtils.isNotNull(types)){
-            map.addAttribute("types", types);
-        }
 
         ArticleWithBLOBs article = blogsService.selectArticleBySID(sid);
         if(article == null){
@@ -78,11 +66,8 @@ public class BlogsController extends BaseController {
         map.addAttribute("tags", tagses);
 
         //查询总分类数和总文章数给前台展示
-        int typesCount = typeService.selectAllTypesCount();
-        map.addAttribute("allTypes", typesCount);
-
-        int blogCount = blogsService.selectArticlesCountsByPage(new Page<NewArticle>());
-        map.addAttribute("totalCounts", blogCount);
+        super.getTotalTypesToMap(map);
+        super.getTotalArticlesToMap(map);
 
         return "blogs/index";
     }

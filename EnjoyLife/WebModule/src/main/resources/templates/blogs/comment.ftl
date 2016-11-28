@@ -5,7 +5,7 @@
     <ul class="comment-container"></ul>
     <div id="comment-pages" class="comment-pages"></div>
     <div class="comment-editor">
-        <textarea id="comment-main-editor" cols="1" rows="1" title="发表"></textarea>
+        <textarea id="comment-main-editor" cols="0" rows="0" title="发表"></textarea>
     </div>
     <div class="comment-buttons">
         <span id="comment-error-msg" class="error-message"></span>

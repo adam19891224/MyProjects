@@ -1,0 +1,9 @@
+.main-left{
+    padding: 20px;
+}
+
+.right-body{
+    width: 100%;
+    float: left;
+    border-bottom: 1px solid #ebebeb;
+}
