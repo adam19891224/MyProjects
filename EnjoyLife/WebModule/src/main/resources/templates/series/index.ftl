@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="/base/css/cloud.css" type="text/css" media="all">
     <link rel="stylesheet" href="/series/css/index.css?t=[@time /]" type="text/css" media="all">
     <script src="/base/js/jquery-2.2.3.min.js"></script>
-    <script src="/base/js/jquery.lazyload.min.js"></script>
     <script src="/base/js/app.js"></script>
     <script src="/base/js/tar-cloud.min.js"></script>
 </head>

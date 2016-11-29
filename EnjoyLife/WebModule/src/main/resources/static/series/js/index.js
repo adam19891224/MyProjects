@@ -1,4 +1,4 @@
 var categorys = new CategoryUtils();
 $(function () {
-    categorys.init($("#type-body"));s
+    categorys.init($("#type-body"));
 });
