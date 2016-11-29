@@ -169,6 +169,11 @@
     border-bottom: none;
 }
 
+.comment-main-editor, .reply-main-editor{
+    width: 0;
+    height: 0;
+}
+
 .loading-bar{
     width: 140px;
     height: 12px;

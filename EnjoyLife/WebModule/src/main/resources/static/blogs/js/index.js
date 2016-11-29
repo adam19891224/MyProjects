@@ -15,7 +15,7 @@ $(function () {
 
 function Blogs(){
 
-    var replyEidtorDiv = "<div id=\"reply-editor-div\" class=\"reply-editor\"><textarea id=\"reply-main-editor\" cols=\"1\" rows=\"1\" title=\"回复\"></textarea></div>";
+    var replyEidtorDiv = "<div id=\"reply-editor-div\" class=\"reply-editor\"><textarea id=\"reply-main-editor\" cols=\"1\" rows=\"1\" class='reply-main-editor' title=\"回复\"></textarea></div>";
     var replyButtonDiv = "<div id=\"reply-buttons-div\" class=\"reply-buttons\"><span id=\"reply-error-msg\" class=\"error-message\"></span><a id='submit-reply-button' class=\"submit-reply-button\">回复</a></div>";
     var commentEditor, replyEditor;
     var isLoadingComment = false;
@@ -268,24 +268,37 @@ function Blogs(){
         obj.articleId = $("#article-body").attr("data-aid");
         obj.commentIsReply = 0;
         obj.page = page;
-        $.post('/blogs/getComment.html', obj, function (text) {
-            var result = eval("(" + text + ")");
-            var isOk = result.isOk;
-            var lis = "";
-            if(isOk == "Y"){
-                // var counts = result.totalCounts;
-                var pages = result.totalPages;
-                var current = result.current;
-                var list = result.list;
-                lis = getCommentLis(list);
-                if(init && current < pages){
-                    createPageLine(pages, current);
+
+        $.ajax({
+            url: "/blogs/getComment.html",
+            data: obj,
+            type: "post",
+            timeout: 5000,
+            complete:function(XHR,TextStatus){
+                if(TextStatus=='timeout'){
+                    $("#articlt-comment-div").find(".comment-container").empty().append("<li class=\"comment-no-data\"><span>超时了。。。</span></li>");
+                    isLoadingComment = false;
                 }
-            }else{
-                lis = "<li class=\"comment-no-data\"><span>暂无评论~~~~(>_<)~~~~</span></li>";
+            },
+            success: function (text) {
+                var result = eval("(" + text + ")");
+                var isOk = result.isOk;
+                var lis = "";
+                if(isOk == "Y"){
+                    // var counts = result.totalCounts;
+                    var pages = result.totalPages;
+                    var current = result.current;
+                    var list = result.list;
+                    lis = getCommentLis(list);
+                    if(init && current < pages){
+                        createPageLine(pages, current);
+                    }
+                }else{
+                    lis = "<li class=\"comment-no-data\"><span>暂无评论~~~~(>_<)~~~~</span></li>";
+                }
+                $("#articlt-comment-div").find(".comment-container").empty().append(lis);
+                isLoadingComment = false;
             }
-            $("#articlt-comment-div").find(".comment-container").empty().append(lis);
-            isLoadingComment = false;
         });
     };
 
