@@ -48,13 +48,6 @@
             <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
         </dependency>
 
-        <!--测试-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-        </dependency>
-
-
         <!-- mysql -->
         <dependency>
             <groupId>mysql</groupId>
@@ -93,29 +86,12 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>20.0</version>
+            <version>${guava.version}</version>
         </dependency>
         <dependency>
             <groupId>commons-beanutils</groupId>
             <artifactId>commons-beanutils</artifactId>
-            <version>1.9.3</version>
-        </dependency>
-
-
-
-
-
-        <!--httpclient-->
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <version>${httpclient.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpmime</artifactId>
-            <version>${httpclient.version}</version>
+            <version>${common.bean.version}</version>
         </dependency>
 
     </dependencies>
