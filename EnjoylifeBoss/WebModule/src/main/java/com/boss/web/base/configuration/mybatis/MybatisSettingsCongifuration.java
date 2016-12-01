@@ -1,4 +1,4 @@
-package com.boss.web.base.configuration;
+package com.boss.web.base.configuration.mybatis;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;

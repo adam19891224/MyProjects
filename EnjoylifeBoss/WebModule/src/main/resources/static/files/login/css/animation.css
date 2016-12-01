@@ -1,0 +1,113 @@
+/*
+	by adam   ---   273961736@qq.com
+	2016.4.21
+*/
+
+
+/*
+    part 1.
+*/
+@keyframes imageAnimation1 {
+    0% {
+        opacity: 0;
+    }
+    3% {
+        opacity: 0.5;
+    }
+    6% {
+        opacity: 1;
+    }
+    16% {
+        opacity: 1;
+    }
+    19% {
+        opacity: 0.5;
+    }
+    22%{
+        opacity: 0;
+    }
+}
+
+@keyframes imageAnimation2 {
+    0% {
+        opacity: 0;
+    }
+    3% {
+        opacity: 0.5;
+    }
+    6% {
+        opacity: 1;
+    }
+    16% {
+        opacity: 1;
+    }
+    19% {
+        opacity: 0.5;
+    }
+    22%{
+        opacity: 0;
+    }
+}
+
+@keyframes imageAnimation3 {
+    0% {
+        opacity: 0;
+    }
+    3% {
+        opacity: 0.5;
+    }
+    6% {
+        opacity: 1;
+    }
+    16% {
+        opacity: 1;
+    }
+    19% {
+        opacity: 0.5;
+    }
+    22%{
+        opacity: 0;
+    }
+}
+
+@keyframes imageAnimation4 {
+    0% {
+        opacity: 0;
+    }
+    3% {
+        opacity: 0.5;
+    }
+    6% {
+        opacity: 1;
+    }
+    16% {
+        opacity: 1;
+    }
+    19% {
+        opacity: 0.5;
+    }
+    22%{
+        opacity: 0;
+    }
+}
+
+@keyframes imageAnimation5 {
+    0% {
+        opacity: 0;
+    }
+    3% {
+        opacity: 0.5;
+    }
+    6% {
+        opacity: 1;
+    }
+    16% {
+        opacity: 1;
+    }
+    19% {
+        opacity: 0.5;
+    }
+    27%{
+        opacity: 0;
+    }
+}

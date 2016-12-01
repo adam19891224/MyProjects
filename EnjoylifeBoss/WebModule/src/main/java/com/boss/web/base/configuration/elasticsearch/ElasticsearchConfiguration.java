@@ -1,4 +1,4 @@
-package com.boss.web.base.configuration;
+package com.boss.web.base.configuration.elasticsearch;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

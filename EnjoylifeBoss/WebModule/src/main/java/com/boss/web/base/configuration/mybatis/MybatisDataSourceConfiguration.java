@@ -1,4 +1,4 @@
-package com.boss.web.base.configuration;
+package com.boss.web.base.configuration.mybatis;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;

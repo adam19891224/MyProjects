@@ -10,6 +10,7 @@
     <packaging>war</packaging>
     <name>WebModule Maven Webapp</name>
     <url>http://maven.apache.org</url>
+
     <dependencies>
         <dependency>
             <groupId>EnjoylifeBoss</groupId>
