@@ -1,8 +1,9 @@
 package com.boss.web.base.configuration.shiro;
 
-import com.boss.dao.user.pojo.Users;
+import com.boss.foundation.entity.UserInfo;
 import com.boss.foundation.form.LoginForm;
-import com.boss.foundation.utils.SessionStaticNameUtils;
+import com.boss.foundation.utils.MD5Utils;
+import com.boss.foundation.utils.SessionKeyUtils;
 import com.boss.service.login.LoginService;
 import com.boss.web.base.configuration.shiro.utils.LoginToken;
 import org.apache.shiro.SecurityUtils;
@@ -44,7 +45,7 @@ public class ShiroRealm extends AuthorizingRealm {
         //创建角色信息集合，用于存放当前用户的角色信息，给shiro校验
         List<String> memberRoles = new ArrayList<>();
         if(shiroSession != null){
-            Users info = (Users) shiroSession.getAttribute(SessionStaticNameUtils.SESSION_USER_INFO);
+            UserInfo info = (UserInfo) shiroSession.getAttribute(SessionKeyUtils.SESSION_USER_INFO);
             memberRoles.add(info.getUserRole());
         }
         //创建shrio的角色对象
@@ -72,11 +73,11 @@ public class ShiroRealm extends AuthorizingRealm {
         String password = String.valueOf(token.getPassword());
         LoginForm form = new LoginForm();
         form.setUserName(userName);
-        form.setUserPassword(password);
-        Users users = loginService.selectUserInfoByForm(form);
+        form.setUserPassword(MD5Utils.getMD5(password));
+        UserInfo users = loginService.selectUserInfoByForm(form);
         if(users != null){
             //验证成功，将info放入shiro的session
-            this.setInfo2ShiroSession(SessionStaticNameUtils.SESSION_USER_INFO, users);
+            this.setInfo2ShiroSession(SessionKeyUtils.SESSION_USER_INFO, users);
             return new SimpleAuthenticationInfo(users, token.getPassword(), users.getUserName());
         }
 

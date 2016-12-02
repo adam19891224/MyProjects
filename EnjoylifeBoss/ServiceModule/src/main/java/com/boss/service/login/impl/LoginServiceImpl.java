@@ -1,8 +1,10 @@
 package com.boss.service.login.impl;
 
-import com.boss.dao.user.pojo.Users;
+import com.boss.dao.user.mapper.UsersMapper;
+import com.boss.foundation.entity.UserInfo;
 import com.boss.foundation.form.LoginForm;
 import com.boss.service.login.LoginService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -11,8 +13,12 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class LoginServiceImpl implements LoginService {
+
+    @Autowired
+    private UsersMapper usersMapper;
+
     @Override
-    public Users selectUserInfoByForm(LoginForm form) {
-        return null;
+    public UserInfo selectUserInfoByForm(LoginForm form) {
+        return usersMapper.selectUserInfoByForm(form);
     }
 }

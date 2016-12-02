@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>欢迎访问</title>
+    <meta name="keywords" content="Web技术，Web开发，Web交流，月下竹影，竹影，箫竹影，周禹宏" />
+    <meta name="description" content="月下竹影，是一个作为Web技术交流平台的个人原创技术博客。期待大家的光临。" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <link href="/files/base/images/ico.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="/files/blogs/css/index.css" rel="stylesheet" type="text/css" media="all" />
+    <script src="/files/base/js/jquery-2.2.3.min.js"></script>
+    <script src="/files/ckeditor/ckeditor.js"></script>
+</head>
+<body>
+
+
+    <div th:substituteby="/base/layout/top :: top"></div>
+
+    <div class="container">
+        <div class="text-main">
+            <textarea id="blog-text-editor" title="文章"></textarea>
+        </div>
+    </div>
+
+    <footer th:substituteby="/base/layout/foot :: foot">
+
+    </footer>
+</body>
+<script src="/files/blogs/js/index.js"></script>
+</html>

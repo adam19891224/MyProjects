@@ -1,6 +1,8 @@
 package com.boss.dao.user.mapper;
 
 import com.boss.dao.user.pojo.Users;
+import com.boss.foundation.entity.UserInfo;
+import com.boss.foundation.form.LoginForm;
 
 public interface UsersMapper {
     int deleteByPrimaryKey(Integer userSid);
@@ -14,4 +16,6 @@ public interface UsersMapper {
     int updateByPrimaryKeySelective(Users record);
 
     int updateByPrimaryKey(Users record);
+
+    UserInfo selectUserInfoByForm(LoginForm form);
 }

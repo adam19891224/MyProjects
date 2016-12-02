@@ -8,9 +8,12 @@
     <result column="USER_PASSWORD" property="userPassword" jdbcType="VARCHAR" />
     <result column="USER_SIMPLE_NAME" property="userSimpleName" jdbcType="VARCHAR" />
     <result column="USER_ROLE" property="userRole" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    USER_SID, USER_ID, USER_NAME, USER_PASSWORD, USER_SIMPLE_NAME, USER_ROLE
+    USER_SID, USER_ID, USER_NAME, USER_PASSWORD, USER_SIMPLE_NAME, USER_ROLE, CREATE_DATE, 
+    UPDATE_DATE
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -24,11 +27,11 @@
   </delete>
   <insert id="insert" parameterType="com.boss.dao.user.pojo.Users" >
     insert into tb_users (USER_SID, USER_ID, USER_NAME, 
-      USER_PASSWORD, USER_SIMPLE_NAME, USER_ROLE
-      )
+      USER_PASSWORD, USER_SIMPLE_NAME, USER_ROLE, 
+      CREATE_DATE, UPDATE_DATE)
     values (#{userSid,jdbcType=INTEGER}, #{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
-      #{userPassword,jdbcType=VARCHAR}, #{userSimpleName,jdbcType=VARCHAR}, #{userRole,jdbcType=VARCHAR}
-      )
+      #{userPassword,jdbcType=VARCHAR}, #{userSimpleName,jdbcType=VARCHAR}, #{userRole,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.boss.dao.user.pojo.Users" >
     insert into tb_users
@@ -51,6 +54,12 @@
       <if test="userRole != null" >
         USER_ROLE,
       </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="userSid != null" >
@@ -70,6 +79,12 @@
       </if>
       <if test="userRole != null" >
         #{userRole,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -91,6 +106,12 @@
       <if test="userRole != null" >
         USER_ROLE = #{userRole,jdbcType=VARCHAR},
       </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
     </set>
     where USER_SID = #{userSid,jdbcType=INTEGER}
   </update>
@@ -100,7 +121,9 @@
       USER_NAME = #{userName,jdbcType=VARCHAR},
       USER_PASSWORD = #{userPassword,jdbcType=VARCHAR},
       USER_SIMPLE_NAME = #{userSimpleName,jdbcType=VARCHAR},
-      USER_ROLE = #{userRole,jdbcType=VARCHAR}
+      USER_ROLE = #{userRole,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP}
     where USER_SID = #{userSid,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -1,5 +1,7 @@
 package com.boss.dao.user.pojo;
 
+import java.util.Date;
+
 public class Users {
     private Integer userSid;
 
@@ -12,6 +14,10 @@ public class Users {
     private String userSimpleName;
 
     private String userRole;
+
+    private Date createDate;
+
+    private Date updateDate;
 
     public Integer getUserSid() {
         return userSid;
@@ -59,5 +65,21 @@ public class Users {
 
     public void setUserRole(String userRole) {
         this.userRole = userRole == null ? null : userRole.trim();
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
     }
 }

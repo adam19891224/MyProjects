@@ -1,0 +1,15 @@
+@import "../../base/css/base.css";
+@import "../../base/css/common.css";
+
+.container{
+    width: 1200px;
+    overflow: hidden;
+    margin: 30px auto 0;
+}
+
+.text-main{
+    width: 100%;
+    float: left;
+    padding: 10px;
+    box-sizing: border-box;
+}

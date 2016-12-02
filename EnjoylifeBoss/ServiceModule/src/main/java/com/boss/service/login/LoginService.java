@@ -1,6 +1,6 @@
 package com.boss.service.login;
 
-import com.boss.dao.user.pojo.Users;
+import com.boss.foundation.entity.UserInfo;
 import com.boss.foundation.form.LoginForm;
 
 /**
@@ -9,6 +9,6 @@ import com.boss.foundation.form.LoginForm;
  */
 public interface LoginService {
 
-    Users selectUserInfoByForm(LoginForm form);
+    UserInfo selectUserInfoByForm(LoginForm form);
 
 }

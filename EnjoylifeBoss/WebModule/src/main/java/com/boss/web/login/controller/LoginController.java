@@ -1,10 +1,14 @@
 package com.boss.web.login.controller;
 
-import com.boss.foundation.utils.SessionStaticNameUtils;
+import com.boss.foundation.utils.StringUtils;
+import com.boss.web.base.configuration.shiro.utils.LoginData;
+import com.boss.web.base.configuration.shiro.utils.LoginToken;
 import com.boss.web.base.controller.BaseController;
+import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * ranmin-zhouyuhong
@@ -20,16 +24,28 @@ public class LoginController extends BaseController{
     }
 
     @RequestMapping("/doLogin.html")
-    public String doLogin(ModelMap map){
+    @ResponseBody
+    public String doLogin(String userName, String password, ModelMap map){
 
-        return "login/index";
+        if(StringUtils.isNotBlank(userName) && StringUtils.isNotBlank(password)){
+            LoginData loginData = new LoginData.Builder().addUserName(userName).addPassword(password).build();
+            Subject subject = getSubject();
+            LoginToken token = new LoginToken(loginData);
+            try {
+                subject.login(token);
+                return "success";
+            }catch (RuntimeException e){
+                logger.error("登陆异常", e);
+                return e.getCause().getMessage();
+            }
+        }
+
+        return "notBlank";
     }
 
     @RequestMapping("/logout.html")
     public String logout(ModelMap map){
-
-        getSession().removeAttribute(SessionStaticNameUtils.SESSION_USER_INFO);
-
+        getSubject().logout();
         return "redirect:/login.html";
     }
 
