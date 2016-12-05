@@ -2,6 +2,7 @@ package com.boss.service.blogs.impl;
 
 import com.boss.dao.blog.mapper.ArticleMapper;
 import com.boss.dao.blog.pojo.ArticleWithBLOBs;
+import com.boss.foundation.entity.ArticleESEntity;
 import com.boss.foundation.entity.ArticleEntity;
 import com.boss.foundation.entity.EnjoyFile;
 import com.boss.foundation.entity.TagInfo;
@@ -9,6 +10,7 @@ import com.boss.foundation.utils.MD5Utils;
 import com.boss.foundation.utils.StringUtils;
 import com.boss.service.base.AbstractService;
 import com.boss.service.blogs.IBlogService;
+import com.boss.service.blogs.repository.IBlogRepository;
 import org.apache.http.Consts;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -24,6 +26,7 @@ import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.BufferedReader;
@@ -48,6 +51,8 @@ public class BlogServiceImpl extends AbstractService implements IBlogService {
 
     @Autowired
     private ArticleMapper articleMapper;
+    @Autowired
+    private IBlogRepository blogRepository;
 
     private static final String key = "zhouyuhong19891224";
 
@@ -78,6 +83,7 @@ public class BlogServiceImpl extends AbstractService implements IBlogService {
     }
 
     @Override
+    @Transactional
     public String saveBlog(ArticleEntity entity) {
         if(!StringUtils.isNotBlank(entity.getArticleTitle())){
             return "没有标题";
@@ -93,7 +99,8 @@ public class BlogServiceImpl extends AbstractService implements IBlogService {
         }
 
         ArticleWithBLOBs articleWithBLOBs = new ArticleWithBLOBs();
-        articleWithBLOBs.setArticleId(UUID.randomUUID().toString());
+        String uuid = UUID.randomUUID().toString();
+        articleWithBLOBs.setArticleId(uuid);
         articleWithBLOBs.setArticleTitle(entity.getArticleTitle());
         articleWithBLOBs.setArticleImg(host + entity.getArticleImg());
         articleWithBLOBs.setArticleDescription(entity.getArticleDescription());
@@ -101,7 +108,8 @@ public class BlogServiceImpl extends AbstractService implements IBlogService {
 
         articleMapper.insertSelective(articleWithBLOBs);
 
-
+        ArticleESEntity esEntity = articleMapper.selectByArticleId(uuid);
+        blogRepository.save(esEntity);
 
         return "success";
     }

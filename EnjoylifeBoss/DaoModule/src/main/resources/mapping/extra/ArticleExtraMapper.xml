@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.boss.dao.blog.mapper.ArticleMapper" >
+  <select id="selectByArticleId" parameterType="java.lang.String" resultType="com.boss.foundation.entity.ArticleESEntity">
+    SELECT
+      ta.ARTICLE_SID as articleSid,
+      ta.ARTICLE_TITLE as articleTitle,
+      ta.ARTICLE_DESCRIPTION as articleDescription,
+      ta.ARTICLE_IMG as articleImg,
+      ta.CREATE_DATE as createDate
+    FROM
+      tb_article ta
+    WHERE
+      ta.ARTICLE_ID = #{id}
+
+  </select>
+</mapper>
