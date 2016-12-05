@@ -26,6 +26,7 @@ public class FileUploadUtils {
 
 	private static final String[] CONTACT_ALLOW_TYPES = {"png", "jpg", "jpeg", "bmp", "gif" ,"x-png","x-bmp","x-ms-bmp"};
 
+	private static final String key = "zhouyuhong19891224";
 
 	public static void upload(CutImageFile cutImageFile, String imagePath){
 
@@ -41,10 +42,7 @@ public class FileUploadUtils {
 			}
 		}
 
-		if(StringUtils.isNotNull(cutImageFile.getX()) &&
-				StringUtils.isNotNull(cutImageFile.getY()) &&
-				StringUtils.isNotNull(cutImageFile.getCutWidth()) &&
-				StringUtils.isNotNull(cutImageFile.getCutHeight())){
+		if(cutImageFile.getTag()){
 			//使用图片裁剪方法
 			new FileUploadUtils().copyCutFile(cutImageFile, target);
 		}else{
@@ -99,7 +97,8 @@ public class FileUploadUtils {
 		//TODO 用uuid来为图片命名
 		String fileName = UUID.randomUUID().toString();
 		//获取图片后缀
-		String postfix = cutImageFile.getSuffix();
+		String tempFileName = cutImageFile.getFile().getOriginalFilename();
+		String postfix = tempFileName.substring(tempFileName.lastIndexOf("."), tempFileName.length()).toLowerCase();
 		return fileName + "." + postfix;
 	}
 
@@ -142,4 +141,11 @@ public class FileUploadUtils {
 		fixedThreadPool.shutdown();
 	}
 
+	public static boolean checkFileIsAllow(CutImageFile file){
+		String fileName = file.getFile().getOriginalFilename();
+		String sign = file.getSign();
+		//同样用文件名 + 私钥生成签名，校验两者是否相等
+		String tempSign = MD5Utils.getMD5(fileName + key);
+		return sign.equalsIgnoreCase(tempSign);
+	}
 }

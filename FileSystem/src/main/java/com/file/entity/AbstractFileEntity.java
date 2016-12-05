@@ -15,7 +15,25 @@ public abstract class AbstractFileEntity implements Serializable {
 
     private MultipartFile file;
 
-    private String suffix;
+    private String sign;
+
+    private Boolean tag;
+
+    public String getSign() {
+        return sign;
+    }
+
+    public void setSign(String sign) {
+        this.sign = sign;
+    }
+
+    public Boolean getTag() {
+        return tag;
+    }
+
+    public void setTag(Boolean tag) {
+        this.tag = tag;
+    }
 
     public MultipartFile getFile() {
         return file;
@@ -25,11 +43,4 @@ public abstract class AbstractFileEntity implements Serializable {
         this.file = file;
     }
 
-    public String getSuffix() {
-        return suffix;
-    }
-
-    public void setSuffix(String suffix) {
-        this.suffix = suffix;
-    }
 }

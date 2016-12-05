@@ -59,7 +59,7 @@ public class SpringBootStart extends SpringBootServletInitializer implements Emb
         //spring boot 启动方式，调用核心类springapplication的run方法即可
         SpringApplication.run(SpringBootStart.class, args);
         System.out.println();
-        System.out.println("项目启动完毕 请点击   http://localhost:9999/index.html   来访问");
+        System.out.println("项目启动完毕 请点击   http://localhost:10086/index.html   来访问");
         System.out.println();
     }
 
@@ -74,7 +74,7 @@ public class SpringBootStart extends SpringBootServletInitializer implements Emb
     @Override
     public void customize(ConfigurableEmbeddedServletContainer container) {
 
-        container.setPort(9999);
+        container.setPort(10086);
     }
 
     @Override

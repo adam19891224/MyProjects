@@ -10,9 +10,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     <link href="/files/base/images/ico.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="/files/blogs/css/cropper.min.css" rel="stylesheet" type="text/css" media="all" />
     <link href="/files/blogs/css/index.css" rel="stylesheet" type="text/css" media="all" />
     <script src="/files/base/js/jquery-2.2.3.min.js"></script>
     <script src="/files/ckeditor/ckeditor.js"></script>
+    <script src="/files/blogs/js/cropper.min.js"></script>
 </head>
 <body>
 
@@ -20,8 +22,34 @@
     <div th:substituteby="/base/layout/top :: top"></div>
 
     <div class="container">
+        <div class="title-div">
+            <input type="text" title="标题" id="getTitle" placeholder="标题"/>
+        </div>
         <div class="text-main">
             <textarea id="blog-text-editor" title="文章"></textarea>
+        </div>
+        <div class="text-image">
+            <div class="button-div">
+                <input id="uploadTagFile" type="file" value="上传配图" onchange="toScanImg();"/>
+                <span id="submitButton" class="button">上传</span>
+            </div>
+            <div id="process-bar" class="process-bar"></div>
+            <div class="view-div">
+                <div class="view-left">
+                    <img id="getView" src="/files/blogs/images/default-img.png" />
+                </div>
+                <div class="view-right">
+                    <div id="preview-image">
+                        <img id="getScanView" src="/files/blogs/images/default-img.png" />
+                    </div>
+                </div>
+            </div>
+            <div class="description-div">
+                <textarea title="描述" id="getDescr"></textarea>
+            </div>
+            <div class="sub-div">
+                <span id="submit-blog-button">提交</span>
+            </div>
         </div>
     </div>
 

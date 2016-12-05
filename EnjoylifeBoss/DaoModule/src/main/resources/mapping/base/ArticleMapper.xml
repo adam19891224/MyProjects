@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.boss.dao.blog.mapper.ArticleMapper" >
+  <resultMap id="BaseResultMap" type="com.boss.dao.blog.pojo.Article" >
+    <id column="ARTICLE_SID" property="articleSid" jdbcType="INTEGER" />
+    <result column="ARTICLE_ID" property="articleId" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="ARTICLE_TITLE" property="articleTitle" jdbcType="VARCHAR" />
+    <result column="ARTICLE_BACKUP1" property="articleBackup1" jdbcType="VARCHAR" />
+    <result column="ARTICLE_BACKUP2" property="articleBackup2" jdbcType="VARCHAR" />
+    <result column="ARTICLE_BACKUP3" property="articleBackup3" jdbcType="VARCHAR" />
+    <result column="ARTICLE_IMG" property="articleImg" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.boss.dao.blog.pojo.ArticleWithBLOBs" extends="BaseResultMap" >
+    <result column="ARTICLE_BODY" property="articleBody" jdbcType="LONGVARCHAR" />
+    <result column="ARTICLE_DESCRIPTION" property="articleDescription" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ARTICLE_SID, ARTICLE_ID, CREATE_DATE, UPDATE_DATE, ARTICLE_TITLE, ARTICLE_BACKUP1, 
+    ARTICLE_BACKUP2, ARTICLE_BACKUP3, ARTICLE_IMG
+  </sql>
+  <sql id="Blob_Column_List" >
+    ARTICLE_BODY, ARTICLE_DESCRIPTION
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_article
+    where ARTICLE_SID = #{articleSid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_article
+    where ARTICLE_SID = #{articleSid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.boss.dao.blog.pojo.ArticleWithBLOBs" >
+    insert into tb_article (ARTICLE_SID, ARTICLE_ID, CREATE_DATE, 
+      UPDATE_DATE, ARTICLE_TITLE, ARTICLE_BACKUP1, 
+      ARTICLE_BACKUP2, ARTICLE_BACKUP3, ARTICLE_IMG, 
+      ARTICLE_BODY, ARTICLE_DESCRIPTION
+      )
+    values (#{articleSid,jdbcType=INTEGER}, #{articleId,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateDate,jdbcType=TIMESTAMP}, #{articleTitle,jdbcType=VARCHAR}, #{articleBackup1,jdbcType=VARCHAR}, 
+      #{articleBackup2,jdbcType=VARCHAR}, #{articleBackup3,jdbcType=VARCHAR}, #{articleImg,jdbcType=VARCHAR}, 
+      #{articleBody,jdbcType=LONGVARCHAR}, #{articleDescription,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.boss.dao.blog.pojo.ArticleWithBLOBs" >
+    insert into tb_article
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="articleSid != null" >
+        ARTICLE_SID,
+      </if>
+      <if test="articleId != null" >
+        ARTICLE_ID,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE,
+      </if>
+      <if test="articleTitle != null" >
+        ARTICLE_TITLE,
+      </if>
+      <if test="articleBackup1 != null" >
+        ARTICLE_BACKUP1,
+      </if>
+      <if test="articleBackup2 != null" >
+        ARTICLE_BACKUP2,
+      </if>
+      <if test="articleBackup3 != null" >
+        ARTICLE_BACKUP3,
+      </if>
+      <if test="articleImg != null" >
+        ARTICLE_IMG,
+      </if>
+      <if test="articleBody != null" >
+        ARTICLE_BODY,
+      </if>
+      <if test="articleDescription != null" >
+        ARTICLE_DESCRIPTION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="articleSid != null" >
+        #{articleSid,jdbcType=INTEGER},
+      </if>
+      <if test="articleId != null" >
+        #{articleId,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="articleTitle != null" >
+        #{articleTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="articleBackup1 != null" >
+        #{articleBackup1,jdbcType=VARCHAR},
+      </if>
+      <if test="articleBackup2 != null" >
+        #{articleBackup2,jdbcType=VARCHAR},
+      </if>
+      <if test="articleBackup3 != null" >
+        #{articleBackup3,jdbcType=VARCHAR},
+      </if>
+      <if test="articleImg != null" >
+        #{articleImg,jdbcType=VARCHAR},
+      </if>
+      <if test="articleBody != null" >
+        #{articleBody,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="articleDescription != null" >
+        #{articleDescription,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.boss.dao.blog.pojo.ArticleWithBLOBs" >
+    update tb_article
+    <set >
+      <if test="articleId != null" >
+        ARTICLE_ID = #{articleId,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="articleTitle != null" >
+        ARTICLE_TITLE = #{articleTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="articleBackup1 != null" >
+        ARTICLE_BACKUP1 = #{articleBackup1,jdbcType=VARCHAR},
+      </if>
+      <if test="articleBackup2 != null" >
+        ARTICLE_BACKUP2 = #{articleBackup2,jdbcType=VARCHAR},
+      </if>
+      <if test="articleBackup3 != null" >
+        ARTICLE_BACKUP3 = #{articleBackup3,jdbcType=VARCHAR},
+      </if>
+      <if test="articleImg != null" >
+        ARTICLE_IMG = #{articleImg,jdbcType=VARCHAR},
+      </if>
+      <if test="articleBody != null" >
+        ARTICLE_BODY = #{articleBody,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="articleDescription != null" >
+        ARTICLE_DESCRIPTION = #{articleDescription,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ARTICLE_SID = #{articleSid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.boss.dao.blog.pojo.ArticleWithBLOBs" >
+    update tb_article
+    set ARTICLE_ID = #{articleId,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      ARTICLE_TITLE = #{articleTitle,jdbcType=VARCHAR},
+      ARTICLE_BACKUP1 = #{articleBackup1,jdbcType=VARCHAR},
+      ARTICLE_BACKUP2 = #{articleBackup2,jdbcType=VARCHAR},
+      ARTICLE_BACKUP3 = #{articleBackup3,jdbcType=VARCHAR},
+      ARTICLE_IMG = #{articleImg,jdbcType=VARCHAR},
+      ARTICLE_BODY = #{articleBody,jdbcType=LONGVARCHAR},
+      ARTICLE_DESCRIPTION = #{articleDescription,jdbcType=LONGVARCHAR}
+    where ARTICLE_SID = #{articleSid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.boss.dao.blog.pojo.Article" >
+    update tb_article
+    set ARTICLE_ID = #{articleId,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      ARTICLE_TITLE = #{articleTitle,jdbcType=VARCHAR},
+      ARTICLE_BACKUP1 = #{articleBackup1,jdbcType=VARCHAR},
+      ARTICLE_BACKUP2 = #{articleBackup2,jdbcType=VARCHAR},
+      ARTICLE_BACKUP3 = #{articleBackup3,jdbcType=VARCHAR},
+      ARTICLE_IMG = #{articleImg,jdbcType=VARCHAR}
+    where ARTICLE_SID = #{articleSid,jdbcType=INTEGER}
+  </update>
+</mapper>
