@@ -1,5 +1,6 @@
 package com.boss.service.blogs;
 
+import com.boss.foundation.entity.ArticleEntity;
 import com.boss.foundation.entity.EnjoyFile;
 
 /**
@@ -10,4 +11,5 @@ public interface IBlogService {
 
     String toUploadFile(EnjoyFile file);
 
+    String saveBlog(ArticleEntity entity);
 }

@@ -66,7 +66,12 @@ $(function () {
             type: "post",
             data: obj,
             success: function (res) {
-                
+                if(res == "success"){
+                    alert("提交成功");
+                    window.location = location;
+                }else{
+                    alert(res);
+                }
             }
         })
     });

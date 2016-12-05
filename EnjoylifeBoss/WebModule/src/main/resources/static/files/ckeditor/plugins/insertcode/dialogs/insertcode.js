@@ -18,7 +18,7 @@ CKEDITOR.dialog.add('insertcode', function(editor){
                 id: 'lang',
                 required: true,
                 'default': 'csharp',
-                items: [['ActionScript3', 'as3'], ['Bash/shell', 'bash'], ['C#', 'csharp'], ['C++', 'cpp'], ['CSS', 'css'], ['Delphi', 'delphi'], ['Diff', 'diff'], ['Groovy', 'groovy'], ['Html', 'xhtml'], ['JavaScript', 'js'], ['Java', 'java'], ['JavaFX', 'jfx'], ['Perl', 'perl'], ['PHP', 'php'], ['Plain Text', 'plain'], ['PowerShell', 'ps'], ['Python', 'py'], ['Ruby', 'rails'], ['Scala', 'scala'], ['SQL', 'sql'], ['Visual Basic', 'vb'], ['XML', 'xml']]
+                items: [['Bash/shell', 'bash'], ['C#', 'csharp'], ['C++', 'cpp'], ['CSS', 'css'], ['Delphi', 'delphi'], ['Diff', 'diff'], ['Groovy', 'groovy'], ['Html', 'xhtml'], ['JavaScript', 'js'], ['Java', 'java'], ['JavaFX', 'jfx'], ['Perl', 'perl'], ['PHP', 'php'], ['Plain Text', 'plain'], ['PowerShell', 'ps'], ['Python', 'py'], ['Ruby', 'rails'], ['Scala', 'scala'], ['SQL', 'sql'], ['Visual Basic', 'vb'], ['XML', 'xml']]
             }, {
                 type: 'textarea',
                 style: 'width:700px;height:420px',
@@ -32,7 +32,8 @@ CKEDITOR.dialog.add('insertcode', function(editor){
             code = this.getValueOf('cb', 'code');
             lang = this.getValueOf('cb', 'lang');
             html = '' + escape(code) + '';
-            editor.insertHtml("<pre><code class=\"lang-" + lang + "\">" + html + "</code></pre>");
+            var text = "<pre><code class='lang-"+ lang +"' >"+ html +"</code></pre>";
+            editor.insertHtml(text);
         },
         onLoad: function(){
         }

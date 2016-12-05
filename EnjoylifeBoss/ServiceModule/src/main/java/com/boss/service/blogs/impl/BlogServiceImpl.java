@@ -1,8 +1,12 @@
 package com.boss.service.blogs.impl;
 
+import com.boss.dao.blog.mapper.ArticleMapper;
+import com.boss.dao.blog.pojo.ArticleWithBLOBs;
+import com.boss.foundation.entity.ArticleEntity;
 import com.boss.foundation.entity.EnjoyFile;
 import com.boss.foundation.entity.TagInfo;
 import com.boss.foundation.utils.MD5Utils;
+import com.boss.foundation.utils.StringUtils;
 import com.boss.service.base.AbstractService;
 import com.boss.service.blogs.IBlogService;
 import org.apache.http.Consts;
@@ -17,6 +21,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -26,6 +31,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
+import java.util.UUID;
 
 
 /**
@@ -39,6 +45,9 @@ public class BlogServiceImpl extends AbstractService implements IBlogService {
     private String host;
     @Value("${image.url}")
     private String url;
+
+    @Autowired
+    private ArticleMapper articleMapper;
 
     private static final String key = "zhouyuhong19891224";
 
@@ -66,6 +75,35 @@ public class BlogServiceImpl extends AbstractService implements IBlogService {
         }
 
         return "fail";
+    }
+
+    @Override
+    public String saveBlog(ArticleEntity entity) {
+        if(!StringUtils.isNotBlank(entity.getArticleTitle())){
+            return "没有标题";
+        }
+        if(!StringUtils.isNotBlank(entity.getArticleImg())){
+            return "没有标志图片";
+        }
+        if(!StringUtils.isNotBlank(entity.getArticleDescription())){
+            return "没有描述";
+        }
+        if(!StringUtils.isNotBlank(entity.getArticleBody())){
+            return "没有内容";
+        }
+
+        ArticleWithBLOBs articleWithBLOBs = new ArticleWithBLOBs();
+        articleWithBLOBs.setArticleId(UUID.randomUUID().toString());
+        articleWithBLOBs.setArticleTitle(entity.getArticleTitle());
+        articleWithBLOBs.setArticleImg(host + entity.getArticleImg());
+        articleWithBLOBs.setArticleDescription(entity.getArticleDescription());
+        articleWithBLOBs.setArticleBody(entity.getArticleBody());
+
+        articleMapper.insertSelective(articleWithBLOBs);
+
+
+
+        return "success";
     }
 
     private CloseableHttpResponse uploadImageFile(MultipartFile file) throws IOException {

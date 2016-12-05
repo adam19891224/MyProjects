@@ -33,7 +33,9 @@
         </h1>
         <div class="article-intro">
             <span class="intro-type">
-                <i></i># <span>${type.typeName}</span>
+                [#if type??]
+                    <i></i># <span>${type.typeName?default("个人博文")}</span>
+                [/#if]
             </span>
             <span class="intro-time">
                 <i></i>${article.createDate?string("yyyy-MM-dd")}

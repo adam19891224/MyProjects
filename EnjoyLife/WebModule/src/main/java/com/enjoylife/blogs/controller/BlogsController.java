@@ -55,11 +55,9 @@ public class BlogsController extends BaseController {
 
         //根据文章id查询类型和标签
         Type articleType = typeService.selectTypeByArticleId(article.getArticleId());
-        if(articleType == null){
-            logger.error("查询文章详情失败，原因 【没有找到对应id为: " + sid + " 的文章类型】");
-            return "redirect:/error";
+        if(articleType != null){
+            map.addAttribute("type", articleType);
         }
-        map.addAttribute("type", articleType);
 
         //根据文章id查询标签
         List<Tags> tagses = tagesService.selectTagsByArticleId(article.getArticleId());

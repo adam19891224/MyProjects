@@ -91,6 +91,11 @@
     float: left;
     width: 100%;
     overflow: hidden;
+    cursor: text;
+}
+
+.article-body img, .article-body pre{
+    cursor: default;
 }
 
 .article-line{

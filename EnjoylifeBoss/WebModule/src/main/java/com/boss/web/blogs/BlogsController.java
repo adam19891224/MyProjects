@@ -47,8 +47,7 @@ public class BlogsController extends BaseController {
     @ResponseBody
     public String save(ArticleEntity entity, ModelMap map){
 
-
-        return "blogs/index";
+        return blogService.saveBlog(entity);
     }
 
     @RequestMapping("/upload.html")
