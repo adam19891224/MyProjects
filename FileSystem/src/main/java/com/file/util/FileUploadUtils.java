@@ -144,8 +144,11 @@ public class FileUploadUtils {
 	public static boolean checkFileIsAllow(CutImageFile file){
 		String fileName = file.getFile().getOriginalFilename();
 		String sign = file.getSign();
-		//同样用文件名 + 私钥生成签名，校验两者是否相等
-		String tempSign = MD5Utils.getMD5(fileName + key);
-		return sign.equalsIgnoreCase(tempSign);
+		if(StringUtils.isNotNull(fileName) && StringUtils.isNotNull(sign)){
+			//同样用文件名 + 私钥生成签名，校验两者是否相等
+			String tempSign = MD5Utils.getMD5(fileName + key);
+			return sign.equalsIgnoreCase(tempSign);
+		}
+		return false;
 	}
 }
