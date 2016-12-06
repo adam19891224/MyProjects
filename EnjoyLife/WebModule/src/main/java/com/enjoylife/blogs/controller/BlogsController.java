@@ -1,6 +1,8 @@
 package com.enjoylife.blogs.controller;
 
 import com.enjoylife.article.vo.ArticleWithBLOBs;
+import com.enjoylife.base.annotations.DoCrsf;
+import com.enjoylife.base.annotations.ToCrsf;
 import com.enjoylife.base.controller.BaseController;
 import com.enjoylife.comment.ICommentService;
 import com.enjoylife.comment.vo.Comment;
@@ -10,6 +12,7 @@ import com.enjoylife.tags.ITagesService;
 import com.enjoylife.tags.vo.Tags;
 import com.enjoylife.type.vo.Type;
 import com.enjoylife.utils.ConUtils;
+import com.enjoylife.utils.SessionKeyUtils;
 import com.enjoylife.view.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -42,7 +46,8 @@ public class BlogsController extends BaseController {
      * @return
      */
     @RequestMapping("/{sid}.html")
-    public String getArticle(@PathVariable Integer sid, ModelMap map){
+    @ToCrsf
+    public String getArticle(@PathVariable Integer sid, ModelMap map, HttpServletRequest request){
 
         map.addAttribute("isEyes", YesNoTypeEnum.Yes.getCode());
 
@@ -66,6 +71,8 @@ public class BlogsController extends BaseController {
         //查询总分类数和总文章数给前台展示
         super.getTotalTypesToMap(map);
         super.getTotalArticlesToMap(map);
+        //将crsf的token放入页面
+        map.addAttribute("ck", getSession(request).getAttribute(SessionKeyUtils.SESSION_CRSF_TOKEN));
 
         return "blogs/index";
     }
@@ -80,8 +87,8 @@ public class BlogsController extends BaseController {
 
     @RequestMapping("/postComment.html")
     @ResponseBody
+    @DoCrsf
     public String postComment(CommentForm form){
-        //设置为主回复
         try {
             return commentService.insertCommentByForm(form);
         }catch (Exception e){

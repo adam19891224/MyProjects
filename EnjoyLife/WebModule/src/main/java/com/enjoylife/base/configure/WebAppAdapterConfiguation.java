@@ -1,5 +1,6 @@
 package com.enjoylife.base.configure;
 
+import com.enjoylife.base.interceptors.WebCrsfInterceptor;
 import com.enjoylife.base.interceptors.WebDAVInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -15,6 +16,8 @@ public class WebAppAdapterConfiguation extends WebMvcConfigurerAdapter {
 
     @Autowired
     private WebDAVInterceptor webDAVInterceptor;
+    @Autowired
+    private WebCrsfInterceptor webCrsfInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
@@ -24,5 +27,8 @@ public class WebAppAdapterConfiguation extends WebMvcConfigurerAdapter {
         registry.addInterceptor(webDAVInterceptor)
                 .addPathPatterns("/**")
                 .excludePathPatterns("/sorry.html");
+        //添加crsf拦截器
+        registry.addInterceptor(webCrsfInterceptor)
+                .addPathPatterns("/blogs/*");
     }
 }

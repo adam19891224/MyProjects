@@ -187,26 +187,40 @@ function Blogs(){
             obj.commentIsReply = isReply;
             obj.commentReplyUser = $("#whole-div").data("replyUser");
             obj.commentReplyBody = dataId;
+            obj.ck = $("#articlt-comment-div").attr("ck");
             $.post('/blogs/postComment.html', obj, function (text) {
-                if(text == "success"){
-                    if(isReply == "0"){
-                        //如果是0，则表示此时提交的是主评论，则重新加载评论数据
-                        $("#articlt-comment-div").find(".comment-container").empty().end()
-                                                 .find("#comment-pages").empty();
-                        loadingComment(1, true);
-                        //清空主评论编辑器数据
-                        commentEditor.setData("");
-                    }else if(isReply == "1"){
-                        //此时说明提交的是回复评论，则找到dataID对应的li, 加载这个li的回复数据
-                        var liDiv = $("#articlt-comment-div").find(".comment-container").find("li[data-id='" + dataId + "']");
-                        loadingReplyCommentsByDiv(liDiv, liDiv.find(".to-show"));
-                        //清空回复评论编辑器数据
-                        replyEditor.setData("");
+                // if(text == "success"){
+                //     if(isReply == "0"){
+                //         //如果是0，则表示此时提交的是主评论，则重新加载评论数据
+                //         $("#articlt-comment-div").find(".comment-container").empty().end()
+                //                                  .find("#comment-pages").empty();
+                //         loadingComment(1, true);
+                //         //清空主评论编辑器数据
+                //         commentEditor.setData("");
+                //     }else if(isReply == "1"){
+                //         //此时说明提交的是回复评论，则找到dataID对应的li, 加载这个li的回复数据
+                //         var liDiv = $("#articlt-comment-div").find(".comment-container").find("li[data-id='" + dataId + "']");
+                //         loadingReplyCommentsByDiv(liDiv, liDiv.find(".to-show"));
+                //         //清空回复评论编辑器数据
+                //         replyEditor.setData("");
+                //     }
+                // }else{
+                //     if(text == "error"){
+                //         alert("提交评论失败");
+                //     }else{
+                //         alert("拒绝访问");
+                //     }
+                //     window.location = location;
+                // }
+                // $("#loading-div").hide();
+                if(text != "success"){
+                    if(text == "error"){
+                        alert("提交评论失败");
+                    }else{
+                        alert("拒绝访问");
                     }
-                }else{
-                    alert(text);
                 }
-                $("#loading-div").hide();
+                window.location = location;
             });
         });
     };

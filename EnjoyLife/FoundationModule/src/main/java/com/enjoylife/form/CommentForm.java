@@ -27,6 +27,16 @@ public class CommentForm {
 
     private String commentId;
 
+    private String ck;
+
+    public String getCk() {
+        return ck;
+    }
+
+    public void setCk(String ck) {
+        this.ck = ck;
+    }
+
     public String getCommentId() {
         return commentId;
     }

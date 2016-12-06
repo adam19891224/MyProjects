@@ -1,4 +1,4 @@
-<div id="articlt-comment-div" class="article-comment">
+<div id="articlt-comment-div" class="article-comment" ck="${ck?default("")}">
     <div class="comment-title">
         <i></i><span>交流区</span>
     </div>
