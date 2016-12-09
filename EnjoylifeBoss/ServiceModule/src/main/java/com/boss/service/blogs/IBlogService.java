@@ -12,4 +12,6 @@ public interface IBlogService {
     String toUploadFile(EnjoyFile file);
 
     String saveBlog(ArticleEntity entity);
+
+    boolean refresh();
 }

@@ -1,6 +1,6 @@
-package com.enjoylife.blogs.repository;
+package com.enjoylife.article.repository;
 
-import com.enjoylife.models.ArticleEntity;
+import com.enjoylife.modules.ArticleEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.annotations.Query;

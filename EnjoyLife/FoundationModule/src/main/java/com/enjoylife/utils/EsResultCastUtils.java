@@ -1,6 +1,6 @@
 package com.enjoylife.utils;
 
-import com.enjoylife.models.ArticleEntity;
+import com.enjoylife.modules.ArticleEntity;
 import org.apache.commons.beanutils.BeanUtils;
 
 import java.lang.reflect.Field;

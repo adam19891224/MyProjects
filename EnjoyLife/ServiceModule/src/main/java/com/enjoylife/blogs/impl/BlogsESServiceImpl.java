@@ -1,10 +1,10 @@
 package com.enjoylife.blogs.impl;
 
+import com.enjoylife.article.repository.IBlogESRepository;
 import com.enjoylife.article.vo.NewArticle;
 import com.enjoylife.base.BaseAbstractClass;
 import com.enjoylife.blogs.IBlogsESService;
-import com.enjoylife.blogs.repository.IBlogESRepository;
-import com.enjoylife.models.ArticleEntity;
+import com.enjoylife.modules.ArticleEntity;
 import com.enjoylife.utils.ConUtils;
 import com.enjoylife.utils.EsResultCastUtils;
 import com.enjoylife.view.Page;
@@ -38,6 +38,7 @@ import java.util.Map;
  */
 @Service
 public class BlogsESServiceImpl extends BaseAbstractClass implements IBlogsESService {
+
 
     @Autowired
     private IBlogESRepository blogESRepository;

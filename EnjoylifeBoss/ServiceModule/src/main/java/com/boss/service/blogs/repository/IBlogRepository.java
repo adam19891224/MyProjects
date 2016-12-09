@@ -1,6 +1,6 @@
 package com.boss.service.blogs.repository;
 
-import com.boss.foundation.entity.ArticleESEntity;
+import com.boss.foundation.modules.ArticleESEntity;
 import org.springframework.data.repository.CrudRepository;
 
 /**

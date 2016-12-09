@@ -113,4 +113,12 @@ public class BlogsController extends BaseController {
         enjoyFile.setFile(file);
         return blogService.toUploadFile(enjoyFile);
     }
+
+    @RequestMapping("/refresh.html")
+    @ResponseBody
+    public String refresh(){
+
+        boolean res = blogService.refresh();
+        return res ? "success" : "error";
+    }
 }

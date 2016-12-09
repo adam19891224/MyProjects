@@ -13,7 +13,7 @@ import static org.elasticsearch.node.NodeBuilder.nodeBuilder;
  * 2016/11/23
  */
 @Configuration
-@EnableElasticsearchRepositories(basePackages = {"com.enjoylife.blogs.repository"})
+@EnableElasticsearchRepositories(basePackages = {"com.enjoylife.article.repository"})
 public class ElasticsearchConfiguration {
 
     @Bean

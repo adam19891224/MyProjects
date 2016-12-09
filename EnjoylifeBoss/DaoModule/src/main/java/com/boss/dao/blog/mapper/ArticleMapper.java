@@ -2,7 +2,9 @@ package com.boss.dao.blog.mapper;
 
 import com.boss.dao.blog.pojo.Article;
 import com.boss.dao.blog.pojo.ArticleWithBLOBs;
-import com.boss.foundation.entity.ArticleESEntity;
+import com.boss.foundation.modules.ArticleESEntity;
+
+import java.util.List;
 
 public interface ArticleMapper {
     int deleteByPrimaryKey(Integer articleSid);
@@ -20,4 +22,6 @@ public interface ArticleMapper {
     int updateByPrimaryKey(Article record);
 
     ArticleESEntity selectByArticleId(String id);
+
+    List<ArticleESEntity> selectAllForRefresh();
 }

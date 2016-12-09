@@ -1,4 +1,4 @@
-package com.enjoylife.models;
+package com.boss.foundation.modules;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -14,8 +14,8 @@ import java.util.Date;
  *
  * 2016/11/22
  */
-@Document(indexName = "enjoylife-test", type = "articles", shards = 2, replicas = 0, refreshInterval = "-1")
-public class ArticleEntity implements Serializable {
+@Document(indexName = "enjoylife-articles", type = "articles", shards = 1, replicas = 0, refreshInterval = "-1")
+public class ArticleESEntity implements Serializable {
 
     private static final long serialVersionUID = 5193625143787230749L;
 

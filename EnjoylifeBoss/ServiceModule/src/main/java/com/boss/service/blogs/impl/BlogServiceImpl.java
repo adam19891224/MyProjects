@@ -2,10 +2,11 @@ package com.boss.service.blogs.impl;
 
 import com.boss.dao.blog.mapper.ArticleMapper;
 import com.boss.dao.blog.pojo.ArticleWithBLOBs;
-import com.boss.foundation.entity.ArticleESEntity;
+import com.boss.foundation.modules.ArticleESEntity;
 import com.boss.foundation.entity.ArticleEntity;
 import com.boss.foundation.entity.EnjoyFile;
 import com.boss.foundation.entity.TagInfo;
+import com.boss.foundation.utils.ConUtils;
 import com.boss.foundation.utils.MD5Utils;
 import com.boss.foundation.utils.StringUtils;
 import com.boss.service.base.AbstractService;
@@ -34,6 +35,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
+import java.util.List;
 import java.util.UUID;
 
 
@@ -112,6 +114,22 @@ public class BlogServiceImpl extends AbstractService implements IBlogService {
         blogRepository.save(esEntity);
 
         return "success";
+    }
+
+    @Override
+    public boolean refresh() {
+
+        List<ArticleESEntity> list = articleMapper.selectAllForRefresh();
+        if(ConUtils.isNotNull(list)){
+            try {
+                blogRepository.save(list);
+                return true;
+            }catch (Exception e){
+                logger.error("elasticsearch导入数据错误", e);
+            }
+            return false;
+        }
+        return true;
     }
 
     private CloseableHttpResponse uploadImageFile(MultipartFile file) throws IOException {
