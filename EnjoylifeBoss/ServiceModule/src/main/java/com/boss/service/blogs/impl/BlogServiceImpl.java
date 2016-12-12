@@ -1,14 +1,16 @@
 package com.boss.service.blogs.impl;
 
 import com.boss.dao.blog.mapper.ArticleMapper;
+import com.boss.dao.blog.pojo.ArticleBossPJ;
 import com.boss.dao.blog.pojo.ArticleWithBLOBs;
-import com.boss.foundation.modules.ArticleESEntity;
 import com.boss.foundation.entity.ArticleEntity;
 import com.boss.foundation.entity.EnjoyFile;
 import com.boss.foundation.entity.TagInfo;
+import com.boss.foundation.modules.ArticleESEntity;
 import com.boss.foundation.utils.ConUtils;
 import com.boss.foundation.utils.MD5Utils;
 import com.boss.foundation.utils.StringUtils;
+import com.boss.foundation.view.Page;
 import com.boss.service.base.AbstractService;
 import com.boss.service.blogs.IBlogService;
 import com.boss.service.blogs.repository.IBlogRepository;
@@ -114,6 +116,19 @@ public class BlogServiceImpl extends AbstractService implements IBlogService {
         blogRepository.save(esEntity);
 
         return "success";
+    }
+
+    @Override
+    public Page<ArticleBossPJ> selectArticleByPage(Page<ArticleBossPJ> page) {
+
+        List<ArticleBossPJ> list = articleMapper.selectArticleByPage(page);
+        if(ConUtils.isNotNull(list)){
+            int count = articleMapper.selectArticleCountsByPage(page);
+            page.setResultList(list);
+            page.setTotalCounts(count);
+        }
+
+        return page;
     }
 
     @Override

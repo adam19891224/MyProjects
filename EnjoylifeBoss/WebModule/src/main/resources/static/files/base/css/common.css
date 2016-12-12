@@ -53,13 +53,55 @@
     color: #1E90FF;
 }
 
+.main-body{
+    width: 1200px;
+    overflow: hidden;
+    margin: 40px auto 0;
+}
+
+.left{
+    width: 200px;
+    float: left;
+    overflow: hidden;
+}
+
+.left ul{
+    width: 100%;
+    margin: 0;
+    padding: 0 20px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.left ul li{
+    width: 100%;
+    float: left;
+    line-height: 30px;
+    margin-top: 10px;
+}
+
+.left li a:hover{
+    color: #fff8f8;
+}
+
+.left li:nth-child(3n - 2){
+    background-color: #c83939;
+}
+
+.left li:nth-child(3n - 1){
+    background-color: #ffa84c;
+}
+
+.left li:nth-child(3n){
+    background-color: #2e9ad0;
+}
+
 .foot-div{
     width: 1200px;
     height: 40px;
-    margin: 0 auto;
     font-family: "Microsoft YaHei", serif;
     font-size: 14px;
     line-height: 40px;
     text-align: center;
-    margin-top: 50px;
+    margin: 50px auto 0;
 }

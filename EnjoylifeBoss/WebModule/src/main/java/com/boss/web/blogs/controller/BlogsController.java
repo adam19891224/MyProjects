@@ -1,9 +1,11 @@
-package com.boss.web.blogs;
+package com.boss.web.blogs.controller;
 
+import com.boss.dao.blog.pojo.ArticleBossPJ;
 import com.boss.foundation.entity.ArticleEntity;
 import com.boss.foundation.entity.EnjoyFile;
 import com.boss.foundation.entity.TagInfo;
 import com.boss.foundation.entity.UserInfo;
+import com.boss.foundation.view.Page;
 import com.boss.service.blogs.IBlogService;
 import com.boss.web.base.controller.BaseController;
 import org.springframework.stereotype.Controller;
@@ -29,6 +31,16 @@ public class BlogsController extends BaseController {
     private IBlogService blogService;
 
     private static final String URL = "http://localhost:10086/";
+
+    @RequestMapping("/list.html")
+    public String list(ModelMap map, Page<ArticleBossPJ> page){
+
+        page = blogService.selectArticleByPage(page);
+
+
+
+        return "blogs/list";
+    }
 
     @RequestMapping("/index.html")
     public String index(ModelMap map){

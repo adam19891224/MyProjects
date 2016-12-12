@@ -1,8 +1,10 @@
 package com.boss.dao.blog.mapper;
 
 import com.boss.dao.blog.pojo.Article;
+import com.boss.dao.blog.pojo.ArticleBossPJ;
 import com.boss.dao.blog.pojo.ArticleWithBLOBs;
 import com.boss.foundation.modules.ArticleESEntity;
+import com.boss.foundation.view.Page;
 
 import java.util.List;
 
@@ -24,4 +26,8 @@ public interface ArticleMapper {
     ArticleESEntity selectByArticleId(String id);
 
     List<ArticleESEntity> selectAllForRefresh();
+
+    List<ArticleBossPJ> selectArticleByPage(Page<ArticleBossPJ> page);
+
+    int selectArticleCountsByPage(Page<ArticleBossPJ> page);
 }

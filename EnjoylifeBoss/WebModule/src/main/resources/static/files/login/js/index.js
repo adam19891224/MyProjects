@@ -30,7 +30,7 @@ function doLogin() {
         type: "post",
         success: function (res) {
             if (res == "success") {
-                window.location = "/blogs/index.html";
+                window.location = "/index.html";
                 return false;
             }
             login.data("lock", "");
