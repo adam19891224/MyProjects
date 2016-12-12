@@ -36,7 +36,7 @@ public class SearchController extends BaseController {
         name = HtmlUtils.htmlEscape(name);
         page.setTypeName(name);
         page.setPage(num);
-        page = blogsService.selectArticlesByPage(page);
+        page = blogsService.selectTypeArticlesByPage(page);
 
         map.addAttribute("result", page.getResultList());
         map.addAttribute("totalPages", page.getTotalPages());

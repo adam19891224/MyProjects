@@ -27,6 +27,18 @@ public interface IBlogsService {
     int selectArticlesCountsByPage(Page<NewArticle> page);
 
     /**
+     * 根据Page对象获取分页信息
+     * @param page
+     * @return
+     */
+    Page<NewArticle> selectTypeArticlesByPage(Page<NewArticle> page);
+
+    /**
+     * 获取当前总文章数
+     */
+    int selectTypeArticlesCountsByPage(Page<NewArticle> page);
+
+    /**
      * 根据主键获取entity
      * @param sid
      * @return

@@ -41,6 +41,50 @@
           tb_article ta
     </select>
 
+    <select id="selectTypeArticlesByPage" resultMap="NewArticleBody" parameterType="com.enjoylife.view.Page">
+        SELECT
+            ta.ARTICLE_SID as articleSid,
+            ta.ARTICLE_ID as articleId,
+            ta.CREATE_DATE as createDate,
+            ta.ARTICLE_TITLE as articleTitle,
+            ta.ARTICLE_DESCRIPTION as articleDescription,
+            ta.ARTICLE_IMG as articleImg
+        FROM
+            tb_article ta
+        INNER JOIN
+            tb_article_type tat ON ta.ARTICLE_ID = tat.ARTICLE_ID
+        INNER JOIN
+            tb_type tt ON tat.TYPE_ID = tt.TYPE_ID
+
+        <where>
+            <if test="typeName != null">
+                tt.TYPE_NAME = #{typeName}
+            </if>
+        </where>
+
+        ORDER BY ta.CREATE_DATE DESC
+
+        <if test="pagination != null and pagination == true">
+            limit #{pageNum}, #{pageSize}
+        </if>
+    </select>
+
+    <select id="selectTypeArticlesCountsByPage" resultType="java.lang.Integer" parameterType="com.enjoylife.view.Page">
+        SELECT
+            COUNT(*)
+        FROM
+            tb_article ta
+        INNER JOIN
+            tb_article_type tat ON ta.ARTICLE_ID = tat.ARTICLE_ID
+        INNER JOIN
+            tb_type tt ON tat.TYPE_ID = tt.TYPE_ID
+        <where>
+            <if test="typeName != null">
+                tt.TYPE_NAME = #{typeName}
+            </if>
+        </where>
+    </select>
+
     <!--根据文章id获取类型-->
     <select id="selectTagsByArticleID" resultType="java.lang.String">
         SELECT

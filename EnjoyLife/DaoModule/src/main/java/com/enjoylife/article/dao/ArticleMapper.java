@@ -28,6 +28,10 @@ public interface ArticleMapper {
 
     int selectCountsByPage(Page<NewArticle> page);
 
+    List<NewArticle> selectTypeArticlesByPage(Page<NewArticle> page);
+
+    int selectTypeArticlesCountsByPage(Page<NewArticle> page);
+
     List<ArticleTime> selectTimeGroupByArticle();
 
     String selectArticleInfoByArticleID(@Param("articleID") String articleID);
