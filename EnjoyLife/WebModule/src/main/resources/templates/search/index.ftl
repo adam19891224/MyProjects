@@ -31,7 +31,7 @@
                 [#list result as info]
                     <div class="info-container">
                         <h2>
-                            <a href="/blogs/${info.articleSid}.html">
+                            <a href="/blogs/${info.articleSid}">
                                 ${info.articleTitle?default("")}
                             </a>
                         </h2>

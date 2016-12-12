@@ -18,11 +18,11 @@ $(function () {
         current: applications.castStr2Num($("#page-div").attr("data-current")),
         backFn: function(page){
             if(isClick){
-                var location = "";
-                if(page == 1){
-                    location = "/index.html"
-                }else{
-                    location = "/page/" + page + ".html";
+                var location = "/index/";
+                if(page > 1){
+                    if(applications.checkIsNum(page)){
+                        location = "/index/" + page;
+                    }
                 }
                 window.location = location;
             }

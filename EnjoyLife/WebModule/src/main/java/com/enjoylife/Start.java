@@ -24,7 +24,7 @@ public class Start extends SpringBootServletInitializer implements EmbeddedServl
         //spring boot 启动方式，调用核心类springapplication的run方法即可
         SpringApplication.run(Start.class, args);
         System.out.println();
-        System.out.println("项目启动完毕 请点击   http://localhost:8888/index.html   来访问");
+        System.out.println("项目启动完毕 请点击   http://localhost:8888/index/   来访问");
         System.out.println();
     }
 

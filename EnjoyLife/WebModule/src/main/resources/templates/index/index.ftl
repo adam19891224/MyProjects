@@ -31,7 +31,7 @@
                     <div class="main-blog">
                         <div class="blog-head">
                             <h2>
-                                <a href="/blogs/${blog.articleSid}.html">${blog.articleTitle}</a>
+                                <a href="/blogs/${blog.articleSid}">${blog.articleTitle}</a>
                             </h2>
                         </div>
                         <div class="blog-intro">

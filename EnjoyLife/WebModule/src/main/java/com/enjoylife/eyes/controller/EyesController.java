@@ -23,7 +23,7 @@ public class EyesController extends BaseController {
      * 进入一览页面
      * @return
      */
-    @RequestMapping("/index.html")
+    @RequestMapping("/")
     public String index(Page<NewArticle> page, ModelMap map){
 
         map.addAttribute("isEyes", YesNoTypeEnum.Yes.getCode());

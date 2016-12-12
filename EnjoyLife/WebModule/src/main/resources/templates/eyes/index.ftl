@@ -74,7 +74,7 @@
                             ${blog.createDate?string("MM-dd")}
                         </span>
                         <span class="title-content">
-                            <a href="/blogs/${blog.articleSid}.html">
+                            <a href="/blogs/${blog.articleSid}">
                                 ${blog.articleTitle}
                             </a>
                         </span>

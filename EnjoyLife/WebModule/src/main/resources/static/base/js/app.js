@@ -4,6 +4,7 @@ function Applications() {
 
     var EMAIL_REG = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
     var SITE_REG = /[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+\.?/;
+    var NUM_REG = /^\+?[1-9][0-9]*$/;
 
     this.castStr2Num = function(str){
         return parseInt(str);
@@ -19,15 +20,18 @@ function Applications() {
     this.replaceBlock = function (str) {
         return str.replace(/\s/g, '');
     };
-    
+
     this.checkIsEmail = function (str) {
         return EMAIL_REG.test(str);
     };
 
     this.checkIsSite = function (str) {
         return SITE_REG.test(str);
-    }
+    };
 
+    this.checkIsNum = function (str) {
+        return NUM_REG.test(str);
+    };
 }
 var applications = new Applications();
 
@@ -52,9 +56,12 @@ Date.prototype.Format = function(fmt){
 $(function () {
     $("#search-button").click(function () {
         var input = $(this).prev();
-        var locations = "/eyes/index.html";
-        if(applications.isNotNull(input.val()) && !input.val().match(/^\s+$/))
-            locations = "/search/" + input.val().replace(/(^\s*)|(\s*$)/g,"") + "/1.html";
+        var locations = "/eyes/";
+        var val = input.val();
+        if(applications.isNotNull(val) && !val.match(/^\s+$/)){
+            val = input.val().replace(/(^\s*)|(\s*$)/g, "").replace(/\\/g, "").replace(/\//g, "");
+            locations = "/query/" + val + "/1";
+        }
         window.location = locations;
     });
 });

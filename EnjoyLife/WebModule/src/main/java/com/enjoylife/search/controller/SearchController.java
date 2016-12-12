@@ -27,7 +27,7 @@ public class SearchController extends BaseController {
     /**
      * 进入分类一览页
      */
-    @RequestMapping("/category/{name}/{num}.html")
+    @RequestMapping("/category/{name}/{num}")
     public String category(ModelMap map, @PathVariable String name, @PathVariable Integer num){
 
         map.addAttribute("isEyes", YesNoTypeEnum.Yes.getCode());
@@ -52,7 +52,7 @@ public class SearchController extends BaseController {
     /**
      * 进入搜索页
      */
-    @RequestMapping("/search/{name}/{num}.html")
+    @RequestMapping("/query/{name}/{num}")
     public String keyword(ModelMap map, @PathVariable String name, @PathVariable Integer num){
 
         map.addAttribute("isEyes", YesNoTypeEnum.Yes.getCode());

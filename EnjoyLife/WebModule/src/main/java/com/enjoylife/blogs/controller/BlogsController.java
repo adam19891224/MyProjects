@@ -45,7 +45,7 @@ public class BlogsController extends BaseController {
      * @param map
      * @return
      */
-    @RequestMapping("/{sid}.html")
+    @RequestMapping("/{sid}")
     @ToCrsf
     public String getArticle(@PathVariable Integer sid, ModelMap map, HttpServletRequest request){
 
