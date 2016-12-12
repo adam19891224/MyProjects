@@ -11,6 +11,8 @@ import com.enjoylife.form.CommentForm;
 import com.enjoylife.utils.ConUtils;
 import com.enjoylife.utils.StringUtils;
 import com.enjoylife.view.Page;
+import org.jsoup.Jsoup;
+import org.jsoup.safety.Whitelist;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -73,6 +75,7 @@ public class CommentServiceImpl extends BaseAbstractClass implements ICommentSer
         comment.setCommentEmail(HtmlUtils.htmlEscape(comment.getCommentEmail()));
         comment.setCommentUser(HtmlUtils.htmlEscape(comment.getCommentUser()));
         comment.setCommentUserWebsite(HtmlUtils.htmlEscape(comment.getCommentUserWebsite()));
+        comment.setCommentBody(Jsoup.clean(comment.getCommentBody(), Whitelist.basic()));
         //创建文章，评论关联关系
         ArticleComment articleComment = new ArticleComment();
         articleComment.setArticleId(articleID);

@@ -33,6 +33,7 @@
         <hikari.version>2.5.1</hikari.version>
         <guava.version>20.0</guava.version>
         <common.bean.version>1.9.3</common.bean.version>
+        <jsoup.version>1.10.1</jsoup.version>
     </properties>
 
     <build>
