@@ -2,6 +2,7 @@ package com.boss.web.base.controller;
 
 import com.boss.foundation.entity.UserInfo;
 import com.boss.foundation.utils.SessionKeyUtils;
+import com.google.gson.Gson;
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
@@ -17,6 +18,8 @@ public abstract class BaseController {
 
     protected static final String[] IMG_TYPE = {".jpg", ".png", ".gif", ".bmp"};
 
+    private Gson gson = new Gson();
+
     protected Session getSession(){
         Subject subject = SecurityUtils.getSubject();
         if(subject != null){
@@ -31,6 +34,10 @@ public abstract class BaseController {
 
     protected UserInfo getUser(){
         return (UserInfo) this.getSession().getAttribute(SessionKeyUtils.SESSION_USER_INFO);
+    }
+
+    protected String toJsonString(Object o){
+        return gson.toJson(o);
     }
 
 }

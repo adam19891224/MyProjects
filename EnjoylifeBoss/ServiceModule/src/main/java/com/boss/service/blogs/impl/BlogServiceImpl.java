@@ -126,6 +126,7 @@ public class BlogServiceImpl extends AbstractService implements IBlogService {
             int count = articleMapper.selectArticleCountsByPage(page);
             page.setResultList(list);
             page.setTotalCounts(count);
+            page.setSuccess(true);
         }
 
         return page;

@@ -25,6 +25,8 @@ public class Page<T> implements Serializable {
 
     private Boolean pagination = true;
 
+    private Boolean success = false;
+
     /**
      * 搜索关键字
      */
@@ -81,6 +83,14 @@ public class Page<T> implements Serializable {
         if(esPage > 0) esPage--;
         if(esPage <= 0) esPage = 0;
         this.esPage = esPage;
+    }
+
+    public Boolean getSuccess() {
+        return success;
+    }
+
+    public void setSuccess(Boolean success) {
+        this.success = success;
     }
 
     public Byte getCommentIsReply() {
@@ -185,6 +195,7 @@ public class Page<T> implements Serializable {
 
     public void setTotalCounts(Integer totalCounts) {
         this.totalCounts = totalCounts;
+        this.totalPages = (totalCounts + this.pageSize - 1) / this.pageSize;
     }
 
     public String getArticleId() {

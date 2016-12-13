@@ -29,6 +29,7 @@
 
   <resultMap id="NewArticleBody" type="com.boss.dao.blog.pojo.ArticleBossPJ" extends="ResultMapWithBLOBs" >
     <association property="commentCounts" column="articleId" select="selectCommentCountsByArticleID"/>
+    <association property="typeName" column="articleId" select="selectTypeNameByArticleID"/>
   </resultMap>
 
   <select id="selectArticleByPage" resultMap="NewArticleBody" parameterType="com.boss.foundation.view.Page">
@@ -37,6 +38,7 @@
       ta.ARTICLE_ID as articleId,
       ta.CREATE_DATE as createDate,
       ta.ARTICLE_TITLE as articleTitle,
+      ta.ARTICLE_DESCRIPTION as articleDescription,
       ta.ARTICLE_IMG as articleImg
     FROM
       tb_article ta
@@ -67,5 +69,16 @@
       tac.ARTICLE_ID = #{articleId}
     AND
       tc.COMMENT_IS_REPLY = FALSE
+  </select>
+
+  <select id="selectTypeNameByArticleID" resultType="java.lang.String">
+    SELECT
+      tt.TYPE_NAME
+    FROM
+      tb_article_type tat
+    INNER JOIN
+      tb_type tt ON tat.TYPE_ID = tt.TYPE_ID
+    WHERE
+      tat.ARTICLE_ID = #{articleId}
   </select>
 </mapper>
