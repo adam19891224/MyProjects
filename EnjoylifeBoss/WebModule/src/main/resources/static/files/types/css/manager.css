@@ -31,15 +31,6 @@
     height: 25px;
 }
 
-.container li select{
-    width: 150px;
-    height: 20px;
-}
-
-.select-li{
-    display: none;
-}
-
 .submit-button{
     width: 100px;
     height: 30px;

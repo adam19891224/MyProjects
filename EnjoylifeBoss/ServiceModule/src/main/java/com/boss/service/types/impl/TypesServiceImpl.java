@@ -1,6 +1,8 @@
 package com.boss.service.types.impl;
 
+import com.boss.dao.blog.pojo.Article;
 import com.boss.dao.types.mapper.TypeMapper;
+import com.boss.dao.types.pojo.Type;
 import com.boss.dao.types.pojo.TypesInfo;
 import com.boss.foundation.utils.ConUtils;
 import com.boss.foundation.view.Page;
@@ -9,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * ranmin-zhouyuhong
@@ -32,5 +35,23 @@ public class TypesServiceImpl implements TypesService {
         }
 
         return page;
+    }
+
+    @Override
+    public String saveTypeInfo(Type type) {
+        String id = UUID.randomUUID().toString();
+        type.setTypeId(id);
+        typeMapper.insertSelective(type);
+        return "success";
+    }
+
+    @Override
+    public Type selectTypeBySid(Integer sid) {
+        return typeMapper.selectByPrimaryKey(sid);
+    }
+
+    @Override
+    public List<Article> selectArticlesByTypeID(String id) {
+        return null;
     }
 }

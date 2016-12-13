@@ -66,8 +66,8 @@ function castList2Tds(list) {
                     temp.articleCounts +
                 "</td>" +
                 "<td>" +
-                    "<span>管理</span>" +
-                    "<span>删除</span>" +
+                    "<span type='manager'>管理</span>" +
+                    "<span type='delete'>删除</span>" +
                 "</td>" +
             "</tr>";
     }
@@ -82,4 +82,13 @@ function createParam(page) {
 
 $(function () {
     loadDatas(1, true);
+
+    $("#data-table").on("click", "span", function () {
+        var obj = $(this);
+        var type = obj.attr("type");
+        var id = obj.parents("tr").attr("tid");
+        if(type == "manager"){
+            window.location = "/types/manager.html?id=" + id;
+        }
+    });
 });

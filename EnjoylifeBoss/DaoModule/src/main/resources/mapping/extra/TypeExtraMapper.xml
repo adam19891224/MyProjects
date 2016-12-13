@@ -8,9 +8,10 @@
 
     <select id="selectTypesByPage" resultMap="TypesInfoMap" parameterType="com.boss.foundation.view.Page">
         SELECT
-            tt.TYPE_SID as typeSid,
+            tt.TYPE_SID,
+            tt.TYPE_ID,
             tt.TYPE_ID as typeId,
-            tt.TYPE_NAME as typeName
+            tt.TYPE_NAME
         FROM
           tb_type tt
 
