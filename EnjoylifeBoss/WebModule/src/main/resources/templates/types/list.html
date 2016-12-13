@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>欢迎访问</title>
+    <meta name="keywords" content="Web技术，Web开发，Web交流，月下竹影，竹影，箫竹影，周禹宏" />
+    <meta name="description" content="月下竹影，是一个作为Web技术交流平台的个人原创技术博客。期待大家的光临。" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <link href="/files/base/images/ico.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="/files/types/css/list.css" rel="stylesheet" type="text/css" media="all" />
+    <script src="/files/base/js/jquery-2.2.3.min.js"></script>
+    <script src="/files/base/js/app.js"></script>
+    <script src="/files/base/js/page.js"></script>
+</head>
+<body>
+
+
+<div th:substituteby="/base/layout/top :: top"></div>
+
+<main class="main-body">
+    <div th:substituteby="/base/layout/left :: left"></div>
+
+    <div class="container">
+        <section class="container-top">
+            <ul class="container-top-ul">
+                <li>
+                    <a href="/types/index.html" target="new-window">新增类别</a>
+                </li>
+                <li>
+
+                </li>
+                <li>
+
+                </li>
+                <li>
+
+                </li>
+                <li>
+
+                </li>
+            </ul>
+        </section>
+        <table class="container-table">
+            <tr class="table-title">
+                <td>主键</td>
+                <td>类别名称</td>
+                <td>博文数</td>
+                <td>操作</td>
+            </tr>
+        </table>
+        <table id="data-table" class="container-table">
+
+        </table>
+        <div class="page-container">
+            <div id="page-div" class="page-div" data-pages="${totalPages}" data-current="${page}"></div>
+        </div>
+    </div>
+</main>
+
+<footer th:substituteby="/base/layout/foot :: foot"></footer>
+
+</body>
+<script src="/files/types/js/list.js"></script>
+</html>

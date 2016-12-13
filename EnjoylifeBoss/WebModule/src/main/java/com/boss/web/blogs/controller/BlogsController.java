@@ -5,7 +5,6 @@ import com.boss.foundation.entity.ArticleEntity;
 import com.boss.foundation.entity.EnjoyFile;
 import com.boss.foundation.entity.TagInfo;
 import com.boss.foundation.entity.UserInfo;
-import com.boss.foundation.utils.ConUtils;
 import com.boss.foundation.view.Page;
 import com.boss.service.blogs.IBlogService;
 import com.boss.web.base.controller.BaseController;
@@ -18,7 +17,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 /**
@@ -44,16 +42,7 @@ public class BlogsController extends BaseController {
     @ResponseBody
     public String getData(Page<ArticleBossPJ> page){
         page = blogService.selectArticleByPage(page);
-        Map<String, Object> resultMap = ConUtils.hashmap();
-        resultMap.put("code", "0");
-        if(page.getSuccess()){
-            resultMap.put("code", "1");
-            resultMap.put("totalCount", page.getTotalCounts());
-            resultMap.put("totalPages", page.getTotalPages());
-            resultMap.put("datas", page.getResultList());
-        }
-
-        return super.toJsonString(resultMap);
+        return super.castPageToResultString(page);
     }
 
     @RequestMapping("/index.html")

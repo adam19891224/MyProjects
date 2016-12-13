@@ -1,12 +1,16 @@
 package com.boss.web.base.controller;
 
 import com.boss.foundation.entity.UserInfo;
+import com.boss.foundation.utils.ConUtils;
 import com.boss.foundation.utils.SessionKeyUtils;
+import com.boss.foundation.view.Page;
 import com.google.gson.Gson;
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
+
+import java.util.Map;
 
 /**
  * ranmin-zhouyuhong
@@ -40,4 +44,15 @@ public abstract class BaseController {
         return gson.toJson(o);
     }
 
+    protected <T> String  castPageToResultString(Page<T> page){
+        Map<String, Object> resultMap = ConUtils.hashmap();
+        resultMap.put("code", "0");
+        if(page.getSuccess()){
+            resultMap.put("code", "1");
+            resultMap.put("totalCount", page.getTotalCounts());
+            resultMap.put("totalPages", page.getTotalPages());
+            resultMap.put("datas", page.getResultList());
+        }
+        return this.toJsonString(resultMap);
+    }
 }

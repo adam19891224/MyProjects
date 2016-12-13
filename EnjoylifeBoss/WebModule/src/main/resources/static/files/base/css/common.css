@@ -78,6 +78,7 @@
     float: left;
     line-height: 30px;
     margin-top: 10px;
+    text-align: center;
 }
 
 .left li a:hover{

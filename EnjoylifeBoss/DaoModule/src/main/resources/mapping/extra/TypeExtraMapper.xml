@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.boss.dao.types.mapper.TypeMapper" >
+
+    <resultMap id="TypesInfoMap" type="com.boss.dao.types.pojo.TypesInfo" extends="BaseResultMap" >
+        <association property="articleCounts" column="typeId" select="selectArticleCountsByTypeID"/>
+    </resultMap>
+
+    <select id="selectTypesByPage" resultMap="TypesInfoMap" parameterType="com.boss.foundation.view.Page">
+        SELECT
+            tt.TYPE_SID as typeSid,
+            tt.TYPE_ID as typeId,
+            tt.TYPE_NAME as typeName
+        FROM
+          tb_type tt
+
+        <if test="pagination != null and pagination == true">
+            limit #{pageNum}, #{pageSize}
+        </if>
+
+    </select>
+
+    <select id="selectTypesCountsByPage" resultType="java.lang.Integer" parameterType="com.boss.foundation.view.Page">
+        SELECT
+            COUNT(*)
+        FROM
+          tb_type tt
+    </select>
+
+    <select id="selectArticleCountsByTypeID" resultType="java.lang.Integer">
+        SELECT
+            COUNT(*)
+        FROM
+          tb_article_type tat
+        WHERE
+          tat.TYPE_ID = #{typeId}
+    </select>
+
+</mapper>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.boss.dao.types.mapper.TypeMapper" >
+  <resultMap id="BaseResultMap" type="com.boss.dao.types.pojo.Type" >
+    <id column="TYPE_SID" property="typeSid" jdbcType="INTEGER" />
+    <result column="TYPE_ID" property="typeId" jdbcType="VARCHAR" />
+    <result column="TYPE_NAME" property="typeName" jdbcType="VARCHAR" />
+    <result column="TYPE_PARENT_ID" property="typeParentId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    TYPE_SID, TYPE_ID, TYPE_NAME, TYPE_PARENT_ID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_type
+    where TYPE_SID = #{typeSid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_type
+    where TYPE_SID = #{typeSid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.boss.dao.types.pojo.Type" >
+    insert into tb_type (TYPE_SID, TYPE_ID, TYPE_NAME, 
+      TYPE_PARENT_ID)
+    values (#{typeSid,jdbcType=INTEGER}, #{typeId,jdbcType=VARCHAR}, #{typeName,jdbcType=VARCHAR}, 
+      #{typeParentId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.boss.dao.types.pojo.Type" >
+    insert into tb_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="typeSid != null" >
+        TYPE_SID,
+      </if>
+      <if test="typeId != null" >
+        TYPE_ID,
+      </if>
+      <if test="typeName != null" >
+        TYPE_NAME,
+      </if>
+      <if test="typeParentId != null" >
+        TYPE_PARENT_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="typeSid != null" >
+        #{typeSid,jdbcType=INTEGER},
+      </if>
+      <if test="typeId != null" >
+        #{typeId,jdbcType=VARCHAR},
+      </if>
+      <if test="typeName != null" >
+        #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="typeParentId != null" >
+        #{typeParentId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.boss.dao.types.pojo.Type" >
+    update tb_type
+    <set >
+      <if test="typeId != null" >
+        TYPE_ID = #{typeId,jdbcType=VARCHAR},
+      </if>
+      <if test="typeName != null" >
+        TYPE_NAME = #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="typeParentId != null" >
+        TYPE_PARENT_ID = #{typeParentId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where TYPE_SID = #{typeSid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.boss.dao.types.pojo.Type" >
+    update tb_type
+    set TYPE_ID = #{typeId,jdbcType=VARCHAR},
+      TYPE_NAME = #{typeName,jdbcType=VARCHAR},
+      TYPE_PARENT_ID = #{typeParentId,jdbcType=VARCHAR}
+    where TYPE_SID = #{typeSid,jdbcType=INTEGER}
+  </update>
+</mapper>
