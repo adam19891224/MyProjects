@@ -18,10 +18,61 @@
 <body>
 
 
-<div th:substituteby="/base/layout/top :: top"></div>
+<div class="top">
+    <div class="top-container">
+        <div class="top-left">
+            <a href="/blogs/refresh.html">
+                刷新搜索引擎
+            </a>
+        </div>
+        <div class="top-right">
+            <!--/*@thymesVar id="userSimpleName" type=""*/-->
+            <span>
+                欢迎你
+                <a href="#" th:text="${userSimpleName}"></a>
+            </span>
+            <span>
+                <a href="/logout.html">登出</a>
+            </span>
+        </div>
+    </div>
+</div>
 
 <main class="main-body">
-    <div th:substituteby="/base/layout/left :: left"></div>
+    <div class="left">
+        <ul>
+            <li>
+                <a href="/blogs/list.html">
+                    博客管理
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    专题管理
+                </a>
+            </li>
+            <li>
+                <a href="/types/list.html">
+                    类别管理
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    标签管理
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    评论管理
+                </a>
+            </li>
+            <li>
+                <a href="/index.html">
+                    返回
+                </a>
+            </li>
+        </ul>
+    </div>
 
     <div class="container">
         <section class="container-top">
@@ -60,7 +111,9 @@
     </div>
 </main>
 
-<footer th:substituteby="/base/layout/foot :: foot"></footer>
+<footer class="foot-div">
+    Copyright © 2015-2016, Adam, All Rights Reserved
+</footer>
 
 </body>
 <script src="/files/types/js/list.js"></script>

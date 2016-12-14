@@ -17,6 +17,7 @@
             <artifactId>DaoModule</artifactId>
             <version>${project.version}</version>
         </dependency>
+
     </dependencies>
 
 </project>

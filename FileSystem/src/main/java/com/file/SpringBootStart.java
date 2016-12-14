@@ -5,8 +5,6 @@ import org.springframework.beans.factory.DisposableBean;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
-import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
 import org.springframework.boot.context.embedded.MultipartConfigFactory;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
@@ -48,7 +46,7 @@ import javax.servlet.MultipartConfigElement;
  *
  */
 @SpringBootApplication//启用自动配置
-public class SpringBootStart extends SpringBootServletInitializer implements EmbeddedServletContainerCustomizer, DisposableBean {
+public class SpringBootStart extends SpringBootServletInitializer implements DisposableBean {
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
@@ -69,12 +67,6 @@ public class SpringBootStart extends SpringBootServletInitializer implements Emb
         factory.setMaxFileSize("10240KB");
         factory.setMaxRequestSize("12800KB");
         return factory.createMultipartConfig();
-    }
-
-    @Override
-    public void customize(ConfigurableEmbeddedServletContainer container) {
-
-        container.setPort(10086);
     }
 
     @Override
