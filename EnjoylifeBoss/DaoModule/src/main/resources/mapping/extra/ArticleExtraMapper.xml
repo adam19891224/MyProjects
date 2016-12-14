@@ -81,4 +81,50 @@
     WHERE
       tat.ARTICLE_ID = #{articleId}
   </select>
+
+
+  <resultMap id="articleTypeMap" type="com.boss.dao.blog.pojo.Article">
+    <id column="ARTICLE_SID" property="articleSid" jdbcType="INTEGER" />
+    <result column="ARTICLE_ID" property="articleId" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="ARTICLE_TITLE" property="articleTitle" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="selectArticlesByTypeID" resultMap="articleTypeMap" parameterType="java.lang.String">
+    SELECT
+      ta.ARTICLE_SID,
+      ta.ARTICLE_ID,
+      ta.CREATE_DATE,
+      ta.ARTICLE_TITLE
+    FROM
+      tb_article ta
+    INNER JOIN
+      tb_article_type tat ON ta.ARTICLE_ID = tat.ARTICLE_ID
+    WHERE
+      tat.TYPE_ID = #{id}
+    ORDER BY
+      ta.CREATE_DATE DESC
+
+  </select>
+
+
+  <select id="selectArticlesWithOutTypeID" resultMap="articleTypeMap" parameterType="java.lang.String">
+    SELECT
+      ta.ARTICLE_SID,
+      ta.ARTICLE_ID,
+      ta.CREATE_DATE,
+      ta.ARTICLE_TITLE
+    FROM
+      tb_article ta
+    LEFT JOIN
+      tb_article_type tat ON ta.ARTICLE_ID = tat.ARTICLE_ID
+    WHERE
+      tat.TYPE_ID IS NULL
+    GROUP BY
+	  ta.ARTICLE_SID
+    ORDER BY
+      ta.CREATE_DATE DESC
+  </select>
+
 </mapper>

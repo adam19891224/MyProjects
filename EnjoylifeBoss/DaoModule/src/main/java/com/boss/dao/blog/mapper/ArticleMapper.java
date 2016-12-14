@@ -30,4 +30,8 @@ public interface ArticleMapper {
     List<ArticleBossPJ> selectArticleByPage(Page<ArticleBossPJ> page);
 
     int selectArticleCountsByPage(Page<ArticleBossPJ> page);
+
+    List<Article> selectArticlesByTypeID(String id);
+
+    List<Article> selectArticlesWithOutTypeID(String id);
 }

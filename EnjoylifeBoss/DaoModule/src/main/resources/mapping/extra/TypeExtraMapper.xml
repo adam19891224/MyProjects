@@ -37,4 +37,21 @@
           tat.TYPE_ID = #{typeId}
     </select>
 
+    <select id="selectTypeById" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+          <include refid="Base_Column_List" />
+        from
+          tb_type
+        where
+          TYPE_ID = #{id}
+    </select>
+
+    <delete id="deleteArticleTypeByEntity" parameterType="com.boss.dao.types.pojo.ArticleType">
+        DELETE FROM
+          tb_article_type
+        WHERE
+          ARTICLE_ID = #{articleId}
+        AND
+          TYPE_ID = #{typeId}
+    </delete>
 </mapper>

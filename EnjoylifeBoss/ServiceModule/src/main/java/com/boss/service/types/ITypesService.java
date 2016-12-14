@@ -1,17 +1,15 @@
 package com.boss.service.types;
 
-import com.boss.dao.blog.pojo.Article;
+import com.boss.dao.types.pojo.ArticleType;
 import com.boss.dao.types.pojo.Type;
 import com.boss.dao.types.pojo.TypesInfo;
 import com.boss.foundation.view.Page;
-
-import java.util.List;
 
 /**
  * ranmin-zhouyuhong
  * 2016/12/13
  */
-public interface TypesService {
+public interface ITypesService {
 
     Page<TypesInfo> selectTypesByPage(Page<TypesInfo> page);
 
@@ -19,5 +17,9 @@ public interface TypesService {
 
     Type selectTypeBySid(Integer sid);
 
-    List<Article> selectArticlesByTypeID(String id);
+    Type selectTypeById(String id);
+
+    String addArticleByType(ArticleType type);
+
+    String removeArticleByType(ArticleType type);
 }

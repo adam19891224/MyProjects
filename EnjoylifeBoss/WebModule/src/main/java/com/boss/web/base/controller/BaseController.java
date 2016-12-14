@@ -10,6 +10,7 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -52,6 +53,16 @@ public abstract class BaseController {
             resultMap.put("totalCount", page.getTotalCounts());
             resultMap.put("totalPages", page.getTotalPages());
             resultMap.put("datas", page.getResultList());
+        }
+        return this.toJsonString(resultMap);
+    }
+
+    protected <T> String  castListToResultString(List<T> list){
+        Map<String, Object> resultMap = ConUtils.hashmap();
+        resultMap.put("code", "0");
+        if(ConUtils.isNotNull(list)){
+            resultMap.put("code", "1");
+            resultMap.put("datas", list);
         }
         return this.toJsonString(resultMap);
     }

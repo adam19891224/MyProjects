@@ -1,5 +1,6 @@
 package com.boss.dao.types.mapper;
 
+import com.boss.dao.types.pojo.ArticleType;
 import com.boss.dao.types.pojo.Type;
 import com.boss.dao.types.pojo.TypesInfo;
 import com.boss.foundation.view.Page;
@@ -22,4 +23,9 @@ public interface TypeMapper {
     List<TypesInfo> selectTypesByPage(Page<TypesInfo> page);
 
     int selectTypesCountsByPage(Page<TypesInfo> page);
+
+    Type selectTypeById(String id);
+
+    void deleteArticleTypeByEntity(ArticleType type);
+
 }

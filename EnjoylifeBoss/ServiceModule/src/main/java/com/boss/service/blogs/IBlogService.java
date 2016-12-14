@@ -1,9 +1,12 @@
 package com.boss.service.blogs;
 
+import com.boss.dao.blog.pojo.Article;
 import com.boss.dao.blog.pojo.ArticleBossPJ;
 import com.boss.foundation.entity.ArticleEntity;
 import com.boss.foundation.entity.EnjoyFile;
 import com.boss.foundation.view.Page;
+
+import java.util.List;
 
 /**
  * ranmin-zhouyuhong
@@ -18,4 +21,8 @@ public interface IBlogService {
     Page<ArticleBossPJ> selectArticleByPage(Page<ArticleBossPJ> page);
 
     boolean refresh();
+
+    List<Article> selectArticlesByTypeID(String id);
+
+    List<Article> selectArticlesWithOutTypeID(String id);
 }

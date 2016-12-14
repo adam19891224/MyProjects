@@ -88,7 +88,7 @@ $(function () {
         var type = obj.attr("type");
         var id = obj.parents("tr").attr("tid");
         if(type == "manager"){
-            window.location = "/types/manager.html?id=" + id;
+            window.open("/types/manager.html?id=" + id,'newwindow');
         }
     });
 });

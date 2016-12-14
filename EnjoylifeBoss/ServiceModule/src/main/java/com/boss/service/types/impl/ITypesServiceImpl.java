@@ -1,12 +1,14 @@
 package com.boss.service.types.impl;
 
-import com.boss.dao.blog.pojo.Article;
+import com.boss.dao.types.mapper.ArticleTypeMapper;
 import com.boss.dao.types.mapper.TypeMapper;
+import com.boss.dao.types.pojo.ArticleType;
 import com.boss.dao.types.pojo.Type;
 import com.boss.dao.types.pojo.TypesInfo;
 import com.boss.foundation.utils.ConUtils;
 import com.boss.foundation.view.Page;
-import com.boss.service.types.TypesService;
+import com.boss.service.base.AbstractService;
+import com.boss.service.types.ITypesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,10 +20,12 @@ import java.util.UUID;
  * 2016/12/13
  */
 @Service
-public class TypesServiceImpl implements TypesService {
+public class ITypesServiceImpl extends AbstractService implements ITypesService {
 
     @Autowired
     private TypeMapper typeMapper;
+    @Autowired
+    private ArticleTypeMapper articleTypeMapper;
 
     @Override
     public Page<TypesInfo> selectTypesByPage(Page<TypesInfo> page) {
@@ -51,7 +55,30 @@ public class TypesServiceImpl implements TypesService {
     }
 
     @Override
-    public List<Article> selectArticlesByTypeID(String id) {
-        return null;
+    public Type selectTypeById(String id) {
+        return typeMapper.selectTypeById(id);
     }
+
+    @Override
+    public String addArticleByType(ArticleType type) {
+        try {
+            articleTypeMapper.insertSelective(type);
+            return "success";
+        }catch (Exception e){
+            logger.error("保存关系发生错误", e);
+        }
+        return "error";
+    }
+
+    @Override
+    public String removeArticleByType(ArticleType type) {
+        try {
+            typeMapper.deleteArticleTypeByEntity(type);
+            return "success";
+        }catch (Exception e){
+            logger.error("保存关系发生错误", e);
+        }
+        return "error";
+    }
+
 }

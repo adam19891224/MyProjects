@@ -1,6 +1,7 @@
 package com.boss.service.blogs.impl;
 
 import com.boss.dao.blog.mapper.ArticleMapper;
+import com.boss.dao.blog.pojo.Article;
 import com.boss.dao.blog.pojo.ArticleBossPJ;
 import com.boss.dao.blog.pojo.ArticleWithBLOBs;
 import com.boss.foundation.entity.ArticleEntity;
@@ -228,5 +229,15 @@ public class BlogServiceImpl extends AbstractService implements IBlogService {
             }
         }
         return res;
+    }
+
+    @Override
+    public List<Article> selectArticlesByTypeID(String id) {
+        return articleMapper.selectArticlesByTypeID(id);
+    }
+
+    @Override
+    public List<Article> selectArticlesWithOutTypeID(String id) {
+        return articleMapper.selectArticlesWithOutTypeID(id);
     }
 }

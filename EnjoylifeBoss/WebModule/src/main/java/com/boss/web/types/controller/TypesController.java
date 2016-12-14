@@ -1,11 +1,13 @@
 package com.boss.web.types.controller;
 
 import com.boss.dao.blog.pojo.Article;
+import com.boss.dao.types.pojo.ArticleType;
 import com.boss.dao.types.pojo.Type;
 import com.boss.dao.types.pojo.TypesInfo;
 import com.boss.foundation.utils.StringUtils;
 import com.boss.foundation.view.Page;
-import com.boss.service.types.TypesService;
+import com.boss.service.blogs.IBlogService;
+import com.boss.service.types.ITypesService;
 import com.boss.web.base.controller.BaseController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -24,7 +26,10 @@ import java.util.List;
 public class TypesController extends BaseController{
 
     @Resource
-    private TypesService typesService;
+    private ITypesService typesService;
+    @Resource
+    private IBlogService blogService;
+
 
     @RequestMapping("/list.html")
     public String list(){
@@ -71,11 +76,44 @@ public class TypesController extends BaseController{
                 map.addAttribute("null", "null");
                 return "/error";
             }
-            String tid = type.getTypeId();
-            //根据typeid 查询现有的该类别下的所有文章
-            List<Article> articles = typesService.selectArticlesByTypeID(tid);
+            map.addAttribute("type", type);
+            if(StringUtils.isNotBlank(type.getTypeParentId())){
+                Type parentT = typesService.selectTypeById(type.getTypeParentId());
+                map.addAttribute("parent", parentT);
+            }
+            List<Article> list = blogService.selectArticlesByTypeID(type.getTypeId());
+            map.addAttribute("blogs", list);
         }
 
         return "types/manager";
+    }
+
+    @RequestMapping("/getArticles.html")
+    @ResponseBody
+    public String getArticles(String id){
+        List<Article> list = blogService.selectArticlesWithOutTypeID(id);
+        return super.castListToResultString(list);
+    }
+
+    @RequestMapping("/addArticle.html")
+    @ResponseBody
+    public String addArticle(ArticleType articleType){
+
+        if(StringUtils.isNotBlank(articleType.getArticleId())
+                && StringUtils.isNotBlank(articleType.getTypeId())){
+            return typesService.addArticleByType(articleType);
+        }
+        return "null";
+    }
+
+    @RequestMapping("/deleteArticle.html")
+    @ResponseBody
+    public String deleteArticle(ArticleType articleType){
+
+        if(StringUtils.isNotBlank(articleType.getArticleId())
+                && StringUtils.isNotBlank(articleType.getTypeId())){
+            return typesService.removeArticleByType(articleType);
+        }
+        return "null";
     }
 }
