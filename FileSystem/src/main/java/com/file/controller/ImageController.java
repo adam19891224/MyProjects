@@ -4,6 +4,7 @@ import com.file.entity.image.CutImageFile;
 import com.file.util.FileUploadUtils;
 import com.file.util.IPUtils;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,6 +23,9 @@ public class ImageController extends BaseController{
 
     private Logger logger = Logger.getLogger(this.getClass());
 
+    @Value("${image.save.path}")
+    private String savePath;
+
     @RequestMapping(value = "/upload.html", method = RequestMethod.POST)
     @ResponseBody
     public String upload(CutImageFile file, HttpServletRequest request){
@@ -33,7 +37,7 @@ public class ImageController extends BaseController{
 
         if(FileUploadUtils.checkFileIsAllow(file)){
             String path = FileUploadUtils.getSavePath(file);
-            String imagePath = request.getSession().getServletContext().getRealPath("/") + path;
+            String imagePath = savePath + path;
 
             FileUploadUtils.getFixedThreadPool().execute(() -> FileUploadUtils.upload(file, imagePath));
 

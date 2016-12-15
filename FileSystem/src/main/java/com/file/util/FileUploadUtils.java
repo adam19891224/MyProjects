@@ -2,12 +2,10 @@ package com.file.util;
 
 import com.file.entity.image.CutImageFile;
 import net.coobird.thumbnailator.Thumbnails;
-import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
@@ -52,41 +50,22 @@ public class FileUploadUtils {
 	}
 
 	private void copyFile(CutImageFile cutImageFile, File target){
-		InputStream is = null;
 		try {
-			is = cutImageFile.getFile().getInputStream();
-			FileUtils.copyInputStreamToFile(is, target);
+			Thumbnails.of(cutImageFile.getFile().getInputStream()).scale(0.5f).toFile(target);
 		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if(is != null)
-					is.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			logger.error("生成图片失败", e);
 		}
 	}
 
 	private void copyCutFile(CutImageFile cutImageFile, File target){
-		InputStream is = null;
-		try {
-			is = cutImageFile.getFile().getInputStream();
+		try{
 			int x = new BigDecimal(cutImageFile.getX()).intValue();
 			int y = new BigDecimal(cutImageFile.getY()).intValue();
 			int w = new BigDecimal(cutImageFile.getCutWidth()).intValue();
 			int h = new BigDecimal(cutImageFile.getCutHeight()).intValue();
-			Thumbnails.of(is).sourceRegion(x, y, w, h).size(SIZEX, SIZEY).toFile(target);
+			Thumbnails.of(cutImageFile.getFile().getInputStream()).sourceRegion(x, y, w, h).size(SIZEX, SIZEY).toFile(target);
 		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (is != null) {
-					is.close();
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			logger.error("裁剪图片失败", e);
 		}
 	}
 
@@ -99,7 +78,7 @@ public class FileUploadUtils {
 		//获取图片后缀
 		String tempFileName = cutImageFile.getFile().getOriginalFilename();
 		String postfix = tempFileName.substring(tempFileName.lastIndexOf("."), tempFileName.length()).toLowerCase();
-		return fileName + "." + postfix;
+		return fileName + postfix;
 	}
 
 	/**
@@ -107,7 +86,7 @@ public class FileUploadUtils {
 	 */
 	public static String getSavePath(CutImageFile cutImageFile){
 		//生成根目录
-		StringBuilder dir = new StringBuilder("getMyShowTarg");
+		StringBuilder dir = new StringBuilder("/articleImages");
 		dir.append(File.separator);
 		//得到当前时间, 然后根据年月来创建图片文件夹
 		LocalDate nowTime = LocalDate.now();

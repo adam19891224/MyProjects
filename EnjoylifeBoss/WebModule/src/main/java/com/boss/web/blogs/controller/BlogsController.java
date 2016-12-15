@@ -8,6 +8,7 @@ import com.boss.foundation.entity.UserInfo;
 import com.boss.foundation.view.Page;
 import com.boss.service.blogs.IBlogService;
 import com.boss.web.base.controller.BaseController;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,7 +31,8 @@ public class BlogsController extends BaseController {
     @Resource
     private IBlogService blogService;
 
-    private static final String URL = "http://localhost:10086/";
+    @Value("${image.return}")
+    private String host;
 
     @RequestMapping("/list.html")
     public String list(ModelMap map, Page<ArticleBossPJ> page){
@@ -103,7 +105,7 @@ public class BlogsController extends BaseController {
                         "window.parent.CKEDITOR.tools.callFunction(" + CKEditorFuncNum + ",''," + "'文件没有内容');" +
                         "</script>";
             }else{
-                res = (URL + reponse).replaceAll("\\\\", "/");
+                res = (host + reponse).replaceAll("\\\\", "/");
                 res = "<script type=\"text/javascript\">" +
                         "window.parent.CKEDITOR.tools.callFunction(" + CKEditorFuncNum + ",'" + res + "','')" +
                         "</script>";
