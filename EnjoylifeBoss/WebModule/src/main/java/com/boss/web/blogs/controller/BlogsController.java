@@ -32,7 +32,7 @@ public class BlogsController extends BaseController {
     private IBlogService blogService;
 
     @Value("${image.return}")
-    private String host;
+    private String returnStr;
 
     @RequestMapping("/list.html")
     public String list(ModelMap map, Page<ArticleBossPJ> page){
@@ -105,7 +105,7 @@ public class BlogsController extends BaseController {
                         "window.parent.CKEDITOR.tools.callFunction(" + CKEditorFuncNum + ",''," + "'文件没有内容');" +
                         "</script>";
             }else{
-                res = (host + reponse).replaceAll("\\\\", "/");
+                res = (returnStr + reponse).replaceAll("\\\\", "/");
                 res = "<script type=\"text/javascript\">" +
                         "window.parent.CKEDITOR.tools.callFunction(" + CKEditorFuncNum + ",'" + res + "','')" +
                         "</script>";
