@@ -53,6 +53,8 @@ public class BlogServiceImpl extends AbstractService implements IBlogService {
     private String host;
     @Value("${image.url}")
     private String url;
+    @Value("${image.return}")
+    private String returnStr;
 
     @Autowired
     private ArticleMapper articleMapper;
@@ -107,7 +109,7 @@ public class BlogServiceImpl extends AbstractService implements IBlogService {
         String uuid = UUID.randomUUID().toString();
         articleWithBLOBs.setArticleId(uuid);
         articleWithBLOBs.setArticleTitle(entity.getArticleTitle());
-        articleWithBLOBs.setArticleImg(host + entity.getArticleImg());
+        articleWithBLOBs.setArticleImg(returnStr + entity.getArticleImg());
         articleWithBLOBs.setArticleDescription(entity.getArticleDescription());
         articleWithBLOBs.setArticleBody(entity.getArticleBody());
 

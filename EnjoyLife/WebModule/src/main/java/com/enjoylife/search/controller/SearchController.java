@@ -46,7 +46,7 @@ public class SearchController extends BaseController {
         super.getTotalTypesToMap(map);
         super.getTotalArticlesToMap(map);
 
-        return "search/index";
+        return "category/index";
     }
 
     /**
