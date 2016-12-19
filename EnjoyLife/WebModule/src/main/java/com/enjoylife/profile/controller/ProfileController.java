@@ -11,10 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * 2016/11/28
  */
 @Controller
-@RequestMapping("/profile")
 public class ProfileController extends BaseController{
 
-    @RequestMapping("/")
+    @RequestMapping("/profile")
     public String profile(ModelMap map){
 
         map.addAttribute("isProfile", YesNoTypeEnum.Yes.getCode());

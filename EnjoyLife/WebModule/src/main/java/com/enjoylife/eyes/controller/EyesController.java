@@ -16,14 +16,13 @@ import java.util.List;
  * 2016/7/29
  */
 @Controller
-@RequestMapping("/eyes")
 public class EyesController extends BaseController {
 
     /**
      * 进入一览页面
      * @return
      */
-    @RequestMapping("/")
+    @RequestMapping("/eyes")
     public String index(Page<NewArticle> page, ModelMap map){
 
         map.addAttribute("isEyes", YesNoTypeEnum.Yes.getCode());

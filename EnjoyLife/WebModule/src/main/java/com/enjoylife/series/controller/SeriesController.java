@@ -19,7 +19,6 @@ import java.util.List;
  * Date: 2016/6/29
  */
 @Controller
-@RequestMapping("/series")
 public class SeriesController extends BaseController {
 
     @Resource
@@ -35,7 +34,7 @@ public class SeriesController extends BaseController {
      * @param map
      * @return
      */
-    @RequestMapping("/")
+    @RequestMapping("/series")
     public String index(ModelMap map){
 
         map.addAttribute("isSeries", YesNoTypeEnum.Yes.getCode());

@@ -1,7 +1,7 @@
 <header id="header" class="header-main">
     <div class="header-inner">
         <div class="header-left">
-            <a href="/index/">
+            <a href="/index">
                 <img src="/base/images/logo.png">
             </a>
             <h2>月下竹影</h2>
@@ -13,7 +13,7 @@
         <div class="header-nav">
             <ul>
                 <li [#if isIndex?? && isIndex == "Y"]class="header-underline"[/#if]>
-                    <a href="/index/">
+                    <a href="/index">
                         首页
                     </a>
                 </li>
@@ -23,17 +23,17 @@
                     </a>
                 </li>
                 <li [#if isSeries?? && isSeries == "Y"]class="header-underline"[/#if]>
-                    <a href="/series/">
+                    <a href="/series">
                         专题
                     </a>
                 </li>
                 <li [#if isEyes?? && isEyes == "Y"]class="header-underline"[/#if]>
-                    <a href="/eyes/">
+                    <a href="/eyes">
                         一览
                     </a>
                 </li>
                 <li [#if isProfile?? && isProfile == "Y"]class="header-underline"[/#if]>
-                    <a href="/profile/">
+                    <a href="/profile">
                         关于
                     </a>
                 </li>
