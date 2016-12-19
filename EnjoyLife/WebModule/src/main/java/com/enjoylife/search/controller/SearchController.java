@@ -27,8 +27,8 @@ public class SearchController extends BaseController {
     /**
      * 进入分类一览页
      */
-    @RequestMapping("/category/{name}/{num}")
-    public String category(ModelMap map, @PathVariable String name, @PathVariable Integer num){
+    @RequestMapping("/genre/{name}/{num}")
+    public String genre(ModelMap map, @PathVariable String name, @PathVariable Integer num){
 
         map.addAttribute("isEyes", YesNoTypeEnum.Yes.getCode());
 

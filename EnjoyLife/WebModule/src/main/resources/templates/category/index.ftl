@@ -16,6 +16,7 @@
     <script src="/base/js/jquery-2.2.3.min.js"></script>
     <script src="/base/js/app.js"></script>
     <script src="/base/js/tar-cloud.min.js"></script>
+    <script src="/base/js/blazy.min.js"></script>
     <script src="/base/js/page.js"></script>
 </head>
 <body>
@@ -30,14 +31,27 @@
         [#if result?? && result?size > 0]
             [#list result as info]
                 <div class="info-container">
-                    <h2>
-                        <a href="/blogs/${info.articleSid}">
-                        ${info.articleTitle?default("")}
-                        </a>
-                    </h2>
-                    <section>
-                        <span class="info-date">${info.createDate?default("")?string("yyyy-MM-dd")}</span> - ${info.articleDescription?default("")}
-                    </section>
+                    <div class="container-left">
+                        <img src="/base/images/image-loading.gif" class="b-lazy" data-src="${info.articleImg}" alt="${info.articleTitle}" />
+                    </div>
+                    <div class="container-right">
+                        <div class="right-title">
+                            <a href="/blogs/${info.articleSid}.html">
+                                ${info.articleTitle?default("")}
+                            </a>
+                        </div>
+                        <div class="right-desc">
+                            ${info.articleDescription}
+                        </div>
+                        <div class="right-tag">
+                            <span>
+                                <i class="show"></i> <em class="show-text">个人博客</em>
+                            </span>
+                            <span>
+                                <i class="time"></i> <em class="time-text">${info.createDate?default("")?string("yyyy-MM-dd")}</em>
+                            </span>
+                        </div>
+                    </div>
                 </div>
             [/#list]
         [#else]

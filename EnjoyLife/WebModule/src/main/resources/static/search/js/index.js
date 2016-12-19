@@ -10,6 +10,7 @@ $(function () {
         current: applications.castStr2Num($("#page-div").attr("data-current")),
         backFn: function(page){
             if(isClick){
+                isClick = false;
                 var location = window.location.href;
                 if(page > 0){
                     if(applications.checkIsNum(page)){
