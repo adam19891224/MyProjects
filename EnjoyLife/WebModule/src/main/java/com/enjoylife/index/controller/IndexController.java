@@ -38,6 +38,16 @@ public class IndexController extends BaseController {
         return "index/index";
     }
 
+    @RequestMapping("")
+    public String indexNull(){
+        return this.indexHtml();
+    }
+
+    @RequestMapping("/")
+    public String indexAlgin(){
+        return this.indexHtml();
+    }
+
     @RequestMapping("/index.html")
     public String indexHtml(){
         return "redirect:/index";
