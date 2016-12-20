@@ -1,6 +1,7 @@
 package com.boss.web.blogs.controller;
 
 import com.boss.dao.blog.pojo.ArticleBossPJ;
+import com.boss.dao.blog.pojo.ArticleWithBLOBs;
 import com.boss.foundation.entity.ArticleEntity;
 import com.boss.foundation.entity.EnjoyFile;
 import com.boss.foundation.entity.TagInfo;
@@ -129,6 +130,31 @@ public class BlogsController extends BaseController {
         enjoyFile.setTag(info);
         enjoyFile.setFile(file);
         return blogService.toUploadFile(enjoyFile);
+    }
+
+    @RequestMapping("/update.html")
+    public String update(Integer id, ModelMap map){
+        ArticleWithBLOBs article = blogService.selectArticleByPrimaryKey(id);
+        if(article == null){
+            return "redirect:/error";
+        }
+        map.addAttribute("article", article);
+
+        return "blogs/update";
+    }
+
+    @RequestMapping("/updateSave.html")
+    @ResponseBody
+    public String updateSave(ArticleWithBLOBs entity){
+
+        return blogService.updateBlog(entity);
+    }
+
+    @RequestMapping("/delete.html")
+    @ResponseBody
+    public String updateSave(Integer sid){
+
+        return blogService.deleteBlog(sid);
     }
 
     @RequestMapping("/refresh.html")

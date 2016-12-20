@@ -88,9 +88,9 @@ function castList2Tds(list) {
                             new Date(temp.createDate).Format("yyyy-MM-dd") +
                     "</td>" +
                     "<td>" +
-                        "<span>修改</span>" +
-                        "<span>打标签</span>" +
-                        "<span>删除</span>" +
+                        "<span class='update'>修改</span>" +
+                        "<span class='tags'>打标签</span>" +
+                        "<span class='remove'>删除</span>" +
                     "</td>" +
                 "</tr>";
     }
@@ -105,4 +105,35 @@ function createParam(page) {
 
 $(function () {
    loadDatas(1, true);
+
+    $("#data-table").on("click", ".update", function () {
+        var sid = $(this).parents("tr").attr("sid");
+        window.open("/blogs/update.html?id=" + sid, "updateWindow");
+    });
+
+    $("#data-table").on("click", ".tags", function () {
+        var sid = $(this).parents("tr").attr("sid");
+        window.open("/blogs/update.html?id=" + sid, "updateWindow");
+    });
+
+    $("#data-table").on("click", ".remove", function () {
+        var sid = $(this).parents("tr").attr("sid");
+
+        $.ajax({
+            url: "/blogs/delete.html",
+            data: {
+                "sid": sid
+            },
+            type: "post",
+            success: function (res) {
+                if(res == "null"){
+                    alert("没有找到文章信息");
+                }
+                if(res == "success"){
+                    alert("删除成功");
+                }
+                window.location = location;
+            }
+        })
+    });
 });

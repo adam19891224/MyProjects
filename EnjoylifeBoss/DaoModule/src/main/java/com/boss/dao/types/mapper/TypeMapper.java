@@ -28,4 +28,5 @@ public interface TypeMapper {
 
     void deleteArticleTypeByEntity(ArticleType type);
 
+    void deleteTypesByArticleId(String id);
 }

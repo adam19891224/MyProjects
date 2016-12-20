@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.boss.dao.tags.mapper.TagsMapper" >
+
+    <delete id="deleteTagsByArticleId" parameterType="java.lang.String">
+        DELETE
+            tb_article_tags
+        FROM
+            tb_article_tags
+        INNER JOIN
+            tb_tags
+        ON
+            tb_article_tags.TAG_ID = tb_tags.TAG_ID
+        WHERE
+            tb_article_tags.ARTICLE_ID = #{id}
+    </delete>
+
+</mapper>

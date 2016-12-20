@@ -2,6 +2,7 @@ package com.boss.service.blogs;
 
 import com.boss.dao.blog.pojo.Article;
 import com.boss.dao.blog.pojo.ArticleBossPJ;
+import com.boss.dao.blog.pojo.ArticleWithBLOBs;
 import com.boss.foundation.entity.ArticleEntity;
 import com.boss.foundation.entity.EnjoyFile;
 import com.boss.foundation.view.Page;
@@ -18,6 +19,10 @@ public interface IBlogService {
 
     String saveBlog(ArticleEntity entity);
 
+    String updateBlog(ArticleWithBLOBs entity);
+
+    String deleteBlog(Integer sid);
+
     Page<ArticleBossPJ> selectArticleByPage(Page<ArticleBossPJ> page);
 
     boolean refresh();
@@ -25,4 +30,6 @@ public interface IBlogService {
     List<Article> selectArticlesByTypeID(String id);
 
     List<Article> selectArticlesWithOutTypeID(String id);
+
+    ArticleWithBLOBs selectArticleByPrimaryKey(Integer key);
 }

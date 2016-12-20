@@ -37,7 +37,7 @@ $(function () {
 
     $("#submit-blog-button").click(function () {
         var title = $("#getTitle").val();
-        var url = $(this).data("tagUrl");
+        var url = $("#uploadTagFile").data("tagUrl");
         var content = editor.getData();
         var desc = $("#getDescr").val();
         if(title == "" || title == null || title.length < 1){
@@ -73,7 +73,53 @@ $(function () {
                     alert(res);
                 }
             }
-        })
+        });
+    });
+
+    $("#submit-blog-button-update").click(function () {
+        var title = $("#getTitle").val();
+        var isUpdate = $("#uploadTagFile").attr("isupdate");
+        var url = $("#uploadTagFile").data("tagUrl");
+        var content = editor.getData();
+        var desc = $("#getDescr").val();
+        var sid = $("#container-article").attr("sid");
+        if(title == "" || title == null || title.length < 1){
+            alert("请编辑标题");
+            return false;
+        }
+        if(content == "" || content == null || content.length < 1){
+            alert("请编辑内容");
+            return false;
+        }
+        if(isUpdate == "1"){
+            if(url == "" || url == null || url.length < 1){
+                alert("请上传配图");
+                return false;
+            }
+        }
+        if(desc == "" || desc == null || desc.length < 1){
+            alert("请填写描述");
+            return false;
+        }
+        var obj = {};
+        obj.articleSid = sid;
+        obj.articleTitle = title;
+        obj.articleBody = content;
+        obj.articleImg = url;
+        obj.articleDescription = desc;
+        $.ajax({
+            url: "/blogs/updateSave.html",
+            type: "post",
+            data: obj,
+            success: function (res) {
+                if(res == "success"){
+                    alert("提交成功");
+                    window.location = location;
+                }else{
+                    alert(res);
+                }
+            }
+        });
     });
 });
 
@@ -165,7 +211,8 @@ function uploadComplete(evt) {
     }
     alert("上传完毕");
     $('#process-bar').css('width', 0);
-    $("#submit-blog-button").data("tagUrl", res);
+    $("#uploadTagFile").data("tagUrl", res);
+    $("#uploadTagFile").attr("isupdate", "1");
 }
 //失败事件
 function uploadFailed(evt) {

@@ -68,7 +68,11 @@
     </bean>
 
 	<!--开启拦截器handler-->
-	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />
+	<bean name='handlerMapping' class='org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping' >
+		<property name="useSuffixPatternMatch" value="false" />
+		<property name="useTrailingSlashMatch" value="true" />
+	</bean>
+
 	<!-- 注册拦截器 -->
 	<mvc:interceptors>
 		<!-- 配置Token拦截器，防止用户重复提交数据 -->

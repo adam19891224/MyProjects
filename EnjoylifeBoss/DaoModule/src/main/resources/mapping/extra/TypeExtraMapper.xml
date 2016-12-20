@@ -54,4 +54,18 @@
         AND
           TYPE_ID = #{typeId}
     </delete>
+
+    <delete id="deleteTypesByArticleId" parameterType="java.lang.String">
+        DELETE
+            tb_article_type
+        FROM
+            tb_article_type
+        INNER JOIN
+            tb_type
+        ON
+            tb_article_type.TYPE_ID = tb_type.TYPE_ID
+        WHERE
+            tb_article_type.ARTICLE_ID = #{id}
+    </delete>
+
 </mapper>

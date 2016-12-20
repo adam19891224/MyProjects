@@ -4,6 +4,10 @@ import com.boss.dao.blog.mapper.ArticleMapper;
 import com.boss.dao.blog.pojo.Article;
 import com.boss.dao.blog.pojo.ArticleBossPJ;
 import com.boss.dao.blog.pojo.ArticleWithBLOBs;
+import com.boss.dao.comment.mapper.CommentMapper;
+import com.boss.dao.series.mapper.SeriesMapper;
+import com.boss.dao.tags.mapper.TagsMapper;
+import com.boss.dao.types.mapper.TypeMapper;
 import com.boss.foundation.entity.ArticleEntity;
 import com.boss.foundation.entity.EnjoyFile;
 import com.boss.foundation.entity.TagInfo;
@@ -27,6 +31,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -60,6 +65,14 @@ public class BlogServiceImpl extends AbstractService implements IBlogService {
     private ArticleMapper articleMapper;
     @Autowired
     private IBlogRepository blogRepository;
+    @Autowired
+    private CommentMapper commentMapper;
+    @Autowired
+    private TypeMapper typeMapper;
+    @Autowired
+    private TagsMapper tagsMapper;
+    @Autowired
+    private SeriesMapper seriesMapper;
 
     private static final String key = "zhouyuhong19891224";
 
@@ -122,6 +135,47 @@ public class BlogServiceImpl extends AbstractService implements IBlogService {
     }
 
     @Override
+    public String updateBlog(ArticleWithBLOBs entity) {
+
+        if(StringUtils.isNotBlank(entity.getArticleImg())){
+            entity.setArticleImg(returnStr + entity.getArticleImg());
+        }
+        articleMapper.updateByPrimaryKeySelective(entity);
+        ArticleWithBLOBs temp = articleMapper.selectByPrimaryKey(entity.getArticleSid());
+
+        ArticleESEntity esEntity = new ArticleESEntity();
+        BeanUtils.copyProperties(temp, esEntity);
+        blogRepository.save(esEntity);
+
+        return "success";
+    }
+
+    @Override
+    @Transactional
+    public String deleteBlog(Integer sid) {
+        ArticleWithBLOBs article = articleMapper.selectByPrimaryKey(sid);
+        if(article == null){
+            return "null";
+        }
+        //删除该文章的所有评论
+        commentMapper.deleteCommentsByArticleId(article.getArticleId());
+        //删除该文章的所有类型
+        typeMapper.deleteTypesByArticleId(article.getArticleId());
+        //删除该文章的所有标签
+        tagsMapper.deleteTagsByArticleId(article.getArticleId());
+        //删除该文章的系列所属
+        seriesMapper.deleteSeriesByArticleId(article.getArticleId());
+        //删除文章主题
+        articleMapper.deleteByPrimaryKey(article.getArticleSid());
+        //删除es库的文章记录
+        ArticleESEntity esEntity = new ArticleESEntity();
+        BeanUtils.copyProperties(article, esEntity);
+        blogRepository.delete(esEntity);
+
+        return "success";
+    }
+
+    @Override
     public Page<ArticleBossPJ> selectArticleByPage(Page<ArticleBossPJ> page) {
 
         List<ArticleBossPJ> list = articleMapper.selectArticleByPage(page);
@@ -141,6 +195,7 @@ public class BlogServiceImpl extends AbstractService implements IBlogService {
         List<ArticleESEntity> list = articleMapper.selectAllForRefresh();
         if(ConUtils.isNotNull(list)){
             try {
+                blogRepository.deleteAll();
                 blogRepository.save(list);
                 return true;
             }catch (Exception e){
@@ -241,5 +296,10 @@ public class BlogServiceImpl extends AbstractService implements IBlogService {
     @Override
     public List<Article> selectArticlesWithOutTypeID(String id) {
         return articleMapper.selectArticlesWithOutTypeID(id);
+    }
+
+    @Override
+    public ArticleWithBLOBs selectArticleByPrimaryKey(Integer key) {
+        return articleMapper.selectByPrimaryKey(key);
     }
 }
