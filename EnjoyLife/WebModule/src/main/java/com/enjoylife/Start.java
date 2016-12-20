@@ -2,10 +2,8 @@ package com.enjoylife;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
-import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 /**
  * Created by IntelliJ IDEA
@@ -13,12 +11,7 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
  * Date: 2016/1/13
  */
 @SpringBootApplication//启用自动配置
-public class Start extends SpringBootServletInitializer implements EmbeddedServletContainerCustomizer {
-
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-        return builder.sources(Start.class);
-    }
+public class Start implements EmbeddedServletContainerCustomizer {
 
     public static void main(String[] args) {
         //spring boot 启动方式，调用核心类springapplication的run方法即可

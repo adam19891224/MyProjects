@@ -21,7 +21,7 @@ public class IndexController extends BaseController {
      * 首页方法
      * @param map
      */
-    @RequestMapping({"/", "/index", "/index.html", "/index.htm"})
+    @RequestMapping({"/", "/index"})
     public String index(ModelMap map, Page<NewArticle> page){
 
         page = blogsService.selectArticlesByPage(page);
