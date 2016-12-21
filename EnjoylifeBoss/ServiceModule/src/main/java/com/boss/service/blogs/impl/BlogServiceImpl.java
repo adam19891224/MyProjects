@@ -135,6 +135,7 @@ public class BlogServiceImpl extends AbstractService implements IBlogService {
     }
 
     @Override
+    @Transactional
     public String updateBlog(ArticleWithBLOBs entity) {
 
         if(StringUtils.isNotBlank(entity.getArticleImg())){

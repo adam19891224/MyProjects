@@ -10,10 +10,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     <link href="/files/base/images/ico.ico" rel="shortcut icon" type="image/x-icon" />
-    <link href="/files/blogs/css/list.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/files/tags/css/list.css" rel="stylesheet" type="text/css" media="all" />
     <script src="/files/base/js/jquery-2.2.3.min.js"></script>
     <script src="/files/base/js/app.js"></script>
-    <script src="/files/base/js/blazy.min.js"></script>
     <script src="/files/base/js/page.js"></script>
 </head>
 <body>
@@ -79,7 +78,7 @@
         <section class="container-top">
             <ul class="container-top-ul">
                 <li>
-                    <a href="/blogs/index.html" target="new-window">写博客</a>
+                    <a href="/tags/index.html" target="new-window">新增标签</a>
                 </li>
                 <li>
 
@@ -98,15 +97,14 @@
         <table class="container-table">
             <tr class="table-title">
                 <td>主键</td>
-                <td>标题</td>
-                <td>描述</td>
-                <td>图标</td>
-                <td>分类</td>
-                <td>时间</td>
+                <td>标签名称</td>
+                <td>博文数</td>
                 <td>操作</td>
             </tr>
         </table>
-        <table id="data-table" class="container-table"></table>
+        <table id="data-table" class="container-table">
+
+        </table>
         <div class="page-container">
             <div id="page-div" class="page-div" data-pages="${totalPages}" data-current="${page}"></div>
         </div>
@@ -118,5 +116,5 @@
 </footer>
 
 </body>
-<script src="/files/blogs/js/list.js"></script>
+<script src="/files/tags/js/list.js"></script>
 </html>

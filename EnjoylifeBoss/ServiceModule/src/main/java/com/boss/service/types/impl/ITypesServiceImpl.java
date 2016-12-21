@@ -11,6 +11,7 @@ import com.boss.service.base.AbstractService;
 import com.boss.service.types.ITypesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
@@ -78,6 +79,21 @@ public class ITypesServiceImpl extends AbstractService implements ITypesService 
         }catch (Exception e){
             logger.error("保存关系发生错误", e);
         }
+        return "error";
+    }
+
+    @Override
+    @Transactional
+    public String deleteTypesSafeBySid(Integer id) {
+
+        try {
+            typeMapper.deleteTypeBySid(id);
+            typeMapper.deleteByPrimaryKey(id);
+            return "success";
+        }catch (Exception e){
+            logger.error("保存关系发生错误", e);
+        }
+
         return "error";
     }
 

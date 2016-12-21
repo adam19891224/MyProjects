@@ -1,0 +1,43 @@
+@import "../../base/css/base.css";
+@import "../../base/css/common.css";
+
+.container{
+    width: 1200px;
+    margin: 0 auto;
+    padding: 30px;
+    box-sizing: border-box;
+    list-style-type: none;
+    overflow: hidden;
+}
+
+.container li{
+    width: 100%;
+    float: left;
+    margin-top: 10px;
+    padding: 5px;
+    box-sizing: border-box;
+    line-height: 40px;
+}
+
+.container li span{
+    width: 20%;
+    display: inline-block;
+    height: 100%;
+    margin-left: 20px;
+}
+
+.container li input{
+    width: 200px;
+    height: 25px;
+}
+
+.submit-button{
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    display: inline-block;
+    text-align: center;
+    border: 2px solid #2e9ad0;
+    float: right;
+    margin-right: 100px;
+}

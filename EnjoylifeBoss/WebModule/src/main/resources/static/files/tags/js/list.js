@@ -11,7 +11,7 @@ function getDatas(page, isCreate) {
     table.empty();
     table.append(loaddiv);
     $.ajax({
-        url: "/types/datas.html",
+        url: "/tags/datas.html",
         type: "post",
         data: param,
         success: function (data) {
@@ -57,16 +57,15 @@ function castList2Tds(list) {
     var temp;
     for(var a = 0, b = list.length; a < b; a++){
         temp = list[a];
-        tds += "<tr class=\"table-datas\" tid=\"" + temp.typeSid + "\">" +
-                "<td>" + temp.typeSid + "</td>" +
-                "<td title=\"" + temp.typeName + "\">" +
-                    temp.typeName +
+        tds += "<tr class=\"table-datas\" tid=\"" + temp.tagSid + "\">" +
+                "<td>" + temp.tagSid + "</td>" +
+                "<td title=\"" + temp.tagName + "\">" +
+                    temp.tagName +
                 "</td>" +
                 "<td>" +
                     temp.articleCounts +
                 "</td>" +
                 "<td>" +
-                    "<span type='manager'>管理</span>" +
                     "<span type='delete'>删除</span>" +
                 "</td>" +
             "</tr>";
@@ -87,12 +86,9 @@ $(function () {
         var obj = $(this);
         var type = obj.attr("type");
         var id = obj.parents("tr").attr("tid");
-        if(type == "manager"){
-            window.open("/types/manager.html?id=" + id,'newwindow');
-        }
         if(type == "delete"){
             $.ajax({
-                url: "/types/delete.html",
+                url: "/tags/delete.html",
                 data: {
                     "id": id
                 },

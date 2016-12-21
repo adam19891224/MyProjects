@@ -3,14 +3,13 @@
 <mapper namespace="com.boss.dao.types.mapper.TypeMapper" >
 
     <resultMap id="TypesInfoMap" type="com.boss.dao.types.pojo.TypesInfo" extends="BaseResultMap" >
-        <association property="articleCounts" column="typeId" select="selectArticleCountsByTypeID"/>
+        <association property="articleCounts" column="TYPE_ID" select="selectArticleCountsByTypeID"/>
     </resultMap>
 
     <select id="selectTypesByPage" resultMap="TypesInfoMap" parameterType="com.boss.foundation.view.Page">
         SELECT
             tt.TYPE_SID,
             tt.TYPE_ID,
-            tt.TYPE_ID as typeId,
             tt.TYPE_NAME
         FROM
           tb_type tt
@@ -34,7 +33,7 @@
         FROM
           tb_article_type tat
         WHERE
-          tat.TYPE_ID = #{typeId}
+          tat.TYPE_ID = #{TYPE_ID}
     </select>
 
     <select id="selectTypeById" resultMap="BaseResultMap" parameterType="java.lang.String" >
@@ -66,6 +65,20 @@
             tb_article_type.TYPE_ID = tb_type.TYPE_ID
         WHERE
             tb_article_type.ARTICLE_ID = #{id}
+    </delete>
+
+    <delete id="deleteTypeBySid" parameterType="java.lang.Integer">
+        DELETE
+            tb_type,
+            tb_article_type
+        FROM
+            tb_type
+        INNER JOIN
+            tb_article_type
+        ON
+            tb_type.TYPE_ID = tb_article_type.TYPE_ID
+        WHERE
+            tb_type.TYPE_SID = #{id}
     </delete>
 
 </mapper>

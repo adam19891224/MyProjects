@@ -88,6 +88,12 @@ public class TypesController extends BaseController{
         return "types/manager";
     }
 
+    @RequestMapping("/delete.html")
+    @ResponseBody
+    public String delete(Integer id){
+        return typesService.deleteTypesSafeBySid(id);
+    }
+
     @RequestMapping("/getArticles.html")
     @ResponseBody
     public String getArticles(String id){
