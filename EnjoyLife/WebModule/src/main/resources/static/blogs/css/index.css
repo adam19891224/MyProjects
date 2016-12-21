@@ -98,6 +98,18 @@
     cursor: default;
 }
 
+.article-body img{
+    max-width: 100%;
+}
+
+.article-body blockquote{
+    white-space: normal;
+    word-break: break-all;
+    background-color: #DCDCDC;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
 .article-line{
     width: 100%;
     height: 2px;

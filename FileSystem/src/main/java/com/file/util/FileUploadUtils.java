@@ -2,6 +2,7 @@ package com.file.util;
 
 import com.file.entity.image.CutImageFile;
 import net.coobird.thumbnailator.Thumbnails;
+import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 
 import java.io.File;
@@ -51,7 +52,10 @@ public class FileUploadUtils {
 
 	private void copyFile(CutImageFile cutImageFile, File target){
 		try {
-			Thumbnails.of(cutImageFile.getFile().getInputStream()).scale(0.5f).toFile(target);
+			logger.info("开始创建图片");
+//			Thumbnails.of(cutImageFile.getFile().getInputStream()).toFile(target);
+			FileUtils.copyInputStreamToFile(cutImageFile.getFile().getInputStream(), target);
+			logger.info("图片创建完毕");
 		} catch (IOException e) {
 			logger.error("生成图片失败", e);
 		}
@@ -59,11 +63,13 @@ public class FileUploadUtils {
 
 	private void copyCutFile(CutImageFile cutImageFile, File target){
 		try{
+			logger.info("开始裁剪图片");
 			int x = new BigDecimal(cutImageFile.getX()).intValue();
 			int y = new BigDecimal(cutImageFile.getY()).intValue();
 			int w = new BigDecimal(cutImageFile.getCutWidth()).intValue();
 			int h = new BigDecimal(cutImageFile.getCutHeight()).intValue();
 			Thumbnails.of(cutImageFile.getFile().getInputStream()).sourceRegion(x, y, w, h).size(SIZEX, SIZEY).toFile(target);
+			logger.info("图片裁剪完毕");
 		} catch (IOException e) {
 			logger.error("裁剪图片失败", e);
 		}

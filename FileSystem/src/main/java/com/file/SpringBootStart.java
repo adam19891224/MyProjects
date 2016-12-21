@@ -4,8 +4,6 @@ import com.file.util.FileUploadUtils;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
 
@@ -46,12 +44,7 @@ import javax.servlet.MultipartConfigElement;
  *
  */
 @SpringBootApplication//启用自动配置
-public class SpringBootStart extends SpringBootServletInitializer implements DisposableBean {
-
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-        return builder.sources(SpringBootStart.class);
-    }
+public class SpringBootStart implements DisposableBean {
 
     public static void main(String[] args) {
         //spring boot 启动方式，调用核心类springapplication的run方法即可
@@ -64,14 +57,13 @@ public class SpringBootStart extends SpringBootServletInitializer implements Dis
     @Bean
     public MultipartConfigElement multipartConfigElement() {
         MultipartConfigFactory factory = new MultipartConfigFactory();
-        factory.setMaxFileSize("10240KB");
-        factory.setMaxRequestSize("12800KB");
+        factory.setMaxFileSize("1024KB");
+        factory.setMaxRequestSize("1024KB");
         return factory.createMultipartConfig();
     }
 
     @Override
     public void destroy() throws Exception {
-        logger.info("销毁线程池");
         FileUploadUtils.destory();
     }
 }
