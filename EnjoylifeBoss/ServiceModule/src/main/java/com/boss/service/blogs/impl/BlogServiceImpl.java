@@ -3,10 +3,12 @@ package com.boss.service.blogs.impl;
 import com.boss.dao.blog.mapper.ArticleMapper;
 import com.boss.dao.blog.pojo.Article;
 import com.boss.dao.blog.pojo.ArticleBossPJ;
+import com.boss.dao.blog.pojo.ArticlePutObj;
 import com.boss.dao.blog.pojo.ArticleWithBLOBs;
 import com.boss.dao.comment.mapper.CommentMapper;
 import com.boss.dao.series.mapper.SeriesMapper;
 import com.boss.dao.tags.mapper.TagsMapper;
+import com.boss.dao.tags.pojo.ArticleTags;
 import com.boss.dao.types.mapper.TypeMapper;
 import com.boss.foundation.entity.ArticleEntity;
 import com.boss.foundation.entity.EnjoyFile;
@@ -302,5 +304,24 @@ public class BlogServiceImpl extends AbstractService implements IBlogService {
     @Override
     public ArticleWithBLOBs selectArticleByPrimaryKey(Integer key) {
         return articleMapper.selectByPrimaryKey(key);
+    }
+
+    @Override
+    @Transactional
+    public String saveTags(ArticlePutObj obj) {
+        String id = obj.getArticleId();
+        //先删除该文章的所有标签
+        tagsMapper.deleteTagsByArticleId(id);
+        List<String> tags = obj.getTagIds();
+        ArticleTags articleTags;
+        List<ArticleTags> inserts = ConUtils.arraylist();
+        for(String tempS : tags){
+            articleTags = new ArticleTags();
+            articleTags.setTagId(tempS);
+            articleTags.setArticleId(id);
+            inserts.add(articleTags);
+        }
+        tagsMapper.insertBatchTags(inserts);
+        return "success";
     }
 }

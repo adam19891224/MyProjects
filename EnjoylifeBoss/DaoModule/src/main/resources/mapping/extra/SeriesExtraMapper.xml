@@ -7,10 +7,6 @@
             tb_series_article
         FROM
             tb_series_article
-        INNER JOIN
-            tb_series
-        ON
-            tb_series_article.SERIES_ID = tb_series.SERIES_ID
         WHERE
             tb_series_article.ARTICLE_ID = #{id}
     </delete>

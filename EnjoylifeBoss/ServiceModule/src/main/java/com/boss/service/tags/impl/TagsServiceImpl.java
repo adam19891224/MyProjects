@@ -56,4 +56,14 @@ public class TagsServiceImpl extends AbstractService implements ITagsService {
 
         return "error";
     }
+
+    @Override
+    public List<Tags> selectArticleTagsByArticleId(String id) {
+        return tagsMapper.selectArticleTagsByArticleId(id);
+    }
+
+    @Override
+    public List<Tags> selectUnTagsByArticleId(String id) {
+        return tagsMapper.selectUnTagsByArticleId(id);
+    }
 }

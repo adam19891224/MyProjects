@@ -1,0 +1,75 @@
+@import "../../base/css/base.css";
+@import "../../base/css/common.css";
+
+.container{
+    width: 1200px;
+    overflow: hidden;
+    margin: 30px auto 0;
+}
+
+.title-div{
+    width: 100%;
+    float: left;
+    padding: 10px 110px;
+    box-sizing: border-box;
+    margin-top: 30px;
+}
+
+.title-div h2{
+    padding: 10px 110px;
+    text-align: center;
+}
+
+.tags-div{
+    width: 100%;
+    float: left;
+    box-sizing: border-box;
+    margin-top: 30px;
+    padding: 10px 110px;
+}
+
+.tags-div span{
+    width: 100px;
+    line-height: 30px;
+    display: block;
+    float: left;
+    margin-left: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+}
+
+.tags-div span input{
+    width: 20px;
+}
+
+.text-image{
+    width: 100%;
+    float: left;
+    margin-top: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.sub-div{
+    width: 100%;
+    float: left;
+    margin-top: 30px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.sub-div span{
+    display: block;
+    width: 100px;
+    height: 30px;
+    border-radius: 2px;
+    background-color: #2e9ad0;
+    text-align: center;
+    line-height: 30px;
+}
+
+.sub-div span:hover{
+    cursor: pointer;
+}

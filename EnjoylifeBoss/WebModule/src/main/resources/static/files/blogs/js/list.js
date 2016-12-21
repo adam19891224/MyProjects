@@ -113,7 +113,7 @@ $(function () {
 
     $("#data-table").on("click", ".tags", function () {
         var sid = $(this).parents("tr").attr("sid");
-        window.open("/blogs/update.html?id=" + sid, "updateWindow");
+        window.open("/blogs/addTags.html?id=" + sid, "updateWindow");
     });
 
     $("#data-table").on("click", ".remove", function () {

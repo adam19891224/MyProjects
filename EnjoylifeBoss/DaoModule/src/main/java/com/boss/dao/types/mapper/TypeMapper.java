@@ -31,4 +31,5 @@ public interface TypeMapper {
     void deleteTypesByArticleId(String id);
 
     void deleteTypeBySid(Integer id);
+
 }

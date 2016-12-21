@@ -36,6 +36,15 @@
           tat.TAG_ID = #{TAG_ID}
     </select>
 
+    <delete id="deleteTagsByArticleId" parameterType="java.lang.String">
+        DELETE
+          tb_article_tags
+        FROM
+          tb_article_tags
+        WHERE
+          tb_article_tags.ARTICLE_ID = #{id}
+    </delete>
+
     <delete id="deleteTagsBySid" parameterType="java.lang.Integer">
         DELETE
             tb_tags,
@@ -50,5 +59,36 @@
             tb_tags.TAG_SID = #{id}
     </delete>
 
+    <select id="selectArticleTagsByArticleId" resultMap="BaseResultMap" parameterType="java.lang.String">
+        SELECT
+            tt.*
+        FROM
+            tb_tags tt
+        INNER JOIN tb_article_tags tat ON tt.TAG_ID = tat.TAG_ID
+        WHERE
+            tat.ARTICLE_ID = #{id}
+    </select>
+
+    <select id="selectUnTagsByArticleId" resultMap="BaseResultMap" parameterType="java.lang.String">
+        SELECT
+            tt.*
+        FROM
+            tb_tags tt
+        LEFT JOIN tb_article_tags tat ON tt.TAG_ID = tat.TAG_ID
+        WHERE
+            (
+                tat.ARTICLE_ID != #{id}
+                OR tat.ARTICLE_ID IS NULL
+            )
+    </select>
+
+    <insert id="insertBatchTags" parameterType="java.util.List">
+        insert into
+            tb_article_tags (TAG_ID, ARTICLE_ID)
+        values
+        <foreach collection="list" item="temp" index="index" separator="," >
+            (#{temp.tagId},#{temp.articleId})
+        </foreach>
+    </insert>
 
 </mapper>

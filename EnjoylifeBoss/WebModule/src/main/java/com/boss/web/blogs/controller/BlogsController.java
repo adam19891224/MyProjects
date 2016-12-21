@@ -1,14 +1,18 @@
 package com.boss.web.blogs.controller;
 
 import com.boss.dao.blog.pojo.ArticleBossPJ;
+import com.boss.dao.blog.pojo.ArticlePutObj;
 import com.boss.dao.blog.pojo.ArticleWithBLOBs;
+import com.boss.dao.tags.pojo.Tags;
 import com.boss.foundation.entity.ArticleEntity;
 import com.boss.foundation.entity.EnjoyFile;
 import com.boss.foundation.entity.TagInfo;
 import com.boss.foundation.entity.UserInfo;
 import com.boss.foundation.view.Page;
 import com.boss.service.blogs.IBlogService;
+import com.boss.service.tags.ITagsService;
 import com.boss.web.base.controller.BaseController;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -19,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -31,6 +36,8 @@ public class BlogsController extends BaseController {
 
     @Resource
     private IBlogService blogService;
+    @Resource
+    private ITagsService tagsService;
 
     @Value("${image.return}")
     private String returnStr;
@@ -141,6 +148,35 @@ public class BlogsController extends BaseController {
         map.addAttribute("article", article);
 
         return "blogs/update";
+    }
+
+    @RequestMapping("/addTags.html")
+    public String addTags(Integer id, ModelMap map){
+
+        ArticleWithBLOBs article = blogService.selectArticleByPrimaryKey(id);
+        if(article == null){
+            return "redirect: /error";
+        }
+        //查询该文章的标签
+        List<Tags> hasTags = tagsService.selectArticleTagsByArticleId(article.getArticleId());
+        //查询不属于该文章的标签
+        List<Tags> notTags = tagsService.selectUnTagsByArticleId(article.getArticleId());
+
+        map.addAttribute("article", article);
+        map.addAttribute("hasTasg", hasTags);
+        map.addAttribute("notTags", notTags);
+
+        return "blogs/addTags";
+    }
+
+    @RequestMapping("/saveTags.html")
+    @ResponseBody
+    public String saveTags(String json){
+
+        Gson gson = new Gson();
+        ArticlePutObj articleObj = gson.fromJson(json, ArticlePutObj.class);
+
+        return blogService.saveTags(articleObj);
     }
 
     @RequestMapping("/updateSave.html")

@@ -1,5 +1,6 @@
 package com.boss.dao.tags.mapper;
 
+import com.boss.dao.tags.pojo.ArticleTags;
 import com.boss.dao.tags.pojo.Tags;
 import com.boss.dao.tags.pojo.TagsInfo;
 import com.boss.foundation.view.Page;
@@ -26,4 +27,10 @@ public interface TagsMapper {
     int selectTagsCountByPage(Page<TagsInfo> page);
 
     void deleteTagsBySid(Integer id);
+
+    List<Tags> selectArticleTagsByArticleId(String id);
+
+    List<Tags> selectUnTagsByArticleId(String id);
+
+    void insertBatchTags(List<ArticleTags> inserts);
 }

@@ -2,6 +2,7 @@ package com.boss.service.blogs;
 
 import com.boss.dao.blog.pojo.Article;
 import com.boss.dao.blog.pojo.ArticleBossPJ;
+import com.boss.dao.blog.pojo.ArticlePutObj;
 import com.boss.dao.blog.pojo.ArticleWithBLOBs;
 import com.boss.foundation.entity.ArticleEntity;
 import com.boss.foundation.entity.EnjoyFile;
@@ -32,4 +33,6 @@ public interface IBlogService {
     List<Article> selectArticlesWithOutTypeID(String id);
 
     ArticleWithBLOBs selectArticleByPrimaryKey(Integer key);
+
+    String saveTags(ArticlePutObj obj);
 }
