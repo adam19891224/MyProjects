@@ -94,12 +94,18 @@
     cursor: text;
 }
 
-.article-body img, .article-body pre{
+.article-body img{
     cursor: default;
+    max-width: 100%;
 }
 
-.article-body img{
-    max-width: 100%;
+.article-body pre{
+    cursor: text;
+}
+
+.article-body p a{
+    text-decoration: underline;
+    color: #0000cc;
 }
 
 .article-body blockquote{

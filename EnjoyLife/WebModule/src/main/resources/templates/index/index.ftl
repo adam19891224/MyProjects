@@ -45,7 +45,7 @@
                             [/#list]
                         </div>
                         <div class="blog-body">
-                            <a href="/blogs/${blog.articleSid}.html">
+                            <a href="/blogs/${blog.articleSid}">
                                 <img src="/base/images/image-loading.gif" class="b-lazy" data-src="${blog.articleImg}" alt="${blog.articleTitle}"/>
                             </a>
                             <span>

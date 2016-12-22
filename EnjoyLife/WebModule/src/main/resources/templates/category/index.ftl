@@ -36,7 +36,7 @@
                     </div>
                     <div class="container-right">
                         <div class="right-title">
-                            <a href="/blogs/${info.articleSid}.html">
+                            <a href="/blogs/${info.articleSid}">
                                 ${info.articleTitle?default("")}
                             </a>
                         </div>
