@@ -12,21 +12,21 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from tb_series_article
+    from tb_article_series
     where SERIES_ARTICLE_ID = #{seriesArticleId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from tb_series_article
+    delete from tb_article_series
     where SERIES_ARTICLE_ID = #{seriesArticleId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.enjoylife.series.vo.SeriesArticle" >
-    insert into tb_series_article (SERIES_ARTICLE_ID, SERIES_ID, ARTICLE_ID
+    insert into tb_article_series (SERIES_ARTICLE_ID, SERIES_ID, ARTICLE_ID
       )
     values (#{seriesArticleId,jdbcType=INTEGER}, #{seriesId,jdbcType=VARCHAR}, #{articleId,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.enjoylife.series.vo.SeriesArticle" >
-    insert into tb_series_article
+    insert into tb_article_series
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="seriesArticleId != null" >
         SERIES_ARTICLE_ID,
@@ -51,7 +51,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.enjoylife.series.vo.SeriesArticle" >
-    update tb_series_article
+    update tb_article_series
     <set >
       <if test="seriesId != null" >
         SERIES_ID = #{seriesId,jdbcType=VARCHAR},
@@ -63,7 +63,7 @@
     where SERIES_ARTICLE_ID = #{seriesArticleId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.enjoylife.series.vo.SeriesArticle" >
-    update tb_series_article
+    update tb_article_series
     set SERIES_ID = #{seriesId,jdbcType=VARCHAR},
       ARTICLE_ID = #{articleId,jdbcType=VARCHAR}
     where SERIES_ARTICLE_ID = #{seriesArticleId,jdbcType=INTEGER}

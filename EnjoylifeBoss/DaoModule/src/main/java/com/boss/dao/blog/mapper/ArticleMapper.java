@@ -34,4 +34,8 @@ public interface ArticleMapper {
     List<Article> selectArticlesByTypeID(String id);
 
     List<Article> selectArticlesWithOutTypeID(String id);
+
+    List<Article> selectArticlesBySeriesId(String id);
+
+    List<Article> selectArticlesWithOutSeriesID(String id);
 }

@@ -28,12 +28,14 @@
         <div class="left-body">
             <ul class="series-main">
                 [#if series?? && series?size > 0]
-                    <li>
-                        <a href="#">
-                            <h2>专题111</h2>
-                        </a>
-                        <span>5 篇</span>
-                    </li>
+                    [#list series as seriesE]
+                        <li>
+                            <a href="#">
+                                <h2>${seriesE.seriesName}</h2>
+                            </a>
+                            <span>${seriesE.counts} 篇</span>
+                        </li>
+                    [/#list]
                 [#else]
                     <li>
                         <h5>敬请期待</h5>

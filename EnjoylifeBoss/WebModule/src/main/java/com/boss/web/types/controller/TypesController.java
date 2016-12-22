@@ -118,7 +118,7 @@ public class TypesController extends BaseController{
 
         if(StringUtils.isNotBlank(articleType.getArticleId())
                 && StringUtils.isNotBlank(articleType.getTypeId())){
-            return typesService.removeArticleByType(articleType);
+            return typesService.deleteArticleByType(articleType);
         }
         return "null";
     }

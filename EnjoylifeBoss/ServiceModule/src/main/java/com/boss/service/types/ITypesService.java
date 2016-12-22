@@ -21,7 +21,7 @@ public interface ITypesService {
 
     String addArticleByType(ArticleType type);
 
-    String removeArticleByType(ArticleType type);
+    String deleteArticleByType(ArticleType type);
 
     String deleteTypesSafeBySid(Integer id);
 }

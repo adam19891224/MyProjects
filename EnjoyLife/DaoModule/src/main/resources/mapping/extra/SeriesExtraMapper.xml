@@ -16,7 +16,7 @@
                 tsa.SERIES_ID,
                 COUNT(1) AS counts
             FROM
-                tb_series_article tsa
+                tb_article_series tsa
             GROUP BY
                 tsa.SERIES_ID
         ) ts_counts ON ts.SERIES_ID = ts_counts.SERIES_ID

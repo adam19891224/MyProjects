@@ -72,7 +72,7 @@ public class ITypesServiceImpl extends AbstractService implements ITypesService 
     }
 
     @Override
-    public String removeArticleByType(ArticleType type) {
+    public String deleteArticleByType(ArticleType type) {
         try {
             typeMapper.deleteArticleTypeByEntity(type);
             return "success";

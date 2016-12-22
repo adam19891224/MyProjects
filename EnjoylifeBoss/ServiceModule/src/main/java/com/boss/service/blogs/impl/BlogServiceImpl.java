@@ -324,4 +324,14 @@ public class BlogServiceImpl extends AbstractService implements IBlogService {
         tagsMapper.insertBatchTags(inserts);
         return "success";
     }
+
+    @Override
+    public List<Article> selectArticlesBySeriesId(String id) {
+        return articleMapper.selectArticlesBySeriesId(id);
+    }
+
+    @Override
+    public List<Article> selectArticlesWithOutSeriesID(String id) {
+        return articleMapper.selectArticlesWithOutSeriesID(id);
+    }
 }

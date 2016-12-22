@@ -127,4 +127,39 @@
       ta.CREATE_DATE DESC
   </select>
 
+  <select id="selectArticlesBySeriesId" resultMap="articleTypeMap" parameterType="java.lang.String">
+    SELECT
+      ta.ARTICLE_SID,
+      ta.ARTICLE_ID,
+      ta.CREATE_DATE,
+      ta.ARTICLE_TITLE
+    FROM
+      tb_article ta
+    INNER JOIN
+      tb_article_series tsa ON ta.ARTICLE_ID = tsa.ARTICLE_ID
+    WHERE
+      tsa.SERIES_ID = #{id}
+    ORDER BY
+      ta.CREATE_DATE DESC
+
+  </select>
+
+  <select id="selectArticlesWithOutSeriesID" resultMap="articleTypeMap" parameterType="java.lang.String">
+    SELECT
+      ta.ARTICLE_SID,
+      ta.ARTICLE_ID,
+      ta.CREATE_DATE,
+      ta.ARTICLE_TITLE
+    FROM
+      tb_article ta
+    LEFT JOIN
+      tb_article_series tsa ON ta.ARTICLE_ID = tsa.ARTICLE_ID
+    WHERE
+      tsa.SERIES_ID IS NULL
+    GROUP BY
+	  ta.ARTICLE_SID
+    ORDER BY
+      ta.CREATE_DATE DESC
+  </select>
+
 </mapper>

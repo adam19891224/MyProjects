@@ -34,5 +34,9 @@ public interface IBlogService {
 
     ArticleWithBLOBs selectArticleByPrimaryKey(Integer key);
 
+    List<Article> selectArticlesBySeriesId(String id);
+
+    List<Article> selectArticlesWithOutSeriesID(String id);
+
     String saveTags(ArticlePutObj obj);
 }
