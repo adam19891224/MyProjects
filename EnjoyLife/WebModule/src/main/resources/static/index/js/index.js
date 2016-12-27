@@ -29,4 +29,5 @@ $(function () {
         }
     });
 
+    $(document).pjax('.link-a', '#left-body');
 });

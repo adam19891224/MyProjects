@@ -5,10 +5,14 @@ import com.enjoylife.article.vo.NewArticle;
 import com.enjoylife.base.controller.BaseController;
 import com.enjoylife.enums.YesNoTypeEnum;
 import com.enjoylife.view.Page;
+import freemarker.template.TemplateException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -23,7 +27,8 @@ public class EyesController extends BaseController {
      * @return
      */
     @RequestMapping("/eyes")
-    public String index(Page<NewArticle> page, ModelMap map){
+    @ResponseBody
+    public String index(Page<NewArticle> page, ModelMap map, HttpServletRequest request){
 
         map.addAttribute("isEyes", YesNoTypeEnum.Yes.getCode());
 
@@ -39,7 +44,14 @@ public class EyesController extends BaseController {
         super.getTotalTypesToMap(map);
         super.getTotalArticlesToMap(map);
 
-        return "eyes/index";
+        try {
+            return toPjax(request, map, "eyes");
+        } catch (TemplateException | IOException e) {
+            logger.error("pjax返回错误", e);
+            return "/error";
+        }
+
+//        return "eyes/index";
     }
 
 }

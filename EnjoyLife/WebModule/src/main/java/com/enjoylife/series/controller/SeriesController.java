@@ -1,16 +1,18 @@
 package com.enjoylife.series.controller;
 
 import com.enjoylife.base.controller.BaseController;
-import com.enjoylife.blogs.IBlogsService;
 import com.enjoylife.enums.YesNoTypeEnum;
 import com.enjoylife.series.ISeriesService;
 import com.enjoylife.series.vo.SeriesInfo;
-import com.enjoylife.type.ITypeService;
+import freemarker.template.TemplateException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -22,11 +24,7 @@ import java.util.List;
 public class SeriesController extends BaseController {
 
     @Resource
-    private ITypeService typeService;
-    @Resource
     private ISeriesService seriesService;
-    @Resource
-    private IBlogsService blogsService;
 
 
     /**
@@ -35,7 +33,8 @@ public class SeriesController extends BaseController {
      * @return
      */
     @RequestMapping("/series")
-    public String index(ModelMap map){
+    @ResponseBody
+    public String index(ModelMap map, HttpServletRequest request){
 
         map.addAttribute("isSeries", YesNoTypeEnum.Yes.getCode());
 
@@ -46,7 +45,13 @@ public class SeriesController extends BaseController {
         super.getTotalTypesToMap(map);
         super.getTotalArticlesToMap(map);
 
-        return "series/index";
+        try {
+            return toPjax(request, map, "series");
+        } catch (TemplateException | IOException e) {
+            logger.error("pjax返回错误");
+            return "/error";
+        }
+//        return "series/index";
     }
 
 }

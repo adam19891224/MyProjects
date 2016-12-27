@@ -13,27 +13,27 @@
         <div class="header-nav">
             <ul>
                 <li [#if isIndex?? && isIndex == "Y"]class="header-underline"[/#if]>
-                    <a href="/index">
+                    <a href="/index" class="link-head">
                         首页
                     </a>
                 </li>
                 <li [#if isComplain?? && isComplain == "Y"]class="header-underline"[/#if]>
-                    <a href="#">
+                    <a href="#" class="link-head">
                         吐槽
                     </a>
                 </li>
                 <li [#if isSeries?? && isSeries == "Y"]class="header-underline"[/#if]>
-                    <a href="/series">
+                    <a href="/series" class="link-head">
                         专题
                     </a>
                 </li>
                 <li [#if isEyes?? && isEyes == "Y"]class="header-underline"[/#if]>
-                    <a href="/eyes">
+                    <a href="/eyes" class="link-head">
                         一览
                     </a>
                 </li>
                 <li [#if isProfile?? && isProfile == "Y"]class="header-underline"[/#if]>
-                    <a href="/profile">
+                    <a href="/profile" class="link-head">
                         关于
                     </a>
                 </li>
