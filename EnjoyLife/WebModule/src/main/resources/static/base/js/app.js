@@ -85,6 +85,10 @@ $(function () {
             var eyes = new Eyes();
             eyes.init();
         }
+        if(href.indexOf("index") > 0){
+            var index = new Index();
+            index.init();
+        }
         startCloud();
     });
 
@@ -100,6 +104,48 @@ function startCloud(){
     var typeObj = $("#type-body");
     if(typeObj.length > 0){
         categorys.init(typeObj);
+    }
+}
+
+function Index() {
+
+    var isClick = true;
+
+    this.init = function () {
+        this.initPage();
+        this.pageClickListener();
+    };
+
+    this.initPage = function () {
+        new Blazy({
+            container: '.blog-body',
+            error: function(ele, msg){
+                // if(msg === 'missing'){
+                //     console.log("加载丢失");
+                // }else if(msg === 'invalid'){
+                //     console.log("加载失败");
+                // }
+                ele.src = "/base/images/failed.png";
+            }
+        });
+    };
+
+    this.pageClickListener = function () {
+        $("#page-div").createPage({
+            pageCount: applications.castStr2Num($("#page-div").attr("data-pages")),
+            current: applications.castStr2Num($("#page-div").attr("data-current")),
+            backFn: function(page){
+                if(isClick){
+                    var location = "/index/";
+                    if(page > 1){
+                        if(applications.checkIsNum(page)){
+                            location = "/index/" + page;
+                        }
+                    }
+                    window.location = location;
+                }
+            }
+        });
     }
 }
 

@@ -42,4 +42,4 @@
         [#include "../base/common/intro.ftl"/]
     </div>
 </div>
-<script src="/index/js/index.js?t=[@time /]"></script>
+<script src="/index/js/index.js"></script>
