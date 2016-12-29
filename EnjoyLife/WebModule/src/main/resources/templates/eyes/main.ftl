@@ -70,4 +70,4 @@
         [#include "../base/common/cloud.ftl"/]
     </div>
 </div>
-<script src="/eyes/js/index.js?t=[@time /]"></script>
+<script src="/eyes/js/index.js"></script>

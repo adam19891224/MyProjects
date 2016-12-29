@@ -31,4 +31,3 @@
         [#include "../base/common/cloud.ftl"/]
     </div>
 </div>
-<script src="/series/js/index.js?t=[@time /]"></script>

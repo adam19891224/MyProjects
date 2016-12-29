@@ -5,6 +5,18 @@ function Blogs(){
     var commentEditor, replyEditor;
     var isLoadingComment = false;
 
+    this.init = function () {
+        this.initPage();
+        this.commentReplyButtonClick();
+        this.commentShowButtonClick();
+        this.commentSubmitButtonClick();
+        this.replySubmitButtonClick();
+        this.dataSubmitClick();
+        this.dataCancleClick();
+        this.websiteClick();
+        $("#header-nav-ul li").eq(3).addClass("header-underline").siblings().removeClass("header-underline");
+    };
+
     this.initPage = function () {
         //渲染评论编辑器
         if(commentEditor == null){
@@ -361,18 +373,5 @@ function Blogs(){
 var blogs = new Blogs();
 
 $(function () {
-    initBlog();
+    blogs.init();
 });
-
-function initBlog() {
-    blogs.initPage();
-    blogs.commentReplyButtonClick();
-    blogs.commentShowButtonClick();
-    blogs.commentSubmitButtonClick();
-    blogs.replySubmitButtonClick();
-    blogs.dataSubmitClick();
-    blogs.dataCancleClick();
-    blogs.websiteClick();
-
-    $("#header-nav-ul li").eq(3).addClass("header-underline").siblings().removeClass("header-underline");
-}

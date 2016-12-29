@@ -32,4 +32,3 @@
         [#include "../base/common/cloud.ftl"/]
     </div>
 </div>
-<script src="/profile/js/index.js?t=[@time /]"></script>
