@@ -7,6 +7,7 @@ import com.enjoylife.type.ITypeService;
 import com.enjoylife.type.vo.Type;
 import com.enjoylife.utils.ConUtils;
 import com.enjoylife.utils.IPUtils;
+import com.enjoylife.utils.StringUtils;
 import com.enjoylife.view.Page;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -98,12 +99,18 @@ public class BaseController {
      * 返回Pjax形式的页面
      */
     protected String toPjax(HttpServletRequest request, ModelMap map, String type) throws IOException, TemplateException {
+        String isPj = request.getHeader("X-PJAX");
         // 设置FreeMarker的模版文件位置
         configuration.setClassForTemplateLoading(BaseController.class, "/templates");
         configuration.setEncoding(Locale.getDefault(), "utf-8");
 
         // 创建Template对象
-        Template template = configuration.getTemplate("/" + type + "/main.ftl");
+        Template template;
+        if(StringUtils.isNotNull(isPj) && isPj.equalsIgnoreCase("true")){
+            template = configuration.getTemplate("/" + type + "/main.ftl");
+        }else{
+            template = configuration.getTemplate("/" + type + "/index.ftl");
+        }
         // 输出流
         StringWriter writer = new StringWriter();
         // 将数据和模型结合生成html

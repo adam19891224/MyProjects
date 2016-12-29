@@ -8,7 +8,9 @@
 [#include "../base/layout/header.ftl"]
 
 [#--中间--]
-[#include "main.ftl"]
+<main id="main" class="main" data-type="${dataType?default("")}">
+    [#include "main.ftl"]
+</main>
 
 [#--底部--]
 [#include "../base/layout/footer.ftl"]

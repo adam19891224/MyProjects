@@ -1,5 +1,3 @@
-var categorys = new CategoryUtils();
-
 function Eyes(){
 
     var timeDiv = $("#time-div");
@@ -120,7 +118,7 @@ function Eyes(){
         window.onresize = function(){
             scrollLeft = $("#container-title").offset().left;
         };
-        var nowDom = document.elementFromPoint(scrollLeft, 20);
+        var nowDom = document.elementFromPoint(scrollLeft, 0);
         nowDom = $(nowDom);
         var tarName = nowDom.prop("tagName");
         if(tarName == "H2"){
@@ -154,8 +152,11 @@ function Eyes(){
 var eyes = new Eyes();
 
 $(function () {
-    categorys.init($("#type-body"));
+    initEyes();
+});
+
+function initEyes() {
     eyes.scrollBarListener();
     eyes.timeYearClickListener();
     eyes.timeMonthClickListener();
-});
+}

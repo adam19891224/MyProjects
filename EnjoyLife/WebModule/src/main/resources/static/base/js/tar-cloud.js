@@ -87,6 +87,10 @@ function CategoryUtils(){
         var drawEvn, canvas;
 
         //创建canvas对象
+        canvas = $("canvas");
+        if(canvas.length > 0){
+            return false;
+        }
         canvas = document.createElement("canvas");
 
         //实际绘图区域尺寸, 等于容器的高和宽乘以缩放比例
@@ -184,6 +188,9 @@ function CategoryUtils(){
                 items.each(function () {
                     //获取元素的绘画属性
                     itemData = $(this).data("graphic");
+                    if(itemData == undefined){
+                        return;
+                    }
                     //计算旋转
                     x = itemData.x * c + itemData.z * s;
                     z = itemData.z * c - itemData.x * s; //旋转
@@ -247,7 +254,7 @@ function CategoryUtils(){
             $(canvas).on({
                 click: function () {
                     if (active){
-                        window.location = active.attr("href");
+                        $.pjax({url: active.attr("href"), container: '#main'});
                     }
                 },
                 mousemove: function (e) { //hover事件，修改标签样式

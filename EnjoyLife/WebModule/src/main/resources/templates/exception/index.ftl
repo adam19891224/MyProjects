@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
-<head>
+<hsead>
     [#include "../base/layout/document.ftl"]
-</head>
+</hsead>
 <body>
     [#--顶部--]
     [#include "../base/layout/header.ftl"]

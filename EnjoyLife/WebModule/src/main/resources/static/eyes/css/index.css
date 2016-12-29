@@ -2,7 +2,7 @@
     padding: 20px;
 }
 
-.left-time{
+.eyes-time{
     width: 80px;
     height: 400px;
     float: left;
@@ -82,17 +82,17 @@
     color: #2e9ad0;
 }
 
-.left-title{
+.eyes-title{
     float: right;
     width: 100%;
 }
 
-.container-title{
+.eyes-container-title{
     margin-left: 110px;
     margin-top: 16px;
 }
 
-.container-title h2{
+.eyes-container-title h2{
     width: 100%;
     overflow: hidden;
     display: inline-block;
@@ -103,15 +103,15 @@
     text-overflow: ellipsis;
 }
 
-.container-title h2 span{
+.eyes-container-title h2 span{
     display: inline-block;
 }
 
-.title-content{
+.eyes-title-content{
     margin-left: 20px;
 }
 
-.title-content a:hover{
+.eyes-title-content a:hover{
     color: #2e9ad0;
 }
 

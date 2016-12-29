@@ -5,10 +5,9 @@ import com.enjoylife.enums.YesNoTypeEnum;
 import com.enjoylife.series.ISeriesService;
 import com.enjoylife.series.vo.SeriesInfo;
 import freemarker.template.TemplateException;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +19,7 @@ import java.util.List;
  * User: Adam
  * Date: 2016/6/29
  */
-@Controller
+@RestController
 public class SeriesController extends BaseController {
 
     @Resource
@@ -33,7 +32,6 @@ public class SeriesController extends BaseController {
      * @return
      */
     @RequestMapping("/series")
-    @ResponseBody
     public String index(ModelMap map, HttpServletRequest request){
 
         map.addAttribute("isSeries", YesNoTypeEnum.Yes.getCode());
@@ -45,13 +43,15 @@ public class SeriesController extends BaseController {
         super.getTotalTypesToMap(map);
         super.getTotalArticlesToMap(map);
 
+        map.addAttribute("dataType", "series");
+
         try {
             return toPjax(request, map, "series");
         } catch (TemplateException | IOException e) {
             logger.error("pjax返回错误");
-            return "/error";
         }
-//        return "series/index";
+
+        return "/error";
     }
 
 }

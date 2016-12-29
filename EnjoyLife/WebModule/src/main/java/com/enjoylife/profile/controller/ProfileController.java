@@ -3,10 +3,9 @@ package com.enjoylife.profile.controller;
 import com.enjoylife.base.controller.BaseController;
 import com.enjoylife.enums.YesNoTypeEnum;
 import freemarker.template.TemplateException;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -15,11 +14,10 @@ import java.io.IOException;
  * ranmin-zhouyuhong
  * 2016/11/28
  */
-@Controller
+@RestController
 public class ProfileController extends BaseController{
 
     @RequestMapping("/profile")
-    @ResponseBody
     public String profile(ModelMap map, HttpServletRequest request){
 
         map.addAttribute("isProfile", YesNoTypeEnum.Yes.getCode());
@@ -28,14 +26,15 @@ public class ProfileController extends BaseController{
         super.getTotalArticlesToMap(map);
         super.getTotalTypesToMap(map);
 
+        map.addAttribute("dataType", "profile");
+
         try {
             return toPjax(request, map, "profile");
         } catch (TemplateException | IOException e) {
             logger.error("pjax返回错误");
-            return "/error";
         }
 
-//        return "profile/index";
+        return "/error";
     }
 
 }

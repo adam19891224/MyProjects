@@ -74,6 +74,8 @@ public class BlogsController extends BaseController {
         //将crsf的token放入页面
         map.addAttribute("ck", getSession(request).getAttribute(SessionKeyUtils.SESSION_CRSF_TOKEN));
 
+        map.addAttribute("dataType", "blogs");
+
         return "blogs/index";
     }
 

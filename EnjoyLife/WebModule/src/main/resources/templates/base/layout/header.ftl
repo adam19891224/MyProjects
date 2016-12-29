@@ -11,7 +11,7 @@
             <i id="search-button"></i>
         </div>
         <div class="header-nav">
-            <ul>
+            <ul id="header-nav-ul">
                 <li [#if isIndex?? && isIndex == "Y"]class="header-underline"[/#if]>
                     <a href="/index" class="link-head">
                         首页
@@ -44,3 +44,4 @@
         </div>
     </div>
 </header>
+<div id="loading-page-bar" class="loading-page-bar"></div>

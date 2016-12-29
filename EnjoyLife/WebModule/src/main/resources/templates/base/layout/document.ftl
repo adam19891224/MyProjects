@@ -7,10 +7,13 @@
 <link href="/base/images/ico.ico" rel="shortcut icon" type="image/x-icon">
 <link href="/base/css/common.css" rel="stylesheet" type="text/css" media="all">
 <link href="/base/css/page.css" rel="stylesheet" type="text/css" media="all">
-<link href="/base/css/main.css?t=[@time /]" rel="stylesheet" type="text/css" media="all">
+<link href="/base/css/prism.css" rel="stylesheet" type="text/css" media="all">
+<link href="/base/css/main.css" rel="stylesheet" type="text/css" media="all">
 <script src="/base/js/jquery-2.2.3.min.js"></script>
 <script src="/base/js/jquery.pjax.js"></script>
 <script src="/base/js/blazy.min.js"></script>
+<script src="/ckeditor/ckeditor.js"></script>
+<script src="/base/js/prism.js"></script>
 <script src="/base/js/app.js"></script>
 <script src="/base/js/page.js"></script>
-<script src="/base/js/tar-cloud.min.js"></script>
+<script src="/base/js/tar-cloud.js"></script>

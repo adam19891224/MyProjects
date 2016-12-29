@@ -1,5 +1,16 @@
 @import "base.css";
 /*顶部*/
+
+.loading-page-bar{
+    width: 0;
+    height: 5px;
+    background-color: #1d75b3;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10000;
+}
+
 .header-main{
     width: 100%;
     border-bottom: 1px solid #ebebeb;

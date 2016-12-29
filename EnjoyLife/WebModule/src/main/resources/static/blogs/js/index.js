@@ -1,18 +1,3 @@
-var categorys = new CategoryUtils();
-
-$(function () {
-    categorys.init($("#type-body"));
-
-    blogs.initPage();
-    blogs.commentReplyButtonClick();
-    blogs.commentShowButtonClick();
-    blogs.commentSubmitButtonClick();
-    blogs.replySubmitButtonClick();
-    blogs.dataSubmitClick();
-    blogs.dataCancleClick();
-    blogs.websiteClick();
-});
-
 function Blogs(){
 
     var replyEidtorDiv = "<div id=\"reply-editor-div\" class=\"reply-editor\"><textarea id=\"reply-main-editor\" cols=\"1\" rows=\"1\" class='reply-main-editor' title=\"回复\"></textarea></div>";
@@ -22,7 +7,9 @@ function Blogs(){
 
     this.initPage = function () {
         //渲染评论编辑器
-        commentEditor = CKEDITOR.replace("comment-main-editor", { height: "160px"});
+        if(commentEditor == null){
+            commentEditor = CKEDITOR.replace("comment-main-editor", { height: "160px"});
+        }
         loadingComment(1, true);
     };
 
@@ -372,3 +359,20 @@ function Blogs(){
 }
 
 var blogs = new Blogs();
+
+$(function () {
+    initBlog();
+});
+
+function initBlog() {
+    blogs.initPage();
+    blogs.commentReplyButtonClick();
+    blogs.commentShowButtonClick();
+    blogs.commentSubmitButtonClick();
+    blogs.replySubmitButtonClick();
+    blogs.dataSubmitClick();
+    blogs.dataCancleClick();
+    blogs.websiteClick();
+
+    $("#header-nav-ul li").eq(3).addClass("header-underline").siblings().removeClass("header-underline");
+}

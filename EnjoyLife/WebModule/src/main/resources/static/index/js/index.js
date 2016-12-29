@@ -1,4 +1,8 @@
 $(function () {
+    initIndex();
+});
+
+function initIndex() {
     new Blazy({
         container: '.blog-body',
         error: function(ele, msg){
@@ -28,6 +32,4 @@ $(function () {
             }
         }
     });
-
-    $(document).pjax('.link-a', '#left-body');
-});
+}

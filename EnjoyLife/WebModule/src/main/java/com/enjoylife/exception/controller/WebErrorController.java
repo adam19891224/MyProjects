@@ -20,7 +20,7 @@ public class WebErrorController extends BaseController implements ErrorControlle
     @RequestMapping(value = ERROR_PATH)
     public String handleError(HttpServletRequest request){
         logger.error("来自： " + super.getIP(request) + "  的朋友访问出现404! ");
-        return "exception/notfound";
+        return "exception/index";
     }
 
     @Override

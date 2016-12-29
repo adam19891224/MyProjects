@@ -1,8 +1,4 @@
-var categorys = new CategoryUtils();
-
 $(function () {
-    categorys.init($("#type-body"));
-
     new Blazy({
         container: '.info-container',
         error: function(ele, msg){

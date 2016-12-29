@@ -62,8 +62,38 @@ $(function () {
             val = input.val().replace(/(^\s*)|(\s*$)/g, "").replace(/\\/g, "").replace(/\//g, "");
             locations = "/query/" + val + "/1";
         }
-        window.location = locations;
+        $.pjax({url: locations, container: '#main'});
     });
 
-    $(document).pjax('.link-head', '#main');
+    $(document).pjax('.link-head', '#main', {
+        maxCacheLength:0,
+        cache: true,
+        storage: true,
+        timeout: 10000//设置超时，默认pjax是1秒,
+    });
+
+    $(document).bind('pjax:send', function(){
+        $("#loading-page-bar").animate({width: "70%"}, 1000);
+    });
+
+    $(document).bind('pjax:success', function(){
+        $("#loading-page-bar").animate({width: "100%"}, 300, function () {
+            $("#loading-page-bar").width("0");
+        });
+        startCloud();
+    });
+
+    $("#header-nav-ul li a").click(function () {
+        $(this).parent().addClass("header-underline").siblings().removeClass("header-underline");
+    });
+
+    startCloud();
 });
+
+function startCloud(){
+    var categorys = new CategoryUtils();
+    var typeObj = $("#type-body");
+    if(typeObj.length > 0){
+        categorys.init(typeObj);
+    }
+}

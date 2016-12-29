@@ -4,17 +4,21 @@ import com.enjoylife.article.vo.NewArticle;
 import com.enjoylife.base.controller.BaseController;
 import com.enjoylife.enums.YesNoTypeEnum;
 import com.enjoylife.view.Page;
-import org.springframework.stereotype.Controller;
+import freemarker.template.TemplateException;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 
 /**
  * Created by IntelliJ IDEA
  * User: Adam
  * Date: 2016/1/13
  */
-@Controller
+@RestController
 public class IndexController extends BaseController {
 
     /**
@@ -22,7 +26,7 @@ public class IndexController extends BaseController {
      * @param map
      */
     @RequestMapping({"/", "/index"})
-    public String index(ModelMap map, Page<NewArticle> page){
+    public String index(ModelMap map, Page<NewArticle> page, HttpServletRequest request){
 
         page = blogsService.selectArticlesByPage(page);
 
@@ -32,17 +36,27 @@ public class IndexController extends BaseController {
         map.addAttribute("page", page.getPage());
         map.addAttribute("isIndex", YesNoTypeEnum.Yes.getCode());
 
+        //首页
+        map.addAttribute("dataType", "index");
+
         //查询分类数
         super.getTotalTypesToMap(map);
 
-        return "index/index";
+        try {
+            return toPjax(request, map, "index");
+        } catch (TemplateException | IOException e) {
+            logger.error("pjax返回错误");
+        }
+
+        return "/error";
     }
 
     @RequestMapping("/index/{num}")
-    public String page(ModelMap map, @PathVariable Integer num){
+    public String page(ModelMap map, @PathVariable Integer num, HttpServletRequest request){
         Page<NewArticle> page = new Page<>();
         page.setPage(num);
-        return index(map, page);
+
+        return index(map, page, request);
     }
 
 }

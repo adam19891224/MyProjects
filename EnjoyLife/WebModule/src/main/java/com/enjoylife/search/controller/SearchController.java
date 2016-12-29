@@ -5,20 +5,23 @@ import com.enjoylife.base.controller.BaseController;
 import com.enjoylife.blogs.IBlogsESService;
 import com.enjoylife.enums.YesNoTypeEnum;
 import com.enjoylife.view.Page;
-import org.springframework.stereotype.Controller;
+import freemarker.template.TemplateException;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.HtmlUtils;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.Map;
 
 /**
  * Adam
  * 2016/9/29
  */
-@Controller
+@RestController
 public class SearchController extends BaseController {
 
     @Resource
@@ -28,7 +31,7 @@ public class SearchController extends BaseController {
      * 进入分类一览页
      */
     @RequestMapping("/genre/{name}/{num}")
-    public String genre(ModelMap map, @PathVariable String name, @PathVariable Integer num){
+    public String genre(ModelMap map, @PathVariable String name, @PathVariable Integer num, HttpServletRequest request){
 
         map.addAttribute("isEyes", YesNoTypeEnum.Yes.getCode());
 
@@ -46,14 +49,22 @@ public class SearchController extends BaseController {
         super.getTotalTypesToMap(map);
         super.getTotalArticlesToMap(map);
 
-        return "category/index";
+        map.addAttribute("dataType", "category");
+
+        try {
+            return toPjax(request, map, "category");
+        } catch (TemplateException | IOException e) {
+            logger.error("pjax返回错误");
+        }
+
+        return "/error";
     }
 
     /**
      * 进入搜索页
      */
     @RequestMapping("/query/{name}/{num}")
-    public String keyword(ModelMap map, @PathVariable String name, @PathVariable Integer num){
+    public String keyword(ModelMap map, @PathVariable String name, @PathVariable Integer num, HttpServletRequest request){
 
         map.addAttribute("isEyes", YesNoTypeEnum.Yes.getCode());
 
@@ -73,6 +84,14 @@ public class SearchController extends BaseController {
         super.getTotalTypesToMap(map);
         super.getTotalArticlesToMap(map);
 
-        return "search/index";
+        map.addAttribute("dataType", "query");
+
+        try {
+            return toPjax(request, map, "search");
+        } catch (TemplateException | IOException e) {
+            logger.error("pjax返回错误");
+        }
+
+        return "/error";
     }
 }
