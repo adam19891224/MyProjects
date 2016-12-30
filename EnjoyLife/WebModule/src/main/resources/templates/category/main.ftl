@@ -9,7 +9,7 @@
                 </div>
                 <div class="cate-container-right">
                     <div class="cate-right-title">
-                        <a href="/blogs/${info.articleSid}">
+                        <a href="/blogs/${info.articleSid}" class="link-head">
                             ${info.articleTitle?default("")}
                         </a>
                     </div>
@@ -43,12 +43,12 @@
 [#--右边--]
 <div class="main-right">
     <div class="right-body">
-    [#--引入介绍--]
-            [#include "../base/common/intro.ftl"/]
+        [#--引入介绍--]
+        [#include "../base/common/intro.ftl"/]
     </div>
     <div class="right-body">
-    [#--引入标签云--]
-            [#include "../base/common/cloud.ftl"/]
+        [#--引入标签云--]
+        [#include "../base/common/cloud.ftl"/]
     </div>
 </div>
-<script src="/category/js/index.js?t=[@time /]"></script>
+<script src="/category/js/index.js"></script>

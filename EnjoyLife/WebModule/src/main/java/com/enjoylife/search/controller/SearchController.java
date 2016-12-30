@@ -33,7 +33,7 @@ public class SearchController extends BaseController {
     @RequestMapping("/genre/{name}/{num}")
     public String genre(ModelMap map, @PathVariable String name, @PathVariable Integer num, HttpServletRequest request){
 
-        map.addAttribute("isEyes", YesNoTypeEnum.Yes.getCode());
+        map.addAttribute("isSeries", YesNoTypeEnum.Yes.getCode());
 
         Page<NewArticle> page = new Page<NewArticle>();
         name = HtmlUtils.htmlEscape(name);
@@ -66,7 +66,7 @@ public class SearchController extends BaseController {
     @RequestMapping("/query/{name}/{num}")
     public String keyword(ModelMap map, @PathVariable String name, @PathVariable Integer num, HttpServletRequest request){
 
-        map.addAttribute("isEyes", YesNoTypeEnum.Yes.getCode());
+        map.addAttribute("isSeries", YesNoTypeEnum.Yes.getCode());
 
         Page<NewArticle> page = new Page<NewArticle>();
         //封装查询

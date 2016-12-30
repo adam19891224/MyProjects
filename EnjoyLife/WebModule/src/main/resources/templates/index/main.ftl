@@ -6,7 +6,7 @@
         <div class="main-blog">
             <div class="blog-head">
                 <h2>
-                    <a href="/blogs/${blog.articleSid}">${blog.articleTitle}</a>
+                    <a href="/blogs/${blog.articleSid}" class="link-head">${blog.articleTitle}</a>
                 </h2>
             </div>
             <div class="blog-intro">
@@ -20,7 +20,7 @@
                 [/#list]
             </div>
             <div class="blog-body">
-                <a href="/blogs/${blog.articleSid}">
+                <a href="/blogs/${blog.articleSid}" class="link-head">
                     <img src="/base/images/image-loading.gif" class="b-lazy" data-src="${blog.articleImg}" alt="${blog.articleTitle}"/>
                 </a>
                 <span>

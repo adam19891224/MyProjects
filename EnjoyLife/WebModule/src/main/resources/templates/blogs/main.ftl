@@ -1,11 +1,11 @@
 <div id="main-left" class="main-left" data-type="${dataType?default("")}">
     <h1>
-    ${article.articleTitle}
+        ${article.articleTitle}
     </h1>
     <div class="article-intro">
         <span class="intro-type">
         [#if type??]
-            <i></i># <span>${type.typeName?default("个人博文")}</span>
+            <i></i># <span><a href="/genre/${type.typeName}/1" class="link-head">${type.typeName?default("个人博文")}</a></span>
         [/#if]
         </span>
         <span class="intro-time">

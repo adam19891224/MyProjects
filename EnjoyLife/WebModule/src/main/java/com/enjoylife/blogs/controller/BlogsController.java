@@ -14,6 +14,7 @@ import com.enjoylife.type.vo.Type;
 import com.enjoylife.utils.ConUtils;
 import com.enjoylife.utils.SessionKeyUtils;
 import com.enjoylife.view.Page;
+import freemarker.template.TemplateException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -46,6 +48,7 @@ public class BlogsController extends BaseController {
      * @return
      */
     @RequestMapping("/{sid}")
+    @ResponseBody
     @ToCrsf
     public String getArticle(@PathVariable Integer sid, ModelMap map, HttpServletRequest request){
 
@@ -76,7 +79,13 @@ public class BlogsController extends BaseController {
 
         map.addAttribute("dataType", "blogs");
 
-        return "blogs/index";
+        try {
+            return toPjax(request, map, "blogs");
+        } catch (TemplateException | IOException e) {
+            logger.error("pjax返回错误");
+        }
+
+        return "/error";
     }
 
     @RequestMapping("/getComment.html")

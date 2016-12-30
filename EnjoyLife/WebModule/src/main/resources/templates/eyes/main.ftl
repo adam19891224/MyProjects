@@ -50,7 +50,7 @@
                     ${blog.createDate?string("MM-dd")}
                 </span>
                 <span class="eyes-title-content">
-                    <a href="/blogs/${blog.articleSid}">
+                    <a href="/blogs/${blog.articleSid}" class="link-head">
                         ${blog.articleTitle}
                     </a>
                 </span>

@@ -5,7 +5,7 @@
         [#list result as info]
             <div class="sea-info-container">
                 <h2>
-                    <a href="/blogs/${info.articleSid}">
+                    <a href="/blogs/${info.articleSid}" class="link-head">
                         ${info.articleTitle?default("")}
                     </a>
                 </h2>
@@ -38,4 +38,4 @@
         [#include "../base/common/cloud.ftl"/]
     </div>
 </div>
-<script src="/search/js/index.js?t=[@time /]"></script>
+<script src="/search/js/index.js"></script>

@@ -12,8 +12,8 @@
 <script src="/base/js/jquery-2.2.3.min.js"></script>
 <script src="/base/js/jquery.pjax.js"></script>
 <script src="/base/js/blazy.min.js"></script>
-<script src="/ckeditor/ckeditor.js"></script>
 <script src="/base/js/prism.js"></script>
 <script src="/base/js/app.js"></script>
-<script src="/base/js/page.js"></script>
-<script src="/base/js/tar-cloud.js"></script>
+<script src="/base/js/page.min.js"></script>
+<script src="/base/js/tar-cloud.min.js"></script>
+<script src="/comment/ckeditor.js"></script>

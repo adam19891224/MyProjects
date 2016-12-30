@@ -330,6 +330,8 @@
     width: 100%;
     line-height: 30px;
     float: left;
+    padding: 15px 0;
+    box-sizing: border-box;
 }
 
 .article-intro span{
@@ -356,7 +358,7 @@
     background-size: contain;
 }
 
-.intro-type span:hover{
+.intro-type a:hover{
     color: #2e9ad0;
     cursor: pointer;
     text-decoration: underline;
@@ -935,6 +937,10 @@
     font-size: 22px;
     font-weight: bold;
     float: left;
+}
+
+.cate-right-title a:hover{
+    color: #2e9ad0;
 }
 
 .cate-right-desc{
