@@ -19,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
@@ -47,7 +48,7 @@ public class BlogsController extends BaseController {
      * @param map
      * @return
      */
-    @RequestMapping("/{sid}")
+    @RequestMapping(value = "/{sid}", method = {RequestMethod.GET, RequestMethod.POST})
     @ResponseBody
     @ToCrsf
     public String getArticle(@PathVariable Integer sid, ModelMap map, HttpServletRequest request){
@@ -88,7 +89,7 @@ public class BlogsController extends BaseController {
         return "/error";
     }
 
-    @RequestMapping("/getComment.html")
+    @RequestMapping(value = "/getComment.html", method = RequestMethod.POST)
     @ResponseBody
     public String getComment(Page<Comment> page){
         page = commentService.getCommentsByPage(page);
@@ -96,7 +97,7 @@ public class BlogsController extends BaseController {
         return super.parseObjectToJson(this.getCommentMapByResult(page));
     }
 
-    @RequestMapping("/postComment.html")
+    @RequestMapping(value = "/postComment.html", method = RequestMethod.POST)
     @ResponseBody
     @DoCrsf
     public String postComment(CommentForm form){

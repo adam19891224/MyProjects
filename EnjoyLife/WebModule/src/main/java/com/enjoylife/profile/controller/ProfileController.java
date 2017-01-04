@@ -5,6 +5,7 @@ import com.enjoylife.enums.YesNoTypeEnum;
 import freemarker.template.TemplateException;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +18,7 @@ import java.io.IOException;
 @RestController
 public class ProfileController extends BaseController{
 
-    @RequestMapping("/profile")
+    @RequestMapping(value = "/profile", method = {RequestMethod.GET, RequestMethod.POST})
     public String profile(ModelMap map, HttpServletRequest request){
 
         map.addAttribute("isProfile", YesNoTypeEnum.Yes.getCode());

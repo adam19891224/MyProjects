@@ -8,6 +8,7 @@ import com.enjoylife.view.Page;
 import freemarker.template.TemplateException;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +26,7 @@ public class EyesController extends BaseController {
      * 进入一览页面
      * @return
      */
-    @RequestMapping("/eyes")
+    @RequestMapping(value = "/eyes", method = {RequestMethod.GET, RequestMethod.POST})
     public String index(Page<NewArticle> page, ModelMap map, HttpServletRequest request){
 
         map.addAttribute("isEyes", YesNoTypeEnum.Yes.getCode());

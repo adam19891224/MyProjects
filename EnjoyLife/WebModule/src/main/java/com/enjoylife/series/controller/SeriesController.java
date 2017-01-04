@@ -7,6 +7,7 @@ import com.enjoylife.series.vo.SeriesInfo;
 import freemarker.template.TemplateException;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -31,7 +32,7 @@ public class SeriesController extends BaseController {
      * @param map
      * @return
      */
-    @RequestMapping("/series")
+    @RequestMapping(value = "/series", method = {RequestMethod.GET, RequestMethod.POST})
     public String index(ModelMap map, HttpServletRequest request){
 
         map.addAttribute("isSeries", YesNoTypeEnum.Yes.getCode());

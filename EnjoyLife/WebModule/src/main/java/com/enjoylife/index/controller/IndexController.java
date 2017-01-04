@@ -8,6 +8,7 @@ import freemarker.template.TemplateException;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +26,7 @@ public class IndexController extends BaseController {
      * 首页方法
      * @param map
      */
-    @RequestMapping({"/", "/index"})
+    @RequestMapping(value = {"/", "/index"}, method = {RequestMethod.POST, RequestMethod.GET})
     public String index(ModelMap map, Page<NewArticle> page, HttpServletRequest request){
 
         page = blogsService.selectArticlesByPage(page);
@@ -51,7 +52,7 @@ public class IndexController extends BaseController {
         return "/error";
     }
 
-    @RequestMapping("/index/{num}")
+    @RequestMapping(value = "/index/{num}", method = {RequestMethod.GET, RequestMethod.POST})
     public String page(ModelMap map, @PathVariable Integer num, HttpServletRequest request){
         Page<NewArticle> page = new Page<>();
         page.setPage(num);

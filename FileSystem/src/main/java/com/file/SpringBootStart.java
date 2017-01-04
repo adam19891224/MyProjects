@@ -57,8 +57,8 @@ public class SpringBootStart implements DisposableBean {
     @Bean
     public MultipartConfigElement multipartConfigElement() {
         MultipartConfigFactory factory = new MultipartConfigFactory();
-        factory.setMaxFileSize("1024KB");
-        factory.setMaxRequestSize("1024KB");
+        factory.setMaxFileSize("10240KB");
+        factory.setMaxRequestSize("10240KB");
         return factory.createMultipartConfig();
     }
 

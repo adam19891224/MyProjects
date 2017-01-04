@@ -9,6 +9,7 @@ import freemarker.template.TemplateException;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.HtmlUtils;
 
@@ -30,7 +31,7 @@ public class SearchController extends BaseController {
     /**
      * 进入分类一览页
      */
-    @RequestMapping("/genre/{name}/{num}")
+    @RequestMapping(value = "/genre/{name}/{num}", method = {RequestMethod.GET, RequestMethod.POST})
     public String genre(ModelMap map, @PathVariable String name, @PathVariable Integer num, HttpServletRequest request){
 
         map.addAttribute("isSeries", YesNoTypeEnum.Yes.getCode());
@@ -63,7 +64,7 @@ public class SearchController extends BaseController {
     /**
      * 进入搜索页
      */
-    @RequestMapping("/query/{name}/{num}")
+    @RequestMapping(value = "/query/{name}/{num}", method = {RequestMethod.GET, RequestMethod.POST})
     public String keyword(ModelMap map, @PathVariable String name, @PathVariable Integer num, HttpServletRequest request){
 
         map.addAttribute("isSeries", YesNoTypeEnum.Yes.getCode());
