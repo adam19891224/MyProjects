@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 public class WebDAVInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        response.setHeader("Access-Control-Allow-Methods", "GET, POST");
         String version = BowserUtils.getBowserVersion(request);
         if(version.equalsIgnoreCase("ie6")
                 || version.equalsIgnoreCase("ie7")
