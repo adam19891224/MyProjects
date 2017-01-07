@@ -6,43 +6,43 @@ package com.boss.foundation.entity;
  */
 public class TagInfo{
 
-    private String x;
+    private Double x;
 
-    private String y;
+    private Double y;
 
-    private String cutWidth;
+    private Double cutWidth;
 
-    private String cutHeight;
+    private Double cutHeight;
 
-    public String getX() {
+    public Double getX() {
         return x;
     }
 
-    public void setX(String x) {
+    public void setX(Double x) {
         this.x = x;
     }
 
-    public String getY() {
+    public Double getY() {
         return y;
     }
 
-    public void setY(String y) {
+    public void setY(Double y) {
         this.y = y;
     }
 
-    public String getCutWidth() {
+    public Double getCutWidth() {
         return cutWidth;
     }
 
-    public void setCutWidth(String cutWidth) {
+    public void setCutWidth(Double cutWidth) {
         this.cutWidth = cutWidth;
     }
 
-    public String getCutHeight() {
+    public Double getCutHeight() {
         return cutHeight;
     }
 
-    public void setCutHeight(String cutHeight) {
+    public void setCutHeight(Double cutHeight) {
         this.cutHeight = cutHeight;
     }
 }

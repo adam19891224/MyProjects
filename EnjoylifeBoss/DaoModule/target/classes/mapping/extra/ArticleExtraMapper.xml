@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.boss.dao.blog.mapper.ArticleMapper" >
+  <select id="selectByArticleId" parameterType="java.lang.String" resultType="com.boss.foundation.modules.ArticleESEntity">
+    SELECT
+      ta.ARTICLE_SID as articleSid,
+      ta.ARTICLE_TITLE as articleTitle,
+      ta.ARTICLE_DESCRIPTION as articleDescription,
+      ta.ARTICLE_IMG as articleImg,
+      ta.CREATE_DATE as createDate
+    FROM
+      tb_article ta
+    WHERE
+      ta.ARTICLE_ID = #{id}
+
+  </select>
+
+  <select id="selectAllForRefresh" resultType="com.boss.foundation.modules.ArticleESEntity">
+      SELECT
+        ta.ARTICLE_SID as articleSid,
+        ta.ARTICLE_TITLE as articleTitle,
+        ta.ARTICLE_DESCRIPTION as articleDescription,
+        ta.ARTICLE_IMG as articleImg,
+        ta.CREATE_DATE as createDate
+      FROM
+        tb_article ta
+  </select>
+
+
+  <resultMap id="NewArticleBody" type="com.boss.dao.blog.pojo.ArticleBossPJ" extends="ResultMapWithBLOBs" >
+    <association property="commentCounts" column="articleId" select="selectCommentCountsByArticleID"/>
+    <association property="typeName" column="articleId" select="selectTypeNameByArticleID"/>
+  </resultMap>
+
+  <select id="selectArticleByPage" resultMap="NewArticleBody" parameterType="com.boss.foundation.view.Page">
+    SELECT
+      ta.ARTICLE_SID as articleSid,
+      ta.ARTICLE_ID as articleId,
+      ta.CREATE_DATE as createDate,
+      ta.ARTICLE_TITLE as articleTitle,
+      ta.ARTICLE_DESCRIPTION as articleDescription,
+      ta.ARTICLE_IMG as articleImg
+    FROM
+      tb_article ta
+
+    ORDER BY ta.CREATE_DATE DESC
+
+    <if test="pagination != null and pagination == true">
+      limit #{pageNum}, #{pageSize}
+    </if>
+  </select>
+
+  <select id="selectArticleCountsByPage" resultType="java.lang.Integer" parameterType="com.boss.foundation.view.Page">
+    SELECT
+      COUNT(1)
+    FROM
+    tb_article ta
+  </select>
+
+  <!--根据文章id获取评论数-->
+  <select id="selectCommentCountsByArticleID" resultType="java.lang.Integer">
+    SELECT
+      COUNT(1)
+    FROM
+      tb_article_comment tac
+    INNER JOIN
+      tb_comment tc ON tac.COMMENT_ID = tc.COMMENT_ID
+    WHERE
+      tac.ARTICLE_ID = #{articleId}
+    AND
+      tc.COMMENT_IS_REPLY = FALSE
+  </select>
+
+  <select id="selectTypeNameByArticleID" resultType="java.lang.String">
+    SELECT
+      tt.TYPE_NAME
+    FROM
+      tb_article_type tat
+    INNER JOIN
+      tb_type tt ON tat.TYPE_ID = tt.TYPE_ID
+    WHERE
+      tat.ARTICLE_ID = #{articleId}
+  </select>
+
+
+  <resultMap id="articleTypeMap" type="com.boss.dao.blog.pojo.Article">
+    <id column="ARTICLE_SID" property="articleSid" jdbcType="INTEGER" />
+    <result column="ARTICLE_ID" property="articleId" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="ARTICLE_TITLE" property="articleTitle" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="selectArticlesByTypeID" resultMap="articleTypeMap" parameterType="java.lang.String">
+    SELECT
+      ta.ARTICLE_SID,
+      ta.ARTICLE_ID,
+      ta.CREATE_DATE,
+      ta.ARTICLE_TITLE
+    FROM
+      tb_article ta
+    INNER JOIN
+      tb_article_type tat ON ta.ARTICLE_ID = tat.ARTICLE_ID
+    WHERE
+      tat.TYPE_ID = #{id}
+    ORDER BY
+      ta.CREATE_DATE DESC
+
+  </select>
+
+
+  <select id="selectArticlesWithOutTypeID" resultMap="articleTypeMap" parameterType="java.lang.String">
+    SELECT
+      ta.ARTICLE_SID,
+      ta.ARTICLE_ID,
+      ta.CREATE_DATE,
+      ta.ARTICLE_TITLE
+    FROM
+      tb_article ta
+    LEFT JOIN
+      tb_article_type tat ON ta.ARTICLE_ID = tat.ARTICLE_ID
+    WHERE
+      tat.TYPE_ID IS NULL
+    GROUP BY
+	  ta.ARTICLE_SID
+    ORDER BY
+      ta.CREATE_DATE DESC
+  </select>
+
+  <select id="selectArticlesBySeriesId" resultMap="articleTypeMap" parameterType="java.lang.String">
+    SELECT
+      ta.ARTICLE_SID,
+      ta.ARTICLE_ID,
+      ta.CREATE_DATE,
+      ta.ARTICLE_TITLE
+    FROM
+      tb_article ta
+    INNER JOIN
+      tb_article_series tsa ON ta.ARTICLE_ID = tsa.ARTICLE_ID
+    WHERE
+      tsa.SERIES_ID = #{id}
+    ORDER BY
+      ta.CREATE_DATE DESC
+
+  </select>
+
+  <select id="selectArticlesWithOutSeriesID" resultMap="articleTypeMap" parameterType="java.lang.String">
+    SELECT
+      ta.ARTICLE_SID,
+      ta.ARTICLE_ID,
+      ta.CREATE_DATE,
+      ta.ARTICLE_TITLE
+    FROM
+      tb_article ta
+    LEFT JOIN
+      tb_article_series tsa ON ta.ARTICLE_ID = tsa.ARTICLE_ID
+    WHERE
+      tsa.SERIES_ID IS NULL
+    GROUP BY
+	  ta.ARTICLE_SID
+    ORDER BY
+      ta.CREATE_DATE DESC
+  </select>
+
+</mapper>

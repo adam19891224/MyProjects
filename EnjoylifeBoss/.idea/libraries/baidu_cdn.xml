@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="baidu-cdn">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/WebModule/src/main/webapp/libs/baidu-cdn" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/WebModule/src/main/webapp/libs/baidu-cdn" recursive="false" />
+  </library>
+</component>

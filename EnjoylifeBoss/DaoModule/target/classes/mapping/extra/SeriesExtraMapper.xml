@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.boss.dao.series.mapper.SeriesMapper" >
+
+
+    <resultMap id="SeriesInfoMap" type="com.boss.dao.series.pojo.SeriesInfo" extends="BaseResultMap" >
+        <association property="articleCounts" column="SERIES_ID" select="selectArticleCountsBySeriesID"/>
+    </resultMap>
+
+    <select id="selectSeriesByPage" resultMap="SeriesInfoMap" parameterType="com.boss.foundation.view.Page">
+        SELECT
+            ts.SERIES_SID,
+            ts.SERIES_ID,
+            ts.SERIES_NAME,
+            ts.CREATE_TIME
+        FROM
+          tb_series ts
+
+        <if test="pagination != null and pagination == true">
+            limit #{pageNum}, #{pageSize}
+        </if>
+    </select>
+
+    <select id="selectSeriesCountByPage" resultType="java.lang.Integer" parameterType="com.boss.foundation.view.Page">
+        SELECT
+          COUNT(*)
+        FROM
+          tb_series ts
+    </select>
+
+    <select id="selectArticleCountsBySeriesID" resultType="java.lang.Integer">
+        SELECT
+          COUNT(*)
+        FROM
+          tb_article_series tsa
+        WHERE
+          tsa.SERIES_ID = #{SERIES_ID}
+    </select>
+
+    <delete id="deleteSeriesByArticleId" parameterType="java.lang.String">
+        DELETE
+            tb_article_series
+        FROM
+            tb_article_series
+        WHERE
+            tb_article_series.ARTICLE_ID = #{id}
+    </delete>
+
+    <delete id="deleteArticleBySeries" parameterType="com.boss.dao.series.pojo.ArticleSeries">
+        DELETE FROM
+          tb_article_series
+        WHERE
+          ARTICLE_ID = #{articleId}
+        AND
+          SERIES_ID = #{seriesId}
+    </delete>
+
+    <delete id="deleteArticleBySid" parameterType="java.lang.Integer">
+        DELETE
+            tb_series,
+            tb_article_series
+        FROM
+          tb_series
+        INNER JOIN
+          tb_article_series
+        ON
+          tb_series.SERIES_ID = tb_article_series.SERIES_ID
+        WHERE
+          tb_series.SERIES_SID = #{id}
+    </delete>
+
+</mapper>

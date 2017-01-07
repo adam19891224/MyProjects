@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>欢迎访问</title>
+    <meta name="keywords" content="Web技术，Web开发，Web交流，月下竹影，竹影，箫竹影，周禹宏" />
+    <meta name="description" content="月下竹影，是一个作为Web技术交流平台的个人原创技术博客。期待大家的光临。" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <link href="/files/base/images/ico.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="/files/types/css/manager.css" rel="stylesheet" type="text/css" media="all" />
+    <script src="/files/base/js/jquery-2.2.3.min.js"></script>
+    <script src="/files/base/js/app.js"></script>
+</head>
+<body>
+<ul id="container" th:attr="tid=${type.typeId}" class="container">
+    <li>
+        <span>分类名称</span>
+        <span th:text="${type.typeName}"></span>
+    </li>
+    <li>
+        <span>父类别</span>
+        <span th:if="${parent == null}" th:text="无"></span>
+        <span th:if="${parent != null}" th:text="${parent.typeName}"></span>
+    </li>
+    <li>
+        <span>已有文章</span>
+        <ul class="has-blogs" th:if="!${#lists.isEmpty(blogs)}">
+            <!--
+                each方法，第一个表示用什么名称来接收，这里我们用blog来表示集合中的一个对象
+                第二个表示用什么来获取下标，这里我们用blogIndex来表示当前对象的下标
+                第三个就是我们的集合了
+
+                有时候，我们需要自定义标签，传统做法：
+                <a mytext="sss"></a>
+                其他模板做法：
+                <a mytext="${obj.name}"></a>
+                thy做法：
+                <a th:attr="mytext=${obj.name}"></a>
+            -->
+            <li th:each="blog,blogIndex:${blogs}" th:attr="aid=${blog.articleId}">
+                <em th:text="${blog.articleTitle}"></em>
+                <em th:text="${#dates.format(blog.createDate, 'yyyy-MM-dd')}"></em>
+                <em th:text="移除" class="remove">2013.6.6</em>
+            </li>
+        </ul>
+        <span th:if="${#lists.isEmpty(blogs)}">暂无文章</span>
+    </li>
+    <li>
+        <span>继续添加文章</span>
+        <a href="javascript:" id="add-blog" class="add-blog">点击添加</a>
+    </li>
+</ul>
+<div id="whole-div" class="whole-div">
+    <div class="show-blogs">
+        <div class="title">
+            <span>请选择文章</span>
+            <a id="title-close" class="title-close">
+                关闭
+            </a>
+        </div>
+        <div id="blog-main" class="blog-main" load="0"></div>
+    </div>
+</div>
+</body>
+<script src="/files/types/js/manager.js"></script>
+</html>

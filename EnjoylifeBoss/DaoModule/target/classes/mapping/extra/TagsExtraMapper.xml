@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.boss.dao.tags.mapper.TagsMapper" >
+
+    <resultMap id="TagsInfoMap" type="com.boss.dao.tags.pojo.TagsInfo" extends="BaseResultMap" >
+        <association property="articleCounts" column="TAG_ID" select="selectArticleCountsByTagID"/>
+    </resultMap>
+
+    <select id="selectTagsByPage" resultMap="TagsInfoMap" parameterType="com.boss.foundation.view.Page">
+        SELECT
+            tt.TAG_SID,
+            tt.TAG_ID,
+            tt.TAG_NAME
+        FROM
+          tb_tags tt
+
+        <if test="pagination != null and pagination == true">
+            limit #{pageNum}, #{pageSize}
+        </if>
+
+    </select>
+
+    <select id="selectTagsCountByPage" resultType="java.lang.Integer" parameterType="com.boss.foundation.view.Page">
+        SELECT
+          COUNT(*)
+        FROM
+          tb_tags tt
+    </select>
+
+    <select id="selectArticleCountsByTagID" resultType="java.lang.Integer">
+        SELECT
+          COUNT(*)
+        FROM
+          tb_article_tags tat
+        WHERE
+          tat.TAG_ID = #{TAG_ID}
+    </select>
+
+    <delete id="deleteTagsByArticleId" parameterType="java.lang.String">
+        DELETE
+          tb_article_tags
+        FROM
+          tb_article_tags
+        WHERE
+          tb_article_tags.ARTICLE_ID = #{id}
+    </delete>
+
+    <delete id="deleteTagsBySid" parameterType="java.lang.Integer">
+        DELETE
+            tb_tags,
+            tb_article_tags
+        FROM
+            tb_tags
+        INNER JOIN
+            tb_article_tags
+        ON
+            tb_tags.TAG_ID = tb_article_tags.TAG_ID
+        WHERE
+            tb_tags.TAG_SID = #{id}
+    </delete>
+
+    <select id="selectArticleTagsByArticleId" resultMap="BaseResultMap" parameterType="java.lang.String">
+        SELECT
+            tt.*
+        FROM
+            tb_tags tt
+        INNER JOIN tb_article_tags tat ON tt.TAG_ID = tat.TAG_ID
+        WHERE
+            tat.ARTICLE_ID = #{id}
+    </select>
+
+    <select id="selectUnTagsByArticleId" resultMap="BaseResultMap" parameterType="java.lang.String">
+        SELECT
+            tt.*
+        FROM
+            tb_tags tt
+        LEFT JOIN tb_article_tags tat ON tt.TAG_ID = tat.TAG_ID
+        WHERE
+            (
+                tat.ARTICLE_ID != #{id}
+                OR tat.ARTICLE_ID IS NULL
+            )
+    </select>
+
+    <insert id="insertBatchTags" parameterType="java.util.List">
+        insert into
+            tb_article_tags (TAG_ID, ARTICLE_ID)
+        values
+        <foreach collection="list" item="temp" index="index" separator="," >
+            (#{temp.tagId},#{temp.articleId})
+        </foreach>
+    </insert>
+
+</mapper>

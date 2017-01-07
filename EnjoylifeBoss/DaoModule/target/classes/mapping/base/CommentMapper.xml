@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.boss.dao.comment.mapper.CommentMapper" >
+  <resultMap id="BaseResultMap" type="com.boss.dao.comment.pojo.Comment" >
+    <id column="COMMENT_SID" property="commentSid" jdbcType="INTEGER" />
+    <result column="COMMENT_ID" property="commentId" jdbcType="VARCHAR" />
+    <result column="COMMENT_USER" property="commentUser" jdbcType="VARCHAR" />
+    <result column="COMMENT_USER_WEBSITE" property="commentUserWebsite" jdbcType="VARCHAR" />
+    <result column="COMMENT_EMAIL" property="commentEmail" jdbcType="VARCHAR" />
+    <result column="COMMENT_POINT" property="commentPoint" jdbcType="INTEGER" />
+    <result column="COMMENT_IS_REPLY" property="commentIsReply" jdbcType="TINYINT" />
+    <result column="COMMENT_REPLY_USER" property="commentReplyUser" jdbcType="VARCHAR" />
+    <result column="COMMENT_REPLY_BODY" property="commentReplyBody" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="COMMENT_BACKUP1" property="commentBackup1" jdbcType="VARCHAR" />
+    <result column="COMMENT_BACKUP2" property="commentBackup2" jdbcType="VARCHAR" />
+    <result column="COMMENT_BACKUP3" property="commentBackup3" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.boss.dao.comment.pojo.Comment" extends="BaseResultMap" >
+    <result column="COMMENT_BODY" property="commentBody" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    COMMENT_SID, COMMENT_ID, COMMENT_USER, COMMENT_USER_WEBSITE, COMMENT_EMAIL, COMMENT_POINT, 
+    COMMENT_IS_REPLY, COMMENT_REPLY_USER, COMMENT_REPLY_BODY, CREATE_DATE, UPDATE_DATE, 
+    COMMENT_BACKUP1, COMMENT_BACKUP2, COMMENT_BACKUP3
+  </sql>
+  <sql id="Blob_Column_List" >
+    COMMENT_BODY
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_comment
+    where COMMENT_SID = #{commentSid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_comment
+    where COMMENT_SID = #{commentSid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.boss.dao.comment.pojo.Comment" >
+    insert into tb_comment (COMMENT_SID, COMMENT_ID, COMMENT_USER, 
+      COMMENT_USER_WEBSITE, COMMENT_EMAIL, COMMENT_POINT, 
+      COMMENT_IS_REPLY, COMMENT_REPLY_USER, COMMENT_REPLY_BODY, 
+      CREATE_DATE, UPDATE_DATE, COMMENT_BACKUP1, 
+      COMMENT_BACKUP2, COMMENT_BACKUP3, COMMENT_BODY
+      )
+    values (#{commentSid,jdbcType=INTEGER}, #{commentId,jdbcType=VARCHAR}, #{commentUser,jdbcType=VARCHAR}, 
+      #{commentUserWebsite,jdbcType=VARCHAR}, #{commentEmail,jdbcType=VARCHAR}, #{commentPoint,jdbcType=INTEGER}, 
+      #{commentIsReply,jdbcType=TINYINT}, #{commentReplyUser,jdbcType=VARCHAR}, #{commentReplyBody,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, #{commentBackup1,jdbcType=VARCHAR}, 
+      #{commentBackup2,jdbcType=VARCHAR}, #{commentBackup3,jdbcType=VARCHAR}, #{commentBody,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.boss.dao.comment.pojo.Comment" >
+    insert into tb_comment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="commentSid != null" >
+        COMMENT_SID,
+      </if>
+      <if test="commentId != null" >
+        COMMENT_ID,
+      </if>
+      <if test="commentUser != null" >
+        COMMENT_USER,
+      </if>
+      <if test="commentUserWebsite != null" >
+        COMMENT_USER_WEBSITE,
+      </if>
+      <if test="commentEmail != null" >
+        COMMENT_EMAIL,
+      </if>
+      <if test="commentPoint != null" >
+        COMMENT_POINT,
+      </if>
+      <if test="commentIsReply != null" >
+        COMMENT_IS_REPLY,
+      </if>
+      <if test="commentReplyUser != null" >
+        COMMENT_REPLY_USER,
+      </if>
+      <if test="commentReplyBody != null" >
+        COMMENT_REPLY_BODY,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE,
+      </if>
+      <if test="commentBackup1 != null" >
+        COMMENT_BACKUP1,
+      </if>
+      <if test="commentBackup2 != null" >
+        COMMENT_BACKUP2,
+      </if>
+      <if test="commentBackup3 != null" >
+        COMMENT_BACKUP3,
+      </if>
+      <if test="commentBody != null" >
+        COMMENT_BODY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="commentSid != null" >
+        #{commentSid,jdbcType=INTEGER},
+      </if>
+      <if test="commentId != null" >
+        #{commentId,jdbcType=VARCHAR},
+      </if>
+      <if test="commentUser != null" >
+        #{commentUser,jdbcType=VARCHAR},
+      </if>
+      <if test="commentUserWebsite != null" >
+        #{commentUserWebsite,jdbcType=VARCHAR},
+      </if>
+      <if test="commentEmail != null" >
+        #{commentEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="commentPoint != null" >
+        #{commentPoint,jdbcType=INTEGER},
+      </if>
+      <if test="commentIsReply != null" >
+        #{commentIsReply,jdbcType=TINYINT},
+      </if>
+      <if test="commentReplyUser != null" >
+        #{commentReplyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="commentReplyBody != null" >
+        #{commentReplyBody,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="commentBackup1 != null" >
+        #{commentBackup1,jdbcType=VARCHAR},
+      </if>
+      <if test="commentBackup2 != null" >
+        #{commentBackup2,jdbcType=VARCHAR},
+      </if>
+      <if test="commentBackup3 != null" >
+        #{commentBackup3,jdbcType=VARCHAR},
+      </if>
+      <if test="commentBody != null" >
+        #{commentBody,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.boss.dao.comment.pojo.Comment" >
+    update tb_comment
+    <set >
+      <if test="commentId != null" >
+        COMMENT_ID = #{commentId,jdbcType=VARCHAR},
+      </if>
+      <if test="commentUser != null" >
+        COMMENT_USER = #{commentUser,jdbcType=VARCHAR},
+      </if>
+      <if test="commentUserWebsite != null" >
+        COMMENT_USER_WEBSITE = #{commentUserWebsite,jdbcType=VARCHAR},
+      </if>
+      <if test="commentEmail != null" >
+        COMMENT_EMAIL = #{commentEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="commentPoint != null" >
+        COMMENT_POINT = #{commentPoint,jdbcType=INTEGER},
+      </if>
+      <if test="commentIsReply != null" >
+        COMMENT_IS_REPLY = #{commentIsReply,jdbcType=TINYINT},
+      </if>
+      <if test="commentReplyUser != null" >
+        COMMENT_REPLY_USER = #{commentReplyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="commentReplyBody != null" >
+        COMMENT_REPLY_BODY = #{commentReplyBody,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="commentBackup1 != null" >
+        COMMENT_BACKUP1 = #{commentBackup1,jdbcType=VARCHAR},
+      </if>
+      <if test="commentBackup2 != null" >
+        COMMENT_BACKUP2 = #{commentBackup2,jdbcType=VARCHAR},
+      </if>
+      <if test="commentBackup3 != null" >
+        COMMENT_BACKUP3 = #{commentBackup3,jdbcType=VARCHAR},
+      </if>
+      <if test="commentBody != null" >
+        COMMENT_BODY = #{commentBody,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where COMMENT_SID = #{commentSid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.boss.dao.comment.pojo.Comment" >
+    update tb_comment
+    set COMMENT_ID = #{commentId,jdbcType=VARCHAR},
+      COMMENT_USER = #{commentUser,jdbcType=VARCHAR},
+      COMMENT_USER_WEBSITE = #{commentUserWebsite,jdbcType=VARCHAR},
+      COMMENT_EMAIL = #{commentEmail,jdbcType=VARCHAR},
+      COMMENT_POINT = #{commentPoint,jdbcType=INTEGER},
+      COMMENT_IS_REPLY = #{commentIsReply,jdbcType=TINYINT},
+      COMMENT_REPLY_USER = #{commentReplyUser,jdbcType=VARCHAR},
+      COMMENT_REPLY_BODY = #{commentReplyBody,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      COMMENT_BACKUP1 = #{commentBackup1,jdbcType=VARCHAR},
+      COMMENT_BACKUP2 = #{commentBackup2,jdbcType=VARCHAR},
+      COMMENT_BACKUP3 = #{commentBackup3,jdbcType=VARCHAR},
+      COMMENT_BODY = #{commentBody,jdbcType=LONGVARCHAR}
+    where COMMENT_SID = #{commentSid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.boss.dao.comment.pojo.Comment" >
+    update tb_comment
+    set COMMENT_ID = #{commentId,jdbcType=VARCHAR},
+      COMMENT_USER = #{commentUser,jdbcType=VARCHAR},
+      COMMENT_USER_WEBSITE = #{commentUserWebsite,jdbcType=VARCHAR},
+      COMMENT_EMAIL = #{commentEmail,jdbcType=VARCHAR},
+      COMMENT_POINT = #{commentPoint,jdbcType=INTEGER},
+      COMMENT_IS_REPLY = #{commentIsReply,jdbcType=TINYINT},
+      COMMENT_REPLY_USER = #{commentReplyUser,jdbcType=VARCHAR},
+      COMMENT_REPLY_BODY = #{commentReplyBody,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      COMMENT_BACKUP1 = #{commentBackup1,jdbcType=VARCHAR},
+      COMMENT_BACKUP2 = #{commentBackup2,jdbcType=VARCHAR},
+      COMMENT_BACKUP3 = #{commentBackup3,jdbcType=VARCHAR}
+    where COMMENT_SID = #{commentSid,jdbcType=INTEGER}
+  </update>
+</mapper>

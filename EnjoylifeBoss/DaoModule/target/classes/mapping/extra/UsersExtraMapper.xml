@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boss.dao.user.mapper.UsersMapper">
+
+    <select id="selectUserInfoByForm" parameterType="com.boss.foundation.form.LoginForm" resultType="com.boss.foundation.entity.UserInfo">
+        SELECT
+          tu.USER_SID as userSid,
+          tu.USER_ID as userId,
+          tu.USER_NAME as userName,
+          tu.USER_PASSWORD as userPassword,
+          tu.USER_SIMPLE_NAME as userSimpleName,
+          tu.USER_ROLE as userRole
+        FROM
+          tb_users tu
+        WHERE
+          tu.USER_NAME = #{userName}
+        AND
+          tu.USER_PASSWORD = #{userPassword}
+    </select>
+
+</mapper>

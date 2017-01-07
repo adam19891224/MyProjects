@@ -1,0 +1,48 @@
+.page-div {
+    padding: 15px 20px;
+    color: #ccc;
+    text-align: center;
+}
+
+.page-div a {
+    display: inline-block;
+    color: #428bca;
+    height: 25px;
+    line-height: 25px;
+    padding: 0 10px;
+    border: 1px solid #ddd;
+    margin: 0 2px;
+    border-radius: 4px;
+    vertical-align: middle;
+}
+
+.page-div a:hover {
+    text-decoration: none;
+    border: 1px solid #2e9ad0;
+}
+
+.page-div span.current {
+    display: inline-block;
+    height: 25px;
+    line-height: 25px;
+    padding: 0 10px;
+    margin: 0 2px;
+    color: #fff;
+    background-color: #2e9ad0;
+    border: 1px solid #2e9ad0;
+    border-radius: 4px;
+    vertical-align: middle;
+}
+
+.page-div span.disabled {
+    display: inline-block;
+    height: 25px;
+    line-height: 25px;
+    padding: 0 10px;
+    margin: 0 2px;
+    color: #bfbfbf;
+    background: #f2f2f2;
+    border: 1px solid #bfbfbf;
+    border-radius: 4px;
+    vertical-align: middle;
+}

@@ -1,0 +1,36 @@
+@import "../../base/css/base.css";
+@import "../../base/css/common.css";
+
+.menu-ul{
+    width: 1200px;
+    margin: 30px auto;
+    padding: 30px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.menu-ul li{
+    width: 100%;
+    line-height: 40px;
+    float: left;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.menu-ul li a:hover{
+    color: #fff8f8;
+}
+
+.menu-ul li:nth-child(3n - 2){
+    background-color: #c83939;
+}
+
+.menu-ul li:nth-child(3n - 1){
+    background-color: #ffa84c;
+}
+
+.menu-ul li:nth-child(3n){
+    background-color: #2e9ad0;
+}

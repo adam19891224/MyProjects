@@ -1,0 +1,57 @@
+body{
+    font-family: 楷体, serif;
+    font-size: 16px;
+    margin: 0;
+    cursor: default;
+}
+
+a{
+    outline: none;
+    color: black;
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: none;
+    color: black;
+}
+a:visited{
+    text-decoration: none;
+    color: black;
+}
+a:link{
+    text-decoration: none;
+    color: black;
+}
+
+ul{
+    list-style-type: none;
+}
+
+h1, h2, h3, h4{
+    margin: 0;
+    padding: 0;
+    cursor: default;
+}
+
+img{
+    border: none;
+}
+
+span{
+    cursor: default;
+}
+
+body::-webkit-scrollbar {
+    width:10px;
+    height:10px;
+}
+body::-webkit-scrollbar-button    {
+}
+body::-webkit-scrollbar-track     {
+    background: #c6c6c6;
+}
+body::-webkit-scrollbar-thumb{
+    background-color: lightblue;
+    border-radius: 15px;
+}

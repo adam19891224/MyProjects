@@ -4,6 +4,7 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
@@ -17,7 +18,7 @@ import javax.sql.DataSource;
  * User: adam
  * Date: 2015/12/2
  */
-@Configuration
+@SpringBootConfiguration
 public class MybatisDataSourceConfiguration {
 
     @Value("${spring.datasource.hikari.driver-class-name}")

@@ -39,8 +39,6 @@ public class BlogsController extends BaseController {
     @Resource
     private ITagsService tagsService;
 
-    @Value("${image.return}")
-    private String returnStr;
 
     @RequestMapping("/list.html")
     public String list(ModelMap map, Page<ArticleBossPJ> page){
@@ -79,8 +77,6 @@ public class BlogsController extends BaseController {
     @ResponseBody
     public String upload(MultipartFile upload, String CKEditorFuncNum){
 
-        long size = upload.getSize();
-
         String res = "<script type=\"text/javascript\">" +
                         "window.parent.CKEDITOR.tools.callFunction(" + CKEditorFuncNum + ",''," + "'文件格式不正确（必须为.jpg/.gif/.bmp/.png文件）');" +
                      "</script>";
@@ -112,8 +108,12 @@ public class BlogsController extends BaseController {
                 res = "<script type=\"text/javascript\">" +
                         "window.parent.CKEDITOR.tools.callFunction(" + CKEditorFuncNum + ",''," + "'文件没有内容');" +
                         "</script>";
+            }else if(reponse.equalsIgnoreCase("error")){
+                res = "<script type=\"text/javascript\">" +
+                        "window.parent.CKEDITOR.tools.callFunction(" + CKEditorFuncNum + ",''," + "'文件上传发生异常');" +
+                        "</script>";
             }else{
-                res = (returnStr + reponse).replaceAll("\\\\", "/");
+                res = reponse.replaceAll("\\\\", "/");
                 res = "<script type=\"text/javascript\">" +
                         "window.parent.CKEDITOR.tools.callFunction(" + CKEditorFuncNum + ",'" + res + "','')" +
                         "</script>";
@@ -125,7 +125,7 @@ public class BlogsController extends BaseController {
 
     @RequestMapping("/uploadTag.html")
     @ResponseBody
-    public String uploadTag(MultipartFile file, String topx, String topy, String imgW, String imgH){
+    public String uploadTag(MultipartFile file, Double topx, Double topy, Double imgW, Double imgH){
 
         EnjoyFile enjoyFile = new EnjoyFile();
         enjoyFile.setCheckTag(true);
