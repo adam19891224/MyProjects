@@ -42,7 +42,6 @@ public class BlogsController extends BaseController {
 
     @RequestMapping("/list.html")
     public String list(ModelMap map, Page<ArticleBossPJ> page){
-
         return "blogs/list";
     }
 
@@ -60,7 +59,6 @@ public class BlogsController extends BaseController {
         if(userInfo == null){
             return "redirect:/login.html";
         }
-
         map.addAttribute("userSimpleName", userInfo.getUserName());
 
         return "blogs/index";
