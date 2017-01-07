@@ -86,7 +86,27 @@
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpasyncclient</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>${commons-logging-io.version}</version>
+        </dependency>
 
+        <!--百度云-->
+        <dependency>
+            <groupId>com.baidu</groupId>
+            <artifactId>com.baidu</artifactId>
+            <version>${baidu.sdk.version}</version>
+        </dependency>
     </dependencies>
 
 </project>
