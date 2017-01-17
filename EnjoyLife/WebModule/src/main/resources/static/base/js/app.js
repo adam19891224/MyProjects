@@ -1,6 +1,13 @@
 function Applications() {
 
     var _this = this;
+    var index = null;
+    var eye = null;
+    var cate = null;
+    var search = null;
+    var blog = null;
+    var categorys = null;
+
 
     var EMAIL_REG = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
     var SITE_REG = /[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+\.?/;
@@ -32,12 +39,76 @@ function Applications() {
     this.checkIsNum = function (str) {
         return NUM_REG.test(str);
     };
+
+    this.initIndex = function () {
+        if(index == null){
+            index = new Index();
+        }
+        index.init();
+    };
+
+    this.initEye = function () {
+        if(eye == null){
+            eye = new Eyes();
+        }
+        eye.init();
+    };
+
+    this.initGenre = function () {
+        if(cate == null){
+            cate = new Category();
+        }
+        cate.init();
+    };
+
+    this.initQuery = function () {
+        if(search == null){
+            search = new Searchs();
+        }
+        search.init();
+    };
+
+    this.initBlog = function () {
+        if(blog == null){
+            blog = new Blogs();
+        }
+        blog.init();
+    };
+
+    this.startCloud = function () {
+        if(categorys == null){
+            categorys = new CategoryUtils();
+        }
+        var typeObj = $("#type-body");
+        if(typeObj.length > 0){
+            categorys.init(typeObj);
+        }
+    };
+
+    this.bindEvent = function () {
+        var href = window.location.href;
+        if(href.indexOf("index") > 0){
+            applications.initIndex();
+        }
+        if(href.indexOf("eyes") > 0){
+            applications.initEye()
+        }
+        if(href.indexOf("query") > 0){
+            applications.initQuery();
+        }
+        if(href.indexOf("genre") > 0){
+            applications.initGenre();
+        }
+        if(href.indexOf("blogs") > 0){
+            applications.initBlog();
+        }
+    }
 }
 var applications = new Applications();
 
 Date.prototype.Format = function(fmt){
     var o = {
-        "M+" : this.getMonth()+1,                 //月份
+        "M+" : this.getMonth() + 1,                 //月份
         "d+" : this.getDate(),                    //日
         "h+" : this.getHours(),                   //小时
         "m+" : this.getMinutes(),                 //分
@@ -80,44 +151,18 @@ $(function () {
         $("#loading-page-bar").animate({width: "100%"}, 300, function () {
             $("#loading-page-bar").width("0");
         });
-        var href = window.location.href;
-        if(href.indexOf("eyes") > 0){
-            var eyes = new Eyes();
-            eyes.init();
-        }
-        if(href.indexOf("index") > 0){
-            var index = new Index();
-            index.init();
-        }
-        if(href.indexOf("query") > 0){
-            var search = new Searchs();
-            search.init();
-        }
-        if(href.indexOf("genre") > 0){
-            var category = new Category();
-            category.init();
-        }
-        if(href.indexOf("blogs") > 0){
-            var blogs = new Blogs();
-            blogs.init();
-        }
-        startCloud();
+
+        applications.startCloud();
+        applications.bindEvent();
     });
 
     $("#header-nav-ul li a").click(function () {
         $(this).parent().addClass("header-underline").siblings().removeClass("header-underline");
     });
 
-    startCloud();
+    applications.startCloud();
+    applications.bindEvent();
 });
-
-function startCloud(){
-    var categorys = new CategoryUtils();
-    var typeObj = $("#type-body");
-    if(typeObj.length > 0){
-        categorys.init(typeObj);
-    }
-}
 
 function Index() {
 
@@ -148,6 +193,7 @@ function Index() {
             current: applications.castStr2Num($("#page-div").attr("data-current")),
             backFn: function(page){
                 if(isClick){
+                    isClick = false;
                     var location = "/index/";
                     if(page > 1){
                         if(applications.checkIsNum(page)){
@@ -155,6 +201,7 @@ function Index() {
                         }
                     }
                     $.pjax({url: location, container: '#main'});
+                    isClick = true;
                 }
             }
         });
@@ -346,6 +393,7 @@ function Searchs() {
                         }
                     }
                     $.pjax({url: location, container: '#main'});
+                    isClick = true;
                 }
             }
         });
@@ -391,6 +439,7 @@ function Category(){
                         }
                     }
                     $.pjax({url: location, container: '#main'});
+                    isClick = true;
                 }
             }
         });
@@ -435,7 +484,7 @@ function Blogs(){
      */
     this.commentReplyButtonClick = function () {
         var _this, _thisL;
-        $("#articlt-comment-div").on("click", ".to-reply", function () {
+        $("#main").on("click", ".to-reply", function () {
             _this = $(this);
             var l = _this.attr("data-l");
             if(l == "0"){
@@ -464,7 +513,7 @@ function Blogs(){
      */
     this.commentShowButtonClick = function () {
         var _this, _thisL;
-        $("#articlt-comment-div").on("click", ".to-show", function () {
+        $("#main").on("click", ".to-show", function () {
             _this = $(this);
             _thisL = _this.parents("li");
             var l = _this.attr("data-l");
@@ -496,7 +545,7 @@ function Blogs(){
      */
     this.commentSubmitButtonClick = function () {
         var _this;
-        $("#comment-submit").click(function () {
+        $("#comment-submit").unbind("click").click(function () {
             _this = $(this);
             var lock = _this.data("lock");
             if(lock != "1"){
@@ -527,7 +576,7 @@ function Blogs(){
      */
     this.replySubmitButtonClick = function () {
         var _this;
-        $("#articlt-comment-div").on("click", "#submit-reply-button", function () {
+        $("#main").on("click", "#submit-reply-button", function () {
             _this = $(this);
             var lock = _this.data("lock");
             if(lock != "1"){
@@ -559,7 +608,7 @@ function Blogs(){
      * 信息提交框确认按钮，校验昵称，邮箱等信息，并提交数据
      */
     this.dataSubmitClick = function () {
-        $("#to-submit").click(function () {
+        $("#to-submit").unbind("click").click(function () {
             var name = $("#friend-name").val();
             var email = $("#friend-email").val();
             var type = $("#friend-sitetype").val();
@@ -615,7 +664,7 @@ function Blogs(){
                         alert("拒绝访问");
                     }
                 }
-                $.pjax({url: location, container: '#main'});
+                window.location = location;
             });
         });
     };
@@ -624,7 +673,7 @@ function Blogs(){
      * 信息提交框取消按钮，关闭信息框
      */
     this.dataCancleClick = function () {
-        $("#to-cancle").click(function () {
+        $("#to-cancle").unbind("click").click(function () {
             $("#whole-div").data("comment", "").hide();
         });
     };
@@ -634,7 +683,7 @@ function Blogs(){
      */
     this.websiteClick = function () {
         var site = "";
-        $("#articlt-comment-div").on("click", ".has-website", function () {
+        $("#articlt-comment-div").unbind("click").on("click", ".has-website", function () {
             site = $(this).attr("data-w");
             if(site.indexOf("http://") >= 0 || site.indexOf("https://") >= 0){
                 window.open(site);

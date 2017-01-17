@@ -1,7 +1,6 @@
 package com.enjoylife.blogs.controller;
 
 import com.enjoylife.article.vo.ArticleWithBLOBs;
-import com.enjoylife.base.annotations.DoCrsf;
 import com.enjoylife.base.annotations.ToCrsf;
 import com.enjoylife.base.controller.BaseController;
 import com.enjoylife.comment.ICommentService;
@@ -99,7 +98,6 @@ public class BlogsController extends BaseController {
 
     @RequestMapping(value = "/postComment.html", method = RequestMethod.POST)
     @ResponseBody
-    @DoCrsf
     public String postComment(CommentForm form){
         try {
             return commentService.insertCommentByForm(form);
