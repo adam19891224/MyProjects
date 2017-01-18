@@ -18,7 +18,7 @@
                     </a>
                 </li>
                 <li [#if isComplain?? && isComplain == "Y"]class="header-underline"[/#if]>
-                    <a href="#" class="link-head">
+                    <a href="/bullshit" class="link-head">
                         吐槽
                     </a>
                 </li>

@@ -7,6 +7,7 @@ function Applications() {
     var search = null;
     var blog = null;
     var categorys = null;
+    var bull = null;
 
 
     var EMAIL_REG = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
@@ -75,6 +76,13 @@ function Applications() {
         blog.init();
     };
 
+    this.initBull = function () {
+        if(bull == null){
+            bull = new Bull();
+        }
+        bull.init();
+    };
+
     this.startCloud = function () {
         if(categorys == null){
             categorys = new CategoryUtils();
@@ -101,6 +109,9 @@ function Applications() {
         }
         if(href.indexOf("blogs") > 0){
             applications.initBlog();
+        }
+        if(href.indexOf("bullshit") > 0){
+            applications.initBull();
         }
     }
 }
@@ -443,6 +454,28 @@ function Category(){
                 }
             }
         });
+    }
+}
+
+function Bull(){
+
+    var _this = this;
+
+    this.init = function () {
+        this.setSize();
+    };
+
+    this.setSize = function () {
+        var aList = $("#main-left").find("a");
+        var temp;
+        aList.each(function () {
+            temp = $(this);
+            temp.css("font-size", _this.randomSize() + "px");
+        })
+    };
+
+    this.randomSize = function () {
+        return Math.round(Math.random() * 100 + 10);
     }
 }
 
