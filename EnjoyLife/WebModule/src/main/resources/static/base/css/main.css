@@ -1074,11 +1074,36 @@
     text-align: center;
 }
 
-/*吐槽*/
-.bull-screen{
+/*友链*/
+.friedns-screen{
     width: 100%;
-    height: 500px;
     float: left;
-    background-color: #ebebeb;
     overflow: hidden;
+    position: relative;
+    padding: 0 30px;
+    box-sizing: border-box;
+    min-height: 500px;
+}
+
+.friedns-screen h2{
+    line-height: 50px;
+    text-align: center;
+    border-bottom: 1px solid #2e9ad0;
+}
+
+.friedns-screen ul{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.friedns-screen ul li{
+    width: 100%;
+    float: left;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.friedns-screen ul li a{
+    color: #0000cc;
 }

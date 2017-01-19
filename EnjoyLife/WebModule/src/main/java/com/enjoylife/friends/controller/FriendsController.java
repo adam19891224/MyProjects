@@ -1,4 +1,4 @@
-package com.enjoylife.bullshit.controller;
+package com.enjoylife.friends.controller;
 
 import com.enjoylife.base.controller.BaseController;
 import com.enjoylife.enums.YesNoTypeEnum;
@@ -16,21 +16,21 @@ import java.io.IOException;
  * 2017/1/18
  */
 @RestController
-public class BullshitController extends BaseController{
+public class FriendsController extends BaseController{
 
-    @RequestMapping(value = "/bullshit", method = {RequestMethod.GET, RequestMethod.POST})
-    public String bullshit(ModelMap map, HttpServletRequest request){
+    @RequestMapping(value = "/friends", method = {RequestMethod.GET, RequestMethod.POST})
+    public String friends(ModelMap map, HttpServletRequest request){
 
-        map.addAttribute("isSeries", YesNoTypeEnum.Yes.getCode());
+        map.addAttribute("isFriends", YesNoTypeEnum.Yes.getCode());
 
         //查询总文章数和总分类数给前台展示
         super.getTotalTypesToMap(map);
         super.getTotalArticlesToMap(map);
 
-        map.addAttribute("dataType", "bull");
+        map.addAttribute("dataType", "friends");
 
         try {
-            return toPjax(request, map, "bull");
+            return toPjax(request, map, "friends");
         } catch (TemplateException | IOException e) {
             logger.error("pjax返回错误");
         }

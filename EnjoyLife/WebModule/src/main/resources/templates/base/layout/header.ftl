@@ -17,11 +17,6 @@
                         首页
                     </a>
                 </li>
-                <li [#if isComplain?? && isComplain == "Y"]class="header-underline"[/#if]>
-                    <a href="/bullshit" class="link-head">
-                        吐槽
-                    </a>
-                </li>
                 <li [#if isSeries?? && isSeries == "Y"]class="header-underline"[/#if]>
                     <a href="/series" class="link-head">
                         专题
@@ -35,6 +30,11 @@
                 <li [#if isProfile?? && isProfile == "Y"]class="header-underline"[/#if]>
                     <a href="/profile" class="link-head">
                         关于
+                    </a>
+                </li>
+                <li [#if isFriends?? && isFriends == "Y"]class="header-underline"[/#if]>
+                    <a href="/friends" class="link-head">
+                        友链
                     </a>
                 </li>
             </ul>

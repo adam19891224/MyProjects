@@ -1,14 +1,6 @@
 function Applications() {
 
-    var _this = this;
-    var index = null;
-    var eye = null;
-    var cate = null;
-    var search = null;
-    var blog = null;
-    var categorys = null;
-    var bull = null;
-
+    var index, eye, cate, search, blog, categorys, friends;
 
     var EMAIL_REG = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
     var SITE_REG = /[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+\.?/;
@@ -76,11 +68,11 @@ function Applications() {
         blog.init();
     };
 
-    this.initBull = function () {
-        if(bull == null){
-            bull = new Bull();
+    this.initFriends = function () {
+        if(friends == null){
+            friends = new Friends();
         }
-        bull.init();
+        friends.init();
     };
 
     this.startCloud = function () {
@@ -105,12 +97,10 @@ function Applications() {
             applications.initGenre();
         } else if(href.indexOf("blogs") > 0){
             applications.initBlog();
-        } else if(href.indexOf("bullshit") > 0){
-            applications.initBull();
-        }else{
+        } else{
             applications.initIndex();
         }
-    }
+    };
 }
 var applications = new Applications();
 
@@ -454,26 +444,10 @@ function Category(){
     }
 }
 
-function Bull(){
-
-    var _this = this;
-
+function Friends() {
     this.init = function () {
-        this.setSize();
-    };
 
-    this.setSize = function () {
-        var aList = $("#main-left").find("a");
-        var temp;
-        aList.each(function () {
-            temp = $(this);
-            temp.css("font-size", _this.randomSize() + "px");
-        })
     };
-
-    this.randomSize = function () {
-        return Math.round(Math.random() * 100 + 10);
-    }
 }
 
 function Blogs(){
