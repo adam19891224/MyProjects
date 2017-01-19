@@ -3,24 +3,20 @@
     <div id="friedns-screen" class="friedns-screen">
         <h2>友情链接</h2>
         <ul>
-            <li>
-                <span>
-                    <a href="http://www.baidu.com" target="_blank">百度</a>
-                </span>
-                <span>(asdasdasdasdasd)</span>
-            </li>
-            <li>
-                <span>
-                    <a href="http://www.baidu.com" target="_blank">百度</a>
-                </span>
-                <span>(asdasdasdasdasd)</span>
-            </li>
-            <li>
-                <span>
-                    <a href="http://www.baidu.com" target="_blank">百度</a>
-                </span>
-                <span>(asdasdasdasdasd)</span>
-            </li>
+            [#if friends?? && friends?size > 0]
+                [#list friends as friend]
+                    <li>
+                        <span>
+                            <a href="${friend.friendValue}" target="_blank">${friend.friendName}</a>
+                        </span>
+                        <span>(${friend.friendTips})</span>
+                    </li>
+                [/#list]
+            [#else]
+                <li>
+                    <h5>目前还没有哦。请联系博主吧</h5>
+                </li>
+            [/#if]
         </ul>
     </div>
 </div>
