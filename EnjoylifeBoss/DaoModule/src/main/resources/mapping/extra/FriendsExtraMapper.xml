@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.boss.dao.friends.mapper.FriendsMapper" >
+
+    <resultMap id="FriendsInfoMap" type="com.boss.dao.friends.pojo.Friends" extends="BaseResultMap" >
+    </resultMap>
+
+    <select id="selectFriendsListByPage" resultMap="FriendsInfoMap" parameterType="com.boss.foundation.view.Page">
+        SELECT
+            tf.FRIEND_SID,
+            tf.FRIEND_ID,
+            tf.FRIEND_NAME,
+            tf.FRIEND_VALUE,
+            tf.FRIEND_TIPS,
+            tf.CREATE_DATE
+        FROM
+          tb_friends tf
+
+        <if test="pagination != null and pagination == true">
+            limit #{pageNum}, #{pageSize}
+        </if>
+
+    </select>
+
+    <select id="selectFriendsListCountByPage" resultType="java.lang.Integer" parameterType="com.boss.foundation.view.Page">
+        SELECT
+          COUNT(*)
+        FROM
+          tb_friends tf
+    </select>
+
+</mapper>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.boss.dao.friends.mapper.FriendsMapper" >
+  <resultMap id="BaseResultMap" type="com.boss.dao.friends.pojo.Friends" >
+    <id column="FRIEND_SID" property="friendSid" jdbcType="INTEGER" />
+    <result column="FRIEND_ID" property="friendId" jdbcType="VARCHAR" />
+    <result column="FRIEND_NAME" property="friendName" jdbcType="VARCHAR" />
+    <result column="FRIEND_VALUE" property="friendValue" jdbcType="VARCHAR" />
+    <result column="FRIEND_TIPS" property="friendTips" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    FRIEND_SID, FRIEND_ID, FRIEND_NAME, FRIEND_VALUE, FRIEND_TIPS, CREATE_DATE, UPDATE_DATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_friends
+    where FRIEND_SID = #{friendSid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_friends
+    where FRIEND_SID = #{friendSid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.boss.dao.friends.pojo.Friends" >
+    insert into tb_friends (FRIEND_SID, FRIEND_ID, FRIEND_NAME, 
+      FRIEND_VALUE, FRIEND_TIPS, CREATE_DATE, 
+      UPDATE_DATE)
+    values (#{friendSid,jdbcType=INTEGER}, #{friendId,jdbcType=VARCHAR}, #{friendName,jdbcType=VARCHAR}, 
+      #{friendValue,jdbcType=VARCHAR}, #{friendTips,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.boss.dao.friends.pojo.Friends" >
+    insert into tb_friends
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="friendSid != null" >
+        FRIEND_SID,
+      </if>
+      <if test="friendId != null" >
+        FRIEND_ID,
+      </if>
+      <if test="friendName != null" >
+        FRIEND_NAME,
+      </if>
+      <if test="friendValue != null" >
+        FRIEND_VALUE,
+      </if>
+      <if test="friendTips != null" >
+        FRIEND_TIPS,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="friendSid != null" >
+        #{friendSid,jdbcType=INTEGER},
+      </if>
+      <if test="friendId != null" >
+        #{friendId,jdbcType=VARCHAR},
+      </if>
+      <if test="friendName != null" >
+        #{friendName,jdbcType=VARCHAR},
+      </if>
+      <if test="friendValue != null" >
+        #{friendValue,jdbcType=VARCHAR},
+      </if>
+      <if test="friendTips != null" >
+        #{friendTips,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.boss.dao.friends.pojo.Friends" >
+    update tb_friends
+    <set >
+      <if test="friendId != null" >
+        FRIEND_ID = #{friendId,jdbcType=VARCHAR},
+      </if>
+      <if test="friendName != null" >
+        FRIEND_NAME = #{friendName,jdbcType=VARCHAR},
+      </if>
+      <if test="friendValue != null" >
+        FRIEND_VALUE = #{friendValue,jdbcType=VARCHAR},
+      </if>
+      <if test="friendTips != null" >
+        FRIEND_TIPS = #{friendTips,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where FRIEND_SID = #{friendSid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.boss.dao.friends.pojo.Friends" >
+    update tb_friends
+    set FRIEND_ID = #{friendId,jdbcType=VARCHAR},
+      FRIEND_NAME = #{friendName,jdbcType=VARCHAR},
+      FRIEND_VALUE = #{friendValue,jdbcType=VARCHAR},
+      FRIEND_TIPS = #{friendTips,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP}
+    where FRIEND_SID = #{friendSid,jdbcType=INTEGER}
+  </update>
+</mapper>
