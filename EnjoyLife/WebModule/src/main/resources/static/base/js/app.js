@@ -97,21 +97,18 @@ function Applications() {
         var href = window.location.href;
         if(href.indexOf("index") > 0){
             applications.initIndex();
-        }
-        if(href.indexOf("eyes") > 0){
+        } else if(href.indexOf("eyes") > 0){
             applications.initEye()
-        }
-        if(href.indexOf("query") > 0){
+        } else if(href.indexOf("query") > 0){
             applications.initQuery();
-        }
-        if(href.indexOf("genre") > 0){
+        } else if(href.indexOf("genre") > 0){
             applications.initGenre();
-        }
-        if(href.indexOf("blogs") > 0){
+        } else if(href.indexOf("blogs") > 0){
             applications.initBlog();
-        }
-        if(href.indexOf("bullshit") > 0){
+        } else if(href.indexOf("bullshit") > 0){
             applications.initBull();
+        }else{
+            applications.initIndex();
         }
     }
 }
