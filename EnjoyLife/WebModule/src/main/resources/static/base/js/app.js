@@ -164,9 +164,10 @@ $(function () {
 
 function Index() {
 
-    var isClick = true;
+    var isClick;
 
     this.init = function () {
+        isClick = true;
         this.initPage();
         this.pageClickListener();
     };
@@ -208,14 +209,15 @@ function Index() {
 
 function Eyes(){
 
-    var timeDiv = $("#time-div");
-    var blogDiv = $("#container-title");
-    var scrollLeft = $("#container-title").offset().left;
+    var timeDiv, blogDiv, scrollLeft;
 
     /**
      * 初始化
      */
     this.init = function () {
+        timeDiv = $("#time-div");
+        blogDiv = $("#container-title");
+        scrollLeft = $("#container-title").offset().left;
         this.scrollBarListener();
         this.timeYearClickListener();
         this.timeMonthClickListener();
@@ -369,9 +371,10 @@ function Eyes(){
 
 function Searchs() {
 
-    var isClick = true;
+    var isClick;
 
     this.init = function () {
+        isClick = true;
         this.pageBarLister();
         $("#header-nav-ul li").eq(2).addClass("header-underline").siblings().removeClass("header-underline");
     };
@@ -400,9 +403,10 @@ function Searchs() {
 
 function Category(){
 
-    var isClick = true;
+    var isClick;
 
     this.init = function () {
+        isClick = true;
         this.imgLazyload();
         this.pageBarListener();
         $("#header-nav-ul li").eq(2).addClass("header-underline").siblings().removeClass("header-underline");
@@ -452,12 +456,12 @@ function Friends() {
 
 function Blogs(){
 
-    var replyEidtorDiv = "<div id=\"reply-editor-div\" class=\"reply-editor\"><textarea id=\"reply-main-editor\" cols=\"1\" rows=\"1\" class='reply-main-editor' title=\"回复\"></textarea></div>";
-    var replyButtonDiv = "<div id=\"reply-buttons-div\" class=\"reply-buttons\"><span id=\"reply-error-msg\" class=\"error-message\"></span><a id='submit-reply-button' class=\"submit-reply-button\">回复</a></div>";
-    var commentEditor, replyEditor;
-    var isLoadingComment = false;
+    var replyEidtorDiv, replyButtonDiv, commentEditor, replyEditor, isLoadingComment;
 
     this.init = function () {
+        replyEidtorDiv = "<div id=\"reply-editor-div\" class=\"reply-editor\"><textarea id=\"reply-main-editor\" cols=\"1\" rows=\"1\" class='reply-main-editor' title=\"回复\"></textarea></div>";
+        replyButtonDiv = "<div id=\"reply-buttons-div\" class=\"reply-buttons\"><span id=\"reply-error-msg\" class=\"error-message\"></span><a id='submit-reply-button' class=\"submit-reply-button\">回复</a></div>";
+        isLoadingComment = false;
         this.initPage();
         this.commentReplyButtonClick();
         this.commentShowButtonClick();
