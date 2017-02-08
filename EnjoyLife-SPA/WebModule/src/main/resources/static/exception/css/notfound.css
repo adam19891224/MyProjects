@@ -1,0 +1,13 @@
+.container{
+    width: 100%;
+    text-align: center;
+}
+
+.container h3{
+    font-size: 480px;
+}
+
+.container a:hover{
+    cursor: pointer;
+    color: #2e9ad0;
+}

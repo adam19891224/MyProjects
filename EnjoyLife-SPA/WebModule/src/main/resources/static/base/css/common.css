@@ -1,0 +1,295 @@
+@import "base.css";
+/*顶部*/
+
+.loading-page-bar{
+    width: 0;
+    height: 5px;
+    background-color: #1d75b3;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10000;
+}
+
+.header-main{
+    width: 100%;
+    border-bottom: 1px solid #ebebeb;
+    padding: 10px 0;
+    box-sizing: border-box;
+}
+
+.header-inner{
+    width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.header-left{
+    width: 190px;
+    height: 100%;
+    float: left;
+}
+
+.header-left img{
+    height: 40px;
+    float: left;
+    margin-left: 10px;
+}
+
+.header-left h2{
+    line-height: 40px;
+    font-size: 18px;
+    padding-left: 30px;
+    display: inline-block;
+}
+
+.header-mid{
+    width: 220px;
+    height: 100%;
+    float: left;
+}
+
+.header-mid input{
+    width: 160px;
+    height: 30px;
+    margin-top: 4px;
+    margin-top: 0\9;
+    border: 1px solid #c6c6c6;
+    padding: 0 30px 0 10px;
+    border-radius: 21px;
+    outline: none;
+}
+
+.header-mid i{
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    background: url("../images/magnifier.png") no-repeat;
+    cursor: pointer;
+    z-index: 5;
+    margin-top: 13px;
+    margin-left: -25px;
+    background-size: 15px 15px;
+}
+
+.header-mid i:hover{
+    background: url("../images/magnifier-hover.png") no-repeat;
+    background-size: 15px 15px;
+}
+
+.header-nav{
+    width: 500px;
+    height: 100%;
+    float: left;
+}
+
+.header-nav ul{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.header-nav li{
+    width: 20%;
+    height: 38px;
+    float: left;
+    text-align: center;
+    line-height: 38px;
+    font-size: 18px;
+}
+
+.header-nav li a:hover{
+    cursor: pointer;
+    color: #2e9ad0;
+}
+
+.header-underline{
+    border-bottom: 2px solid #2e9ad0;
+}
+
+.header-right{
+    width: 200px;
+    height: 100%;
+    float: right;
+}
+
+/*中间*/
+.main{
+    width: 1200px;
+    height: auto;
+    margin: 10px auto;
+    overflow: hidden;
+}
+
+.main-left{
+    margin: 10px 0 10px 10px;
+    width: 880px;
+    float: left;
+    box-shadow: 0 1px 5px #c6c6c6;
+    box-sizing: border-box;
+}
+
+.main-right{
+    margin: 10px 10px 10px 0;
+    width: 285px;
+    float: right;
+    box-shadow: 0 1px 5px #c6c6c6;
+    box-sizing: border-box;
+}
+
+.head-image{
+    width: 96%;
+    margin-left: 2%;
+    float: left;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.head-image img{
+    max-width: 100%;
+}
+
+.msg-intro{
+    width: 100%;
+    float: left;
+    height: 50px;
+    box-sizing: border-box;
+}
+
+.msg-intro span{
+    display: inline-block;
+    width: 100%;
+}
+
+.intro-blogs{
+    width: 49%;
+    height: 100%;
+    float: left;
+    border-right: 1px solid #ebebeb;
+    padding: 5px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.intro-types{
+    width: 50%;
+    height: 100%;
+    float: left;
+    padding: 5px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.cloud-div{
+    height: 200px;
+    margin-bottom: 5px;
+}
+
+/*底部*/
+.footer{
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 14px;
+    font-family: Consolas, serif;
+    float: left;
+}
+
+@media screen and (max-width: 1200px) {
+    .header-inner{
+        width: 100%;
+    }
+
+    .header-left{
+        width: 17%
+    }
+
+    .header-mid{
+        width: 23%;
+    }
+
+    .header-nav{
+        width: 50%
+    }
+
+    .header-right{
+        width: 10%;
+    }
+
+    .main{
+        width: 100%;
+    }
+
+    .main-left{
+        width: 72%;
+    }
+
+    .main-right{
+        width: 25%;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .header-mid{
+        display: none;
+    }
+
+    .header-left{
+        width: 25%
+    }
+
+    .header-nav{
+        width: 50%
+    }
+
+    .header-right{
+        width: 20%;
+    }
+
+    .main-left{
+        width: 69%;
+    }
+
+    .main-right{
+        width: 27%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .main-left{
+        width: 98%;
+        margin-left: 1%;
+    }
+
+    .main-right{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 730px) {
+    .header-left{
+        display: none;
+    }
+
+    .header-nav{
+        width: 70%
+    }
+
+    .header-right{
+        width: 20%;
+    }
+}
+
+@media screen and (max-width: 550px) {
+
+    .header-nav{
+        width: 100%
+    }
+
+    .header-right{
+        display: none;
+    }
+}
