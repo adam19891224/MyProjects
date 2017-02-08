@@ -3,12 +3,14 @@ package com.enjoylife.base.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.enjoylife.article.vo.NewArticle;
 import com.enjoylife.blogs.IBlogsService;
+import com.enjoylife.enums.ResponseEnum;
 import com.enjoylife.type.ITypeService;
 import com.enjoylife.type.vo.Type;
 import com.enjoylife.utils.ConUtils;
 import com.enjoylife.utils.IPUtils;
 import com.enjoylife.utils.StringUtils;
 import com.enjoylife.view.Page;
+import com.enjoylife.view.ResponseData;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -80,9 +82,9 @@ public class BaseController {
     /**
      * 获取当前登录时的文章总数
      */
-    protected void getTotalArticlesToMap(ModelMap map){
+    protected void getTotalArticlesToMap(Map<String, Object> map){
         int blogCount = blogsService.selectArticlesCountsByPage(new Page<NewArticle>());
-        map.addAttribute("totalArticles", blogCount);
+        map.put("totalArticles", blogCount);
     }
 
     /**
@@ -121,5 +123,16 @@ public class BaseController {
 
         writer.close();
         return resultString;
+    }
+
+    /**
+     * 返回responseDatA数据
+     */
+    protected ResponseData<Map<String, Object>> responseRes(ResponseEnum responseEnum, Map<String, Object> map){
+        ResponseData<Map<String, Object>> responseData = new ResponseData<>();
+        responseData.setCode(responseEnum.getCode());
+        responseData.setMessage(responseEnum.getMessage());
+        responseData.setData(map);
+        return responseData;
     }
 }

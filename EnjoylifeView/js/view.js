@@ -3,12 +3,14 @@ const Bar = { template: '<div>bar</div>' };
 // 定义路由
 const routes = [
     { path: '/', redirect: '/index' },
-    { path: '/index', component: index_t },
-    { path: '/series', component: Bar },
-    { path: '/eyes', component: Bar },
+    { path: '/index', component: IndexView },
+    { path: '/index/:page', component: IndexView, name: "index" },
+    { path: '/series', component: SeriesView },
+    { path: '/eyes', component: EyesView },
     { path: '/profile', component: Bar },
     { path: '/friends', component: Bar },
-    { path: '/blog/:aid', component: Bar, name: "blog"}
+    { path: '/blog/:aid', component: Bar, name: "blog"},
+    { path: '/genre/:typeName/1', component: Bar, name: "genre"}
 ];
 
 // 创建 router 实例，然后传 `routes` 配置

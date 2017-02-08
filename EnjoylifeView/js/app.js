@@ -1,6 +1,6 @@
 function Applications() {
 
-    var index, eye, cate, search, blog, categorys, friends;
+    var categorys;
 
     var EMAIL_REG = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
     var SITE_REG = /[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+\.?/;
@@ -33,48 +33,6 @@ function Applications() {
         return NUM_REG.test(str);
     };
 
-    this.initIndex = function () {
-        if(index == null){
-            index = new Index();
-        }
-        index.init();
-    };
-
-    this.initEye = function () {
-        if(eye == null){
-            eye = new Eyes();
-        }
-        eye.init();
-    };
-
-    this.initGenre = function () {
-        if(cate == null){
-            cate = new Category();
-        }
-        cate.init();
-    };
-
-    this.initQuery = function () {
-        if(search == null){
-            search = new Searchs();
-        }
-        search.init();
-    };
-
-    this.initBlog = function () {
-        if(blog == null){
-            blog = new Blogs();
-        }
-        blog.init();
-    };
-
-    this.initFriends = function () {
-        if(friends == null){
-            friends = new Friends();
-        }
-        friends.init();
-    };
-
     this.startCloud = function () {
         if(categorys == null){
             categorys = new CategoryUtils();
@@ -85,82 +43,9 @@ function Applications() {
         }
     };
 
-    this.bindEvent = function () {
-        var href = window.location.href;
-        if(href.indexOf("index") > 0){
-            applications.initIndex();
-        } else if(href.indexOf("eyes") > 0){
-            applications.initEye()
-        } else if(href.indexOf("query") > 0){
-            applications.initQuery();
-        } else if(href.indexOf("genre") > 0){
-            applications.initGenre();
-        } else if(href.indexOf("blogs") > 0){
-            applications.initBlog();
-        } else{
-            applications.initIndex();
-        }
-    };
 }
 var applications = new Applications();
 
-Date.prototype.Format = function(fmt){
-    var o = {
-        "M+" : this.getMonth() + 1,                 //月份
-        "d+" : this.getDate(),                    //日
-        "h+" : this.getHours(),                   //小时
-        "m+" : this.getMinutes(),                 //分
-        "s+" : this.getSeconds(),                 //秒
-        "q+" : Math.floor((this.getMonth()+3)/3), //季度
-        "S"  : this.getMilliseconds()             //毫秒
-    };
-    if(/(y+)/.test(fmt))
-        fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));
-    for(var k in o)
-        if(new RegExp("("+ k +")").test(fmt))
-            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
-    return fmt;
-};
-
-$(function () {
-    $("#search-button").click(function () {
-        var input = $(this).prev();
-        var locations = "/eyes/";
-        var val = input.val();
-        if(applications.isNotNull(val) && !val.match(/^\s+$/)){
-            val = input.val().replace(/(^\s*)|(\s*$)/g, "").replace(/\\/g, "").replace(/\//g, "");
-            locations = "/query/" + val + "/1";
-        }
-        $.pjax({url: locations, container: '#main'});
-    });
-
-    $(document).pjax('.link-head', '#main', {
-        maxCacheLength:0,
-        cache: true,
-        storage: true,
-        timeout: 10000//设置超时，默认pjax是1秒,
-    });
-
-    $(document).bind('pjax:send', function(){
-        $("#loading-page-bar").animate({width: "70%"}, 1000);
-    });
-
-    $(document).bind('pjax:success', function(){
-        $("#loading-page-bar").animate({width: "100%"}, 300, function () {
-            $("#loading-page-bar").width("0");
-        });
-
-        applications.startCloud();
-        applications.bindEvent();
-    });
-
-    $("#header-nav-ul li a").click(function () {
-        $(this).parent().addClass("header-underline").siblings().removeClass("header-underline");
-    });
-
-    applications.startCloud();
-    applications.bindEvent();
-});
 
 function Index() {
 
@@ -176,12 +61,7 @@ function Index() {
         new Blazy({
             container: '.blog-body',
             error: function(ele, msg){
-                // if(msg === 'missing'){
-                //     console.log("加载丢失");
-                // }else if(msg === 'invalid'){
-                //     console.log("加载失败");
-                // }
-                ele.src = "/base/images/failed.png";
+                ele.src = "../images/failed.png";
             }
         });
     };
@@ -193,19 +73,18 @@ function Index() {
             backFn: function(page){
                 if(isClick){
                     isClick = false;
-                    var location = "/index/";
-                    if(page > 1){
+                    if(page > 0){
                         if(applications.checkIsNum(page)){
-                            location = "/index/" + page;
+                            router.push({name: 'index', params: { page: page }});
                         }
                     }
-                    $.pjax({url: location, container: '#main'});
                     isClick = true;
                 }
             }
         });
     }
 }
+var index = new Index();
 
 function Eyes(){
 
@@ -276,7 +155,7 @@ function Eyes(){
         var _this, nowY, thisY, thisM;
         timeDiv.on("click", "span", function () {
             _this = $(this);
-            thisY = _this.attr("class");
+            thisY = _this.attr("time-year");
             nowY = timeDiv.attr("n-y");
             if(thisY != nowY){
                 //获取点击的月份中的最上面的一个
@@ -368,6 +247,7 @@ function Eyes(){
     }
 
 }
+var eyes = new Eyes();
 
 function Searchs() {
 
