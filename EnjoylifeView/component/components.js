@@ -11,7 +11,7 @@ Vue.filter('y', function (value, formatString) {
     return moment(value).format(formatString);
 });
 Vue.filter('m', function (value, formatString) {
-    formatString = formatString || 'MM';
+    formatString = formatString || 'M';
     return moment(value).format(formatString);
 });
 
@@ -72,11 +72,11 @@ const IndexView = {
     //给模板绑定数据
     data () {
         return {
+            totalArticles: null,
+            totalTypes: null,
             blogs: null,
             totalPages: null,
-            page: null,
-            totalArticles: null,
-            totalTypes: null
+            page: null
         }
     },
     //模板创建完毕后，获取数据
@@ -129,11 +129,14 @@ const SeriesView = {
         <div id="main-left" class="main-left">
             <div class="left-body">
                 <ul class="series-main">
-                    <li v-for="serie in series">
+                    <li v-if="series.length > 0" v-for="serie in series">
                         <router-link to="/index">
                             <h2>{{serie.seriesName}}</h2>
                         </router-link>
                         <span>{{serie.counts}} 篇</span>
+                    </li>
+                    <li v-if="series == null">
+                        <h5>敬请期待</h5>
                     </li>
                 </ul>
             </div>
@@ -160,7 +163,8 @@ const SeriesView = {
             </div>
             <div class="right-body">
                 <div id="type-body" class="cloud-div">
-                    <router-link v-for="type in types" :to="{ name: 'genre', params: { typeName: type.typeName } }" :tn="type.typeName">{{type.typeName}}</router-link>
+                    <router-link v-if="types.length > 0" v-for="type in types" :to="{ name: 'genre', params: { typeName: type.typeName, p: 1 } }" :tn="type.typeName">{{type.typeName}}</router-link>
+                    <h2 v-if="types == null">敬请期待</h2>
                 </div>
             </div>
         </div>
@@ -168,10 +172,10 @@ const SeriesView = {
     //给模板绑定数据
     data () {
         return {
-            series: null,
             totalArticles: null,
             totalTypes: null,
-            types: null
+            types: null,
+            series: null
         }
     },
     //模板创建完毕后，获取数据
@@ -179,12 +183,7 @@ const SeriesView = {
         this.fetchData();
     },
     watch: {
-        /*
-         由于vue中定义，当多个路由指向同一个组件时，即/index/1, /index/2指向同一个组件时，vue会复用组件，所以这就导致了组件的生命周期钩子
-         不会被调用，所以上面的created方法就不会被调用，那么造成的影响就是数据不会重新加载，所以需要监测变化，即调用wache方法，该方法内部用于
-         监测$route对象的变化
-         */
-        '$route': 'fetchData' //$route发生变化后，执行fetchdata方法
+        '$route': 'fetchData'
     },
     methods: {
         fetchData () {
@@ -195,10 +194,14 @@ const SeriesView = {
                 var result = response.body;
                 if(result.code == "Y"){
                     var data = result.data;
-                    _this.series = data.series;
+                    if(data.series.length > 0){
+                        _this.series = data.series;
+                    }
                     _this.totalArticles = data.totalArticles;
                     _this.totalTypes = data.totalTypes;
-                    _this.types = data.types;
+                    if(data.types.length > 0){
+                        _this.types = data.types;
+                    }
                 }else{
                     alert("加载数据错误");
                     console.log(result.message);
@@ -218,7 +221,7 @@ const EyesView = {
     `<main id="main" class="main">
         <div id="main-left" class="main-left">
             <div class="eyes-time">
-                <div id="time-div" class="time-div">
+                <div id="time-div" class="time-div" :n-y="nowY" :n-m="nowM">
                     <div class="time-year" v-for="(year, yindex) in times">
                         <span :time-year="year.date">
                             <em :class="[yindex == 0 ? 'now-year' : '']">{{year.date}}</em>
@@ -239,9 +242,9 @@ const EyesView = {
                             {{blog.createDate | md}}
                         </span>
                         <span class="eyes-title-content">
-                            <a href="/blogs/blog.articleSid" class="link-head">
+                            <router-link :to="{ name: 'blog', params: { aid: blog.articleSid } }" class="link-head">
                                 {{blog.articleTitle}}
-                            </a>
+                            </router-link>
                         </span>
                     </h2>
                 </div>
@@ -269,7 +272,8 @@ const EyesView = {
             </div>
             <div class="right-body">
                 <div id="type-body" class="cloud-div">
-                    <router-link v-for="type in types" :to="{ name: 'genre', params: { typeName: type.typeName } }" :tn="type.typeName">{{type.typeName}}</router-link>
+                    <router-link v-if="types.length > 0" v-for="type in types" :to="{ name: 'genre', params: { typeName: type.typeName, p: 1 } }" :tn="type.typeName">{{type.typeName}}</router-link>
+                    <h2 v-if="types == null">敬请期待</h2>
                 </div>
             </div>
         </div>
@@ -277,11 +281,13 @@ const EyesView = {
     //给模板绑定数据
     data () {
         return {
-            blogs: null,
-            times: null,
             totalArticles: null,
             totalTypes: null,
-            types: null
+            types: null,
+            blogs: null,
+            times: null,
+            nowY: null,
+            nowM: null
         }
     },
     //模板创建完毕后，获取数据
@@ -289,12 +295,7 @@ const EyesView = {
         this.fetchData();
     },
     watch: {
-        /*
-         由于vue中定义，当多个路由指向同一个组件时，即/index/1, /index/2指向同一个组件时，vue会复用组件，所以这就导致了组件的生命周期钩子
-         不会被调用，所以上面的created方法就不会被调用，那么造成的影响就是数据不会重新加载，所以需要监测变化，即调用wache方法，该方法内部用于
-         监测$route对象的变化
-         */
-        '$route': 'fetchData' //$route发生变化后，执行fetchdata方法
+        '$route': 'fetchData'
     },
     methods: {
         fetchData () {
@@ -309,7 +310,11 @@ const EyesView = {
                     _this.times = data.times;
                     _this.totalArticles = data.totalArticles;
                     _this.totalTypes = data.totalTypes;
-                    _this.types = data.types;
+                    if(data.types.length > 0){
+                        _this.types = data.types;
+                    }
+                    _this.nowY = data.nowY;
+                    _this.nowM = data.nowM;
                 }else{
                     alert("加载数据错误");
                     console.log(result.message);
@@ -322,4 +327,597 @@ const EyesView = {
             });
         }
     }
+};
+
+//定义关于组件
+const ProfileView = {
+    template:
+    `<main id="main" class="main">
+        <div id="main-left" class="main-left mian-profile">
+            <h2>个人简介</h2>
+            <ul>
+                <li>
+                    姓名：<span>周禹宏（Adam）</span>
+                </li>
+                <li>
+                    生日：<span>1989-12-24</span>
+                </li>
+                <li>
+                    性别：<span>男</span>
+                </li>
+                <li>
+                    籍贯：<span>重庆</span>
+                </li>
+                <li>
+                    爱好：<span>足球，阅读</span>
+                </li>
+                <li>
+                    QQ：<span>273961736</span>
+                </li>
+            </ul>
+        </div>
+        <div class="main-right">
+            <div class="right-body">
+                <div class="head-image">
+                    <img src="../images/default-head.jpg" />
+                </div>
+                <div class="msg-intro">
+                    <div class="intro-blogs">
+                        <span>文章</span>
+                        <span>
+                            {{totalArticles}}
+                        </span>
+                    </div>
+                    <div class="intro-types">
+                        <span>类别</span>
+                        <span>
+                            {{totalTypes}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="right-body">
+                <div id="type-body" class="cloud-div">
+                    <router-link v-if="types.length > 0" v-for="type in types" :to="{ name: 'genre', params: { typeName: type.typeName, p: 1 } }" :tn="type.typeName">{{type.typeName}}</router-link>
+                    <h2 v-if="types == null">敬请期待</h2>
+                </div>
+            </div>
+        </div>
+    </main>`,
+    //给模板绑定数据
+    data () {
+        return {
+            totalArticles: null,
+            totalTypes: null,
+            types: null
+        }
+    },
+    //模板创建完毕后，获取数据
+    created () {
+        this.fetchData();
+    },
+    watch: {
+        '$route': 'fetchData'
+    },
+    methods: {
+        fetchData () {
+            var _this = this;
+            // 组件创建完后获取数据，
+            _this.$http.post('http://localhost:8888/profile').then(response => {
+                // get body data
+                var result = response.body;
+                if(result.code == "Y"){
+                    var data = result.data;
+                    _this.totalArticles = data.totalArticles;
+                    _this.totalTypes = data.totalTypes;
+                    if(data.types.length > 0){
+                        _this.types = data.types;
+                    }
+                }else{
+                    alert("加载数据错误");
+                    console.log(result.message);
+                }
+            }, response => {
+                console.log("异常")
+            }).then(() => {
+                applications.startCloud();
+            });
+        }
+    }
+};
+
+//定义友链组件
+const FriendsView = {
+    template:
+    `<main id="main" class="main">
+        <div id="main-left" class="main-left">
+            <div id="friedns-screen" class="friedns-screen">
+                <h2>友情链接</h2>
+                <ul>
+                    <li v-if="friends.length > 0" v-for="friend in friends">
+                        <span>
+                            <a :href="friend.friendValue" target="_blank">{{friend.friendName}}</a>
+                        </span>
+                        <span>({{friend.friendTips}})</span>
+                    </li>
+                    <li v-if="friends == null" >
+                        <h5>目前还没有哦。请联系博主吧</h5>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="main-right">
+            <div class="right-body">
+                <div class="head-image">
+                    <img src="../images/default-head.jpg" />
+                </div>
+                <div class="msg-intro">
+                    <div class="intro-blogs">
+                        <span>文章</span>
+                        <span>
+                            {{totalArticles}}
+                        </span>
+                    </div>
+                    <div class="intro-types">
+                        <span>类别</span>
+                        <span>
+                            {{totalTypes}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="right-body">
+                <div id="type-body" class="cloud-div">
+                    <router-link v-if="types.length > 0" v-for="type in types" :to="{ name: 'genre', params: { typeName: type.typeName, p: 1 } }" :tn="type.typeName">{{type.typeName}}</router-link>
+                    <h2 v-if="types == null">敬请期待</h2>
+                </div>
+            </div>
+        </div>
+    </main>`,
+    //给模板绑定数据
+    data () {
+        return {
+            totalArticles: null,
+            totalTypes: null,
+            types: null,
+            friends: null
+        }
+    },
+    //模板创建完毕后，获取数据
+    created () {
+        this.fetchData();
+    },
+    watch: {
+        '$route': 'fetchData'
+    },
+    methods: {
+        fetchData () {
+            var _this = this;
+            // 组件创建完后获取数据，
+            _this.$http.post('http://localhost:8888/friends').then(response => {
+                // get body data
+                var result = response.body;
+                if(result.code == "Y"){
+                    var data = result.data;
+                    _this.totalArticles = data.totalArticles;
+                    _this.totalTypes = data.totalTypes;
+                    if(data.types.length > 0){
+                        _this.types = data.types;
+                    }
+                    if(data.friends.length > 0){
+                        _this.friends = data.friends;
+                    }
+                }else{
+                    alert("加载数据错误");
+                    console.log(result.message);
+                }
+            }, response => {
+                console.log("异常")
+            }).then(() => {
+                applications.startCloud();
+            });
+        }
+    }
+};
+
+//定义类别组件
+const CategoryView = {
+    template:
+    `<main id="main" class="main">
+        <div id="main-left" class="main-left">
+            <div class="left-body">
+                <div class="cate-info-container" v-for="info in blogs" v-if="blogs.length > 0">
+                    <div class="cate-container-left">
+                        <img src="../images/image-loading.gif" class="b-lazy" :data-src="info.articleImg" :alt="info.articleTitle" />
+                    </div>
+                    <div class="cate-container-right">
+                        <div class="cate-right-title">
+                            <router-link :to="{ name: 'blog', params: { aid: info.articleSid } }">
+                                {{info.articleTitle}}
+                            </router-link>
+                        </div>
+                        <div class="cate-right-desc">
+                            {{info.articleDescription}}
+                        </div>
+                        <div class="cate-right-tag">
+                            <span>
+                                <i class="show"></i> <em class="show-text">个人博客</em>
+                            </span>
+                            <span>
+                                <i class="time"></i> <em class="time-text">{{info.createDate | ymd}}</em>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="cate-info-container" v-if="blogs == null">
+                    <h2 class="not-data">
+                        没有找到数据。。。
+                    </h2>
+                </div>
+            </div>
+            <div class="cate-left-page" v-if="blogs != null">
+                <div id="cate-page-div" class="page-div" :data-pages="totalPages" :data-current="page"></div>
+            </div>
+        </div>
+        <div class="main-right">
+            <div class="right-body">
+                <div class="head-image">
+                    <img src="../images/default-head.jpg" />
+                </div>
+                <div class="msg-intro">
+                    <div class="intro-blogs">
+                        <span>文章</span>
+                        <span>
+                            {{totalArticles}}
+                        </span>
+                    </div>
+                    <div class="intro-types">
+                        <span>类别</span>
+                        <span>
+                            {{totalTypes}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="right-body">
+                <div id="type-body" class="cloud-div">
+                    <router-link v-if="types.length > 0" v-for="type in types" :to="{ name: 'genre', params: { typeName: type.typeName, p: 1 } }" :tn="type.typeName">{{type.typeName}}</router-link>
+                    <h2 v-if="types == null">敬请期待</h2>
+                </div>
+            </div>
+        </div>
+    </main>`,
+    //给模板绑定数据
+    data () {
+        return {
+            totalArticles: null,
+            totalTypes: null,
+            types: null,
+            blogs: null,
+            totalPages: null,
+            page: null
+        }
+    },
+    //模板创建完毕后，获取数据
+    created () {
+        this.fetchData();
+    },
+    watch: {
+        '$route': 'fetchData'
+    },
+    methods: {
+        fetchData () {
+            var _this = this;
+            var page = _this.$route.params.p;
+            var name = _this.$route.params.typeName;
+            if(!page){
+                page = 1;
+            }
+            // 组件创建完后获取数据，
+            _this.$http.post('http://localhost:8888/genre/' + name + "/" + page).then(response => {
+                // get body data
+                var result = response.body;
+                if(result.code == "Y"){
+                    var data = result.data;
+                    _this.totalArticles = data.totalArticles;
+                    _this.totalTypes = data.totalTypes;
+                    if(data.types.length > 0){
+                        _this.types = data.types;
+                    }
+                    if(data.blogs.length > 0){
+                        _this.blogs = data.blogs;
+                    }
+                    _this.totalPages = data.totalPages;
+                    _this.page = data.page;
+                }else{
+                    alert("加载数据错误");
+                    console.log(result.message);
+                }
+            }, response => {
+                console.log("异常")
+            }).then(() => {
+                applications.startCloud();
+                cate.init();
+            });
+        }
+    }
+};
+
+//定义搜索组件
+const QueryView = {
+    template:
+    `<main id="main" class="main">
+        <div id="main-left" class="main-left">
+            <div class="left-body">
+                <div class="sea-info-container" v-for="info in blogs" v-if="blogs.length > 0">
+                    <h2>
+                        <router-link :to="{ name: 'blog', params: { aid: info.articleSid } }" v-html="info.articleTitle"></router-link>
+                    </h2>
+                    <section>
+                        <span class="info-date">{{info.createDate | ymd}}</span> - <span v-html="info.articleDescription"></span>
+                    </section>
+                </div>
+                <div class="sea-info-container" v-if="blogs == null">
+                    <h2 class="not-data">
+                        没有找到数据。。。
+                    </h2>
+                </div>
+            </div>
+            <div class="sea-left-page">
+                <div id="search-page-div" class="page-div" :data-pages="totalPages" :data-current="page"></div>
+            </div>
+        </div>
+        <div class="main-right">
+            <div class="right-body">
+                <div class="head-image">
+                    <img src="../images/default-head.jpg" />
+                </div>
+                <div class="msg-intro">
+                    <div class="intro-blogs">
+                        <span>文章</span>
+                        <span>
+                            {{totalArticles}}
+                        </span>
+                    </div>
+                    <div class="intro-types">
+                        <span>类别</span>
+                        <span>
+                            {{totalTypes}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="right-body">
+                <div id="type-body" class="cloud-div">
+                    <router-link v-if="types.length > 0" v-for="type in types" :to="{ name: 'genre', params: { typeName: type.typeName, p: 1 } }" :tn="type.typeName">{{type.typeName}}</router-link>
+                    <h2 v-if="types == null">敬请期待</h2>
+                </div>
+            </div>
+        </div>
+    </main>`,
+    //给模板绑定数据
+    data () {
+        return {
+            totalArticles: null,
+            totalTypes: null,
+            types: null,
+            blogs: null,
+            totalPages: null,
+            page: null
+        }
+    },
+    //模板创建完毕后，获取数据
+    created () {
+        this.fetchData();
+    },
+    watch: {
+        '$route': 'fetchData'
+    },
+    methods: {
+        fetchData () {
+            var _this = this;
+            var page = _this.$route.params.p;
+            var name = _this.$route.params.searchName;
+            if(!page){
+                page = 1;
+            }
+            // 组件创建完后获取数据，
+            _this.$http.post('http://localhost:8888/query/' + name + "/" + page).then(response => {
+                // get body data
+                var result = response.body;
+                if(result.code == "Y"){
+                    var data = result.data;
+                    _this.totalArticles = data.totalArticles;
+                    _this.totalTypes = data.totalTypes;
+                    if(data.types.length > 0){
+                        _this.types = data.types;
+                    }
+                    if(data.blogs.length > 0){
+                        _this.blogs = data.blogs;
+                    }
+                    _this.totalPages = data.totalPages;
+                    _this.page = data.page;
+                }else{
+                    alert("加载数据错误");
+                    console.log(result.message);
+                }
+            }, response => {
+                console.log("异常")
+            }).then(() => {
+                applications.startCloud();
+                search.init();
+            });
+        }
+    }
+};
+
+//定义搜索组件
+const BlogView = {
+    template:
+    `<main id="main" class="main">
+        <div id="main-left" class="main-left">
+            <h1 v-if="article != null">
+                {{article.articleTitle}}
+            </h1>
+            <div class="article-intro" v-if="article != null">
+                <span class="intro-type">
+                    <i></i># <span v-if="type != null"><router-link :to="{ name: 'genre', params: { typeName: type.typeName, p: 1 } }">{{type.typeName}}</router-link></span><span v-if="type == null"><a href="javascript:">个人博客</a></span>
+                </span>
+                <span class="intro-time">
+                    <i></i>{{article.createDate | ymd}}
+                </span>
+            </div>
+            <div class="article-tags" v-if="article != null">
+                <span v-for="tag in tags" :tid="tag.tagId">{{tag.tagName}}</span>
+            </div>
+            <article id="article-body" v-if="article != null" class="article-body" :data-aid="article.articleId" v-html="article.articleBody"></article>
+            <div class="article-line"></div>
+            <div class="article-block"></div>
+            <div id="articlt-comment-div" class="article-comment" :ck="ck">
+                <div class="comment-title">
+                    <i></i><span>交流区</span>
+                </div>
+                <ul class="comment-container"></ul>
+                <div id="comment-pages" class="comment-pages"></div>
+                <div class="comment-editor">
+                    <textarea id="comment-main-editor" cols="0" rows="0" class="comment-main-editor" title="发表"></textarea>
+                </div>
+                <div class="comment-buttons">
+                    <span id="comment-error-msg" class="error-message"></span>
+                    <a id="comment-submit" class="submit-button">发表</a>
+                </div>
+            </div>
+        </div>
+        <div class="main-right">
+            <div class="right-body">
+                <div class="head-image">
+                    <img src="../images/default-head.jpg" />
+                </div>
+                <div class="msg-intro">
+                    <div class="intro-blogs">
+                        <span>文章</span>
+                        <span>
+                            {{totalArticles}}
+                        </span>
+                    </div>
+                    <div class="intro-types">
+                        <span>类别</span>
+                        <span>
+                            {{totalTypes}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="right-body">
+                <div id="type-body" class="cloud-div">
+                    <router-link v-if="types.length > 0" v-for="type in types" :to="{ name: 'genre', params: { typeName: type.typeName, p: 1 } }" :tn="type.typeName">{{type.typeName}}</router-link>
+                    <h2 v-if="types == null">敬请期待</h2>
+                </div>
+            </div>
+        </div>
+        
+        <div id="whole-div" class="whole-div">
+            <div class="submit-screen-div"></div>
+            <div class="submit-info-div">
+                <ul class="info-main">
+                    <li>
+                        <input type="text" id="friend-name" title="名称" placeholder="请输入昵称(必填)" />
+                    </li>
+                    <li>
+                        <input type="text" id="friend-email" title="邮箱" placeholder="请输入邮箱(必填)" />
+                    </li>
+                    <li>
+                        <select id="friend-sitetype" title="类型">
+                            <option value="http">http://</option>
+                            <option value="https">https://</option>
+                        </select>
+                        <input type="text" id="friend-website" title="网站" placeholder="请输入网站" />
+                    </li>
+                </ul>
+                <div class="info-buttons">
+                    <span id="to-submit">提交</span>
+                    <span id="to-cancle">取消</span>
+                </div>
+            </div>
+        </div>
+        <div id="loading-div" class="whole-div">
+            <div class="submit-screen-div"></div>
+            <div class="loading-div">
+                <div class="loading-info"></div>
+            </div>
+        </div>
+    </main>`,
+    //给模板绑定数据
+    data () {
+        return {
+            totalArticles: null,
+            totalTypes: null,
+            types: null,
+            article: null,
+            tags: null,
+            type: null,
+            ck: null
+        }
+    },
+    //模板创建完毕后，获取数据
+    created () {
+        this.fetchData();
+    },
+    watch: {
+        '$route': 'fetchData'
+    },
+    methods: {
+        fetchData () {
+            var _this = this;
+            var aid = _this.$route.params.aid;
+            if(!aid){
+                alert("博客编号为空");
+                console.log("博客编号为空");
+                router.push({name: "index", params: { page: 1 }});
+                return;
+            }
+            // 组件创建完后获取数据，
+            _this.$http.post('http://localhost:8888/blogs/' + aid).then(response => {
+                // get body data
+                var result = response.body;
+                if(result.code == "Y"){
+                    var data = result.data;
+                    _this.totalArticles = data.totalArticles;
+                    _this.totalTypes = data.totalTypes;
+                    _this.ck = data.ck;
+                    if(data.types.length > 0){
+                        _this.types = data.types;
+                    }
+                    if(data.article != null){
+                        _this.article = data.article;
+                    }
+                    if(data.tags.length > 0){
+                        _this.tags = data.tags;
+                    }
+                    if(data.type != null){
+                        _this.type = data.type;
+                    }
+                }else{
+                    alert("加载数据错误");
+                    console.log(result.message);
+                }
+            }, response => {
+                console.log("异常")
+            }).then(() => {
+                applications.startCloud();
+                blog.init();
+            });
+        }
+    }
+};
+
+// 定义专题组件
+const ErrorView = {
+    template:
+    `<main id="main" class="main">
+        <div class="not-container">
+            <h3>404</h3>
+            <router-link to="/index">回到首页</router-link>
+        </div>
+    </main>`
 };

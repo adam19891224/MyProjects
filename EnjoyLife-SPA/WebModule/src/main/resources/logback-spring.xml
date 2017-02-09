@@ -48,6 +48,12 @@
         </layout>
     </appender>
 
+    <logger name="java.sql" level="DEBUG" >
+        <appender-ref ref="CONSOLE_LOG" />
+    </logger>
+
+    <logger name="com.enjoylife.*.dao" level="DEBUG"/>
+
     <root level="INFO">
         <appender-ref ref="INFO_FILE" />
         <appender-ref ref="ERROR_FILE" />

@@ -6,11 +6,13 @@ const routes = [
     { path: '/index', component: IndexView },
     { path: '/index/:page', component: IndexView, name: "index" },
     { path: '/series', component: SeriesView },
-    { path: '/eyes', component: EyesView },
-    { path: '/profile', component: Bar },
-    { path: '/friends', component: Bar },
-    { path: '/blog/:aid', component: Bar, name: "blog"},
-    { path: '/genre/:typeName/1', component: Bar, name: "genre"}
+    { path: '/eyes', component: EyesView, name: "eyes" },
+    { path: '/profile', component: ProfileView },
+    { path: '/friends', component: FriendsView },
+    { path: '/genre/:typeName/:p', component: CategoryView, name: "genre"},
+    { path: '/query/:searchName/:p', component: QueryView, name: "query"},
+    { path: '/blog/:aid', component: BlogView, name: "blog"},
+    { path: '*', component: ErrorView }
 ];
 
 // 创建 router 实例，然后传 `routes` 配置

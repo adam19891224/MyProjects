@@ -1,15 +1,14 @@
 package com.enjoylife.profile.controller;
 
 import com.enjoylife.base.controller.BaseController;
-import com.enjoylife.enums.YesNoTypeEnum;
-import freemarker.template.TemplateException;
-import org.springframework.ui.ModelMap;
+import com.enjoylife.enums.ResponseEnum;
+import com.enjoylife.utils.ConUtils;
+import com.enjoylife.view.ResponseData;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
+import java.util.Map;
 
 /**
  * ranmin-zhouyuhong
@@ -19,23 +18,15 @@ import java.io.IOException;
 public class ProfileController extends BaseController{
 
     @RequestMapping(value = "/profile", method = {RequestMethod.GET, RequestMethod.POST})
-    public String profile(ModelMap map, HttpServletRequest request){
+    public ResponseData<Map<String, Object>> profile(){
 
-        map.addAttribute("isProfile", YesNoTypeEnum.Yes.getCode());
+        Map<String, Object> map = ConUtils.hashmap();
 
         //查询总文章数和总分类数给前台展示
         super.getTotalArticlesToMap(map);
         super.getTotalTypesToMap(map);
 
-        map.addAttribute("dataType", "profile");
-
-        try {
-            return toPjax(request, map, "profile");
-        } catch (TemplateException | IOException e) {
-            logger.error("pjax返回错误");
-        }
-
-        return "/error";
+        return super.responseRes(ResponseEnum.SUCCESS, map);
     }
 
 }

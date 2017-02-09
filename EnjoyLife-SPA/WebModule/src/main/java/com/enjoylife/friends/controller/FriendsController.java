@@ -1,19 +1,18 @@
 package com.enjoylife.friends.controller;
 
 import com.enjoylife.base.controller.BaseController;
-import com.enjoylife.enums.YesNoTypeEnum;
+import com.enjoylife.enums.ResponseEnum;
 import com.enjoylife.friends.IFriendsService;
 import com.enjoylife.friends.vo.Friends;
+import com.enjoylife.utils.ConUtils;
 import com.enjoylife.view.Page;
-import freemarker.template.TemplateException;
-import org.springframework.ui.ModelMap;
+import com.enjoylife.view.ResponseData;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
+import java.util.Map;
 
 /**
  * ranmin-zhouyuhong
@@ -26,29 +25,21 @@ public class FriendsController extends BaseController{
     private IFriendsService friendsService;
 
     @RequestMapping(value = "/friends", method = {RequestMethod.GET, RequestMethod.POST})
-    public String friends(ModelMap map, HttpServletRequest request){
-
-        map.addAttribute("isFriends", YesNoTypeEnum.Yes.getCode());
+    public ResponseData<Map<String, Object>> friends(){
+        Map<String, Object> map = ConUtils.hashmap();
 
         //查询总文章数和总分类数给前台展示
         super.getTotalTypesToMap(map);
         super.getTotalArticlesToMap(map);
-
-        map.addAttribute("dataType", "friends");
 
         //获取所有的友链
         Page<Friends> page = new Page<Friends>();
         page.setPage(1);
         page.setPagination(false);
         page = friendsService.selectFriendsByPage(page);
-        map.addAttribute("friends", page.getResultList());
-        try {
-            return toPjax(request, map, "friends");
-        } catch (TemplateException | IOException e) {
-            logger.error("pjax返回错误");
-        }
+        map.put("friends", page.getResultList());
 
-        return "/error";
+        return super.responseRes(ResponseEnum.SUCCESS, map);
     }
 
 }

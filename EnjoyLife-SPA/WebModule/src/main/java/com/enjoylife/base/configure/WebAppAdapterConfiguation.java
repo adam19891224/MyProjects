@@ -29,9 +29,9 @@ public class WebAppAdapterConfiguation extends WebMvcConfigurerAdapter {
         registry.addInterceptor(webDAVInterceptor)
                 .addPathPatterns("/**")
                 .excludePathPatterns("/sorry.html");
-        //添加crsf拦截器
-        registry.addInterceptor(webCrsfInterceptor)
-                .addPathPatterns("/blogs/*");
+//        //添加crsf拦截器
+//        registry.addInterceptor(webCrsfInterceptor)
+//                .addPathPatterns("/blogs/*");
     }
 
     /**

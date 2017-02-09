@@ -37,6 +37,9 @@ public class EyesController extends BaseController {
 
         List<ArticleTime> times = blogsService.selectTimeGroupByArticle();
         map.put("times", times);
+        //获取当前数组的第一个年份和第一个月份
+        map.put("nowY", times.get(0).getDate());
+        map.put("nowM", times.get(0).getList().get(0).getDate());
 
         //查询总文章数和总分类数给前台展示
         super.getTotalTypesToMap(map);

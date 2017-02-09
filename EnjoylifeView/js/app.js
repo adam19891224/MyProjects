@@ -1,3 +1,24 @@
+Date.prototype.Format = function (fmt) {
+    var o = {
+        "M+": this.getMonth() + 1,
+        "d+": this.getDate(), //日
+        "h+": this.getHours(), //小时
+        "m+": this.getMinutes(), //分
+        "s+": this.getSeconds(), //秒
+        "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+        "S": this.getMilliseconds() //毫秒
+    };
+    if (/(y+)/.test(fmt)){
+        fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+    }
+    for (var k in o){
+        if (new RegExp("(" + k + ")").test(fmt)){
+            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        }
+    }
+    return fmt;
+};
+
 function Applications() {
 
     var categorys;
@@ -41,6 +62,17 @@ function Applications() {
         if(typeObj.length > 0){
             categorys.init(typeObj);
         }
+    };
+
+    this.searchBind = function () {
+        $("#search-button").click(function () {
+            var val = $("#search-input").val();
+            if(applications.isNotNull(val)){
+                router.push({name: 'query', params: { searchName: val, p: 1 }});
+            }else{
+                router.push({name: 'eyes'});
+            }
+        });
     };
 
 }
@@ -196,14 +228,14 @@ function Eyes(){
             timeDiv.attr("n-y", tarY).find("i").removeClass("yead-front-up").end()
                 .find("em").removeClass("now-year").end()
                 .find("ul").slideUp(200);
-            $("." + tarY).find("i").addClass("yead-front-up").end()
+            timeDiv.find("span[time-year='" + tarY + "']").find("i").addClass("yead-front-up").end()
                 .find("em").addClass("now-year").end().parent().find("ul").slideDown(200);
             //修改月份样式
             timeDiv.attr("n-m", tarM).find("li").removeClass().end()
-                .find("." + tarY).parent().find("li[t-m='" + tarM + "']").addClass("now-month");
+                .find("span[time-year='" + tarY + "']").parent().find("li[t-m='" + tarM + "']").addClass("now-month");
         }else if(tarM != bar_month){
             timeDiv.attr("n-m", tarM).find("li").removeClass().end()
-                .find("." + tarY).parent().find("li[t-m='" + tarM + "']").addClass("now-month");
+                .find("span[time-year='" + tarY + "']").parent().find("li[t-m='" + tarM + "']").addClass("now-month");
         }
     };
 
@@ -256,30 +288,32 @@ function Searchs() {
     this.init = function () {
         isClick = true;
         this.pageBarLister();
-        $("#header-nav-ul li").eq(2).addClass("header-underline").siblings().removeClass("header-underline");
     };
 
     this.pageBarLister = function () {
-        $("#page-div").createPage({
-            pageCount: applications.castStr2Num($("#page-div").attr("data-pages")),
-            current: applications.castStr2Num($("#page-div").attr("data-current")),
+        $("#search-page-div").createPage({
+            pageCount: applications.castStr2Num($("#search-page-div").attr("data-pages")),
+            current: applications.castStr2Num($("#search-page-div").attr("data-current")),
             backFn: function(page){
                 if(isClick){
                     isClick = false;
-                    var location = window.location.href;
                     if(page > 0){
+                        var location = window.location.href;
+                        location = decodeURI(location);
+                        var rmPageLocation = location.substr(0, location.lastIndexOf("/"));
+                        var searchName = rmPageLocation.substr(rmPageLocation.lastIndexOf("/") + 1, rmPageLocation.length);
                         if(applications.checkIsNum(page)){
-                            location = location.substr(0, location.lastIndexOf("/") + 1);
-                            location += page;
+                            //从url中获取当前的typename
+                            router.push({name: 'query', params: { searchName: searchName, p: page }});
                         }
                     }
-                    $.pjax({url: location, container: '#main'});
                     isClick = true;
                 }
             }
         });
     }
 }
+var search = new Searchs();
 
 function Category(){
 
@@ -289,50 +323,44 @@ function Category(){
         isClick = true;
         this.imgLazyload();
         this.pageBarListener();
-        $("#header-nav-ul li").eq(2).addClass("header-underline").siblings().removeClass("header-underline");
     };
 
     this.imgLazyload = function () {
         new Blazy({
             container: '.cate-info-container',
             error: function(ele, msg){
-                // if(msg === 'missing'){
-                //     console.log("加载丢失");
-                // }else if(msg === 'invalid'){
-                //     console.log("加载失败");
-                // }
-                ele.src = "/base/images/failed.png";
+                ele.src = "../images/failed.png";
             }
         });
     };
 
     this.pageBarListener = function () {
-        $("#page-div").createPage({
-            pageCount: applications.castStr2Num($("#page-div").attr("data-pages")),
-            current: applications.castStr2Num($("#page-div").attr("data-current")),
+        var count = applications.castStr2Num($("#cate-page-div").attr("data-pages"));
+        var current = applications.castStr2Num($("#cate-page-div").attr("data-current"));
+        $("#cate-page-div").createPage({
+            pageCount: applications.castStr2Num($("#cate-page-div").attr("data-pages")),
+            current: applications.castStr2Num($("#cate-page-div").attr("data-current")),
             backFn: function(page){
                 if(isClick){
                     isClick = false;
-                    var location = window.location.href;
                     if(page > 0){
+                        var location = window.location.href;
+                        location = decodeURI(location);
+                        var rmPageLocation = location.substr(0, location.lastIndexOf("/"));
+                        var typeName = rmPageLocation.substr(rmPageLocation.lastIndexOf("/") + 1, rmPageLocation.length);
                         if(applications.checkIsNum(page)){
-                            location = location.substr(0, location.lastIndexOf("/") + 1);
-                            location += page;
+                            //从url中获取当前的typename
+                            router.push({name: 'genre', params: { typeName: typeName, p: page }});
                         }
                     }
-                    $.pjax({url: location, container: '#main'});
                     isClick = true;
                 }
             }
         });
     }
 }
+var cate = new Category();
 
-function Friends() {
-    this.init = function () {
-
-    };
-}
 
 function Blogs(){
 
@@ -351,7 +379,6 @@ function Blogs(){
         this.dataCancleClick();
         this.websiteClick();
         Prism.highlightAll();
-        $("#header-nav-ul li").eq(3).addClass("header-underline").siblings().removeClass("header-underline");
     };
 
     /**
@@ -544,7 +571,7 @@ function Blogs(){
             obj.commentReplyUser = $("#whole-div").data("replyUser");
             obj.commentReplyBody = dataId;
             obj.ck = $("#articlt-comment-div").attr("ck");
-            $.post('/blogs/postComment.html', obj, function (text) {
+            $.post('http://localhost:8888/blogs/postComment.html', obj, function (text) {
                 if(text != "success"){
                     if(text == "error"){
                         alert("提交评论失败");
@@ -596,7 +623,7 @@ function Blogs(){
                 obj.commentId = li.attr("data-id");
                 obj.commentIsReply = 1;
                 obj.pagination = false;
-                $.post("/blogs/getComment.html", obj, function (res) {
+                $.post("http://localhost:8888/blogs/getComment.html", obj, function (res) {
                     var result = eval("(" + res + ")");
                     var isOk = result.isOk;
                     var lis = "";
@@ -633,7 +660,7 @@ function Blogs(){
         obj.page = page;
 
         $.ajax({
-            url: "/blogs/getComment.html",
+            url: "http://localhost:8888/blogs/getComment.html",
             data: obj,
             type: "post",
             timeout: 5000,
@@ -747,3 +774,8 @@ function Blogs(){
         return lis;
     }
 }
+var blog = new Blogs();
+
+$(function () {
+    applications.searchBind();
+});
