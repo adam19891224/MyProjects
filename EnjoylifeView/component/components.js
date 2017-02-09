@@ -130,13 +130,11 @@ const SeriesView = {
             <div class="left-body">
                 <ul class="series-main">
                     <li v-if="series.length > 0" v-for="serie in series">
-                        <router-link to="/index">
+                        <router-link to="/index" v-if="serie.seriesName != null">
                             <h2>{{serie.seriesName}}</h2>
                         </router-link>
-                        <span>{{serie.counts}} 篇</span>
-                    </li>
-                    <li v-if="series == null">
-                        <h5>敬请期待</h5>
+                        <span v-if="serie.counts != null">{{serie.counts}} 篇</span>
+                        <h5 v-if="serie.seriesName == null">敬请期待</h5>
                     </li>
                 </ul>
             </div>
@@ -164,7 +162,6 @@ const SeriesView = {
             <div class="right-body">
                 <div id="type-body" class="cloud-div">
                     <router-link v-if="types.length > 0" v-for="type in types" :to="{ name: 'genre', params: { typeName: type.typeName, p: 1 } }" :tn="type.typeName">{{type.typeName}}</router-link>
-                    <h2 v-if="types == null">敬请期待</h2>
                 </div>
             </div>
         </div>
@@ -196,6 +193,10 @@ const SeriesView = {
                     var data = result.data;
                     if(data.series.length > 0){
                         _this.series = data.series;
+                    }else{
+                        var series = [];
+                        series.push({});
+                        _this.series = series;
                     }
                     _this.totalArticles = data.totalArticles;
                     _this.totalTypes = data.totalTypes;
@@ -273,7 +274,6 @@ const EyesView = {
             <div class="right-body">
                 <div id="type-body" class="cloud-div">
                     <router-link v-if="types.length > 0" v-for="type in types" :to="{ name: 'genre', params: { typeName: type.typeName, p: 1 } }" :tn="type.typeName">{{type.typeName}}</router-link>
-                    <h2 v-if="types == null">敬请期待</h2>
                 </div>
             </div>
         </div>
@@ -379,7 +379,6 @@ const ProfileView = {
             <div class="right-body">
                 <div id="type-body" class="cloud-div">
                     <router-link v-if="types.length > 0" v-for="type in types" :to="{ name: 'genre', params: { typeName: type.typeName, p: 1 } }" :tn="type.typeName">{{type.typeName}}</router-link>
-                    <h2 v-if="types == null">敬请期待</h2>
                 </div>
             </div>
         </div>
@@ -436,12 +435,10 @@ const FriendsView = {
                 <ul>
                     <li v-if="friends.length > 0" v-for="friend in friends">
                         <span>
-                            <a :href="friend.friendValue" target="_blank">{{friend.friendName}}</a>
+                            <a v-if="friend.friendValue != null && friend.friendName != null" :href="friend.friendValue" target="_blank">{{friend.friendName}}</a>
                         </span>
-                        <span>({{friend.friendTips}})</span>
-                    </li>
-                    <li v-if="friends == null" >
-                        <h5>目前还没有哦。请联系博主吧</h5>
+                        <span v-if="friend.friendTips != null">({{friend.friendTips}})</span>
+                        <h5 v-if="friend.friendValue == null">目前还没有哦。请联系博主吧</h5>
                     </li>
                 </ul>
             </div>
@@ -469,7 +466,6 @@ const FriendsView = {
             <div class="right-body">
                 <div id="type-body" class="cloud-div">
                     <router-link v-if="types.length > 0" v-for="type in types" :to="{ name: 'genre', params: { typeName: type.typeName, p: 1 } }" :tn="type.typeName">{{type.typeName}}</router-link>
-                    <h2 v-if="types == null">敬请期待</h2>
                 </div>
             </div>
         </div>
@@ -506,6 +502,10 @@ const FriendsView = {
                     }
                     if(data.friends.length > 0){
                         _this.friends = data.friends;
+                    }else{
+                        var friends = [];
+                        friends.push({});
+                        _this.friends = friends;
                     }
                 }else{
                     alert("加载数据错误");
@@ -527,10 +527,10 @@ const CategoryView = {
         <div id="main-left" class="main-left">
             <div class="left-body">
                 <div class="cate-info-container" v-for="info in blogs" v-if="blogs.length > 0">
-                    <div class="cate-container-left">
+                    <div class="cate-container-left" v-if="info.articleImg != null">
                         <img src="../images/image-loading.gif" class="b-lazy" :data-src="info.articleImg" :alt="info.articleTitle" />
                     </div>
-                    <div class="cate-container-right">
+                    <div class="cate-container-right" v-if="info.articleSid != null && info.articleTitle != null && info.articleDescription != null">
                         <div class="cate-right-title">
                             <router-link :to="{ name: 'blog', params: { aid: info.articleSid } }">
                                 {{info.articleTitle}}
@@ -548,9 +548,7 @@ const CategoryView = {
                             </span>
                         </div>
                     </div>
-                </div>
-                <div class="cate-info-container" v-if="blogs == null">
-                    <h2 class="not-data">
+                    <h2 class="not-data" v-if="info.articleSid == null">
                         没有找到数据。。。
                     </h2>
                 </div>
@@ -582,7 +580,6 @@ const CategoryView = {
             <div class="right-body">
                 <div id="type-body" class="cloud-div">
                     <router-link v-if="types.length > 0" v-for="type in types" :to="{ name: 'genre', params: { typeName: type.typeName, p: 1 } }" :tn="type.typeName">{{type.typeName}}</router-link>
-                    <h2 v-if="types == null">敬请期待</h2>
                 </div>
             </div>
         </div>
@@ -626,6 +623,10 @@ const CategoryView = {
                     }
                     if(data.blogs.length > 0){
                         _this.blogs = data.blogs;
+                    }else{
+                        var blogs = [];
+                        blogs.push({});
+                        this.blogs = blogs;
                     }
                     _this.totalPages = data.totalPages;
                     _this.page = data.page;
@@ -649,18 +650,16 @@ const QueryView = {
     `<main id="main" class="main">
         <div id="main-left" class="main-left">
             <div class="left-body">
-                <div class="sea-info-container" v-for="info in blogs" v-if="blogs.length > 0">
-                    <h2>
+                <div class="sea-info-container" v-for="info in blogs">
+                    <h2 v-if="info.articleSid != null && info.articleTitle != null">
                         <router-link :to="{ name: 'blog', params: { aid: info.articleSid } }" v-html="info.articleTitle"></router-link>
                     </h2>
-                    <section>
-                        <span class="info-date">{{info.createDate | ymd}}</span> - <span v-html="info.articleDescription"></span>
-                    </section>
-                </div>
-                <div class="sea-info-container" v-if="blogs == null">
-                    <h2 class="not-data">
+                    <h2 class="not-data" v-if="info.articleSid == null">
                         没有找到数据。。。
                     </h2>
+                    <section v-if="info.createDate != null && info.articleDescription != null">
+                        <span class="info-date">{{info.createDate | ymd}}</span> - <span v-html="info.articleDescription"></span>
+                    </section>
                 </div>
             </div>
             <div class="sea-left-page">
@@ -690,7 +689,6 @@ const QueryView = {
             <div class="right-body">
                 <div id="type-body" class="cloud-div">
                     <router-link v-if="types.length > 0" v-for="type in types" :to="{ name: 'genre', params: { typeName: type.typeName, p: 1 } }" :tn="type.typeName">{{type.typeName}}</router-link>
-                    <h2 v-if="types == null">敬请期待</h2>
                 </div>
             </div>
         </div>
@@ -734,6 +732,10 @@ const QueryView = {
                     }
                     if(data.blogs.length > 0){
                         _this.blogs = data.blogs;
+                    }else{
+                        var blogs = [];
+                        blogs.push({});
+                        this.blogs = blogs;
                     }
                     _this.totalPages = data.totalPages;
                     _this.page = data.page;
@@ -751,7 +753,7 @@ const QueryView = {
     }
 };
 
-//定义搜索组件
+//定义详情组件
 const BlogView = {
     template:
     `<main id="main" class="main">
@@ -770,7 +772,7 @@ const BlogView = {
             <div class="article-tags" v-if="article != null">
                 <span v-for="tag in tags" :tid="tag.tagId">{{tag.tagName}}</span>
             </div>
-            <article id="article-body" v-if="article != null" class="article-body" :data-aid="article.articleId" v-html="article.articleBody"></article>
+            <article id="article-body" v-if="article != null" class="article-body" :data-aid="article.articleId" :data-asid="article.articleSid" v-html="article.articleBody"></article>
             <div class="article-line"></div>
             <div class="article-block"></div>
             <div id="articlt-comment-div" class="article-comment" :ck="ck">
@@ -811,7 +813,6 @@ const BlogView = {
             <div class="right-body">
                 <div id="type-body" class="cloud-div">
                     <router-link v-if="types.length > 0" v-for="type in types" :to="{ name: 'genre', params: { typeName: type.typeName, p: 1 } }" :tn="type.typeName">{{type.typeName}}</router-link>
-                    <h2 v-if="types == null">敬请期待</h2>
                 </div>
             </div>
         </div>
@@ -908,7 +909,7 @@ const BlogView = {
                 blog.init();
             });
         }
-    }
+    },
 };
 
 // 定义专题组件

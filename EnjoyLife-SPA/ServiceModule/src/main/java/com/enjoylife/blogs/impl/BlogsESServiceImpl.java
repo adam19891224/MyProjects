@@ -113,6 +113,13 @@ public class BlogsESServiceImpl extends BaseAbstractClass implements IBlogsESSer
     }
 
     @Override
+    public List<ArticleEntity> selectAllArticles() {
+        BoolQueryBuilder bool = new BoolQueryBuilder();
+        SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(bool).build();
+        return elasticsearchTemplate.queryForList(searchQuery, ArticleEntity.class);
+    }
+
+    @Override
     public void insertArticlesByList(List<NewArticle> list) {
         List<ArticleEntity> list1 = new ArrayList<>();
         list.forEach(e -> {

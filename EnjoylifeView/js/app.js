@@ -579,7 +579,8 @@ function Blogs(){
                         alert("拒绝访问");
                     }
                 }
-                window.location = location;
+                var aid = $("#article-body").attr("data-asid");
+                router.go({ name: 'blog', params: { aid: aid } });
             });
         });
     };
