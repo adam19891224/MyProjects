@@ -128,10 +128,20 @@ function Eyes(){
     this.init = function () {
         timeDiv = $("#time-div");
         blogDiv = $("#container-title");
-        scrollLeft = $("#container-title").offset().left;
+        this.getLeft();
         this.scrollBarListener();
         this.timeYearClickListener();
         this.timeMonthClickListener();
+    };
+
+    /**
+     * 获取scrollLeft
+     */
+    this.getLeft = function () {
+        var obj = $("#container-title");
+        if(obj.length == 1){
+            scrollLeft = obj.offset().left;
+        }
     };
 
     /**
@@ -244,10 +254,6 @@ function Eyes(){
      */
     var autoChangeTimeBar = function () {
         var year, month;
-        //获取文章列表dom据父元素左边的距离
-        window.onresize = function(){
-            scrollLeft = $("#container-title").offset().left;
-        };
         var nowDom = document.elementFromPoint(scrollLeft, 0);
         nowDom = $(nowDom);
         var tarName = nowDom.prop("tagName");
@@ -780,3 +786,8 @@ var blog = new Blogs();
 $(function () {
     applications.searchBind();
 });
+
+//获取文章列表dom据父元素左边的距离
+window.onresize = function(){
+    eyes.getLeft();
+};

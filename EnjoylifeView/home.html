@@ -64,7 +64,9 @@
 
         <div id="loading-page-bar" class="loading-page-bar"></div>
 
-        <router-view></router-view>
+        <transition>
+            <router-view></router-view>
+        </transition>
 
         <footer id="footer" class="footer">
             <span>Copyright ?2015-2016 月下竹影 All rights reserved</span>
