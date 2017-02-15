@@ -88,13 +88,20 @@ public class BaseController {
     }
 
     /**
-     * 获取当前登录的类别总数
+     * 获取类别总条数
      */
-    protected void getTotalTypesToMap(Map map){
+    protected void getTotalTypesCountToMap(Map<String, Object> map){
+        int size = typeService.selectAllTypesCount();
+        map.put("totalTypes", size);
+    }
+
+    /**
+     * 获取当前登录的类别总集合
+     */
+    protected void getTotalTypesToMap(Map<String, Object> map){
         List<Type> types = typeService.selectAllTypes();
         if(ConUtils.isNotNull(types)){
             map.put("types", types);
-            map.put("totalTypes", types.size());
         }
     }
 

@@ -1,18 +1,56 @@
-const Bar = { template: '<div>bar</div>' };
-
 // 定义路由
 const routes = [
     { path: '/', redirect: '/index' },
-    { path: '/index', component: IndexView },
-    { path: '/index/:page', component: IndexView, name: "index" },
-    { path: '/series', component: SeriesView },
-    { path: '/eyes', component: EyesView, name: "eyes" },
-    { path: '/profile', component: ProfileView },
-    { path: '/friends', component: FriendsView },
-    { path: '/genre/:typeName/:p', component: CategoryView, name: "genre"},
-    { path: '/query/:searchName/:p', component: QueryView, name: "query"},
-    { path: '/blog/:aid', component: BlogView, name: "blog"},
-    { path: '*', component: ErrorView }
+    { path: '/index', components: {
+        main: IndexView,
+        info: InfoView,
+        cloud: TarCloudView
+    } },
+    { path: '/index/:page', components: {
+        main: IndexView,
+        info: InfoView,
+        cloud: TarCloudView
+    }, name: "index" },
+    { path: '/series', components: {
+        main: SeriesView,
+        info: InfoView,
+        cloud: TarCloudView
+    } },
+    { path: '/eyes', components: {
+        main: EyesView,
+        info: InfoView,
+        cloud: TarCloudView
+    }, name: "eyes" },
+    { path: '/profile', components: {
+        main: ProfileView,
+        info: InfoView,
+        cloud: TarCloudView
+    } },
+    { path: '/friends', components: {
+        main: FriendsView,
+        info: InfoView,
+        cloud: TarCloudView
+    } },
+    { path: '/genre/:typeName/:p', components: {
+        main: CategoryView,
+        info: InfoView,
+        cloud: TarCloudView
+    }, name: "genre"},
+    { path: '/query/:searchName/:p', components: {
+        main: QueryView,
+        info: InfoView,
+        cloud: TarCloudView
+    }, name: "query"},
+    { path: '/blog/:aid', components: {
+        main: BlogView,
+        info: InfoView,
+        cloud: TarCloudView
+    }, name: "blog"},
+    { path: '*', components: {
+        main: ErrorView,
+        info: InfoView,
+        cloud: TarCloudView
+    } }
 ];
 
 // 创建 router 实例，然后传 `routes` 配置

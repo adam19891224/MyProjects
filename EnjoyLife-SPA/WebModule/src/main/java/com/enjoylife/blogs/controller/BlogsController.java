@@ -62,9 +62,6 @@ public class BlogsController extends BaseController {
         List<Tags> tagses = tagesService.selectTagsByArticleId(article.getArticleId());
         map.put("tags", tagses);
 
-        //查询总分类数和总文章数给前台展示
-        super.getTotalTypesToMap(map);
-        super.getTotalArticlesToMap(map);
         //将crsf的token放入页面
         map.put("ck", getSession(request).getAttribute(SessionKeyUtils.SESSION_CRSF_TOKEN));
 

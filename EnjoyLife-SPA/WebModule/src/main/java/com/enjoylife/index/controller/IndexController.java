@@ -35,11 +35,6 @@ public class IndexController extends BaseController {
         //当前页码
         map.put("page", page.getPage());
 
-        //总文章数
-        map.put("totalArticles", page.getTotalCounts());
-        //总分类数
-        super.getTotalTypesToMap(map);
-
         return super.responseRes(ResponseEnum.SUCCESS, map);
     }
 

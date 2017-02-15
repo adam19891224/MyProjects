@@ -64,9 +64,15 @@
 
         <div id="loading-page-bar" class="loading-page-bar"></div>
 
-        <transition>
-            <router-view></router-view>
-        </transition>
+        <main id="main" class="main">
+            <div id="main-left" class="main-left">
+                <router-view name="main"></router-view>
+            </div>
+            <div class="main-right">
+                <router-view name="info"></router-view>
+                <router-view name="cloud"></router-view>
+            </div>
+        </main>
 
         <footer id="footer" class="footer">
             <span>Copyright ?2015-2016 月下竹影 All rights reserved</span>

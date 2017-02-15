@@ -44,10 +44,6 @@ public class SearchController extends BaseController {
         map.put("totalPages", page.getTotalPages());
         map.put("page", num);
 
-        //查询总文章数和总分类数给前台展示
-        super.getTotalTypesToMap(map);
-        super.getTotalArticlesToMap(map);
-
         return super.responseRes(ResponseEnum.SUCCESS, map);
     }
 
@@ -70,10 +66,6 @@ public class SearchController extends BaseController {
         map.put("totalPages", resM.get("totalPage"));
         map.put("page", num);
         map.put("keyword", name);
-
-        //查询总文章数和总分类数给前台展示
-        super.getTotalTypesToMap(map);
-        super.getTotalArticlesToMap(map);
 
         return super.responseRes(ResponseEnum.SUCCESS, map);
     }

@@ -37,10 +37,6 @@ public class SeriesController extends BaseController {
         List<SeriesInfo> series = seriesService.selectAllSeries();
         map.put("series", series);
 
-        //查询总文章数和总分类数给前台展示
-        super.getTotalTypesToMap(map);
-        super.getTotalArticlesToMap(map);
-
         return super.responseRes(ResponseEnum.SUCCESS, map);
     }
 

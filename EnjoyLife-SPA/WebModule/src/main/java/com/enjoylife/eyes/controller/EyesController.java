@@ -41,10 +41,6 @@ public class EyesController extends BaseController {
         map.put("nowY", times.get(0).getDate());
         map.put("nowM", times.get(0).getList().get(0).getDate());
 
-        //查询总文章数和总分类数给前台展示
-        super.getTotalTypesToMap(map);
-        super.getTotalArticlesToMap(map);
-
         return super.responseRes(ResponseEnum.SUCCESS, map);
     }
 

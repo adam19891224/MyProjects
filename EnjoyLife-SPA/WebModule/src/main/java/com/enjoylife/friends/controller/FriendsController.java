@@ -28,10 +28,6 @@ public class FriendsController extends BaseController{
     public ResponseData<Map<String, Object>> friends(){
         Map<String, Object> map = ConUtils.hashmap();
 
-        //查询总文章数和总分类数给前台展示
-        super.getTotalTypesToMap(map);
-        super.getTotalArticlesToMap(map);
-
         //获取所有的友链
         Page<Friends> page = new Page<Friends>();
         page.setPage(1);
