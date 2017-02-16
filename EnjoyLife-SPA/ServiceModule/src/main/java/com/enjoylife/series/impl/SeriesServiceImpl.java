@@ -1,12 +1,12 @@
 package com.enjoylife.series.impl;
 
-import com.enjoylife.series.dao.SeriesMapper;
-import com.enjoylife.series.vo.SeriesInfo;
 import com.enjoylife.base.BaseAbstractClass;
 import com.enjoylife.series.ISeriesService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.enjoylife.series.dao.SeriesMapper;
+import com.enjoylife.series.vo.SeriesInfo;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -16,7 +16,7 @@ import java.util.List;
 @Service
 public class SeriesServiceImpl extends BaseAbstractClass implements ISeriesService {
 
-    @Autowired
+    @Resource
     private SeriesMapper seriesMapper;
 
     @Override

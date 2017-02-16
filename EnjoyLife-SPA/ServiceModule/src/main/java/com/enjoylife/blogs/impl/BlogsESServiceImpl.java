@@ -17,7 +17,6 @@ import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.search.highlight.HighlightBuilder;
 import org.elasticsearch.search.highlight.HighlightField;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -27,6 +26,7 @@ import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilde
 import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,10 +40,9 @@ import java.util.Map;
 public class BlogsESServiceImpl extends BaseAbstractClass implements IBlogsESService {
 
 
-    @Autowired
+    @Resource
     private IBlogESRepository blogESRepository;
-
-    @Autowired
+    @Resource
     private ElasticsearchTemplate elasticsearchTemplate;
 
     @Override

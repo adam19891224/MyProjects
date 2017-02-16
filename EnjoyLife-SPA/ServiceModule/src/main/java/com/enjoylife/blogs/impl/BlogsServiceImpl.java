@@ -8,9 +8,9 @@ import com.enjoylife.base.BaseAbstractClass;
 import com.enjoylife.blogs.IBlogsService;
 import com.enjoylife.utils.ConUtils;
 import com.enjoylife.view.Page;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
 
@@ -22,7 +22,7 @@ import java.util.List;
 @Service
 public class BlogsServiceImpl extends BaseAbstractClass implements IBlogsService {
 
-    @Autowired
+    @Resource
     private ArticleMapper articleMapper;
 
     @Override

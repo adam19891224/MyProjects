@@ -49,13 +49,13 @@ const InfoView = {
     },
     methods: {
         fetchData () {
-            var _this = this;
+            let _this = this;
             // 组件创建完后获取数据，
             _this.$http.post('http://localhost:8888/infos/totalInfo').then(response => {
                 // get body data
-                var result = response.body;
+                let result = response.body;
                 if(result.code == "Y"){
-                    var data = result.data;
+                    let data = result.data;
                     _this.totalArticles = data.totalArticles;
                     _this.totalTypes = data.totalTypes;
                 }else{
@@ -88,13 +88,13 @@ const TarCloudView = {
     },
     methods: {
         fetchData () {
-            var _this = this;
+            let _this = this;
             // 组件创建完后获取数据，
             _this.$http.post('http://localhost:8888/infos/types').then(response => {
                 // get body data
-                var result = response.body;
+                let result = response.body;
                 if(result.code == "Y"){
-                    var data = result.data;
+                    let data = result.data;
                     _this.types = data.types;
                 }else{
                     alert("加载数据错误");
@@ -159,17 +159,17 @@ const IndexView = {
     },
     methods: {
         fetchData () {
-            var _this = this;
-            var page = _this.$route.params.page;
+            let _this = this;
+            let page = _this.$route.params.page;
             if(!page){
                 page = 1;
             }
             // 组件创建完后获取数据，
             _this.$http.post('http://localhost:8888/index/' + page).then(response => {
                 // get body data
-                var result = response.body;
+                let result = response.body;
                 if(result.code == "Y"){
-                    var data = result.data;
+                    let data = result.data;
                     _this.blogs = data.blogs;
                     _this.totalPages = data.totalPages;
                     _this.page = data.page;
@@ -215,17 +215,17 @@ const SeriesView = {
     },
     methods: {
         fetchData () {
-            var _this = this;
+            let _this = this;
             // 组件创建完后获取数据，
             _this.$http.post('http://localhost:8888/series').then(response => {
                 // get body data
-                var result = response.body;
+                let result = response.body;
                 if(result.code == "Y"){
-                    var data = result.data;
+                    let data = result.data;
                     if(data.series.length > 0){
                         _this.series = data.series;
                     }else{
-                        var series = [];
+                        let series = [];
                         series.push({});
                         _this.series = series;
                     }
@@ -289,13 +289,13 @@ const EyesView = {
     },
     methods: {
         fetchData () {
-            var _this = this;
+            let _this = this;
             // 组件创建完后获取数据，
             _this.$http.post('http://localhost:8888/eyes').then(response => {
                 // get body data
-                var result = response.body;
+                let result = response.body;
                 if(result.code == "Y"){
-                    var data = result.data;
+                    let data = result.data;
                     _this.blogs = data.blogs;
                     _this.times = data.times;
                     _this.nowY = data.nowY;
@@ -371,17 +371,17 @@ const FriendsView = {
     },
     methods: {
         fetchData () {
-            var _this = this;
+            let _this = this;
             // 组件创建完后获取数据，
             _this.$http.post('http://localhost:8888/friends').then(response => {
                 // get body data
-                var result = response.body;
+                let result = response.body;
                 if(result.code == "Y"){
-                    var data = result.data;
+                    let data = result.data;
                     if(data.friends.length > 0){
                         _this.friends = data.friends;
                     }else{
-                        var friends = [];
+                        let friends = [];
                         friends.push({});
                         _this.friends = friends;
                     }
@@ -449,22 +449,22 @@ const CategoryView = {
     },
     methods: {
         fetchData () {
-            var _this = this;
-            var page = _this.$route.params.p;
-            var name = _this.$route.params.typeName;
+            let _this = this;
+            let page = _this.$route.params.p;
+            let name = _this.$route.params.typeName;
             if(!page){
                 page = 1;
             }
             // 组件创建完后获取数据，
             _this.$http.post('http://localhost:8888/genre/' + name + "/" + page).then(response => {
                 // get body data
-                var result = response.body;
+                let result = response.body;
                 if(result.code == "Y"){
-                    var data = result.data;
+                    let data = result.data;
                     if(data.blogs.length > 0){
                         _this.blogs = data.blogs;
                     }else{
-                        var blogs = [];
+                        let blogs = [];
                         blogs.push({});
                         this.blogs = blogs;
                     }
@@ -522,22 +522,22 @@ const QueryView = {
     },
     methods: {
         fetchData () {
-            var _this = this;
-            var page = _this.$route.params.p;
-            var name = _this.$route.params.searchName;
+            let _this = this;
+            let page = _this.$route.params.p;
+            let name = _this.$route.params.searchName;
             if(!page){
                 page = 1;
             }
             // 组件创建完后获取数据，
             _this.$http.post('http://localhost:8888/query/' + name + "/" + page).then(response => {
                 // get body data
-                var result = response.body;
+                let result = response.body;
                 if(result.code == "Y"){
-                    var data = result.data;
+                    let data = result.data;
                     if(data.blogs.length > 0){
                         _this.blogs = data.blogs;
                     }else{
-                        var blogs = [];
+                        let blogs = [];
                         blogs.push({});
                         this.blogs = blogs;
                     }
@@ -647,8 +647,8 @@ const BlogView = {
     },
     methods: {
         fetchData () {
-            var _this = this;
-            var aid = _this.$route.params.aid;
+            let _this = this;
+            let aid = _this.$route.params.aid;
             if(!aid){
                 alert("博客编号为空");
                 console.log("博客编号为空");
@@ -658,9 +658,9 @@ const BlogView = {
             // 组件创建完后获取数据，
             _this.$http.post('http://localhost:8888/blogs/' + aid).then(response => {
                 // get body data
-                var result = response.body;
+                let result = response.body;
                 if(result.code == "Y"){
-                    var data = result.data;
+                    let data = result.data;
                     _this.ck = data.ck;
                     if(data.article != null){
                         _this.article = data.article;

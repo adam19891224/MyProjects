@@ -3,9 +3,9 @@ package com.enjoylife.tags.impl;
 import com.enjoylife.tags.ITagesService;
 import com.enjoylife.tags.dao.TagsMapper;
 import com.enjoylife.tags.vo.Tags;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -15,7 +15,7 @@ import java.util.List;
 @Service
 public class TagsServiceImpl implements ITagesService{
 
-    @Autowired
+    @Resource
     private TagsMapper tagsMapper;
 
     @Override

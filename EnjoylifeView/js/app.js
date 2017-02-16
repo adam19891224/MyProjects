@@ -1,5 +1,5 @@
 Date.prototype.Format = function (fmt) {
-    var o = {
+    let o = {
         "M+": this.getMonth() + 1,
         "d+": this.getDate(), //日
         "h+": this.getHours(), //小时
@@ -11,7 +11,7 @@ Date.prototype.Format = function (fmt) {
     if (/(y+)/.test(fmt)){
         fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
     }
-    for (var k in o){
+    for (let k in o){
         if (new RegExp("(" + k + ")").test(fmt)){
             fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
         }
@@ -21,11 +21,11 @@ Date.prototype.Format = function (fmt) {
 
 function Applications() {
 
-    var categorys;
+    let categorys;
 
-    var EMAIL_REG = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
-    var SITE_REG = /[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+\.?/;
-    var NUM_REG = /^\+?[1-9][0-9]*$/;
+    let EMAIL_REG = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
+    let SITE_REG = /[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+\.?/;
+    let NUM_REG = /^\+?[1-9][0-9]*$/;
 
     this.castStr2Num = function(str){
         return parseInt(str);
@@ -58,7 +58,7 @@ function Applications() {
         if(categorys == null){
             categorys = new CategoryUtils();
         }
-        var typeObj = $("#type-body");
+        let typeObj = $("#type-body");
         if(typeObj.length > 0){
             categorys.init(typeObj);
         }
@@ -66,7 +66,7 @@ function Applications() {
 
     this.searchBind = function () {
         $("#search-button").click(function () {
-            var val = $("#search-input").val();
+            let val = $("#search-input").val();
             if(applications.isNotNull(val)){
                 router.push({name: 'query', params: { searchName: val, p: 1 }});
             }else{
@@ -76,12 +76,12 @@ function Applications() {
     };
 
 }
-var applications = new Applications();
+let applications = new Applications();
 
 
 function Index() {
 
-    var isClick;
+    let isClick;
 
     this.init = function () {
         isClick = true;
@@ -94,6 +94,7 @@ function Index() {
             container: '.blog-body',
             error: function(ele, msg){
                 ele.src = "../images/failed.png";
+                console.log(msg);
             }
         });
     };
@@ -116,11 +117,11 @@ function Index() {
         });
     }
 }
-var index = new Index();
+let index = new Index();
 
 function Eyes(){
 
-    var timeDiv, blogDiv, scrollLeft;
+    let timeDiv, blogDiv, scrollLeft;
 
     /**
      * 初始化
@@ -138,7 +139,7 @@ function Eyes(){
      * 获取scrollLeft
      */
     this.getLeft = function () {
-        var obj = $("#container-title");
+        let obj = $("#container-title");
         if(obj.length == 1){
             scrollLeft = obj.offset().left;
         }
@@ -148,10 +149,10 @@ function Eyes(){
      * 页面滚动事件，动态根据文章标题改变时间轴
      */
     this.scrollBarListener = function(){
-        var windowHeight;
-        var _window = $(window);
-        var firstDiv, nowY, nowM;
-        var isLis = false;//是否监听的开关
+        let windowHeight;
+        let _window = $(window);
+        let firstDiv, nowY, nowM;
+        let isLis = false;//是否监听的开关
         _window.scroll(function(){
             windowHeight = _window.scrollTop();
             if(windowHeight > 100){
@@ -165,8 +166,8 @@ function Eyes(){
                     timeDiv.css("position", "relative");
                     //此时说明已经超过了文章主体，则让第一个时间轴元素显示
                     firstDiv = timeDiv.find(".time-year").first();
-                    var tempY = timeDiv.attr("n-y");
-                    var tempM = timeDiv.attr("n-m");
+                    let tempY = timeDiv.attr("n-y");
+                    let tempM = timeDiv.attr("n-m");
                     nowY = firstDiv.find("em").text();
                     nowM = firstDiv.find("li:first").attr("t-m");
                     if(tempY == nowY && tempM == nowM){
@@ -194,7 +195,7 @@ function Eyes(){
      * 进入当前年份的最上面的月份区域
      */
     this.timeYearClickListener = function(){
-        var _this, nowY, thisY, thisM;
+        let _this, nowY, thisY, thisM;
         timeDiv.on("click", "span", function () {
             _this = $(this);
             thisY = _this.attr("time-year");
@@ -211,7 +212,7 @@ function Eyes(){
      * 时间轴月份点击事件
      */
     this.timeMonthClickListener = function () {
-        var _this, nowY, nowM, thisY, thisM;
+        let _this, nowY, nowM, thisY, thisM;
         timeDiv.on("click", "li", function () {
             _this = $(this);
             thisY = _this.parents(".time-year").find("em").text();
@@ -229,10 +230,10 @@ function Eyes(){
      * @param tarY
      * @param tarM
      */
-    var changeTimeBar = function (tarY, tarM) {
+    let changeTimeBar = function (tarY, tarM) {
         //如果年份不同，则需要修改年份显示
-        var bar_year = timeDiv.attr("n-y");
-        var bar_month = timeDiv.attr("n-m");
+        let bar_year = timeDiv.attr("n-y");
+        let bar_month = timeDiv.attr("n-m");
         if(tarY != bar_year){
             //修改年份样式
             timeDiv.attr("n-y", tarY).find("i").removeClass("yead-front-up").end()
@@ -252,14 +253,14 @@ function Eyes(){
     /**
      * 自动根据滚动的文章时间改变时间轴
      */
-    var autoChangeTimeBar = function () {
-        var year, month;
-        var nowDom = document.elementFromPoint(scrollLeft, 0);
+    let autoChangeTimeBar = function () {
+        let year, month;
+        let nowDom = document.elementFromPoint(scrollLeft, 0);
         nowDom = $(nowDom);
-        var tarName = nowDom.prop("tagName");
+        let tarName = nowDom.prop("tagName");
         if(tarName == "H2"){
-            var bar_year = timeDiv.attr("n-y");
-            var bar_month = timeDiv.attr("n-m");
+            let bar_year = timeDiv.attr("n-y");
+            let bar_month = timeDiv.attr("n-m");
             year = nowDom.attr("data-year");
             month = nowDom.attr("data-month");
             if(bar_year != year || bar_month != month){
@@ -273,23 +274,23 @@ function Eyes(){
      * @param tarY
      * @param tarM
      */
-    var gotoScrollBlogLine = function (tarY, tarM) {
+    let gotoScrollBlogLine = function (tarY, tarM) {
         //找到年份和月份的所有h2中的第一个
-        var tarF = blogDiv.find("h2[data-year='" + tarY + "'][data-month='" + tarM + "']:first");
+        let tarF = blogDiv.find("h2[data-year='" + tarY + "'][data-month='" + tarM + "']:first");
         //滚动到这个的高度
         doScrollByHeight(tarF.offset().top)
     };
 
-    var doScrollByHeight = function (height) {
+    let doScrollByHeight = function (height) {
         $("body, html").animate({scrollTop: height}, 600);
     }
 
 }
-var eyes = new Eyes();
+let eyes = new Eyes();
 
 function Searchs() {
 
-    var isClick;
+    let isClick;
 
     this.init = function () {
         isClick = true;
@@ -304,10 +305,10 @@ function Searchs() {
                 if(isClick){
                     isClick = false;
                     if(page > 0){
-                        var location = window.location.href;
+                        let location = window.location.href;
                         location = decodeURI(location);
-                        var rmPageLocation = location.substr(0, location.lastIndexOf("/"));
-                        var searchName = rmPageLocation.substr(rmPageLocation.lastIndexOf("/") + 1, rmPageLocation.length);
+                        let rmPageLocation = location.substr(0, location.lastIndexOf("/"));
+                        let searchName = rmPageLocation.substr(rmPageLocation.lastIndexOf("/") + 1, rmPageLocation.length);
                         if(applications.checkIsNum(page)){
                             //从url中获取当前的typename
                             router.push({name: 'query', params: { searchName: searchName, p: page }});
@@ -319,11 +320,11 @@ function Searchs() {
         });
     }
 }
-var search = new Searchs();
+let search = new Searchs();
 
 function Category(){
 
-    var isClick;
+    let isClick;
 
     this.init = function () {
         isClick = true;
@@ -336,13 +337,12 @@ function Category(){
             container: '.cate-info-container',
             error: function(ele, msg){
                 ele.src = "../images/failed.png";
+                console.log(msg);
             }
         });
     };
 
     this.pageBarListener = function () {
-        var count = applications.castStr2Num($("#cate-page-div").attr("data-pages"));
-        var current = applications.castStr2Num($("#cate-page-div").attr("data-current"));
         $("#cate-page-div").createPage({
             pageCount: applications.castStr2Num($("#cate-page-div").attr("data-pages")),
             current: applications.castStr2Num($("#cate-page-div").attr("data-current")),
@@ -350,10 +350,10 @@ function Category(){
                 if(isClick){
                     isClick = false;
                     if(page > 0){
-                        var location = window.location.href;
+                        let location = window.location.href;
                         location = decodeURI(location);
-                        var rmPageLocation = location.substr(0, location.lastIndexOf("/"));
-                        var typeName = rmPageLocation.substr(rmPageLocation.lastIndexOf("/") + 1, rmPageLocation.length);
+                        let rmPageLocation = location.substr(0, location.lastIndexOf("/"));
+                        let typeName = rmPageLocation.substr(rmPageLocation.lastIndexOf("/") + 1, rmPageLocation.length);
                         if(applications.checkIsNum(page)){
                             //从url中获取当前的typename
                             router.push({name: 'genre', params: { typeName: typeName, p: page }});
@@ -365,12 +365,12 @@ function Category(){
         });
     }
 }
-var cate = new Category();
+let cate = new Category();
 
 
 function Blogs(){
 
-    var replyEidtorDiv, replyButtonDiv, commentEditor, replyEditor, isLoadingComment;
+    let replyEidtorDiv, replyButtonDiv, commentEditor, replyEditor, isLoadingComment;
 
     this.init = function () {
         replyEidtorDiv = "<div id=\"reply-editor-div\" class=\"reply-editor\"><textarea id=\"reply-main-editor\" cols=\"1\" rows=\"1\" class='reply-main-editor' title=\"回复\"></textarea></div>";
@@ -404,10 +404,10 @@ function Blogs(){
      * 评论回复按钮 添加回复评论文本框
      */
     this.commentReplyButtonClick = function () {
-        var _this, _thisL;
+        let _this, _thisL;
         $("#main").on("click", ".to-reply", function () {
             _this = $(this);
-            var l = _this.attr("data-l");
+            let l = _this.attr("data-l");
             if(l == "0"){
                 _this.attr("data-l", "1");
                 _thisL = _this.parents("li");
@@ -433,14 +433,14 @@ function Blogs(){
      * 评论展开按钮，查看该主评论下的所有回复
      */
     this.commentShowButtonClick = function () {
-        var _this, _thisL;
+        let _this, _thisL;
         $("#main").on("click", ".to-show", function () {
             _this = $(this);
             _thisL = _this.parents("li");
-            var l = _this.attr("data-l");
+            let l = _this.attr("data-l");
             if(l == "0"){
                 _this.attr("data-l", "1");
-                var type = _this.data("type");
+                let type = _this.data("type");
                 //如果type不是y，则加载数据
                 if(type != "y"){
                     loadingReplyCommentsByDiv(_thisL, _this);
@@ -465,15 +465,15 @@ function Blogs(){
      * 主评论提交按钮，按下展示信息提交框
      */
     this.commentSubmitButtonClick = function () {
-        var _this;
+        let _this;
         $("#comment-submit").unbind("click").click(function () {
             _this = $(this);
-            var lock = _this.data("lock");
+            let lock = _this.data("lock");
             if(lock != "1"){
                 _this.data("lock", "1");
                 $("#comment-error-msg").text("");
-                var content = commentEditor.document.getBody().getText();
-                var data = commentEditor.getData();
+                let content = commentEditor.document.getBody().getText();
+                let data = commentEditor.getData();
                 content = applications.replaceBlock(content);
                 if(!applications.isNotNull(data) || !applications.isNotNull(content)){
                     alert("评论内容不能为空!");
@@ -496,15 +496,15 @@ function Blogs(){
      * 回复评论提交按钮，按下展示信息提交框
      */
     this.replySubmitButtonClick = function () {
-        var _this;
+        let _this;
         $("#main").on("click", "#submit-reply-button", function () {
             _this = $(this);
-            var lock = _this.data("lock");
+            let lock = _this.data("lock");
             if(lock != "1"){
                 _this.data("lock", "1");
                 $("#reply-error-msg").text("");
-                var content = replyEditor.document.getBody().getText();
-                var data = replyEditor.getData();
+                let content = replyEditor.document.getBody().getText();
+                let data = replyEditor.getData();
                 content = applications.replaceBlock(content);
                 if(!applications.isNotNull(data) || !applications.isNotNull(content)){
                     alert("回复内容不能为空!");
@@ -515,7 +515,7 @@ function Blogs(){
                     //同时标注此条评论是回复评论
                     $("#whole-div").data("isReply", 1);
                     //同时填写回复人的名称和评论id
-                    var _thisP = _this.parents("li");
+                    let _thisP = _this.parents("li");
                     $("#whole-div").data("replyUser", _thisP.find(".mian-name").find("span").first().text());
                     $("#whole-div").data("replyBody", _thisP.attr("data-id"));
                     $("#whole-div").show();
@@ -530,10 +530,10 @@ function Blogs(){
      */
     this.dataSubmitClick = function () {
         $("#to-submit").unbind("click").click(function () {
-            var name = $("#friend-name").val();
-            var email = $("#friend-email").val();
-            var type = $("#friend-sitetype").val();
-            var site = $("#friend-website").val();
+            let name = $("#friend-name").val();
+            let email = $("#friend-email").val();
+            let type = $("#friend-sitetype").val();
+            let site = $("#friend-website").val();
             if(!applications.isNotNull(name)){
                 alert("请大牛输入昵称");
                 return false;
@@ -542,9 +542,9 @@ function Blogs(){
                 alert("请大牛输入邮箱");
                 return false;
             }
-            var obj = {};
-            var isReply = $("#whole-div").data("isReply");
-            var dataId = $("#whole-div").data("replyBody");
+            let obj = {};
+            let isReply = $("#whole-div").data("isReply");
+            let dataId = $("#whole-div").data("replyBody");
             obj.commentUser = name;
 
             if(!applications.checkIsEmail(email)){
@@ -585,7 +585,7 @@ function Blogs(){
                         alert("拒绝访问");
                     }
                 }
-                var aid = $("#article-body").attr("data-asid");
+                let aid = $("#article-body").attr("data-asid");
                 router.go({ name: 'blog', params: { aid: aid } });
             });
         });
@@ -604,7 +604,7 @@ function Blogs(){
      * 评论中回复人的名称点击事件，如果该回复者有个人网站，打开该网站
      */
     this.websiteClick = function () {
-        var site = "";
+        let site = "";
         $("#articlt-comment-div").unbind("click").on("click", ".has-website", function () {
             site = $(this).attr("data-w");
             if(site.indexOf("http://") >= 0 || site.indexOf("https://") >= 0){
@@ -620,22 +620,22 @@ function Blogs(){
      * @param li
      * @param span
      */
-    var loadingReplyCommentsByDiv = function (li, span) {
+    let loadingReplyCommentsByDiv = function (li, span) {
         //获取这个评论的id和文章id
-        var lineDiv = li.find(".main-line");
+        let lineDiv = li.find(".main-line");
         lineDiv.animate({width: "60%"}, 500, function () {
             lineDiv.animate({width: "70%"}, 1000, function () {
-                var obj = {};
+                let obj = {};
                 obj.articleId = $("#article-body").attr("data-aid");
                 obj.commentId = li.attr("data-id");
                 obj.commentIsReply = 1;
                 obj.pagination = false;
                 $.post("http://localhost:8888/blogs/getComment.html", obj, function (res) {
-                    var result = eval("(" + res + ")");
-                    var isOk = result.isOk;
-                    var lis = "";
+                    let result = eval("(" + res + ")");
+                    let isOk = result.isOk;
+                    let lis = "";
                     if(isOk == "Y"){
-                        var list = result.list;
+                        let list = result.list;
                         lis = getReplysLis(list);
                     }else{
                         lis = "<li class='reply-no-datas'>没有回复数据</li>";
@@ -657,10 +657,10 @@ function Blogs(){
      * @param page
      * @param init
      */
-    var loadingComment = function (page, init) {
+    let loadingComment = function (page, init) {
         //清空现有的评论列表
         $("#articlt-comment-div").find(".comment-container").empty().append("<li class=\"comment-loading\"><i class=\"loading-bar\"></i></li>");
-        var obj = {};
+        let obj = {};
         obj.isReply = 0;
         obj.articleId = $("#article-body").attr("data-aid");
         obj.commentIsReply = 0;
@@ -678,14 +678,14 @@ function Blogs(){
                 }
             },
             success: function (text) {
-                var result = eval("(" + text + ")");
-                var isOk = result.isOk;
-                var lis = "";
+                let result = eval("(" + text + ")");
+                let isOk = result.isOk;
+                let lis = "";
                 if(isOk == "Y"){
-                    // var counts = result.totalCounts;
-                    var pages = result.totalPages;
-                    var current = result.current;
-                    var list = result.list;
+                    // let counts = result.totalCounts;
+                    let pages = result.totalPages;
+                    let current = result.current;
+                    let list = result.list;
                     lis = getCommentLis(list);
                     if(init && current < pages){
                         createPageLine(pages, current);
@@ -704,12 +704,12 @@ function Blogs(){
      * @param list
      * @returns {string}
      */
-    var getCommentLis = function (list) {
-        var tempO, lis = "", time = "", span = "";
-        for(var a = 0, b = list.length; a < b; a++){
+    let getCommentLis = function (list) {
+        let tempO, lis = "", time = "", span = "";
+        for(let a = 0, b = list.length; a < b; a++){
             tempO = list[a];
             time = new Date(tempO.createDate).Format("yyyy-MM-dd");
-            var site = tempO.commentUserWebsite;
+            let site = tempO.commentUserWebsite;
             if(applications.isNotNull(site) && applications.checkIsSite(site)){
                 span = "<span class='has-website' data-w='" + site + "'>" + tempO.commentUser + "：</span><span>" + time + "</span>";
             }else{
@@ -742,7 +742,7 @@ function Blogs(){
         return lis;
     };
 
-    var createPageLine = function (count, current) {
+    let createPageLine = function (count, current) {
         $("#comment-pages").empty();
         $("#comment-pages").createPage({
             pageCount: count,
@@ -757,13 +757,13 @@ function Blogs(){
         });
     };
 
-    var getReplysLis = function (list) {
-        var lis = "", time = "";
-        var tempO;
-        for(var a = 0, b = list.length; a < b; a++){
+    let getReplysLis = function (list) {
+        let lis = "", time = "";
+        let tempO;
+        for(let a = 0, b = list.length; a < b; a++){
             tempO = list[a];
             time = new Date(tempO.createDate).Format("yyyy-MM-dd");
-            var site = tempO.commentUserWebsite;
+            let site = tempO.commentUserWebsite;
             if(applications.isNotNull(site) && applications.checkIsSite(site)){
                 span = "<span class='has-website' data-w='" + site + "'>" + tempO.commentUser + "：</span><span>" + time + "</span>";
             }else{
@@ -781,7 +781,7 @@ function Blogs(){
         return lis;
     }
 }
-var blog = new Blogs();
+let blog = new Blogs();
 
 $(function () {
     applications.searchBind();

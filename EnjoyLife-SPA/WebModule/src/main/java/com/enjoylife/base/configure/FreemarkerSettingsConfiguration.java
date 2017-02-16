@@ -1,9 +1,7 @@
 package com.enjoylife.base.configure;
 
-import com.enjoylife.utils.ConUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.*;
 import org.springframework.boot.autoconfigure.freemarker.FreeMarkerAutoConfiguration;
@@ -21,10 +19,10 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import javax.servlet.Servlet;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -42,18 +40,17 @@ public class FreemarkerSettingsConfiguration {
     private static final Log logger = LogFactory
             .getLog(FreeMarkerAutoConfiguration.class);
 
-    @Autowired
+    @Resource
     private ApplicationContext applicationContext;
-
-    @Autowired
+    @Resource
     private FreeMarkerProperties properties;
 
     @PostConstruct
     public void checkTemplateLocationExists() {
         if (this.properties.isCheckTemplateLocation()) {
             TemplateLocation templatePathLocation = null;
-            TemplateLocation location = null;
-            List<TemplateLocation> locations = new ArrayList<TemplateLocation>();
+            TemplateLocation location;
+            List<TemplateLocation> locations = new ArrayList<>();
             for (String templateLoaderPath : this.properties.getTemplateLoaderPath()) {
                 location = new TemplateLocation(templateLoaderPath);
                 locations.add(location);
@@ -71,28 +68,16 @@ public class FreemarkerSettingsConfiguration {
 
     static class FreeMarkerConfiguration {
 
-        @Autowired
-        protected FreeMarkerProperties properties;
-
-        @Autowired
-        private FreemarkerDateConfiguration freemarkerTime;
+        @Resource
+        FreeMarkerProperties properties;
 
         void applyProperties(FreeMarkerConfigurationFactory factory) {
             factory.setTemplateLoaderPaths(this.properties.getTemplateLoaderPath());
             factory.setPreferFileSystemAccess(this.properties.isPreferFileSystemAccess());
             factory.setDefaultEncoding(this.properties.getCharsetName());
-            //添加自定义函数
-            factory.setFreemarkerVariables(this.getFreemarkerVariables());
             Properties settings = new Properties();
             settings.putAll(this.properties.getSettings());
             factory.setFreemarkerSettings(settings);
-        }
-
-        private Map<String, Object> getFreemarkerVariables(){
-            Map<String, Object> variables = ConUtils.hashmap();
-
-            variables.put("time", freemarkerTime);
-            return variables;
         }
 
     }

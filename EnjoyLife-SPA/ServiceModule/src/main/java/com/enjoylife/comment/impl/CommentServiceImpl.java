@@ -14,11 +14,11 @@ import com.enjoylife.view.Page;
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.util.HtmlUtils;
 
+import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -31,11 +31,11 @@ import java.util.UUID;
 @Service
 public class CommentServiceImpl extends BaseAbstractClass implements ICommentService {
 
-    @Autowired
+    @Resource
     private CommentMapper commentMapper;
-    @Autowired
+    @Resource
     private ArticleCommentMapper articleCommentMapper;
-    @Autowired
+    @Resource
     private ArticleMapper articleMapper;
 
     @Override

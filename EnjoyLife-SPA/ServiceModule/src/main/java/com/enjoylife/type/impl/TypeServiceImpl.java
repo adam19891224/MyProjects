@@ -4,9 +4,9 @@ import com.enjoylife.base.BaseAbstractClass;
 import com.enjoylife.type.ITypeService;
 import com.enjoylife.type.dao.TypeMapper;
 import com.enjoylife.type.vo.Type;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -17,7 +17,7 @@ import java.util.List;
 @Service
 public class TypeServiceImpl extends BaseAbstractClass implements ITypeService {
 
-    @Autowired
+    @Resource
     private TypeMapper typeMapper;
 
     @Override

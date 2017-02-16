@@ -8,24 +8,15 @@ import com.enjoylife.type.ITypeService;
 import com.enjoylife.type.vo.Type;
 import com.enjoylife.utils.ConUtils;
 import com.enjoylife.utils.IPUtils;
-import com.enjoylife.utils.StringUtils;
 import com.enjoylife.view.Page;
 import com.enjoylife.view.ResponseData;
-import freemarker.template.Configuration;
-import freemarker.template.Template;
-import freemarker.template.TemplateException;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.ModelMap;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
-import java.io.StringWriter;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -41,8 +32,6 @@ public class BaseController {
     protected ITypeService typeService;
     @Resource
     protected IBlogsService blogsService;
-    @Autowired
-    private Configuration configuration;
 
     /**
      * 把参数转换为json
@@ -103,33 +92,6 @@ public class BaseController {
         if(ConUtils.isNotNull(types)){
             map.put("types", types);
         }
-    }
-
-    /**
-     * 返回Pjax形式的页面
-     */
-    protected String toPjax(HttpServletRequest request, ModelMap map, String type) throws IOException, TemplateException {
-        String isPj = request.getHeader("X-PJAX");
-        // 设置FreeMarker的模版文件位置
-        configuration.setClassForTemplateLoading(BaseController.class, "/templates");
-        configuration.setEncoding(Locale.getDefault(), "utf-8");
-
-        // 创建Template对象
-        Template template;
-        if(StringUtils.isNotNull(isPj) && isPj.equalsIgnoreCase("true")){
-            template = configuration.getTemplate("/" + type + "/main.ftl");
-        }else{
-            template = configuration.getTemplate("/" + type + "/index.ftl");
-        }
-        // 输出流
-        StringWriter writer = new StringWriter();
-        // 将数据和模型结合生成html
-        template.process(map, writer);
-        // 获得html
-        String resultString = writer.toString();
-
-        writer.close();
-        return resultString;
     }
 
     /**
