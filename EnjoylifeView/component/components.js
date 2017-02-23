@@ -15,6 +15,8 @@ Vue.filter('m', function (value, formatString) {
     return moment(value).format(formatString);
 });
 
+const path = "http://localhost:8888";
+
 const InfoView = {
     template:
     `<div class="right-body">
@@ -51,7 +53,7 @@ const InfoView = {
         fetchData () {
             let _this = this;
             // 组件创建完后获取数据，
-            _this.$http.post('http://localhost:8888/infos/totalInfo').then(response => {
+            _this.$http.post(path + '/infos/totalInfo').then(response => {
                 // get body data
                 let result = response.body;
                 if(result.code == "Y"){
@@ -90,7 +92,7 @@ const TarCloudView = {
         fetchData () {
             let _this = this;
             // 组件创建完后获取数据，
-            _this.$http.post('http://localhost:8888/infos/types').then(response => {
+            _this.$http.post(path + '/infos/types').then(response => {
                 // get body data
                 let result = response.body;
                 if(result.code == "Y"){
@@ -165,7 +167,7 @@ const IndexView = {
                 page = 1;
             }
             // 组件创建完后获取数据，
-            _this.$http.post('http://localhost:8888/index/' + page).then(response => {
+            _this.$http.post(path + '/index/' + page).then(response => {
                 // get body data
                 let result = response.body;
                 if(result.code == "Y"){
@@ -217,7 +219,7 @@ const SeriesView = {
         fetchData () {
             let _this = this;
             // 组件创建完后获取数据，
-            _this.$http.post('http://localhost:8888/series').then(response => {
+            _this.$http.post(path + '/series').then(response => {
                 // get body data
                 let result = response.body;
                 if(result.code == "Y"){
@@ -291,7 +293,7 @@ const EyesView = {
         fetchData () {
             let _this = this;
             // 组件创建完后获取数据，
-            _this.$http.post('http://localhost:8888/eyes').then(response => {
+            _this.$http.post(path + '/eyes').then(response => {
                 // get body data
                 let result = response.body;
                 if(result.code == "Y"){
@@ -373,7 +375,7 @@ const FriendsView = {
         fetchData () {
             let _this = this;
             // 组件创建完后获取数据，
-            _this.$http.post('http://localhost:8888/friends').then(response => {
+            _this.$http.post(path + '/friends').then(response => {
                 // get body data
                 let result = response.body;
                 if(result.code == "Y"){
@@ -456,7 +458,7 @@ const CategoryView = {
                 page = 1;
             }
             // 组件创建完后获取数据，
-            _this.$http.post('http://localhost:8888/genre/' + name + "/" + page).then(response => {
+            _this.$http.post(path + '/genre/' + name + "/" + page).then(response => {
                 // get body data
                 let result = response.body;
                 if(result.code == "Y"){
@@ -529,7 +531,7 @@ const QueryView = {
                 page = 1;
             }
             // 组件创建完后获取数据，
-            _this.$http.post('http://localhost:8888/query/' + name + "/" + page).then(response => {
+            _this.$http.post(path + '/query/' + name + "/" + page).then(response => {
                 // get body data
                 let result = response.body;
                 if(result.code == "Y"){
@@ -656,7 +658,7 @@ const BlogView = {
                 return;
             }
             // 组件创建完后获取数据，
-            _this.$http.post('http://localhost:8888/blogs/' + aid).then(response => {
+            _this.$http.post(path + '/blogs/' + aid).then(response => {
                 // get body data
                 let result = response.body;
                 if(result.code == "Y"){
