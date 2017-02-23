@@ -50,6 +50,7 @@ public class WebAppAdapterConfiguation extends WebMvcConfigurerAdapter {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
                 .allowedOrigins("*")
+//                .allowedOrigins("http://localhost:8888")
                 .allowCredentials(true)
                 .allowedMethods("GET", "POST")
                 .maxAge(3600);
