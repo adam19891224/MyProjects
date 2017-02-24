@@ -1,9 +1,25 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const request = require('request');
+const config = require('./config');
+const api = config.api;
+const logger = require('../log').logger;
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+router.get('/:page', function(req, res, next) {
+
+    let page = req.params.page;
+
+    let url = api + "/index/" + page;
+
+    request.post({
+        url: url
+    }, function optionalCallback(err, httpResponse, body) {
+        if (err) {
+            return logger.error('请求标签云接口失败:', err);
+        }
+        res.json(JSON.parse(body));
+    });
+
 });
 
 module.exports = router;

@@ -1,34 +1,35 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var log = require('./log');
+const express = require('express');
+const path = require('path');
+const favicon = require('serve-favicon');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const log = require('./log');
 
-var index = require('./routes/index');
-var users = require('./routes/users');
+const app = express();
 
-var app = express();
-
-// view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
+log.use(app);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
-app.use('/users', users);
 
-// catch 404 and forward to error handler
+//创建路由
+const page = require("./routes/page");
+const index = require("./routes/index");
+const infomations = require('./routes/infomations');
+const series = require("./routes/series");
+
+//注册路由
+app.use('/', page);
+app.use('/index', index);
+app.use('/infomations', infomations);
+app.use('/series', series);
+
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
+  const err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
@@ -43,6 +44,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 module.exports = app;
 console.log("启动成功，请点击： http://localhost:36666");

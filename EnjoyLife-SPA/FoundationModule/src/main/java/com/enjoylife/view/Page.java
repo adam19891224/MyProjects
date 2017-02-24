@@ -18,7 +18,7 @@ public class Page<T> implements Serializable {
 
     private Integer pageNum = 0;
 
-    private Integer pageSize = 15;
+    private Integer pageSize = 1;
 
     private Integer totalCounts;
 

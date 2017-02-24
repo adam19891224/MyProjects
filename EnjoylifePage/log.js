@@ -2,15 +2,13 @@ const log4js = require('log4js');
 log4js.configure({
     appenders: [
         {
-            type: 'console',
-            category: "console"
+            type: "console"
         }, //控制台输出
         {
             type: "dateFile",
             filename: "E:/logs/enjoylifepage.log",
             pattern: "_yyyy-MM-dd",
-            alwaysIncludePattern: false,
-            category: "dateFileLog"
+            alwaysIncludePattern: false
         } //日期文件格式
     ],
     replaceConsole: true,

@@ -17,14 +17,14 @@ import java.util.Map;
 @RestController
 public class InfoController extends BaseController{
 
-    @RequestMapping(value = "/infos/types", method = {RequestMethod.POST, RequestMethod.GET})
+    @RequestMapping(value = "/infos/tags", method = {RequestMethod.POST, RequestMethod.GET})
     public ResponseData<Map<String, Object>> types(){
         Map<String, Object> map = ConUtils.hashmap();
         super.getTotalTypesToMap(map);
         return super.responseRes(ResponseEnum.SUCCESS, map);
     }
 
-    @RequestMapping(value = "/infos/totalInfo", method = {RequestMethod.POST, RequestMethod.GET})
+    @RequestMapping(value = "/infos/shows", method = {RequestMethod.POST, RequestMethod.GET})
     public ResponseData<Map<String, Object>> totalInfo(){
         Map<String, Object> map = ConUtils.hashmap();
         super.getTotalArticlesToMap(map);
