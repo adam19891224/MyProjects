@@ -68,14 +68,14 @@ public class BlogsController extends BaseController {
         return super.responseRes(ResponseEnum.SUCCESS, map);
     }
 
-    @RequestMapping(value = "/getComment.html", method = RequestMethod.POST)
+    @RequestMapping(value = "/getComment", method = RequestMethod.POST)
     public String getComment(Page<Comment> page){
         page = commentService.getCommentsByPage(page);
         //将结果封装成map对象，然后转为json返回给前台
         return super.parseObjectToJson(this.getCommentMapByResult(page));
     }
 
-    @RequestMapping(value = "/postComment.html", method = RequestMethod.POST)
+    @RequestMapping(value = "/postComment", method = RequestMethod.POST)
     public String postComment(CommentForm form){
         try {
             return commentService.insertCommentByForm(form);

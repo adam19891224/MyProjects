@@ -21,12 +21,23 @@ const page = require("./routes/page");
 const index = require("./routes/index");
 const infomations = require('./routes/infomations');
 const series = require("./routes/series");
+const eyes = require("./routes/eyes");
+const friends = require("./routes/friends");
+const genre = require("./routes/genre");
+const query = require("./routes/query");
+const blogs = require("./routes/blogs");
 
 //注册路由
 app.use('/', page);
 app.use('/index', index);
 app.use('/infomations', infomations);
 app.use('/series', series);
+app.use('/eyes', eyes);
+app.use('/friends', friends);
+app.use('/genre', genre);
+app.use('/query', query);
+app.use('/blogs', blogs);
+
 
 app.use(function(req, res, next) {
   const err = new Error('Not Found');

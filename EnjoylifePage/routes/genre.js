@@ -6,13 +6,17 @@ const config = require('./config');
 const api = config.api;
 const logger = require('../log').logger;
 
-router.get('/:page', function(req, res, next) {
+router.get('/:name/:page', function(req, res, next) {
 
+    let name = req.params.name;
     let page = req.params.page;
+
     if(!validator.isNumeric(page)){
         res.json({"code": "N"});
     }
-    let url = api + "/index/" + page;
+    //采用uri编码
+    name = encodeURIComponent(name);
+    let url = api + "/genre/" + name + "/" + page;
 
     request.post({
         url: url

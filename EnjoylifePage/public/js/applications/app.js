@@ -93,7 +93,7 @@ function Index() {
         new Blazy({
             container: '.blog-body',
             error: function(ele, msg){
-                ele.src = "../images/failed.png";
+                ele.src = "/images/failed.png";
                 console.log(msg);
             }
         });
@@ -336,7 +336,7 @@ function Category(){
         new Blazy({
             container: '.cate-info-container',
             error: function(ele, msg){
-                ele.src = "../images/failed.png";
+                ele.src = "images/failed.png";
                 console.log(msg);
             }
         });
@@ -577,7 +577,7 @@ function Blogs(){
             obj.commentReplyUser = $("#whole-div").data("replyUser");
             obj.commentReplyBody = dataId;
             obj.ck = $("#articlt-comment-div").attr("ck");
-            $.post('http://localhost:8888/blogs/postComment.html', obj, function (text) {
+            $.post('/blogs/save', obj, function (text) {
                 if(text != "success"){
                     if(text == "error"){
                         alert("提交评论失败");
@@ -630,8 +630,8 @@ function Blogs(){
                 obj.commentId = li.attr("data-id");
                 obj.commentIsReply = 1;
                 obj.pagination = false;
-                $.post("http://localhost:8888/blogs/getComment.html", obj, function (res) {
-                    let result = eval("(" + res + ")");
+                $.post("/blogs/comments", obj, function (res) {
+                    let result = res;
                     let isOk = result.isOk;
                     let lis = "";
                     if(isOk == "Y"){
@@ -667,7 +667,7 @@ function Blogs(){
         obj.page = page;
 
         $.ajax({
-            url: "http://localhost:8888/blogs/getComment.html",
+            url: "/blogs/comments",
             data: obj,
             type: "post",
             timeout: 5000,
@@ -678,7 +678,7 @@ function Blogs(){
                 }
             },
             success: function (text) {
-                let result = eval("(" + text + ")");
+                let result = text;
                 let isOk = result.isOk;
                 let lis = "";
                 if(isOk == "Y"){
@@ -760,13 +760,14 @@ function Blogs(){
     let getReplysLis = function (list) {
         let lis = "", time = "";
         let tempO;
-        for(let a = 0, b = list.length; a < b; a++){
+        let span;
+        for (let a = 0, b = list.length; a < b; a++) {
             tempO = list[a];
             time = new Date(tempO.createDate).Format("yyyy-MM-dd");
             let site = tempO.commentUserWebsite;
-            if(applications.isNotNull(site) && applications.checkIsSite(site)){
+            if (applications.isNotNull(site) && applications.checkIsSite(site)) {
                 span = "<span class='has-website' data-w='" + site + "'>" + tempO.commentUser + "：</span><span>" + time + "</span>";
-            }else{
+            } else {
                 span = "<span>" + tempO.commentUser + "：</span><span>" + time + "</span>";
             }
             lis += "<li>" +

@@ -1,18 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const request = require('request');
-const validator = require('validator');
 const config = require('./config');
 const api = config.api;
 const logger = require('../log').logger;
 
-router.get('/:page', function(req, res, next) {
+router.get('/', function(req, res, next) {
 
-    let page = req.params.page;
-    if(!validator.isNumeric(page)){
-        res.json({"code": "N"});
-    }
-    let url = api + "/index/" + page;
+    let url = api + "/friends";
 
     request.post({
         url: url

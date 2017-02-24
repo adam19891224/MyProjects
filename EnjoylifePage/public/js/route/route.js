@@ -41,7 +41,7 @@ const routes = [
         info: InfoView,
         cloud: TarCloudView
     }, name: "query"},
-    { path: '/blog/:aid', components: {
+    { path: '/blogs/:aid', components: {
         main: BlogView,
         info: InfoView,
         cloud: TarCloudView

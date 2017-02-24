@@ -53,7 +53,7 @@ const InfoView = {
         fetchData () {
             let _this = this;
             // 组件创建完后获取数据，
-            _this.$http.get(path + '/infomations/shows').then(response => {
+            _this.$http.get('/infomations/shows').then(response => {
                 // get body data
                 let result = response.body;
                 if(result.code == "Y"){
@@ -92,7 +92,7 @@ const TarCloudView = {
         fetchData () {
             let _this = this;
             // 组件创建完后获取数据，
-            _this.$http.get(path + '/infomations/cloud').then(response => {
+            _this.$http.get('/infomations/cloud').then(response => {
                 // get body data
                 let result = response.body;
                 if(result.code == "Y"){
@@ -167,7 +167,7 @@ const IndexView = {
                 page = 1;
             }
             // 组件创建完后获取数据，
-            _this.$http.get(path + '/index/' + page).then(response => {
+            _this.$http.get('/index/' + page).then(response => {
                 // get body data
                 let result = response.body;
                 if(result.code == "Y"){
@@ -219,7 +219,7 @@ const SeriesView = {
         fetchData () {
             let _this = this;
             // 组件创建完后获取数据，
-            _this.$http.get(path + '/series').then(response => {
+            _this.$http.get('/series').then(response => {
                 // get body data
                 let result = response.body;
                 if(result.code == "Y"){
@@ -293,7 +293,7 @@ const EyesView = {
         fetchData () {
             let _this = this;
             // 组件创建完后获取数据，
-            _this.$http.post(path + '/eyes').then(response => {
+            _this.$http.get('/eyes').then(response => {
                 // get body data
                 let result = response.body;
                 if(result.code == "Y"){
@@ -375,7 +375,7 @@ const FriendsView = {
         fetchData () {
             let _this = this;
             // 组件创建完后获取数据，
-            _this.$http.post(path + '/friends').then(response => {
+            _this.$http.get('/friends').then(response => {
                 // get body data
                 let result = response.body;
                 if(result.code == "Y"){
@@ -458,7 +458,7 @@ const CategoryView = {
                 page = 1;
             }
             // 组件创建完后获取数据，
-            _this.$http.post(path + '/genre/' + name + "/" + page).then(response => {
+            _this.$http.get('/genre/' + name + "/" + page).then(response => {
                 // get body data
                 let result = response.body;
                 if(result.code == "Y"){
@@ -531,7 +531,7 @@ const QueryView = {
                 page = 1;
             }
             // 组件创建完后获取数据，
-            _this.$http.post(path + '/query/' + name + "/" + page).then(response => {
+            _this.$http.get('/query/' + name + "/" + page).then(response => {
                 // get body data
                 let result = response.body;
                 if(result.code == "Y"){
@@ -658,7 +658,7 @@ const BlogView = {
                 return;
             }
             // 组件创建完后获取数据，
-            _this.$http.post(path + '/blogs/' + aid).then(response => {
+            _this.$http.get('/blogs/' + aid).then(response => {
                 // get body data
                 let result = response.body;
                 if(result.code == "Y"){
