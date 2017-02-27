@@ -1,0 +1,1110 @@
+[33mcommit fb791e204b98433c2b7b9af7567a097b55dff012[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Mon Feb 27 22:45:37 2017 +0800
+
+    完成Linux迁移
+
+[33mcommit 575a4242a63450cc69e95a4d9eb6ea9da867382d[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Fri Feb 24 15:28:31 2017 +0800
+
+    完成node开发
+
+[33mcommit 7ff718e8543ac5d536d04a44ed411bb2da5fc992[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Fri Feb 24 10:50:47 2017 +0800
+
+    nodejs版完成搭建
+
+[33mcommit d8a12e463ae31c736c001524aed8a315af1e5680[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Thu Feb 23 18:03:50 2017 +0800
+
+    提交node版
+
+[33mcommit 5458ea84f4d36774baa131939b12fb1653186146[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Thu Feb 23 09:31:04 2017 +0800
+
+    完成
+
+[33mcommit bb37d3448463e6b9587a4ae2c6f5dc58fbf03da3[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Thu Feb 23 09:27:58 2017 +0800
+
+    修改路径
+
+[33mcommit 7e81a2067b6280c43a9b4c917ff068e32b4fb4c9[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Thu Feb 23 08:18:28 2017 +0800
+
+    提交项目
+
+[33mcommit 99e076ef8fdc63552b9bc183c1f681f34b4d636f[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Thu Feb 16 13:24:13 2017 +0800
+
+    移除项目额外pom引用
+
+[33mcommit 5ce70003d2ca475972296d4ac9abbc246989b98e[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Thu Feb 16 09:37:02 2017 +0800
+
+    修改结构，去除多余部分
+
+[33mcommit 031c0c7a67aa1c3197f0791d046b7c5fe2850c0f[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Wed Feb 15 16:27:07 2017 +0800
+
+    完成切换spa应用
+
+[33mcommit 4915a1282eb1500612d1f76f5c19874e5094cb99[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Wed Feb 15 15:52:16 2017 +0800
+
+    完成切换
+
+[33mcommit a655cb96b6eb30b2c244c4d9a2ac2205cd56ed8d[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Fri Feb 10 10:29:35 2017 +0800
+
+    遗留canvns问题待解决
+
+[33mcommit 2f756b1c46ca00f1c19eca4e607f6fe699ff32ec[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Thu Feb 9 18:07:04 2017 +0800
+
+    提交修改
+
+[33mcommit ab8899cc272134913792ac9c30c3fd0ca31b89fc[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Thu Feb 9 14:59:57 2017 +0800
+
+    修改路径
+
+[33mcommit 2065ecb408afcfd5a80d0e5dd654eb8a7e9310ae[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Thu Feb 9 14:53:28 2017 +0800
+
+    替换版本完成第一步
+
+[33mcommit c13e306056f0bb23ef3d006d47111f69a9f99979[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Wed Feb 8 17:54:40 2017 +0800
+
+    单页完成前三个标签整合
+
+[33mcommit 24707c0132d226919b5acaf7fe0af636355c6cc8[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Wed Feb 8 14:04:57 2017 +0800
+
+    切出spa版分支
+
+[33mcommit e83445cbf4211fdd74d09b0a58e2ad869d363e6c[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Tue Feb 7 16:11:02 2017 +0800
+
+    单页项目提交
+
+[33mcommit 4bec72e80d4b57d6172d1c4cec059b23dd850e57[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Sat Feb 4 09:51:07 2017 +0800
+
+    提交app.js
+
+[33mcommit 5510e840e979f3ada6cbd0a6283b33e2cfcb6efa[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Thu Jan 19 16:27:42 2017 +0800
+
+    完成友链
+
+[33mcommit 1fd67ffd5ef5355a2d14d194bebbd03819d4c94c[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Thu Jan 19 16:08:13 2017 +0800
+
+    后台友链
+
+[33mcommit f754ca671d1263109097ad2c6362a78e121f8935[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Thu Jan 19 15:00:08 2017 +0800
+
+    友链
+
+[33mcommit 82050b7da33d3aa27ce9abbe2a248d69a34bc9a3[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Thu Jan 19 08:18:06 2017 +0800
+
+    提交
+
+[33mcommit afd5bfbcc39e65ec2fa8acd716ac3028739bd10b[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Wed Jan 18 12:46:24 2017 +0800
+
+    弹幕框架
+
+[33mcommit 7c6aaf7f8ed83af14d182dd28d8714bef30898dc[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Wed Jan 18 09:17:54 2017 +0800
+
+    分页修复
+
+[33mcommit be032591228c1338c6925ffe1b8ae5e36d2cda70[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Tue Jan 17 17:58:13 2017 +0800
+
+    修复重复调用问题
+
+[33mcommit d7c182fbd8782f2620e23a9a57e050f9c3ae26c1[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Sat Jan 7 12:55:08 2017 +0800
+
+    删除文件系统
+
+[33mcommit 088fdb86947163de4d742df78291da6a731353b8[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Sat Jan 7 12:14:41 2017 +0800
+
+    完成sdk移植
+
+[33mcommit ef955e23c09a37a8fb94343aa370e91f65245f64[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Sat Jan 7 10:38:24 2017 +0800
+
+    测试完成
+
+[33mcommit 2df5bb73967009e7e63c759ec58ce5f6ea52272a[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Sat Jan 7 10:35:35 2017 +0800
+
+    测试忽略
+
+[33mcommit e00d2c688a549cb1a1030ade8cca56f0195cc254[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Sat Jan 7 10:32:36 2017 +0800
+
+    删除.idea
+
+[33mcommit 6355ebc4c23e97cfa5523ce6d91b91acf44009a4[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Sat Jan 7 10:29:13 2017 +0800
+
+    删除target
+
+[33mcommit 1945080b94ce3f5176e9271063a542e7a8293d15[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Sat Jan 7 10:23:13 2017 +0800
+
+    百度云
+
+[33mcommit 8fc4cbad1e8a785323228dbb8383e1a23e8f2e9b[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Wed Jan 4 14:31:20 2017 +0800
+
+    提交
+
+[33mcommit d2175ac6fa4a54d06a7fce300041200d73523da4[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Wed Jan 4 12:55:37 2017 +0800
+
+    提交
+
+[33mcommit fe3cd7f1f2577a1fa320d6f9de4f46b9befbc145[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Wed Jan 4 08:13:16 2017 +0800
+
+    修改方法
+
+[33mcommit 113536dbc528a5e7495236c3757b3eb66f958560[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Tue Jan 3 08:20:26 2017 +0800
+
+    首页样式
+
+[33mcommit 246a3cc613d67b505c6c421e5b70a5d865d79acc[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Fri Dec 30 13:44:33 2016 +0800
+
+    提交修改
+
+[33mcommit 5f784009db2ffcb211724fb4a39d36d6375ac443[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Fri Dec 30 10:25:33 2016 +0800
+
+    评论bug
+
+[33mcommit 97a0e964a9b3a083d16e202128b230d40fd34051[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Fri Dec 30 10:21:50 2016 +0800
+
+    压缩
+
+[33mcommit ce10710c9b584746a2fe67e8b385b24aeeb1861e[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Fri Dec 30 10:17:40 2016 +0800
+
+    提交pjax
+
+[33mcommit 39b0f46d86ff74e9baa1b0c8d871c8ad6c7762ad[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Thu Dec 29 18:21:15 2016 +0800
+
+    提交优化
+
+[33mcommit 31149e43eaf428fd9995c99ce4bf2d0affa2fc3e[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Thu Dec 29 18:00:34 2016 +0800
+
+    优化Pjax方式
+
+[33mcommit 2e6c2bf1b2522346fc9d8a05a764c51d9b0bcb42[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Thu Dec 29 17:34:18 2016 +0800
+
+    pjax改造第一版完成
+
+[33mcommit 19cfebbe7c7ca2b958b994b118911b31877ef299[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Tue Dec 27 18:03:39 2016 +0800
+
+    pjax版重构
+
+[33mcommit f4b4f3b1d3cbaf8fd966df304528dc62368cd032[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Thu Dec 22 17:20:49 2016 +0800
+
+    修改路径
+
+[33mcommit f9f98b01a88e27604504229bf53e87db1b5fc263[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Thu Dec 22 17:16:41 2016 +0800
+
+    提交项目专题功能
+
+[33mcommit 94f40252af202fb8d7d37711ab8a6052ba0433a5[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Thu Dec 22 08:44:25 2016 +0800
+
+    前台项目修改样式
+
+[33mcommit c8e604f20b68ed223a89360e557dccbeec3ec02e[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Wed Dec 21 18:36:51 2016 +0800
+
+    提交
+
+[33mcommit d5fb46db725bf3eb4af4b9ccb76ac219e4d757fa[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Wed Dec 21 11:38:08 2016 +0800
+
+    打标签功能完成
+
+[33mcommit 87c20899d198c5b91e83deb6158fdf9006e8f7e3[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Wed Dec 21 09:03:56 2016 +0800
+
+    提交标签管理功能
+
+[33mcommit 9c16eb5c4522809a5c234ded443521c4747a836c[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Tue Dec 20 17:50:23 2016 +0800
+
+    完成删除博客功能
+
+[33mcommit 417a268373185a234eb1ae6cc96ed5cc4f00a05b[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Tue Dec 20 10:20:56 2016 +0800
+
+    新增分享
+
+[33mcommit ad520df6eb979b923b679c95f60261036787248e[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Tue Dec 20 09:52:22 2016 +0800
+
+    新增spring boot 定界符配置
+
+[33mcommit bb44b97b412f79438c1c727ddaf55b156cdaf80f[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Mon Dec 19 18:18:46 2016 +0800
+
+    提交展示url
+
+[33mcommit 2ac39218f1ff35965e2f16248178a8cf2bc96367[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Mon Dec 19 16:57:13 2016 +0800
+
+    线上版本第一版发布
+
+[33mcommit 7e2af3f1e1d642b5543222c63abbbb969789a334[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Mon Dec 19 16:57:00 2016 +0800
+
+    测试
+
+[33mcommit c7851d0780e01947803069903a92221a5efddd4d[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Mon Dec 19 16:23:22 2016 +0800
+
+    url路径修改
+
+[33mcommit 5dc47ea386793fa04bf7b6fb4427068ebc34599c[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Mon Dec 19 11:35:19 2016 +0800
+
+    修改线上库
+
+[33mcommit 35a7bc5369016b8c0e8fdc327979100160d6ab1b[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Mon Dec 19 09:29:17 2016 +0800
+
+    完成编辑
+
+[33mcommit f48450abd8eab22c8b8a3fefb2ad3573b8a1b1e1[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Fri Dec 16 08:57:25 2016 +0800
+
+    修改系统项目
+
+[33mcommit 57d3497ffbf94ca75e4755ed18cd3548386c2c1a[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Thu Dec 15 17:50:56 2016 +0800
+
+    修改线上路径
+
+[33mcommit 5f6649f7a846399b712d8ab8ccd8245e0aedf1fe[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Thu Dec 15 17:49:30 2016 +0800
+
+    后台逻辑修改
+
+[33mcommit 2a52c23f001c1d643606f86cd6aafeb6212b9140[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Thu Dec 15 17:35:12 2016 +0800
+
+    修改路径
+
+[33mcommit e7248fe75239c8a8ee44ce1c365a9b804b7b86bd[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Thu Dec 15 17:24:38 2016 +0800
+
+    修改项目结构
+
+[33mcommit a9ac471119477072c466cf1b565c5aea5ee85588[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Wed Dec 14 17:19:00 2016 +0800
+
+    修改项目，采用jar方式打包
+
+[33mcommit 01bef78f42e8115b31338f36362aa798943d9496[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Wed Dec 14 11:42:34 2016 +0800
+
+    提交类别管理
+
+[33mcommit 7f5a896d5cbdca4d11242e006c9d55bf960bfc81[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Tue Dec 13 17:57:40 2016 +0800
+
+    提交后台
+
+[33mcommit d2c72decd1f24a2f299a7d5ebcb3debae36d3914[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Tue Dec 13 14:47:40 2016 +0800
+
+    提交修改
+
+[33mcommit 1789c15534efaacc067d23874d81c752daef9634[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Tue Dec 13 11:53:01 2016 +0800
+
+    博客管理页面
+
+[33mcommit 77e67b48ce7c60c1f1aba99badb555e46a28dfd0[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Mon Dec 12 17:57:14 2016 +0800
+
+    修改后台
+
+[33mcommit ead94151513021cd2ded3a35eb2999a9fce78d5a[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Mon Dec 12 16:33:49 2016 +0800
+
+    提交分类查询
+
+[33mcommit 370dfe1a4bd9e7b2e4ab0275794d88dfd742e0f5[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Mon Dec 12 16:13:59 2016 +0800
+
+    完成url修改成rest风格
+
+[33mcommit f42e4c1dcaba8ea355223a9f32a73d9e10740dda[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Mon Dec 12 13:51:45 2016 +0800
+
+    引入jsoup解决服务器过滤js脚本，同时不影响html dom结构
+
+[33mcommit 40759392be40f5b7c6e3ad000956d2ffbb592e1c[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Fri Dec 9 10:58:03 2016 +0800
+
+    新增同步方法
+
+[33mcommit b0a2abca284ded188c2ae66d78267cf6c9586822[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Wed Dec 7 10:56:05 2016 +0800
+
+    提交数据库路径修改
+
+[33mcommit acd46e9957122ec50214354d325fc2c7dcb7ba52[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Tue Dec 6 09:27:39 2016 +0800
+
+    提交博客的crsf校验
+
+[33mcommit c507524d40cbec12db09972aa0296012a592e3d5[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Tue Dec 6 08:24:57 2016 +0800
+
+    文件系统校验
+
+[33mcommit a0a935742c8048e9cdcb64a6fdb011d500620b98[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Mon Dec 5 14:50:40 2016 +0800
+
+    整合插入时同步到es搜索引擎
+
+[33mcommit ca20bf51fcc3f19c69241063fe1890a8f69a0a6f[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Mon Dec 5 14:27:07 2016 +0800
+
+    修改ck插入代码会把code标签的class属性过滤掉的问题
+
+[33mcommit da613bcd8e4cf794c222f1bec982499092567cb3[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Mon Dec 5 13:48:49 2016 +0800
+
+    删除niodemo imageview项目
+
+[33mcommit 6d2219b2434c4e03c4904f89b8aed938d7ddcb8a[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Mon Dec 5 13:47:53 2016 +0800
+
+    删除manager
+
+[33mcommit c450528726dc09e12b4b62fb693a34c2a43b4107[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Mon Dec 5 13:46:52 2016 +0800
+
+    删除boos
+
+[33mcommit 4cbe713db42d04082cd182b7fa3194cbc3ca87dd[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Mon Dec 5 13:43:05 2016 +0800
+
+    博客编辑页面
+
+[33mcommit 87aaf401571aa45e5f2063d5181341af8d033c83[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Fri Dec 2 12:28:48 2016 +0800
+
+    提交文本编辑器
+
+[33mcommit bf8e4bfcd53a415008082a672f3c49ffd1e6789a[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Thu Dec 1 10:31:48 2016 +0800
+
+    后台系统
+
+[33mcommit 0ab7bbf22fce4c6a95f346b23474be271d70dd4d[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Wed Nov 30 15:05:02 2016 +0800
+
+    后台boss系统搭建
+
+[33mcommit 440c6301c5666bf0236601259db65917b814d2b5[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Wed Nov 30 09:16:26 2016 +0800
+
+    删除后台项目
+
+[33mcommit fb70efe801f13f4d60aa81b0068399f674bf44cf[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Tue Nov 29 09:21:04 2016 +0800
+
+    完成修改
+
+[33mcommit af4e2fc79924a727d866f9a6fb527ff25838b16c[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Tue Nov 29 09:15:15 2016 +0800
+
+    修改ck编辑器，完成个人介绍页面
+
+[33mcommit a779214141764a2d881e76642d9c5d462f7ea701[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Tue Nov 29 09:13:34 2016 +0800
+
+    修改ck编辑器，完成个人介绍页面
+
+[33mcommit 1566f2fb26bf60879360c74de96caefb43776b2c[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Mon Nov 28 10:42:13 2016 +0800
+
+    修改公共代码
+
+[33mcommit 64c9d90b07577796ccff9f059b953fc0e8a30c56[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Fri Nov 25 17:19:17 2016 +0800
+
+    搜索页面第一版完成
+
+[33mcommit 3903279b5cc55d4b1d90f7f743e6bd025cd2df3b[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Fri Nov 25 16:18:06 2016 +0800
+
+    搜索页面布局
+
+[33mcommit e1016eb1347876d9892f4043743592ba74c51d70[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Thu Nov 24 09:53:28 2016 +0800
+
+    es搜索引擎整合
+
+[33mcommit eec283d2d288c118d2e5316fb7a53d9fc3e0a7c4[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Mon Nov 21 09:10:32 2016 +0800
+
+    博客页面基本完成
+
+[33mcommit 7dcb96d8c1ea68e99b08b1ebc753513476459826[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Fri Nov 18 14:33:44 2016 +0800
+
+    第一版完成首页，专题页，一览页，详情页展示
+
+[33mcommit f951742c0913c2e53448273d0e75d532734d33ce[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Fri Nov 18 11:22:14 2016 +0800
+
+    评论功能优化
+
+[33mcommit 694ca0ba8514e8cff194117ab64a8dd821f6a432[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Fri Nov 18 10:55:51 2016 +0800
+
+    提交详情页面评论功能
+
+[33mcommit fccc300d20223b3636598a8611f4b44806274416[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Thu Nov 17 20:44:07 2016 +0800
+
+    详情
+
+[33mcommit c3932b98d9b5e8451210c85f4d5d86f4a4e8dd71[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Thu Nov 17 18:49:27 2016 +0800
+
+    详情页面评论
+
+[33mcommit dc3707583480938062e48b9fe8ad7adb6991202c[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Thu Nov 17 11:47:15 2016 +0800
+
+    ckeditor继承
+
+[33mcommit b4993752481502455665c7c16ab0a4a30837dbe1[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Wed Nov 16 18:25:21 2016 +0800
+
+    详情页评论dom
+
+[33mcommit acebdc047876432688a931bf324278cfe06a3f08[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Wed Nov 16 14:10:04 2016 +0800
+
+    更新高亮插件
+
+[33mcommit 47aca160d95685d0513a5232cf19a605850a23de[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Wed Nov 16 10:28:43 2016 +0800
+
+    更换懒加载
+
+[33mcommit 7f4e2666fb94d2fe66df0dca6cdaaf027101cec5[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Tue Nov 15 18:00:15 2016 +0800
+
+    详情页面
+
+[33mcommit bfcc4da2d35acbcc29117b633c8f45b651abb686[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Mon Nov 14 15:57:54 2016 +0800
+
+    提交结构
+
+[33mcommit ffa409473f36c083c0cc27eac4e5917a9e1fbe3c[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Mon Nov 14 14:25:48 2016 +0800
+
+    提交一览页面
+
+[33mcommit fdaeceefdd8c6ece4b0bf6c08b14ff05bfbac3c8[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Fri Nov 11 17:41:20 2016 +0800
+
+    时间轴
+
+[33mcommit 8679593b3f7a05598309e8fb10bceabd72c50e1e[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Fri Nov 11 17:39:48 2016 +0800
+
+    时间轴完成
+
+[33mcommit b5aa63531697e350af8eb6f735e9534a0f2d04ef[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Fri Nov 11 16:32:47 2016 +0800
+
+    时间轴
+
+[33mcommit 34dc6831b787580433280a2d84b1ffd325e753d6[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Fri Nov 11 09:48:31 2016 +0800
+
+    修改结构
+
+[33mcommit 1f91f7ae5d65bec89f6645cda963371af37f0769[m
+Author: adam <13983219156@163.com>
+Date:   Thu Nov 10 22:05:36 2016 +0800
+
+    专题页面样式，首页样式
+
+[33mcommit 992c039fa2f53440b61dac4dbb8cec3ce4a293bb[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Thu Nov 10 16:34:42 2016 +0800
+
+    修改格式
+
+[33mcommit 13ba21a8628cd7c25c7b284b3d8d71cd3ba890dd[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Thu Nov 10 11:23:06 2016 +0800
+
+    升级boot 1.4.2
+
+[33mcommit 5e7d7c694172fb55fd7eb6d6638669c4b1d9ee58[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Thu Nov 10 11:12:24 2016 +0800
+
+    修改项目结构
+
+[33mcommit 6de4cf687b03d25df077621d7aeeff3a9491441c[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Thu Nov 10 10:40:19 2016 +0800
+
+    修改目录结构
+
+[33mcommit 8c4bf90e5e84ce040f4171c5ad2ce3f910af19d5[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Tue Nov 8 09:06:06 2016 +0800
+
+    日志配置
+
+[33mcommit a76f1af85432d5f4c72daa13a16a089f695f8c09[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Sun Oct 9 17:52:48 2016 +0800
+
+    修改搜索结果
+
+[33mcommit 534caec54a1f951226af2993bdb51628dfcb0850[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Fri Sep 30 11:30:26 2016 +0800
+
+    分页完成，还需要转义
+
+[33mcommit 9163ede53a59c50ba3564a7713ce4d1d29f92778[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Thu Sep 29 15:34:13 2016 +0800
+
+    搜索页
+
+[33mcommit b8311a0726b973d80076d0da433abcc2123d6610[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Thu Sep 29 09:37:50 2016 +0800
+
+    提交路径修改
+
+[33mcommit d682ded0117378934326c710c331a0bded0f8105[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Mon Sep 19 10:53:15 2016 +0800
+
+    分类结果页
+
+[33mcommit 4d5b6fb3dcc071e8675392119515beb5f90d7c3f[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Thu Aug 25 14:22:58 2016 +0800
+
+    标签云优化，cookie压缩
+
+[33mcommit 933452d6eb8d6406cc00bbd524ad9e8bdf37a602[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Thu Aug 4 14:13:11 2016 +0800
+
+    修改ie低版本提示页面样式
+
+[33mcommit 24093084f83eaaeacb0d8e10a2e7ed13c231d5ab[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Thu Aug 4 14:10:47 2016 +0800
+
+    修改solr注入为spring boot方式
+
+[33mcommit b0af33113f9c2b19fb2a0801daa4e2c1d268e5d9[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Thu Aug 4 09:50:33 2016 +0800
+
+    ie低版本过滤
+
+[33mcommit e473be9252375943a08044e46d322094b24be9cd[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Wed Aug 3 16:20:34 2016 +0800
+
+    一览页面初版完成
+
+[33mcommit a6905e35a8eb85c4905747626110b8c4dcfb6f8c[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Wed Aug 3 10:21:17 2016 +0800
+
+    时间轴
+
+[33mcommit 5228209818f28634946d51eab1f523ad69b8e78f[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Tue Aug 2 17:56:20 2016 +0800
+
+    提交时间轴
+
+[33mcommit b7ea9040ea21ce25264c22ccc21d88d74087c935[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Tue Aug 2 10:47:43 2016 +0800
+
+    一览功能
+
+[33mcommit 53987bbd4072974a957f42a6d20b21e8d9a0db03[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Mon Aug 1 12:18:54 2016 +0800
+
+    样式
+
+[33mcommit 23c623e5a68dc941f1f77fe6a6534e5b0602b112[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Fri Jul 29 17:45:04 2016 +0800
+
+    修改
+
+[33mcommit 8dd322b0ee6b83d93206b3328503f5bc33e69ef2[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Fri Jul 29 11:05:49 2016 +0800
+
+    更新前台结构
+
+[33mcommit 298000ea11e1c0c6427c1811ff94000504d06e0b[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Thu Jul 28 11:28:19 2016 +0800
+
+    安全性检测第一轮
+
+[33mcommit e02d268a7adc671824f9c638dc000b295f8414ff[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Wed Jul 20 15:01:54 2016 +0800
+
+    修改首页
+
+[33mcommit 3bb8a9c0820b77d023d7d6e0e358c3e7c2522ef7[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Wed Jul 20 14:10:19 2016 +0800
+
+    系列首页完成查询
+
+[33mcommit df062f8b92f6caddbdeee5352d9ee19d875d5ed5[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Wed Jul 13 12:45:07 2016 +0800
+
+    阿里云测试库完成连接
+
+[33mcommit df99711835f7c08849443375544c7eb6885e1ad9[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Thu Jun 30 14:41:05 2016 +0800
+
+    添加配置
+
+[33mcommit 8765bcda4b337123d32e893858cde9dd6d2ce993[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Wed Jun 29 18:01:56 2016 +0800
+
+    专题系列页面完成
+
+[33mcommit 5dc129987ed90970bd23da9ce131f91a3b1f05b6[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Mon Jun 27 09:27:43 2016 +0800
+
+    修改后台系统
+
+[33mcommit 6766f69caf6b757ecb44098f6c90e45a63c6e969[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Fri Jun 3 09:34:10 2016 +0800
+
+    一览页面构建
+
+[33mcommit 546b4985a3c97bba783d62ee0819ae7cb9f643c5[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Fri Jun 3 09:00:37 2016 +0800
+
+    修改ck样式
+
+[33mcommit ea5890c0cab9d16d575d52a6d644b8f0f616a512[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Fri Jun 3 08:51:30 2016 +0800
+
+    修改ck
+
+[33mcommit 0fe3e54a64f45085e3f2baf2575d8ac0f6a6af1d[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Thu Jun 2 17:30:14 2016 +0800
+
+    提交评论
+
+[33mcommit f4c7b7b3e9dc5baa601a46a26eb70de16ea3cb29[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Wed Jun 1 17:28:24 2016 +0800
+
+    热门列表gif
+
+[33mcommit 454b79252e5cae01b94872072368375cdadab390[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Wed Jun 1 09:25:34 2016 +0800
+
+    后台评论文章发布完成
+
+[33mcommit 73a62a6ef7c2afda73d0ac5a6f3f697fe89ed8a3[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Fri May 27 16:38:20 2016 +0800
+
+    热门文章完成
+
+[33mcommit 5d7c61ab0825d1e19bbb33b7e494bd587eec24bb[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Fri May 27 09:12:18 2016 +0800
+
+    IE9 判空解决
+
+[33mcommit f363e3ef0f255b5e9d2ee36cfa4220fe9be5b6f2[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Thu May 26 17:40:21 2016 +0800
+
+    添加cookie记忆
+
+[33mcommit eeb6777c7f37f8937ffeb68c0951bdfa1f1c4bcf[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Thu May 26 17:26:46 2016 +0800
+
+    评论修复，IE下ck判空问题待修复
+
+[33mcommit 0063cc49bcd6ed6bad1e17b0e267a71aac2f1bdd[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Thu May 26 16:57:05 2016 +0800
+
+    评论完成
+
+[33mcommit 5ee88ecc9fedf7445dc3e45e6368c9c986d57c8a[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Thu May 26 10:49:43 2016 +0800
+
+    评论功能大致完成
+
+[33mcommit 58bd05a006477683282bd0ab1ae51415da022b4b[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Wed May 25 18:06:15 2016 +0800
+
+    回复功能
+
+[33mcommit 5c8fcf4f19cffc273d21ee0d4b0b72615906ae29[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Wed May 25 09:11:55 2016 +0800
+
+    评论分页完成
+
+[33mcommit 958308cec2311443ed9b36ef2283a1176c5480a1[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Mon May 23 18:51:25 2016 +0800
+
+    详情页面评论完成80%
+
+[33mcommit e707e9360ee43de239cb9128eed1977f794c20d0[m
+Author: adam <13983219156@163.com>
+Date:   Sun May 22 22:26:51 2016 +0800
+
+    完成详情页基本控件
+
+[33mcommit 153a0c953df928797f009765edfd8626c3474713[m
+Author: adam <13983219156@163.com>
+Date:   Sun May 22 12:49:30 2016 +0800
+
+    solr版分页完成
+
+[33mcommit 987650bf066e3c0e5173a797ff279858e8c49d74[m
+Author: adam <13983219156@163.com>
+Date:   Sun May 22 12:41:38 2016 +0800
+
+    详情页面完成展示
+
+[33mcommit 09d7020fa988bb8b4254613317c42a668e6586a7[m
+Author: adam <13983219156@163.com>
+Date:   Sat May 21 23:50:55 2016 +0800
+
+    update for pagination
+
+[33mcommit 47ae05f9cbfba11ba963129a69da42e2ce07a077[m
+Author: adam <13983219156@163.com>
+Date:   Sun May 8 22:10:17 2016 +0800
+
+    修改结构
+
+[33mcommit 4ce4cdf7b9087fd0fa2af6146751fb5e1fb0c70b[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Fri May 6 09:33:10 2016 +0800
+
+    修改solr
+
+[33mcommit c9c63118bbb4c395f4f82203642083d481e8acad[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Fri May 6 08:47:31 2016 +0800
+
+    添加solr引擎
+
+[33mcommit 4dc4bb3efde977061a82fb16369db3455db33692[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Thu May 5 09:42:04 2016 +0800
+
+    修改现有项目结构
+
+[33mcommit 761a4b456056e16ff453febe4efef5801aac8316[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Wed May 4 09:18:45 2016 +0800
+
+    修改page对象打印信息
+
+[33mcommit 23af3848f6e3e9a6a5e7ced769195837761757b9[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Tue May 3 16:53:46 2016 +0800
+
+    整合日志分类功能
+
+[33mcommit 7c7f20678dbe7d593ab844165c90b47e409b36be[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Tue May 3 08:59:08 2016 +0800
+
+    首页动画
+
+[33mcommit 0d573ece0dbc2220b2000da2a36542764577237d[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Fri Apr 29 17:45:42 2016 +0800
+
+    首页图片动画（low 版）
+
+[33mcommit d87c9a5d37e4e7d925b51434e3532935c4526c97[m
+Merge: a484272 7b98fd8
+Author: adam19891224 <273961736@qq.com>
+Date:   Fri Apr 29 09:28:38 2016 +0800
+
+    首页图片延迟加载
+
+[33mcommit a484272e28d8c1dfef18de505b6622077cc4eaa4[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Fri Apr 29 08:29:51 2016 +0800
+
+    发布页面
+
+[33mcommit 7b98fd8eb4f328b18d1d88d04237fa086ca40a4a[m
+Author: adam <13983219156@163.com>
+Date:   Sat Apr 23 23:19:24 2016 +0800
+
+    首页数据装饰完成
+
+[33mcommit 780a630f903bde238ced61ffaf4d2c4640eb70a1[m
+Author: adam <13983219156@163.com>
+Date:   Fri Apr 22 23:20:12 2016 +0800
+
+    修改项目首页
+
+[33mcommit f62f364659e03b566d1bc928f7a8c6b47ad9f68c[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Thu Apr 21 13:54:25 2016 +0800
+
+    提交修改
+
+[33mcommit 029f4e17178efa89ac23ca23dd71e9a7f81bb39d[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Thu Apr 21 13:40:53 2016 +0800
+
+    图片系统首页样式修改
+
+[33mcommit c8e8524de634fe52e6f43875e084def8d070c1e9[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Wed Apr 20 17:56:15 2016 +0800
+
+    新增
+
+[33mcommit 5b1ac68b5b4cabb7a826909891be67016bd0df2b[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Wed Apr 20 17:46:41 2016 +0800
+
+    修改结构
+
+[33mcommit d3e5eb128edec23fe2f1646c4dd643d8c3febace[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Wed Apr 20 17:35:22 2016 +0800
+
+    注释
+
+[33mcommit a7acdc2a3bc6a8d60c3380f38dae29d4ca142c1e[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Wed Apr 20 17:33:19 2016 +0800
+
+    新增注释
+
+[33mcommit 4d42566e6fbea9bc9cbb93fa436097744a438bdf[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Wed Apr 20 17:30:25 2016 +0800
+
+    修改播放逻辑
+
+[33mcommit 57da8969094ee8e2772a2c5b904865911029be5f[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Wed Apr 20 17:18:39 2016 +0800
+
+    增加音频
+
+[33mcommit c587517ae3ef7af3cf7e4de2d16d184e4d284c54[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Wed Apr 20 13:32:58 2016 +0800
+
+    图片系统样式
+
+[33mcommit cc7ce52c8772aea8eb7b7b92137e1c7d0a4ce59a[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Tue Apr 19 14:04:23 2016 +0800
+
+    修改文件系统
+
+[33mcommit af11a50d74641743c035d357e4e5dfc9238d184a[m
+Author: adam <13983219156@163.com>
+Date:   Mon Apr 18 19:47:37 2016 +0800
+
+    完善日志
+
+[33mcommit 29884fbc5b22d66aba4077af1d09bd17b4e138b0[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Fri Apr 15 13:52:32 2016 +0800
+
+    提交修改
+
+[33mcommit d4712d04c1c2e09f8b713d0c63aca09db96b634a[m
+Author: adam19891224 <273961736@qq.com>
+Date:   Wed Apr 13 09:34:11 2016 +0800
+
+    新分支

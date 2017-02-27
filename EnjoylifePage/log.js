@@ -6,7 +6,7 @@ log4js.configure({
         }, //控制台输出
         {
             type: "dateFile",
-            filename: "E:/logs/enjoylifepage.log",
+            filename: "/tmp/logs/enjoylifepage/enjoylifepage.log",
             pattern: "_yyyy-MM-dd",
             alwaysIncludePattern: false
         } //日期文件格式

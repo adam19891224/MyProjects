@@ -22,6 +22,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.data.elasticsearch.core.SearchResultMapper;
+import org.springframework.data.elasticsearch.core.aggregation.AggregatedPage;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.stereotype.Service;
@@ -66,47 +67,47 @@ public class BlogsESServiceImpl extends BaseAbstractClass implements IBlogsESSer
                 .build();
 
 
-        org.springframework.data.domain.Page<ArticleEntity> resP = elasticsearchTemplate.queryForPage(searchQuery, ArticleEntity.class, new SearchResultMapper() {
-            @Override
-            public <T> org.springframework.data.domain.Page<T> mapResults(SearchResponse response, Class<T> clazz, Pageable pageable) {
-                List<ArticleEntity> list = ConUtils.arraylist();
-                SearchHits searchHits = response.getHits();
-                long total = searchHits.getTotalHits();
-                {
-                    try {
-                        SearchHit[] hits = searchHits.hits();
-                        Map<String, Object> result;
-                        Map<String, HighlightField> resultH;
-                        ArticleEntity articleEntity;
-                        for (SearchHit temp : hits) {
-                            result = temp.getSource();
-                            resultH = temp.getHighlightFields();
-
-                            articleEntity = EsResultCastUtils.getEntityByMap(result);
-
-                            if (articleEntity != null) {
-                                if (resultH.containsKey("articleTitle"))
-                                    articleEntity.setArticleTitle(resultH.get("articleTitle").fragments()[0].toString());
-
-                                if (resultH.containsKey("articleDescription"))
-                                    articleEntity.setArticleDescription(resultH.get("articleDescription").fragments()[0].toString());
-
-                                list.add(articleEntity);
-                            }
-                        }
-                    } catch (InvocationTargetException | IllegalAccessException e) {
-                        logger.error("es搜索 map结果转bean错误：", e);
-                        return new PageImpl<T>((List<T>) new ArrayList<>(), pageable, 0);
-                    }
-                }
-                return new PageImpl<T>((List<T>) list, pageable, total);
-            }
-        });
+//        AggregatedPage<ArticleEntity> resP = elasticsearchTemplate.queryForPage(searchQuery, ArticleEntity.class, new SearchResultMapper() {
+//            @Override
+//            public <T> AggregatedPage<T> mapResults(SearchResponse response, Class<T> clazz, Pageable pageable) {
+//                List<ArticleEntity> list = ConUtils.arraylist();
+//                SearchHits searchHits = response.getHits();
+//                long total = searchHits.getTotalHits();
+//                {
+//                    try {
+//                        SearchHit[] hits = searchHits.hits();
+//                        Map<String, Object> result;
+//                        Map<String, HighlightField> resultH;
+//                        ArticleEntity articleEntity;
+//                        for (SearchHit temp : hits) {
+//                            result = temp.getSource();
+//                            resultH = temp.getHighlightFields();
+//
+//                            articleEntity = EsResultCastUtils.getEntityByMap(result);
+//
+//                            if (articleEntity != null) {
+//                                if (resultH.containsKey("articleTitle"))
+//                                    articleEntity.setArticleTitle(resultH.get("articleTitle").fragments()[0].toString());
+//
+//                                if (resultH.containsKey("articleDescription"))
+//                                    articleEntity.setArticleDescription(resultH.get("articleDescription").fragments()[0].toString());
+//
+//                                list.add(articleEntity);
+//                            }
+//                        }
+//                    } catch (InvocationTargetException | IllegalAccessException e) {
+//                        logger.error("es搜索 map结果转bean错误：", e);
+//                        return new PageImpl<T>((List<T>) new ArrayList<>(), pageable, 0);
+//                    }
+//                }
+//                return new PageImpl<T>((List<T>) list, pageable, total);
+//            }
+//        });
 
         Map<String, Object> map = ConUtils.hashmap();
-        map.put("totalCount", resP.getTotalElements());
-        map.put("totalPage", resP.getTotalPages());
-        map.put("result", Lists.newArrayList(resP.iterator()));
+//        map.put("totalCount", resP.getTotalElements());
+//        map.put("totalPage", resP.getTotalPages());
+//        map.put("result", Lists.newArrayList(resP.iterator()));
 
         return map;
     }

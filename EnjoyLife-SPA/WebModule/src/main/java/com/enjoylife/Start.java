@@ -5,6 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
 
+import java.util.Date;
+
 /**
  * Created by IntelliJ IDEA
  * User: Adam
@@ -14,9 +16,11 @@ import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomi
 public class Start implements EmbeddedServletContainerCustomizer {
 
     public static void main(String[] args) {
+        Date start = new Date();
         //spring boot 启动方式，调用核心类springapplication的run方法即可
         SpringApplication.run(Start.class, args);
-        System.out.println("项目启动完毕!");
+        Date end = new Date();
+        System.out.println("项目启动完毕! 总共耗时: " + (end.getTime() - start.getTime()) + " ms");
     }
 
     @Override
