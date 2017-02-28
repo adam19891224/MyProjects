@@ -20,10 +20,13 @@ const path = "http://localhost:36666";
 const InfoView = {
     template:
     `<div class="right-body">
-        <div class="head-image">
+        <div id="left-loading" class="main-left-loading" v-if="!isLoading">
+            <img src="/images/page-loading.gif">
+        </div>
+        <div class="head-image" v-if="isLoading">
             <img src="/images/default-head.jpg" />
         </div>
-        <div class="msg-intro">
+        <div class="msg-intro" v-if="isLoading">
             <div class="intro-blogs">
                 <span>文章</span>
                 <span>
@@ -41,8 +44,9 @@ const InfoView = {
     //给模板绑定数据
     data () {
         return {
+            isLoading: false,
             totalArticles: null,
-            totalTypes: null,
+            totalTypes: null
         }
     },
     //模板创建完毕后，获取数据
@@ -64,6 +68,7 @@ const InfoView = {
                     alert("加载数据错误");
                     console.log(result.message);
                 }
+                _this.isLoading = true;
             }, response => {
                 console.log("异常");
             });
@@ -72,18 +77,18 @@ const InfoView = {
 };
 
 const TarCloudView = {
-    //给模板绑定数据
-    data () {
-        return {
-            types: null
-        }
-    },
     template:
     `<div class="right-body">
         <div id="type-body" class="cloud-div">
             <router-link v-if="types.length > 0" v-for="type in types" :to="{ name: 'genre', params: { typeName: type.typeName, p: 1 } }" :tn="type.typeName">{{type.typeName}}</router-link>
         </div>
     </div>`,
+    //给模板绑定数据
+    data () {
+        return {
+            types: null
+        }
+    },
     //模板创建完毕后，获取数据
     created () {
         this.fetchData();
@@ -117,7 +122,10 @@ const TarCloudView = {
 const IndexView = {
     template:
     `<section>
-        <div id="left-body" class="left-body">
+        <div id="left-loading" class="main-left-loading" v-if="!isLoading">
+            <img src="/images/page-loading.gif">
+        </div>
+        <div id="left-body" class="left-body" v-if="isLoading">
             <div class="main-blog" v-for="blog in blogs">
                 <div class="blog-head">
                    <router-link tag="h2" :to="{ name: 'blog', params: { aid: blog.articleSid } }">
@@ -140,13 +148,14 @@ const IndexView = {
                 </div>
             </div>
         </div>
-        <div class="blog-page">
+        <div class="blog-page" v-if="isLoading">
             <div id="page-div" class="page-div" :data-pages="totalPages" :data-current="page"></div>
         </div>
     </section>`,
     //给模板绑定数据
     data () {
         return {
+            isLoading: false,
             blogs: null,
             totalPages: null,
             page: null
@@ -162,6 +171,7 @@ const IndexView = {
     methods: {
         fetchData () {
             let _this = this;
+            _this.isLoading = false;
             let page = _this.$route.params.page;
             if(!page){
                 page = 1;
@@ -179,6 +189,7 @@ const IndexView = {
                     alert("加载数据错误");
                     console.log(result.message);
                 }
+                _this.isLoading = true;
             }, response => {
                 console.log("异常");
             });
@@ -193,7 +204,10 @@ const IndexView = {
 const SeriesView = {
     template:
     `<section>
-        <div class="left-body">
+        <div id="left-loading" class="main-left-loading" v-if="!isLoading">
+            <img src="/images/page-loading.gif">
+        </div>
+        <div class="left-body" v-if="isLoading">
             <ul class="series-main">
                 <li v-if="series.length > 0" v-for="serie in series">
                     <router-link to="/index" v-if="serie.seriesName != null">
@@ -208,6 +222,7 @@ const SeriesView = {
     //给模板绑定数据
     data () {
         return {
+            isLoading: false,
             series: null
         }
     },
@@ -235,6 +250,7 @@ const SeriesView = {
                     alert("加载数据错误");
                     console.log(result.message);
                 }
+                _this.isLoading = true;
             }, response => {
                 console.log("异常")
             });
@@ -246,7 +262,10 @@ const SeriesView = {
 const EyesView = {
     template:
     `<section>
-        <div class="eyes-time">
+        <div id="left-loading" class="main-left-loading" v-if="!isLoading">
+            <img src="/images/page-loading.gif">
+        </div>
+        <div class="eyes-time" v-if="isLoading">
             <div id="time-div" class="time-div" :n-y="nowY" :n-m="nowM">
                 <div class="time-year" v-for="(year, yindex) in times">
                     <span :time-year="year.date">
@@ -261,7 +280,7 @@ const EyesView = {
                 </div>
             </div>
         </div>
-        <div class="eyes-title">
+        <div class="eyes-title" v-if="isLoading">
             <div id="container-title" class="eyes-container-title">
                 <h2 v-for="blog in blogs" :data-year="blog.createDate | y" :data-month="blog.createDate | m">
                     <span class="eyes-title-time">
@@ -279,6 +298,7 @@ const EyesView = {
     //给模板绑定数据
     data () {
         return {
+            isLoading: false,
             blogs: null,
             times: null,
             nowY: null,
@@ -306,6 +326,7 @@ const EyesView = {
                     alert("加载数据错误");
                     console.log(result.message);
                 }
+                _this.isLoading = true;
             }, response => {
                 console.log("异常")
             });
@@ -320,8 +341,11 @@ const EyesView = {
 const ProfileView = {
     template:
     `<section class="mian-profile">
-        <h2>个人简介</h2>
-        <ul>
+        <div id="left-loading" class="main-left-loading" v-if="!isLoading">
+            <img src="/images/page-loading.gif">
+        </div>
+        <h2 v-if="isLoading">个人简介</h2>
+        <ul v-if="isLoading">
             <li>
                 姓名：<span>周禹宏（Adam）</span>
             </li>
@@ -341,14 +365,22 @@ const ProfileView = {
                 QQ：<span>273961736</span>
             </li>
         </ul>
-    </section>`
+    </section>`,
+    data () {
+        return {
+            isLoading: true
+        }
+    },
 };
 
 //定义友链组件
 const FriendsView = {
     template:
     `<section>
-        <div id="friedns-screen" class="friedns-screen">
+        <div id="left-loading" class="main-left-loading" v-if="!isLoading">
+            <img src="/images/page-loading.gif">
+        </div>
+        <div id="friedns-screen" class="friedns-screen" v-if="isLoading">
             <h2>友情链接</h2>
             <ul>
                 <li v-if="friends.length > 0" v-for="friend in friends">
@@ -364,6 +396,7 @@ const FriendsView = {
     //给模板绑定数据
     data () {
         return {
+            isLoading: false,
             friends: null
         }
     },
@@ -391,6 +424,7 @@ const FriendsView = {
                     alert("加载数据错误");
                     console.log(result.message);
                 }
+                _this.isLoading = true;
             }, response => {
                 console.log("异常")
             });
@@ -402,10 +436,13 @@ const FriendsView = {
 const CategoryView = {
     template:
     `<section>
-        <div class="left-body">
+        <div id="left-loading" class="main-left-loading" v-if="!isLoading">
+            <img src="/images/page-loading.gif">
+        </div>
+        <div class="left-body" v-if="isLoading">
             <div class="cate-info-container" v-for="info in blogs" v-if="blogs.length > 0">
                 <div class="cate-container-left" v-if="info.articleImg != null">
-                    <img src="../images/image-loading.gif" class="b-lazy" :data-src="info.articleImg" :alt="info.articleTitle" />
+                    <img src="/images/image-loading.gif" class="b-lazy" :data-src="info.articleImg" :alt="info.articleTitle" />
                 </div>
                 <div class="cate-container-right" v-if="info.articleSid != null && info.articleTitle != null && info.articleDescription != null">
                     <div class="cate-right-title">
@@ -430,13 +467,14 @@ const CategoryView = {
                 </h2>
             </div>
         </div>
-        <div class="cate-left-page" v-if="blogs != null">
+        <div class="cate-left-page" v-if="blogs != null && isLoading">
             <div id="cate-page-div" class="page-div" :data-pages="totalPages" :data-current="page"></div>
         </div>
     </section>`,
     //给模板绑定数据
     data () {
         return {
+            isLoading: false,
             blogs: null,
             totalPages: null,
             page: null
@@ -452,6 +490,7 @@ const CategoryView = {
     methods: {
         fetchData () {
             let _this = this;
+            _this.isLoading = false;
             let page = _this.$route.params.p;
             let name = _this.$route.params.typeName;
             if(!page){
@@ -463,7 +502,8 @@ const CategoryView = {
                 let result = response.body;
                 if(result.code == "Y"){
                     let data = result.data;
-                    if(data.blogs.length > 0){
+                    let blogs = data.blogs;
+                    if(blogs != null && blogs.length > 0){
                         _this.blogs = data.blogs;
                     }else{
                         let blogs = [];
@@ -476,6 +516,7 @@ const CategoryView = {
                     alert("加载数据错误");
                     console.log(result.message);
                 }
+                _this.isLoading = true;
             }, response => {
                 console.log("异常")
             });
@@ -490,7 +531,10 @@ const CategoryView = {
 const QueryView = {
     template:
     `<section>
-        <div class="left-body">
+        <div id="left-loading" class="main-left-loading" v-if="!isLoading">
+            <img src="/images/page-loading.gif">
+        </div>
+        <div class="left-body" v-if="isLoading">
             <div class="sea-info-container" v-for="info in blogs">
                 <h2 v-if="info.articleSid != null && info.articleTitle != null">
                     <router-link :to="{ name: 'blog', params: { aid: info.articleSid } }" v-html="info.articleTitle"></router-link>
@@ -503,13 +547,14 @@ const QueryView = {
                 </section>
             </div>
         </div>
-        <div class="sea-left-page">
+        <div class="sea-left-page" v-if="blogs != null && isLoading">
             <div id="search-page-div" class="page-div" :data-pages="totalPages" :data-current="page"></div>
         </div>
     </section>`,
     //给模板绑定数据
     data () {
         return {
+            isLoading: false,
             blogs: null,
             totalPages: null,
             page: null
@@ -525,6 +570,7 @@ const QueryView = {
     methods: {
         fetchData () {
             let _this = this;
+            _this.isLoading = false;
             let page = _this.$route.params.p;
             let name = _this.$route.params.searchName;
             if(!page){
@@ -536,7 +582,8 @@ const QueryView = {
                 let result = response.body;
                 if(result.code == "Y"){
                     let data = result.data;
-                    if(data.blogs.length > 0){
+                    let blogs = data.blogs;
+                    if(blogs != null && blogs.length > 0){
                         _this.blogs = data.blogs;
                     }else{
                         let blogs = [];
@@ -549,6 +596,7 @@ const QueryView = {
                     alert("加载数据错误");
                     console.log(result.message);
                 }
+                _this.isLoading = true;
             }, response => {
                 console.log("异常")
             });
@@ -563,10 +611,13 @@ const QueryView = {
 const BlogView = {
     template:
     `<section>
-        <h1 v-if="article != null">
+        <div id="left-loading" class="main-left-loading" v-if="!isLoading">
+            <img src="/images/page-loading.gif">
+        </div>
+        <h1 v-if="article != null && isLoading">
             {{article.articleTitle}}
         </h1>
-        <div class="article-intro" v-if="article != null">
+        <div class="article-intro" v-if="article != null && isLoading">
             <span class="intro-type">
                 <i></i># <span v-if="type != null"><router-link :to="{ name: 'genre', params: { typeName: type.typeName, p: 1 } }">{{type.typeName}}</router-link></span><span v-if="type == null"><a href="javascript:">个人博客</a></span>
             </span>
@@ -574,13 +625,13 @@ const BlogView = {
                 <i></i>{{article.createDate | ymd}}
             </span>
         </div>
-        <div class="article-tags" v-if="article != null">
+        <div class="article-tags" v-if="article != null && isLoading">
             <span v-for="tag in tags" :tid="tag.tagId">{{tag.tagName}}</span>
         </div>
-        <article id="article-body" v-if="article != null" class="article-body" :data-aid="article.articleId" :data-asid="article.articleSid" v-html="article.articleBody"></article>
-        <div class="article-line"></div>
-        <div class="article-block"></div>
-        <div id="articlt-comment-div" class="article-comment" :ck="ck">
+        <article id="article-body" v-if="article != null && isLoading" class="article-body" :data-aid="article.articleId" :data-asid="article.articleSid" v-html="article.articleBody"></article>
+        <div class="article-line" v-if="isLoading"></div>
+        <div class="article-block" v-if="isLoading"></div>
+        <div id="articlt-comment-div" class="article-comment" :ck="ck" v-if="isLoading">
             <div class="comment-title">
                 <i></i><span>交流区</span>
             </div>
@@ -595,7 +646,7 @@ const BlogView = {
             </div>
         </div>
         
-        <div id="whole-div" class="whole-div">
+        <div id="whole-div" class="whole-div" v-if="isLoading">
             <div class="submit-screen-div"></div>
             <div class="submit-info-div">
                 <ul class="info-main">
@@ -619,7 +670,7 @@ const BlogView = {
                 </div>
             </div>
         </div>
-        <div id="loading-div" class="whole-div">
+        <div id="loading-div" class="whole-div" v-if="isLoading">
             <div class="submit-screen-div"></div>
             <div class="loading-div">
                 <div class="loading-info"></div>
@@ -629,6 +680,7 @@ const BlogView = {
     //给模板绑定数据
     data () {
         return {
+            isLoading: false,
             article: null,
             tags: null,
             type: null,
@@ -677,6 +729,7 @@ const BlogView = {
                     alert("加载数据错误");
                     console.log(result.message);
                 }
+                _this.isLoading = true;
             }, response => {
                 console.log("异常")
             });

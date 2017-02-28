@@ -22,6 +22,9 @@
     </dependencies>
 
     <build>
+
+        <finalName>EnjoylifeSPA</finalName>
+
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

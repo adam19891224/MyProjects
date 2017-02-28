@@ -131,6 +131,14 @@
     box-sizing: border-box;
 }
 
+.main-left-loading, .main-right-loading{
+    text-align: center;
+}
+
+.main-left-loading img, .main-right-loading img{
+    max-width: 100%;
+}
+
 .main-right{
     margin: 10px 10px 10px 0;
     width: 285px;
