@@ -11,6 +11,7 @@ import com.enjoylife.view.Page;
 import com.google.common.collect.Lists;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.MultiMatchQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
@@ -51,10 +52,18 @@ public class BlogsESServiceImpl extends BaseAbstractClass implements IBlogsESSer
 
         String kw = page.getKw();
         BoolQueryBuilder bool = new BoolQueryBuilder();
-        bool.should(QueryBuilders.matchQuery("articleTitle", kw).boost(2.0f));
-        bool.should(QueryBuilders.matchQuery("articleDescription", kw));
-        bool.should(QueryBuilders.wildcardQuery("articleTitle", "*" + kw + "*"));
-        bool.should(QueryBuilders.wildcardQuery("articleDescription", "*" + kw + "*"));
+
+        //设置title的查询规则
+//        bool.should(QueryBuilders.matchQuery("articleTitle", kw)
+//                .boost(2.0f));
+//        bool.should(QueryBuilders.matchQuery("articleDescription", kw));
+
+        //设置多字段查询规则
+        bool.should(QueryBuilders.multiMatchQuery(kw, "articleTitle", "articleDescription")
+                .type(MultiMatchQueryBuilder.Type.BEST_FIELDS)
+                .tieBreaker(0.3f)
+                .minimumShouldMatch("30%"));
+
         SearchQuery searchQuery = new NativeSearchQueryBuilder()
                 .withQuery(bool)
                 .withHighlightFields(new HighlightBuilder.Field("articleTitle").preTags("<u class=\"search-red\">").postTags("</u>"),

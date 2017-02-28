@@ -187,6 +187,12 @@ public class BlogServiceImpl extends AbstractService implements IBlogService {
         return true;
     }
 
+    @Override
+    public boolean deleteES() {
+        blogRepository.deleteAll();
+        return true;
+    }
+
     private String uploadImageFile(MultipartFile file) throws IOException {
 
         String fileName = file.getOriginalFilename();

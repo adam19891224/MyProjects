@@ -13,7 +13,6 @@ import com.boss.service.blogs.IBlogService;
 import com.boss.service.tags.ITagsService;
 import com.boss.web.base.controller.BaseController;
 import com.google.gson.Gson;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -197,5 +196,12 @@ public class BlogsController extends BaseController {
 
         boolean res = blogService.refresh();
         return res ? "success" : "error";
+    }
+
+    @RequestMapping("/deleteES.html")
+    @ResponseBody
+    public String deleteES(){
+        boolean res = blogService.refresh();
+        return "success";
     }
 }

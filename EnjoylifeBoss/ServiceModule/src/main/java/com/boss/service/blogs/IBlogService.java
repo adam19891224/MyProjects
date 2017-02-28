@@ -28,6 +28,8 @@ public interface IBlogService {
 
     boolean refresh();
 
+    boolean deleteES();
+
     List<Article> selectArticlesByTypeID(String id);
 
     List<Article> selectArticlesWithOutTypeID(String id);

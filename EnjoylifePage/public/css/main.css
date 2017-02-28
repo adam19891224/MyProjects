@@ -1065,6 +1065,14 @@
     font-size: 14px;
 }
 
+.sea-info-container section span{
+    cursor: text;
+}
+
+.sea-info-container section .info-date{
+    cursor: default;
+}
+
 .sea-left-page{
     width: 100%;
     overflow: hidden;

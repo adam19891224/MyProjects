@@ -28,7 +28,7 @@ public class ArticleEntity implements Serializable {
     @Field(type = FieldType.String, index = FieldIndex.not_analyzed)
     private String articleImg;
 
-    @Field(type = FieldType.String, store = true, analyzer = "ik_max_word", includeInParent = true)
+    @Field(type = FieldType.String, store = true, analyzer = "chinese", includeInParent = true)
     private String articleTitle;
 
     @Field(type = FieldType.String, store = true, analyzer = "ik_max_word", includeInParent = true)

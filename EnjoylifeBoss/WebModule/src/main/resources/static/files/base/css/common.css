@@ -19,6 +19,10 @@
     float: left;
 }
 
+.top-left a{
+    margin-left: 10px;
+}
+
 .top-right{
     width: 30%;
     height: 100%;
