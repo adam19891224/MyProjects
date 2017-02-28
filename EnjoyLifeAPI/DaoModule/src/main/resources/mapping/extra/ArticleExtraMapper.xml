@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.enjoylife.article.dao.ArticleMapper" >
+
+    <resultMap id="NewArticleBody" type="com.enjoylife.article.vo.NewArticle" extends="ResultMapWithBLOBs" >
+        <!--
+            association表示复合查询: 一对一
+        -->
+        <association property="comments" column="articleId" select="selectCommentCountsByArticleID"/>
+        <!--
+            collection表示复合查询: 一对多，即这里的newArticle中的属性types是一个集合，而这个集合的取值就看下面设置的
+            select，表示newArticle的types的值用selectTypeByArticleID这个sql去获取，而这个sql要带上一个参数，即
+            articleId, 而这个articleId就是我们selectByPage中查询的id，
+            同时，我们也可以不用select，而是用resultMap的方式，表示这个collecton返回的是一个resultMap结果
+        -->
+        <collection property="tags" column="articleId" select="selectTagsByArticleID"/>
+    </resultMap>
+
+    <select id="selectByPage" resultMap="NewArticleBody" parameterType="com.enjoylife.view.Page">
+        SELECT
+          ta.ARTICLE_SID as articleSid,
+          ta.ARTICLE_ID as articleId,
+          ta.CREATE_DATE as createDate,
+          ta.ARTICLE_TITLE as articleTitle,
+          ta.ARTICLE_DESCRIPTION as articleDescription,
+          ta.ARTICLE_IMG as articleImg
+        FROM
+          tb_article ta
+
+        ORDER BY ta.CREATE_DATE DESC
+
+        <if test="pagination != null and pagination == true">
+            limit #{pageNum}, #{pageSize}
+        </if>
+    </select>
+
+    <select id="selectCountsByPage" resultType="java.lang.Integer" parameterType="com.enjoylife.view.Page">
+        SELECT
+          COUNT(1)
+        FROM
+          tb_article ta
+    </select>
+
+    <select id="selectTypeArticlesByPage" resultMap="NewArticleBody" parameterType="com.enjoylife.view.Page">
+        SELECT
+            ta.ARTICLE_SID as articleSid,
+            ta.ARTICLE_ID as articleId,
+            ta.CREATE_DATE as createDate,
+            ta.ARTICLE_TITLE as articleTitle,
+            ta.ARTICLE_DESCRIPTION as articleDescription,
+            ta.ARTICLE_IMG as articleImg
+        FROM
+            tb_article ta
+        INNER JOIN
+            tb_article_type tat ON ta.ARTICLE_ID = tat.ARTICLE_ID
+        INNER JOIN
+            tb_type tt ON tat.TYPE_ID = tt.TYPE_ID
+
+        <where>
+            <if test="typeName != null">
+                tt.TYPE_NAME = #{typeName}
+            </if>
+        </where>
+
+        ORDER BY ta.CREATE_DATE DESC
+
+        <if test="pagination != null and pagination == true">
+            limit #{pageNum}, #{pageSize}
+        </if>
+    </select>
+
+    <select id="selectTypeArticlesCountsByPage" resultType="java.lang.Integer" parameterType="com.enjoylife.view.Page">
+        SELECT
+            COUNT(*)
+        FROM
+            tb_article ta
+        INNER JOIN
+            tb_article_type tat ON ta.ARTICLE_ID = tat.ARTICLE_ID
+        INNER JOIN
+            tb_type tt ON tat.TYPE_ID = tt.TYPE_ID
+        <where>
+            <if test="typeName != null">
+                tt.TYPE_NAME = #{typeName}
+            </if>
+        </where>
+    </select>
+
+    <!--根据文章id获取类型-->
+    <select id="selectTagsByArticleID" resultType="java.lang.String">
+        SELECT
+          tt.TAG_NAME
+        FROM
+          tb_article_tags tat
+        INNER JOIN
+          tb_tags tt ON tat.TAG_ID = tt.TAG_ID
+        WHERE
+          tat.ARTICLE_ID = #{articleId}
+    </select>
+
+    <!--根据文章id获取评论数-->
+    <select id="selectCommentCountsByArticleID" resultType="java.lang.Integer">
+        SELECT
+          COUNT(1)
+        FROM
+          tb_article_comment tac
+        INNER JOIN
+          tb_comment tc ON tac.COMMENT_ID = tc.COMMENT_ID
+        WHERE
+          tac.ARTICLE_ID = #{articleId}
+        AND
+          tc.COMMENT_IS_REPLY = FALSE
+    </select>
+
+    <!--获取所有文章的年份和月份，做时间轴-->
+    <resultMap id="ArticleTimeForYear" type="com.enjoylife.article.vo.ArticleTime" >
+        <result column="article_year" property="date" jdbcType="INTEGER" />
+        <collection property="list" column="article_year" select="selectTimeByYear"/>
+    </resultMap>
+
+    <select id="selectTimeGroupByArticle" resultMap="ArticleTimeForYear">
+        SELECT
+            DATE_FORMAT(CREATE_DATE, "%Y") article_year
+        FROM
+            tb_article
+        GROUP BY
+            article_year
+        ORDER BY
+            article_year DESC
+    </select>
+
+    <resultMap id="ArticleTimeForMonth" type="com.enjoylife.article.vo.ArticleTime" >
+        <result column="article_month" property="date" jdbcType="INTEGER" />
+    </resultMap>
+
+    <select id="selectTimeByYear" resultMap="ArticleTimeForMonth">
+        SELECT
+            DATE_FORMAT(CREATE_DATE, "%m") article_month
+        FROM
+            tb_article
+        WHERE
+             date_format(CREATE_DATE, '%Y') = #{date}
+        GROUP BY
+            article_month
+        ORDER BY
+            article_month DESC
+    </select>
+
+    <select id="selectArticleInfoByArticleID" resultType="java.lang.String">
+        SELECT
+            ta.ARTICLE_TITLE
+        FROM
+            tb_article ta
+        WHERE
+             ta.ARTICLE_ID = #{articleID}
+    </select>
+
+</mapper>
