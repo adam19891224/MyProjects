@@ -678,7 +678,7 @@ function Blogs(){
                 }
             },
             success: function (text) {
-                let result = text;
+                let result = text.data;
                 let isOk = result.isOk;
                 let lis = "";
                 if(isOk == "Y"){

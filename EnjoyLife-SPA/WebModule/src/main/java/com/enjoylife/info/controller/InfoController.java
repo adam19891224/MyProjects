@@ -2,12 +2,15 @@ package com.enjoylife.info.controller;
 
 import com.enjoylife.base.controller.BaseController;
 import com.enjoylife.enums.ResponseEnum;
+import com.enjoylife.type.vo.Type;
 import com.enjoylife.utils.ConUtils;
+import com.enjoylife.view.Page;
 import com.enjoylife.view.ResponseData;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -20,15 +23,20 @@ public class InfoController extends BaseController{
     @RequestMapping(value = "/infos/tags", method = {RequestMethod.POST, RequestMethod.GET})
     public ResponseData<Map<String, Object>> types(){
         Map<String, Object> map = ConUtils.hashmap();
-        super.getTotalTypesToMap(map);
+        List<Type> types = typeService.selectAllTypes();
+        if(ConUtils.isNotNull(types)){
+            map.put("types", types);
+        }
         return super.responseRes(ResponseEnum.SUCCESS, map);
     }
 
     @RequestMapping(value = "/infos/shows", method = {RequestMethod.POST, RequestMethod.GET})
     public ResponseData<Map<String, Object>> totalInfo(){
         Map<String, Object> map = ConUtils.hashmap();
-        super.getTotalArticlesToMap(map);
-        super.getTotalTypesCountToMap(map);
+        int blogCount = blogsService.selectArticlesCountsByPage(new Page<>());
+        map.put("totalArticles", blogCount);
+        int size = typeService.selectAllTypesCount();
+        map.put("totalTypes", size);
         return super.responseRes(ResponseEnum.SUCCESS, map);
     }
 

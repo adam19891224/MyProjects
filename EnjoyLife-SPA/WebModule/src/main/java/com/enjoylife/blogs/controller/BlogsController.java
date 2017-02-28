@@ -69,27 +69,8 @@ public class BlogsController extends BaseController {
     }
 
     @RequestMapping(value = "/getComment", method = RequestMethod.POST)
-    public String getComment(Page<Comment> page){
+    public ResponseData<Map<String, Object>> getComment(Page<Comment> page){
         page = commentService.getCommentsByPage(page);
-        //将结果封装成map对象，然后转为json返回给前台
-        return super.parseObjectToJson(this.getCommentMapByResult(page));
-    }
-
-    @RequestMapping(value = "/postComment", method = RequestMethod.POST)
-    public String postComment(CommentForm form){
-        try {
-            return commentService.insertCommentByForm(form);
-        }catch (Exception e){
-            logger.error("保存文章Id为: " + form.getArticleId() + " 的评论发生异常：" + e);
-        }
-        return "error";
-    }
-
-
-    /**
-     * 根据评论结果封装成map
-     */
-    private Map<String, Object> getCommentMapByResult(Page<Comment> page){
         Map<String, Object> map = ConUtils.hashmap();
         List<Comment> list = page.getResultList();
         Integer totalCounts = page.getTotalCounts();
@@ -105,6 +86,18 @@ public class BlogsController extends BaseController {
             map.put("isOk", "N");
             map.put("msg", "没有数据");
         }
-        return map;
+        //将结果封装成map对象，然后转为json返回给前台
+        return super.responseRes(ResponseEnum.SUCCESS, map);
     }
+
+    @RequestMapping(value = "/postComment", method = RequestMethod.POST)
+    public String postComment(CommentForm form){
+        try {
+            return commentService.insertCommentByForm(form);
+        }catch (Exception e){
+            logger.error("保存文章Id为: " + form.getArticleId() + " 的评论发生异常：" + e);
+        }
+        return "error";
+    }
+
 }

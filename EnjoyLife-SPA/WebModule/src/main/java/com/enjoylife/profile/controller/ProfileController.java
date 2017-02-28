@@ -22,10 +22,6 @@ public class ProfileController extends BaseController{
 
         Map<String, Object> map = ConUtils.hashmap();
 
-        //查询总文章数和总分类数给前台展示
-        super.getTotalArticlesToMap(map);
-        super.getTotalTypesToMap(map);
-
         return super.responseRes(ResponseEnum.SUCCESS, map);
     }
 
