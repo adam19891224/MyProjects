@@ -23,12 +23,12 @@ import com.boss.service.base.AbstractService;
 import com.boss.service.blogs.IBlogService;
 import com.boss.service.blogs.repository.IBlogRepository;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
@@ -41,19 +41,19 @@ import java.util.UUID;
 @Service
 public class BlogServiceImpl extends AbstractService implements IBlogService {
 
-    @Autowired
+    @Resource
     private ArticleMapper articleMapper;
-    @Autowired
+    @Resource
     private IBlogRepository blogRepository;
-    @Autowired
+    @Resource
     private CommentMapper commentMapper;
-    @Autowired
+    @Resource
     private TypeMapper typeMapper;
-    @Autowired
+    @Resource
     private TagsMapper tagsMapper;
-    @Autowired
+    @Resource
     private SeriesMapper seriesMapper;
-    @Autowired
+    @Resource
     private BosClient bosClient;
 
     @Value("${image.cdn.host}")

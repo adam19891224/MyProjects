@@ -9,10 +9,10 @@ import com.boss.foundation.utils.ConUtils;
 import com.boss.foundation.view.Page;
 import com.boss.service.base.AbstractService;
 import com.boss.service.types.ITypesService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,9 +23,9 @@ import java.util.UUID;
 @Service
 public class ITypesServiceImpl extends AbstractService implements ITypesService {
 
-    @Autowired
+    @Resource
     private TypeMapper typeMapper;
-    @Autowired
+    @Resource
     private ArticleTypeMapper articleTypeMapper;
 
     @Override

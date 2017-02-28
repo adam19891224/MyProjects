@@ -7,10 +7,10 @@ import com.boss.foundation.utils.ConUtils;
 import com.boss.foundation.view.Page;
 import com.boss.service.base.AbstractService;
 import com.boss.service.tags.ITagsService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,7 +21,7 @@ import java.util.UUID;
 @Service
 public class TagsServiceImpl extends AbstractService implements ITagsService {
 
-    @Autowired
+    @Resource
     private TagsMapper tagsMapper;
 
     @Override

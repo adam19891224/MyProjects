@@ -17,12 +17,12 @@ import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.search.highlight.HighlightBuilder;
 import org.elasticsearch.search.highlight.HighlightField;
 import org.springframework.beans.BeanUtils;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.data.elasticsearch.core.SearchResultMapper;
 import org.springframework.data.elasticsearch.core.aggregation.AggregatedPage;
+import org.springframework.data.elasticsearch.core.aggregation.impl.AggregatedPageImpl;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.stereotype.Service;
@@ -51,63 +51,58 @@ public class BlogsESServiceImpl extends BaseAbstractClass implements IBlogsESSer
 
         String kw = page.getKw();
         BoolQueryBuilder bool = new BoolQueryBuilder();
-        String[] kws = kw.split(" ");
-        for(String temp : kws){
-            bool.should(QueryBuilders.matchQuery("articleTitle", temp).boost(2.0f));
-            bool.should(QueryBuilders.matchQuery("articleDescription", temp));
-            bool.should(QueryBuilders.wildcardQuery("articleTitle", "*" + temp + "*"));
-            bool.should(QueryBuilders.wildcardQuery("articleDescription", "*" + temp + "*"));
-        }
+        bool.should(QueryBuilders.matchQuery("articleTitle", kw).boost(2.0f));
+        bool.should(QueryBuilders.matchQuery("articleDescription", kw));
+        bool.should(QueryBuilders.wildcardQuery("articleTitle", "*" + kw + "*"));
+        bool.should(QueryBuilders.wildcardQuery("articleDescription", "*" + kw + "*"));
         SearchQuery searchQuery = new NativeSearchQueryBuilder()
                 .withQuery(bool)
-                .withHighlightFields(
-                        new HighlightBuilder.Field("articleTitle").preTags("<u class=\"search-red\">").postTags("</u>"),
+                .withHighlightFields(new HighlightBuilder.Field("articleTitle").preTags("<u class=\"search-red\">").postTags("</u>"),
                         new HighlightBuilder.Field("articleDescription").preTags("<span class=\"search-red\">").postTags("</span>"))
                 .withPageable(new PageRequest(page.getEsPage(), page.getPageSize()))
                 .build();
 
+        org.springframework.data.domain.Page<ArticleEntity> esResult = elasticsearchTemplate.queryForPage(searchQuery, ArticleEntity.class, new SearchResultMapper() {
+            @Override
+            public <T> AggregatedPage<T> mapResults(SearchResponse response, Class<T> clazz, Pageable pageable) {
+                List<ArticleEntity> list = ConUtils.arraylist();
+                SearchHits searchHits = response.getHits();
+                long total = searchHits.getTotalHits();
+                {
+                    try {
+                        SearchHit[] hits = searchHits.hits();
+                        Map<String, Object> result;
+                        Map<String, HighlightField> resultH;
+                        ArticleEntity articleEntity;
+                        for (SearchHit temp : hits) {
+                            result = temp.getSource();
+                            resultH = temp.getHighlightFields();
 
-//        AggregatedPage<ArticleEntity> resP = elasticsearchTemplate.queryForPage(searchQuery, ArticleEntity.class, new SearchResultMapper() {
-//            @Override
-//            public <T> AggregatedPage<T> mapResults(SearchResponse response, Class<T> clazz, Pageable pageable) {
-//                List<ArticleEntity> list = ConUtils.arraylist();
-//                SearchHits searchHits = response.getHits();
-//                long total = searchHits.getTotalHits();
-//                {
-//                    try {
-//                        SearchHit[] hits = searchHits.hits();
-//                        Map<String, Object> result;
-//                        Map<String, HighlightField> resultH;
-//                        ArticleEntity articleEntity;
-//                        for (SearchHit temp : hits) {
-//                            result = temp.getSource();
-//                            resultH = temp.getHighlightFields();
-//
-//                            articleEntity = EsResultCastUtils.getEntityByMap(result);
-//
-//                            if (articleEntity != null) {
-//                                if (resultH.containsKey("articleTitle"))
-//                                    articleEntity.setArticleTitle(resultH.get("articleTitle").fragments()[0].toString());
-//
-//                                if (resultH.containsKey("articleDescription"))
-//                                    articleEntity.setArticleDescription(resultH.get("articleDescription").fragments()[0].toString());
-//
-//                                list.add(articleEntity);
-//                            }
-//                        }
-//                    } catch (InvocationTargetException | IllegalAccessException e) {
-//                        logger.error("es搜索 map结果转bean错误：", e);
-//                        return new PageImpl<T>((List<T>) new ArrayList<>(), pageable, 0);
-//                    }
-//                }
-//                return new PageImpl<T>((List<T>) list, pageable, total);
-//            }
-//        });
+                            articleEntity = EsResultCastUtils.getEntityByMap(result);
+
+                            if (articleEntity != null) {
+                                if (resultH.containsKey("articleTitle"))
+                                    articleEntity.setArticleTitle(resultH.get("articleTitle").fragments()[0].toString());
+
+                                if (resultH.containsKey("articleDescription"))
+                                    articleEntity.setArticleDescription(resultH.get("articleDescription").fragments()[0].toString());
+
+                                list.add(articleEntity);
+                            }
+                        }
+                    } catch (InvocationTargetException | IllegalAccessException e) {
+                        logger.error("es搜索 map结果转bean错误：", e);
+                        return new AggregatedPageImpl<T>(new ArrayList<>(), pageable, 0);
+                    }
+                }
+                return new AggregatedPageImpl<T>((List<T>) list, pageable, total);
+            }
+        });
 
         Map<String, Object> map = ConUtils.hashmap();
-//        map.put("totalCount", resP.getTotalElements());
-//        map.put("totalPage", resP.getTotalPages());
-//        map.put("result", Lists.newArrayList(resP.iterator()));
+        map.put("totalCount", esResult.getTotalElements());
+        map.put("totalPage", esResult.getTotalPages());
+        map.put("result", Lists.newArrayList(esResult.iterator()));
 
         return map;
     }
