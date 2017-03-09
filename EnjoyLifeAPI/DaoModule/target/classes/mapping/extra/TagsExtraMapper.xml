@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.enjoylife.tags.dao.TagsMapper" >
+
+  <select id="selectTagsByArticleId" resultMap="BaseResultMap">
+    SELECT
+      tt.TAG_SID,
+      tt.TAG_ID,
+      tt.TAG_NAME
+    FROM
+      tb_article_tags tat
+    INNER JOIN
+      tb_tags tt ON tat.TAG_ID = tt.TAG_ID
+    WHERE
+      tat.ARTICLE_ID = #{articleID}
+  </select>
+
+</mapper>

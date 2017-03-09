@@ -1,0 +1,3 @@
+spring boot 项目启动
+mainfast 版本:   ${application.formatted-version}
+spring boot 版本:   ${spring-boot.formatted-version}

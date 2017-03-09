@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="DaoModule" />
+        <module name="FoundationModule" />
+        <module name="ServiceModule" />
+        <module name="WebModule" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="1.8">
+      <module name="DaoModule" target="1.8" />
+      <module name="EnjoyLifeAPI" target="1.8" />
+      <module name="FoundationModule" target="1.8" />
+      <module name="ServiceModule" target="1.8" />
+      <module name="WebModule" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

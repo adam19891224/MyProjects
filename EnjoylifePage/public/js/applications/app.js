@@ -373,8 +373,14 @@ function Blogs(){
     let replyEidtorDiv, replyButtonDiv, commentEditor, replyEditor, isLoadingComment;
 
     this.init = function () {
-        replyEidtorDiv = "<div id=\"reply-editor-div\" class=\"reply-editor\"><textarea id=\"reply-main-editor\" cols=\"1\" rows=\"1\" class='reply-main-editor' title=\"回复\"></textarea></div>";
-        replyButtonDiv = "<div id=\"reply-buttons-div\" class=\"reply-buttons\"><span id=\"reply-error-msg\" class=\"error-message\"></span><a id='submit-reply-button' class=\"submit-reply-button\">回复</a></div>";
+        replyEidtorDiv = `<div id="reply-editor-div" class="reply-editor">
+                            <textarea id="reply-main-editor" cols="1" rows="1" class='reply-main-editor' title="回复"></textarea>
+                         </div>`;
+        replyButtonDiv = `<div id="reply-buttons-div" class="reply-buttons">
+                            <span id="reply-error-msg" class="error-message"></span>
+                            <a id='submit-reply-button' class="submit-reply-button">回复</a>
+                          </div>`;
+
         isLoadingComment = false;
         this.initPage();
         this.commentReplyButtonClick();
@@ -716,28 +722,27 @@ function Blogs(){
                 span = "<span>" + tempO.commentUser + "：</span><span>" + time + "</span>";
             }
             lis += "<li data-id='" + tempO.commentId + "'>" +
-                "<div class='comment-left'>" +
-                "<div class='left-head'></div>" +
-                "</div>" +
-                "<div class='comment-right'>" +
-                "<div class='right-main'>" +
-                "<div class='mian-name'>" +
-                span +
-                "</div>" +
-                "<div class='main-content'>" +
-                tempO.commentBody +
-                "</div>" +
-                "<div class='main-reply'>" +
-                "<span class='to-reply' data-l='0'>回复</span><span class='to-show' data-l='0'>展开</span>" +
-                "</div>" +
-                "<div class='main-line'></div>" +
-                "<div class='main-reply-container'>" +
-                "<ul class='reply-container' load='0'>" +
-                "</ul>" +
-                "</div>" +
-                "</div>" +
-                "</div>" +
-                "</li>";
+                        "<div class='comment-left'>" +
+                            "<div class='left-head'></div>" +
+                        "</div>" +
+                        "<div class='comment-right'>" +
+                            "<div class='right-main'>" +
+                                "<div class='mian-name'>" +
+                                    span +
+                                "</div>" +
+                                "<div class='main-content'>" +
+                                    tempO.commentBody +
+                                "</div>" +
+                                "<div class='main-reply'>" +
+                                    "<span class='to-reply' data-l='0'>回复</span><span class='to-show' data-l='0'>展开</span>" +
+                                "</div>" +
+                                "<div class='main-line'></div>" +
+                                "<div class='main-reply-container'>" +
+                                    "<ul class='reply-container' load='0'></ul>" +
+                                "</div>" +
+                            "</div>" +
+                        "</div>" +
+                    "</li>";
         }
         return lis;
     };
@@ -771,13 +776,13 @@ function Blogs(){
                 span = "<span>" + tempO.commentUser + "：</span><span>" + time + "</span>";
             }
             lis += "<li>" +
-                "<h5>" +
-                span +
-                "</h5>" +
-                "<div class=\"reply-content\">" +
-                tempO.commentBody +
-                "</div>" +
-                "</li>";
+                        "<h5>" +
+                            span +
+                        "</h5>" +
+                        "<div class=\"reply-content\">" +
+                            tempO.commentBody +
+                        "</div>" +
+                    "</li>";
         }
         return lis;
     }
