@@ -1,16 +1,16 @@
 // 定义路由
 const routes = [
-    { path: '/', redirect: '/index' },
-    { path: '/index', components: {
-        main: IndexView,
+    { path: '/', redirect: '/articles' },
+    { path: '/articles', components: {
+        main: ArticlesView,
         info: InfoView,
         cloud: TarCloudView
     } },
-    { path: '/index/:page', components: {
-        main: IndexView,
+    { path: '/articles/:page', components: {
+        main: ArticlesView,
         info: InfoView,
         cloud: TarCloudView
-    }, name: "index" },
+    }, name: "articles" },
     { path: '/series', components: {
         main: SeriesView,
         info: InfoView,
@@ -41,11 +41,11 @@ const routes = [
         info: InfoView,
         cloud: TarCloudView
     }, name: "query"},
-    { path: '/blogs/:aid', components: {
-        main: BlogView,
+    { path: '/article/:aid', components: {
+        main: ArticleView,
         info: InfoView,
         cloud: TarCloudView
-    }, name: "blog"},
+    }, name: "article"},
     { path: '*', components: {
         main: ErrorView,
         info: InfoView,

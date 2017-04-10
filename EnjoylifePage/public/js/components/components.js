@@ -57,7 +57,7 @@ const InfoView = {
         fetchData () {
             let _this = this;
             // 组件创建完后获取数据，
-            _this.$http.get('/infomations/shows').then(response => {
+            _this.$http.get('/infomations/introduce').then(response => {
                 // get body data
                 let result = response.body;
                 if(result.code == "Y"){
@@ -97,7 +97,7 @@ const TarCloudView = {
         fetchData () {
             let _this = this;
             // 组件创建完后获取数据，
-            _this.$http.get('/infomations/cloud').then(response => {
+            _this.$http.get('/infomations/tagcloud').then(response => {
                 // get body data
                 let result = response.body;
                 if(result.code == "Y"){
@@ -119,7 +119,7 @@ const TarCloudView = {
 
 
 // 定义首页组件
-const IndexView = {
+const ArticlesView = {
     template:
     `<section>
         <div id="left-loading" class="main-left-loading" v-if="!isLoading">
@@ -128,7 +128,7 @@ const IndexView = {
         <div id="left-body" class="left-body" v-if="isLoading">
             <div class="main-blog" v-for="blog in blogs">
                 <div class="blog-head">
-                   <router-link tag="h2" :to="{ name: 'blog', params: { aid: blog.articleSid } }">
+                   <router-link tag="h2" :to="{ name: 'article', params: { aid: blog.articleSid } }">
                         <a class="link-head">{{blog.articleTitle}}</a>
                    </router-link>
                 </div>
@@ -139,7 +139,7 @@ const IndexView = {
                 <div class="blog-line"></div>
                 <div class="blog-type"></div>
                 <div class="blog-body">
-                    <router-link :to="{ name: 'blog', params: { aid: blog.articleSid } }">
+                    <router-link :to="{ name: 'article', params: { aid: blog.articleSid } }">
                         <img src="../images/image-loading.gif" class="b-lazy" :data-src="blog.articleImg" :alt="blog.articleTitle"/>
                     </router-link>
                     <span>
@@ -177,7 +177,7 @@ const IndexView = {
                 page = 1;
             }
             // 组件创建完后获取数据，
-            _this.$http.get('/index/' + page).then(response => {
+            _this.$http.get('/articles/' + page).then(response => {
                 // get body data
                 let result = response.body;
                 if(result.code == "Y"){
@@ -196,7 +196,7 @@ const IndexView = {
         }
     },
     updated(){
-        index.init();
+        articles.init();
     }
 };
 
@@ -287,7 +287,7 @@ const EyesView = {
                         {{blog.createDate | md}}
                     </span>
                     <span class="eyes-title-content">
-                        <router-link :to="{ name: 'blog', params: { aid: blog.articleSid } }" class="link-head">
+                        <router-link :to="{ name: 'article', params: { aid: blog.articleSid } }" class="link-head">
                             {{blog.articleTitle}}
                         </router-link>
                     </span>
@@ -446,7 +446,7 @@ const CategoryView = {
                 </div>
                 <div class="cate-container-right" v-if="info.articleSid != null && info.articleTitle != null && info.articleDescription != null">
                     <div class="cate-right-title">
-                        <router-link :to="{ name: 'blog', params: { aid: info.articleSid } }">
+                        <router-link :to="{ name: 'article', params: { aid: info.articleSid } }">
                             {{info.articleTitle}}
                         </router-link>
                     </div>
@@ -537,7 +537,7 @@ const QueryView = {
         <div class="left-body" v-if="isLoading">
             <div class="sea-info-container" v-for="info in blogs">
                 <h2 v-if="info.articleSid != null && info.articleTitle != null">
-                    <router-link :to="{ name: 'blog', params: { aid: info.articleSid } }" v-html="info.articleTitle"></router-link>
+                    <router-link :to="{ name: 'article', params: { aid: info.articleSid } }" v-html="info.articleTitle"></router-link>
                 </h2>
                 <h2 class="not-data" v-if="info.articleSid == null">
                     没有找到数据。。。
@@ -608,7 +608,7 @@ const QueryView = {
 };
 
 //定义详情组件
-const BlogView = {
+const ArticleView = {
     template:
     `<section>
         <div id="left-loading" class="main-left-loading" v-if="!isLoading">
@@ -710,7 +710,7 @@ const BlogView = {
                 return;
             }
             // 组件创建完后获取数据，
-            _this.$http.get('/blogs/' + aid).then(response => {
+            _this.$http.get('/article/' + aid).then(response => {
                 // get body data
                 let result = response.body;
                 if(result.code == "Y"){
@@ -736,7 +736,7 @@ const BlogView = {
         }
     },
     updated(){
-        blog.init();
+        article.init();
     }
 };
 
@@ -746,7 +746,7 @@ const ErrorView = {
     `<section>
         <div class="not-container">
             <h3>404</h3>
-            <router-link to="/index">回到首页</router-link>
+            <router-link to="/articles">回到首页</router-link>
         </div>
     </section>`
 };

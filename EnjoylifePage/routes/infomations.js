@@ -5,9 +5,9 @@ const config = require('./config');
 const api = config.api;
 const logger = require('../log').logger;
 
-router.get('/shows', function(req, res, next) {
+router.get('/introduce', function(req, res, next) {
 
-    let url = api + "/infos/shows";
+    let url = api + "/infomations/introduce";
 
     request.post({
         url: url
@@ -20,9 +20,9 @@ router.get('/shows', function(req, res, next) {
 
 });
 
-router.get('/cloud', function(req, res, next) {
+router.get('/tagcloud', function(req, res, next) {
 
-    let url = api + "/infos/tags";
+    let url = api + "/infomations/tagcloud";
 
     request.post({
         url: url

@@ -18,25 +18,25 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //创建路由
 const page = require("./routes/page");
-const index = require("./routes/index");
+const articles = require("./routes/articles");
 const infomations = require('./routes/infomations');
 const series = require("./routes/series");
 const eyes = require("./routes/eyes");
 const friends = require("./routes/friends");
 const genre = require("./routes/genre");
 const query = require("./routes/query");
-const blogs = require("./routes/blogs");
+const article = require("./routes/article");
 
 //注册路由
 app.use('/', page);
-app.use('/index', index);
+app.use('/articles', articles);
 app.use('/infomations', infomations);
 app.use('/series', series);
 app.use('/eyes', eyes);
 app.use('/friends', friends);
 app.use('/genre', genre);
 app.use('/query', query);
-app.use('/blogs', blogs);
+app.use('/article', article);
 
 
 app.use(function(req, res, next) {
