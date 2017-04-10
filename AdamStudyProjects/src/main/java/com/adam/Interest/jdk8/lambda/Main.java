@@ -106,8 +106,8 @@ public class Main {
 /**
  * 声明一个接口,内部就定义个加法
  */
+@FunctionalInterface
 interface addLambda{
-	public void add(int a, int b);
-	
-	//public void min(int a, int b);
+	void add(int a, int b);
+	//void min(int a, int b);
 }
