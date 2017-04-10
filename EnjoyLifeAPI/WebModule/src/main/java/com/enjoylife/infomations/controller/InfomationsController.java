@@ -1,4 +1,4 @@
-package com.enjoylife.info.controller;
+package com.enjoylife.infomations.controller;
 
 import com.enjoylife.base.controller.BaseController;
 import com.enjoylife.enums.ResponseEnum;
@@ -18,9 +18,9 @@ import java.util.Map;
  * 2017/2/15
  */
 @RestController
-public class InfoController extends BaseController{
+public class InfomationsController extends BaseController{
 
-    @RequestMapping(value = "/infos/tags", method = {RequestMethod.POST, RequestMethod.GET})
+    @RequestMapping(value = "/infomations/tagcloud", method = {RequestMethod.POST, RequestMethod.GET})
     public ResponseData<Map<String, Object>> types(){
         Map<String, Object> map = ConUtils.hashmap();
         List<Type> types = typeService.selectAllTypes();
@@ -30,7 +30,7 @@ public class InfoController extends BaseController{
         return super.responseRes(ResponseEnum.SUCCESS, map);
     }
 
-    @RequestMapping(value = "/infos/shows", method = {RequestMethod.POST, RequestMethod.GET})
+    @RequestMapping(value = "/infomations/introduce", method = {RequestMethod.POST, RequestMethod.GET})
     public ResponseData<Map<String, Object>> totalInfo(){
         Map<String, Object> map = ConUtils.hashmap();
         int blogCount = blogsService.selectArticlesCountsByPage(new Page<>());

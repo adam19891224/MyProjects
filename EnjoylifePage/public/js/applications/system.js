@@ -79,7 +79,7 @@ function Applications() {
 let applications = new Applications();
 
 
-function Index() {
+function Articles() {
 
     let isClick;
 
@@ -108,7 +108,7 @@ function Index() {
                     isClick = false;
                     if(page > 0){
                         if(applications.checkIsNum(page)){
-                            router.push({name: 'index', params: { page: page }});
+                            router.push({name: 'articles', params: { page: page }});
                         }
                     }
                     isClick = true;
@@ -117,7 +117,7 @@ function Index() {
         });
     }
 }
-let index = new Index();
+let articles = new Articles();
 
 function Eyes(){
 
@@ -368,7 +368,7 @@ function Category(){
 let cate = new Category();
 
 
-function Blogs(){
+function Article(){
 
     let replyEidtorDiv, replyButtonDiv, commentEditor, replyEditor, isLoadingComment;
 
@@ -583,7 +583,7 @@ function Blogs(){
             obj.commentReplyUser = $("#whole-div").data("replyUser");
             obj.commentReplyBody = dataId;
             obj.ck = $("#articlt-comment-div").attr("ck");
-            $.post('/blogs/save', obj, function (text) {
+            $.post('/article/save', obj, function (text) {
                 if(text != "success"){
                     if(text == "error"){
                         alert("提交评论失败");
@@ -592,7 +592,7 @@ function Blogs(){
                     }
                 }
                 let aid = $("#article-body").attr("data-asid");
-                router.go({ name: 'blog', params: { aid: aid } });
+                router.go({ name: 'article', params: { aid: aid } });
             });
         });
     };
@@ -636,7 +636,7 @@ function Blogs(){
                 obj.commentId = li.attr("data-id");
                 obj.commentIsReply = 1;
                 obj.pagination = false;
-                $.post("/blogs/comments", obj, function (res) {
+                $.post("/article/comments", obj, function (res) {
                     let result = res;
                     let isOk = result.isOk;
                     let lis = "";
@@ -673,7 +673,7 @@ function Blogs(){
         obj.page = page;
 
         $.ajax({
-            url: "/blogs/comments",
+            url: "/article/comments",
             data: obj,
             type: "post",
             timeout: 5000,
@@ -787,7 +787,7 @@ function Blogs(){
         return lis;
     }
 }
-let blog = new Blogs();
+let article = new Article();
 
 $(function () {
     applications.searchBind();

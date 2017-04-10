@@ -14,7 +14,7 @@ router.get('/:id', function(req, res, next) {
         res.json({"code": "N"});
     }
 
-    let url = api + "/blogs/" + id;
+    let url = api + "/article/" + id;
     request.post({
         url: url
     }, function optionalCallback(err, httpResponse, body) {
@@ -30,7 +30,7 @@ router.post('/save', function(req, res, next) {
 
     let data = req.body;
 
-    let url = api + "/blogs/postComment";
+    let url = api + "/article/postComment";
     request.post({
         url: url,
         form: data
@@ -47,7 +47,7 @@ router.post('/comments', function(req, res, next) {
 
     let data = req.body;
 
-    let url = api + "/blogs/getComment";
+    let url = api + "/article/getComment";
     request.post({
         url: url,
         form: data
