@@ -1,5 +1,7 @@
 package com.adam.Study;
 
+import java.math.BigDecimal;
+
 /**
  * Created by zbj on 2017/4/10.
  */
@@ -16,6 +18,11 @@ public class Main {
         String sb2 = "sssss";
         sb1.append(sb2);
         System.out.println(c);
+
+        Double bd = 1.12122333444555;
+        BigDecimal bigDecimal = new BigDecimal(bd.toString());
+
+        System.out.println(bigDecimal);
     }
 
     /**
