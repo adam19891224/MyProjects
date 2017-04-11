@@ -119,7 +119,7 @@ const TarCloudView = {
 
 
 // 定义首页组件
-const ArticlesView = {
+const ArchivesView = {
     template:
     `<section>
         <div id="left-loading" class="main-left-loading" v-if="!isLoading">
@@ -177,12 +177,12 @@ const ArticlesView = {
                 page = 1;
             }
             // 组件创建完后获取数据，
-            _this.$http.get('/articles/' + page).then(response => {
+            _this.$http.get('/archives/' + page).then(response => {
                 // get body data
                 let result = response.body;
                 if(result.code == "Y"){
                     let data = result.data;
-                    _this.blogs = data.blogs;
+                    _this.blogs = data.article;
                     _this.totalPages = data.totalPages;
                     _this.page = data.page;
                 }else{
@@ -196,7 +196,7 @@ const ArticlesView = {
         }
     },
     updated(){
-        articles.init();
+        archives.init();
     }
 };
 

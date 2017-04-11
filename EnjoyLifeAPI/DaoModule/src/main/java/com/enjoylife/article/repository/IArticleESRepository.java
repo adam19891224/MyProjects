@@ -10,10 +10,10 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  * ranmin-zhouyuhong
  * 2016/11/23
  */
-public interface IBlogESRepository extends PagingAndSortingRepository<ArticleEntity, Long> {
+public interface IArticleESRepository extends PagingAndSortingRepository<ArticleEntity, Long> {
 
-    @Query("{\"bool\":{\"should\":[{\"match\":{\"articleTitle\":{\"query\":\"?0\",\"boost\":2}}},{\"match\":{\"articleDescription\":\"?0\"}},{\"wildcard\":{\"articleTitle\":\"*?0*\"}},{\"wildcard\":{\"articleDescription\":\"*?0*\"}}]}}")
-    Page<ArticleEntity> findArticlesByArticleTitle(String keyword, Pageable pageable);
+//    @Query("{\"bool\":{\"should\":[{\"match\":{\"articleTitle\":{\"query\":\"?0\",\"boost\":2}}},{\"match\":{\"articleDescription\":\"?0\"}},{\"wildcard\":{\"articleTitle\":\"*?0*\"}},{\"wildcard\":{\"articleDescription\":\"*?0*\"}}]}}")
+//    Page<ArticleEntity> findArticlesByArticleTitle(String keyword, Pageable pageable);
 
     /*
 

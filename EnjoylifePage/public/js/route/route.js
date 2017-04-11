@@ -1,16 +1,16 @@
 // 定义路由
 const routes = [
-    { path: '/', redirect: '/articles' },
-    { path: '/articles', components: {
-        main: ArticlesView,
+    { path: '/', redirect: '/archives' },
+    { path: '/archives', components: {
+        main: ArchivesView,
         info: InfoView,
         cloud: TarCloudView
     } },
-    { path: '/articles/:page', components: {
-        main: ArticlesView,
+    { path: '/archives/:page', components: {
+        main: ArchivesView,
         info: InfoView,
         cloud: TarCloudView
-    }, name: "articles" },
+    }, name: "archives" },
     { path: '/series', components: {
         main: SeriesView,
         info: InfoView,

@@ -18,7 +18,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //创建路由
 const page = require("./routes/page");
-const articles = require("./routes/articles");
+const archives = require("./routes/archives");
 const infomations = require('./routes/infomations');
 const series = require("./routes/series");
 const eyes = require("./routes/eyes");
@@ -29,7 +29,7 @@ const article = require("./routes/article");
 
 //注册路由
 app.use('/', page);
-app.use('/articles', articles);
+app.use('/archives', archives);
 app.use('/infomations', infomations);
 app.use('/series', series);
 app.use('/eyes', eyes);

@@ -1,11 +1,11 @@
-package com.enjoylife.blogs.impl;
+package com.enjoylife.article.impl;
 
+import com.enjoylife.article.IArticlesService;
 import com.enjoylife.article.dao.ArticleMapper;
 import com.enjoylife.article.vo.ArticleTime;
 import com.enjoylife.article.vo.ArticleWithBLOBs;
 import com.enjoylife.article.vo.NewArticle;
 import com.enjoylife.base.BaseAbstractClass;
-import com.enjoylife.blogs.IBlogsService;
 import com.enjoylife.utils.ConUtils;
 import com.enjoylife.view.Page;
 import org.springframework.stereotype.Service;
@@ -20,7 +20,7 @@ import java.util.List;
  * Date: 2016/4/23
  */
 @Service
-public class BlogsServiceImpl extends BaseAbstractClass implements IBlogsService {
+public class ArticlesServiceImpl extends BaseAbstractClass implements IArticlesService {
 
     @Resource
     private ArticleMapper articleMapper;

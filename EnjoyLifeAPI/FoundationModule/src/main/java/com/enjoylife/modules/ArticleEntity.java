@@ -14,7 +14,7 @@ import java.util.Date;
  *
  * 2016/11/22
  */
-@Document(indexName = "enjoylife-articles", type = "articles", shards = 1, replicas = 0, refreshInterval = "-1")
+@Document(indexName = "enjoylife-archive", type = "archive", shards = 1, replicas = 0, refreshInterval = "-1")
 public class ArticleEntity implements Serializable {
 
     private static final long serialVersionUID = 5193625143787230749L;

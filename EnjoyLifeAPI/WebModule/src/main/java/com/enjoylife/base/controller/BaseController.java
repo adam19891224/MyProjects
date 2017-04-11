@@ -1,6 +1,6 @@
 package com.enjoylife.base.controller;
 
-import com.enjoylife.blogs.IBlogsService;
+import com.enjoylife.article.IArticlesService;
 import com.enjoylife.enums.ResponseEnum;
 import com.enjoylife.type.ITypeService;
 import com.enjoylife.utils.IPUtils;
@@ -26,7 +26,7 @@ public class BaseController {
     @Resource
     protected ITypeService typeService;
     @Resource
-    protected IBlogsService blogsService;
+    protected IArticlesService articlesService;
 
     /**
      * xss过滤

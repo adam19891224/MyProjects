@@ -32,10 +32,10 @@ public class EyesController extends BaseController {
 
         //不分页
         page.setPagination(false);
-        page = blogsService.selectArticlesByPage(page);
-        map.put("blogs", page.getResultList());
+        page = articlesService.selectArticlesByPage(page);
+        map.put("article", page.getResultList());
 
-        List<ArticleTime> times = blogsService.selectTimeGroupByArticle();
+        List<ArticleTime> times = articlesService.selectTimeGroupByArticle();
         map.put("times", times);
         //获取当前数组的第一个年份和第一个月份
         map.put("nowY", times.get(0).getDate());

@@ -33,7 +33,7 @@ public class InfomationsController extends BaseController{
     @RequestMapping(value = "/infomations/introduce", method = {RequestMethod.POST, RequestMethod.GET})
     public ResponseData<Map<String, Object>> totalInfo(){
         Map<String, Object> map = ConUtils.hashmap();
-        int blogCount = blogsService.selectArticlesCountsByPage(new Page<>());
+        int blogCount = articlesService.selectArticlesCountsByPage(new Page<>());
         map.put("totalArticles", blogCount);
         int size = typeService.selectAllTypesCount();
         map.put("totalTypes", size);

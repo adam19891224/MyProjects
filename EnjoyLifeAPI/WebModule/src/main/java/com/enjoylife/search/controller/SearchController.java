@@ -2,7 +2,7 @@ package com.enjoylife.search.controller;
 
 import com.enjoylife.article.vo.NewArticle;
 import com.enjoylife.base.controller.BaseController;
-import com.enjoylife.blogs.IBlogsESService;
+import com.enjoylife.article.IArticlesESService;
 import com.enjoylife.enums.ResponseEnum;
 import com.enjoylife.utils.ConUtils;
 import com.enjoylife.view.Page;
@@ -24,7 +24,7 @@ import java.util.Map;
 public class SearchController extends BaseController {
 
     @Resource
-    private IBlogsESService esService;
+    private IArticlesESService esService;
 
     /**
      * 进入分类一览页
@@ -38,9 +38,9 @@ public class SearchController extends BaseController {
         name = HtmlUtils.htmlEscape(name);
         page.setTypeName(name);
         page.setPage(num);
-        page = blogsService.selectTypeArticlesByPage(page);
+        page = articlesService.selectTypeArticlesByPage(page);
 
-        map.put("blogs", page.getResultList());
+        map.put("article", page.getResultList());
         map.put("totalPages", page.getTotalPages());
         map.put("page", num);
 
@@ -62,7 +62,7 @@ public class SearchController extends BaseController {
         page.setEsPage(num);
         Map<String, Object> resM = esService.selectArticlesHighlightByPage(page);
 
-        map.put("blogs", resM.get("result"));
+        map.put("article", resM.get("result"));
         map.put("totalPages", resM.get("totalPage"));
         map.put("page", num);
         map.put("keyword", name);

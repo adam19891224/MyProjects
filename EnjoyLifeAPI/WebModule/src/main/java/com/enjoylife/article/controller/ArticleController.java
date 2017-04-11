@@ -45,7 +45,7 @@ public class ArticleController extends BaseController {
     public ResponseData<Map<String, Object>> getArticle(@PathVariable Integer sid, HttpServletRequest request){
         Map<String, Object> map = ConUtils.hashmap();
 
-        ArticleWithBLOBs article = blogsService.selectArticleBySID(sid);
+        ArticleWithBLOBs article = articlesService.selectArticleBySID(sid);
         if(article == null){
             logger.error("查询文章详情失败，原因 【没有找到对应id为: " + sid + " 的文章】");
             return super.responseRes(ResponseEnum.ERROR, map);

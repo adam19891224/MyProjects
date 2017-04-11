@@ -1,4 +1,4 @@
-package com.enjoylife.index.controller;
+package com.enjoylife.archive.controller;
 
 import com.enjoylife.article.vo.NewArticle;
 import com.enjoylife.base.controller.BaseController;
@@ -19,30 +19,22 @@ import java.util.Map;
  * Date: 2016/1/13
  */
 @RestController
-public class IndexController extends BaseController {
+public class ArchivesController extends BaseController {
 
-    /**
-     * 获取数据
-     */
-    @RequestMapping(value = {"/index"}, method = {RequestMethod.POST, RequestMethod.GET})
-    public ResponseData<Map<String, Object>> index(Page<NewArticle> page){
+    @RequestMapping(value = "/archives/{num}", method = {RequestMethod.GET, RequestMethod.POST})
+    public ResponseData<Map<String, Object>> page(@PathVariable Integer num){
+        Page<NewArticle> page = new Page<>();
+        page.setPage(num);
+        page = articlesService.selectArticlesByPage(page);
 
-        page = blogsService.selectArticlesByPage(page);
         Map<String, Object> map = ConUtils.hashmap();
-        map.put("blogs", page.getResultList());
+
+        map.put("article", page.getResultList());
         //总页码
         map.put("totalPages", page.getTotalPages());
         //当前页码
         map.put("page", page.getPage());
-
         return super.responseRes(ResponseEnum.SUCCESS, map);
-    }
-
-    @RequestMapping(value = "/index/{num}", method = {RequestMethod.GET, RequestMethod.POST})
-    public ResponseData<Map<String, Object>> page(@PathVariable Integer num){
-        Page<NewArticle> page = new Page<>();
-        page.setPage(num);
-        return index(page);
     }
 
 }

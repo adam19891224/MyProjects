@@ -1,4 +1,4 @@
-package com.enjoylife.blogs;
+package com.enjoylife.article;
 
 import com.enjoylife.article.vo.ArticleTime;
 import com.enjoylife.article.vo.ArticleWithBLOBs;
@@ -12,7 +12,7 @@ import java.util.List;
  * User: Adam
  * Date: 2016/4/23
  */
-public interface IBlogsService {
+public interface IArticlesService {
 
     /**
      * 根据Page对象获取分页信息

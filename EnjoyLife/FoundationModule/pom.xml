@@ -55,14 +55,6 @@
             <version>${mysql.version}</version>
         </dependency>
 
-        <!-- fastjson -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>${fastjson.version}</version>
-        </dependency>
-
-
         <!-- mybatis -->
         <dependency>
             <groupId>org.mybatis</groupId>
@@ -83,11 +75,6 @@
         </dependency>
 
         <!--工具包-->
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>${guava.version}</version>
-        </dependency>
         <dependency>
             <groupId>commons-beanutils</groupId>
             <artifactId>commons-beanutils</artifactId>

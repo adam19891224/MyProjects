@@ -12,7 +12,7 @@ router.get('/:page', function(req, res, next) {
     if(!validator.isNumeric(page)){
         res.json({"code": "N"});
     }
-    let url = api + "/articles/" + page;
+    let url = api + "/archives/" + page;
 
     request.post({
         url: url

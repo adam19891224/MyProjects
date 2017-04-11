@@ -79,7 +79,7 @@ function Applications() {
 let applications = new Applications();
 
 
-function Articles() {
+function Archives() {
 
     let isClick;
 
@@ -108,7 +108,7 @@ function Articles() {
                     isClick = false;
                     if(page > 0){
                         if(applications.checkIsNum(page)){
-                            router.push({name: 'articles', params: { page: page }});
+                            router.push({name: 'archives', params: { page: page }});
                         }
                     }
                     isClick = true;
@@ -117,7 +117,7 @@ function Articles() {
         });
     }
 }
-let articles = new Articles();
+let archives = new Archives();
 
 function Eyes(){
 

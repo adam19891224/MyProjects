@@ -1,9 +1,9 @@
-package com.enjoylife.blogs.impl;
+package com.enjoylife.article.impl;
 
-import com.enjoylife.article.repository.IBlogESRepository;
+import com.enjoylife.article.IArticlesESService;
+import com.enjoylife.article.repository.IArticleESRepository;
 import com.enjoylife.article.vo.NewArticle;
 import com.enjoylife.base.BaseAbstractClass;
-import com.enjoylife.blogs.IBlogsESService;
 import com.enjoylife.modules.ArticleEntity;
 import com.enjoylife.utils.ConUtils;
 import com.enjoylife.utils.EsResultCastUtils;
@@ -39,13 +39,15 @@ import java.util.Map;
  * 2016/11/23
  */
 @Service
-public class BlogsESServiceImpl extends BaseAbstractClass implements IBlogsESService {
+public class ArticlesESServiceImpl extends BaseAbstractClass implements IArticlesESService {
 
 
     @Resource
-    private IBlogESRepository blogESRepository;
+    private IArticleESRepository blogESRepository;
     @Resource
     private ElasticsearchTemplate elasticsearchTemplate;
+    @Resource(name = "articlesESResultMapperImpl")
+    private SearchResultMapper searchResultMapper;
 
     @Override
     public Map<String, Object> selectArticlesHighlightByPage(Page<NewArticle> page) {
@@ -71,42 +73,7 @@ public class BlogsESServiceImpl extends BaseAbstractClass implements IBlogsESSer
                 .withPageable(new PageRequest(page.getEsPage(), page.getPageSize()))
                 .build();
 
-        org.springframework.data.domain.Page<ArticleEntity> esResult = elasticsearchTemplate.queryForPage(searchQuery, ArticleEntity.class, new SearchResultMapper() {
-            @Override
-            public <T> AggregatedPage<T> mapResults(SearchResponse response, Class<T> clazz, Pageable pageable) {
-                List<ArticleEntity> list = ConUtils.arraylist();
-                SearchHits searchHits = response.getHits();
-                long total = searchHits.getTotalHits();
-                {
-                    try {
-                        SearchHit[] hits = searchHits.hits();
-                        Map<String, Object> result;
-                        Map<String, HighlightField> resultH;
-                        ArticleEntity articleEntity;
-                        for (SearchHit temp : hits) {
-                            result = temp.getSource();
-                            resultH = temp.getHighlightFields();
-
-                            articleEntity = EsResultCastUtils.getEntityByMap(result);
-
-                            if (articleEntity != null) {
-                                if (resultH.containsKey("articleTitle"))
-                                    articleEntity.setArticleTitle(resultH.get("articleTitle").fragments()[0].toString());
-
-                                if (resultH.containsKey("articleDescription"))
-                                    articleEntity.setArticleDescription(resultH.get("articleDescription").fragments()[0].toString());
-
-                                list.add(articleEntity);
-                            }
-                        }
-                    } catch (InvocationTargetException | IllegalAccessException e) {
-                        logger.error("es搜索 map结果转bean错误：", e);
-                        return new AggregatedPageImpl<T>(new ArrayList<>(), pageable, 0);
-                    }
-                }
-                return new AggregatedPageImpl<T>((List<T>) list, pageable, total);
-            }
-        });
+        org.springframework.data.domain.Page<ArticleEntity> esResult = elasticsearchTemplate.queryForPage(searchQuery, ArticleEntity.class, searchResultMapper);
 
         Map<String, Object> map = ConUtils.hashmap();
         map.put("totalCount", esResult.getTotalElements());

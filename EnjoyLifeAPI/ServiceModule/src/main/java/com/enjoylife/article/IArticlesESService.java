@@ -1,4 +1,4 @@
-package com.enjoylife.blogs;
+package com.enjoylife.article;
 
 import com.enjoylife.article.vo.NewArticle;
 import com.enjoylife.modules.ArticleEntity;
@@ -11,7 +11,7 @@ import java.util.Map;
  * ranmin-zhouyuhong
  * 2016/11/23
  */
-public interface IBlogsESService {
+public interface IArticlesESService {
 
     Map<String, Object> selectArticlesHighlightByPage(Page<NewArticle> page);
 
